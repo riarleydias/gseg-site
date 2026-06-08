@@ -1,0 +1,221 @@
+/* =============================================================================
+   GSEG · inicio.css — página Início (hero · autoridade · atalhos)
+   Tokens: css/variaveis_LUCAS.css · componentes base: css/global.css
+   ============================================================================= */
+
+/* ========================================================================
+   HERO
+   ======================================================================== */
+.hero { position: relative; isolation: isolate; background: var(--verde-floresta); }
+
+.hero__fundo { position: absolute; inset: 0; z-index: -1; }
+.hero__ph { width: 100%; height: 100%; }
+.hero__overlay {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(90deg, rgba(20,28,16,.82) 0%, rgba(20,28,16,.55) 45%, rgba(20,28,16,.20) 100%),
+    linear-gradient(0deg, rgba(20,28,16,.45), rgba(20,28,16,0) 40%);
+}
+
+.hero__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-7);
+  padding-block: var(--space-9) var(--space-8);
+  min-height: 68vh;
+}
+
+.hero__conteudo { max-width: 620px; }
+
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-inline);
+  background: rgba(242,241,236,.14);
+  border: 1px solid rgba(242,241,236,.22);
+  color: var(--texto-claro);
+  font-family: var(--font-body);
+  font-size: var(--fs-kicker);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  margin-bottom: var(--space-5);
+}
+.hero__ponto { width: 7px; height: 7px; border-radius: 50%; background: var(--areia); }
+
+.hero__titulo {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  font-size: clamp(32px, 8.5vw, 84px);   /* piso baixo: "TRABALHO" (palavra longa) cabe até 320px */
+  line-height: var(--lh-display);
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: var(--texto-claro);
+}
+.hero__titulo-2 { color: var(--areia); }
+
+.hero__tagline {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: var(--fw-semibold);
+  font-size: clamp(20px, 3vw, 28px);
+  color: var(--texto-claro);
+  margin-top: var(--space-5);
+  padding-left: var(--space-4);
+  border-left: 3px solid var(--areia);
+}
+
+.hero__texto {
+  color: var(--texto-claro-2);
+  font-size: var(--fs-body);
+  max-width: 46ch;
+  margin-top: var(--space-5);
+}
+
+.hero__ctas { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
+
+.hero__selo {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 220px;
+  height: 220px;
+  background: rgba(194,180,155,.16);
+  border: 1px solid rgba(242,241,236,.28);
+  border-radius: var(--radius-card);
+  backdrop-filter: blur(2px);
+}
+.hero__selo-num {
+  font-family: var(--font-display);
+  font-size: 72px;
+  font-weight: var(--fw-bold);
+  color: var(--texto-claro);
+  line-height: 1;
+}
+.hero__selo-label {
+  font-family: var(--font-body);
+  font-size: var(--fs-kicker);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--texto-claro-2);
+  margin-top: var(--space-2);
+}
+
+.hero__selo { display: none; }
+.hero__ctas .btn { flex: 1 1 auto; }
+
+@media (min-width: 560px) {
+  .hero__ctas .btn { flex: 0 0 auto; }
+}
+@media (min-width: 1024px) {
+  .hero__selo { display: flex; }
+}
+
+/* ========================================================================
+   INDICADORES DE AUTORIDADE
+   ======================================================================== */
+.autoridade { background: var(--verde-musgo); color: var(--texto-claro); }
+.autoridade__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.autoridade__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding-block: var(--space-4);
+  border-top: 1px solid rgba(242,241,236,.16);
+}
+.autoridade__item:first-child { border-top: 0; }
+.autoridade__item > i { font-size: 30px; color: var(--areia); flex: none; }
+.autoridade__item > div { display: flex; flex-direction: column; }
+.autoridade__titulo {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wordmark);
+  color: var(--texto-claro);
+}
+.autoridade__sub {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--texto-claro-2);
+}
+
+@media (min-width: 768px) {
+  .autoridade__grid { grid-template-columns: repeat(4, 1fr); }
+  .autoridade__item {
+    border-top: 0;
+    border-left: 1px solid rgba(242,241,236,.16);
+    padding: var(--space-2) var(--space-5);
+  }
+  .autoridade__item:first-child { padding-left: 0; border-left: 0; }
+}
+
+/* ========================================================================
+   ATALHOS (Serviços / Benefícios / Sobre)
+   ======================================================================== */
+.atalhos { background: var(--creme); }
+.atalhos__grid {
+  display: grid;
+  grid-template-columns: 1fr;          /* full-bleed, flush sob a faixa de autoridade */
+}
+.atalho {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-6) var(--gutter) var(--space-7);
+  background: var(--creme);
+  border-top: 1px solid var(--borda);
+  transition: background var(--transition);
+  min-height: 132px;
+}
+.atalho:first-child { border-top: 0; }
+.atalho--alt { background: var(--creme-200); }
+.atalho--escuro { background: var(--verde-floresta); }
+.atalho__icone { font-size: 30px; color: var(--verde-musgo); margin-bottom: var(--space-2); }
+.atalho__titulo {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wordmark);
+  color: var(--verde-floresta);
+}
+.atalho__sub { font-size: var(--fs-small); color: var(--grafite-suave); }
+.atalho__seta {
+  position: absolute;
+  right: var(--gutter);
+  bottom: var(--space-6);
+  font-size: 20px;
+  color: var(--verde-musgo);
+  transition: transform var(--transition);
+}
+.atalho:hover { background: var(--branco); }
+.atalho:hover .atalho__seta { transform: translateX(4px); }
+
+.atalho--escuro .atalho__icone,
+.atalho--escuro .atalho__seta { color: var(--areia); }
+.atalho--escuro .atalho__titulo { color: var(--texto-claro); }
+.atalho--escuro .atalho__sub { color: var(--texto-claro-2); }
+.atalho--escuro:hover { background: var(--verde-escuro); }
+
+@media (min-width: 768px) {
+  .atalhos__grid { grid-template-columns: repeat(3, 1fr); }
+  .atalho {
+    border-top: 0;
+    border-left: 1px solid var(--borda);
+    padding: var(--space-7) var(--space-7) var(--space-8);
+  }
+  .atalho:first-child { border-left: 0; }
+  .atalho__seta { right: var(--space-7); }
+}

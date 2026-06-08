@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>GSEG | Engenharia de Segurança do Trabalho em Araxá/MG</title>
+  <meta name="description" content="Consultoria, documentação e treinamentos em Segurança do Trabalho (SST) em Araxá/MG e região. +20 anos protegendo pessoas e fortalecendo negócios. CREA 332747/MG.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.gsegengenharia.com.br/index.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="GSEG | Engenharia de Segurança do Trabalho">
+  <meta property="og:description" content="Consultoria, documentação e treinamentos em SST em Araxá/MG e região. +20 anos protegendo pessoas e fortalecendo negócios.">
+  <meta property="og:image" content="https://www.gsegengenharia.com.br/assets/icons/favicon-256.png">
+  <meta property="og:url" content="https://www.gsegengenharia.com.br/index.html">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="GSEG Engenharia de Segurança do Trabalho">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "GSEG Engenharia de Segurança do Trabalho",
+    "description": "Consultoria em Saúde e Segurança do Trabalho (SST) em Araxá/MG e região: documentação, treinamentos e laudos.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Araxá",
+      "addressRegion": "MG",
+      "addressCountry": "BR"
+    },
+    "telephone": "+55-34-99207-6152",
+    "email": "liviapoliane@yahoo.com.br",
+    "areaServed": "Araxá e região, Triângulo Mineiro, Minas Gerais",
+    "founder": {
+      "@type": "Person",
+      "name": "Lívia Poliane",
+      "jobTitle": "Engenheira de Segurança do Trabalho",
+      "identifier": "CREA 332747/MG"
+    },
+    "slogan": "Proteger pessoas. Fortalecer negócios."
+  }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="256x256" href="assets/icons/favicon-256.png">
+  <link rel="apple-touch-icon" href="assets/icons/favicon-256.png">
+
+  <!-- Fontes (Google Fonts, display=swap) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700&display=swap">
+
+  <!-- Ícones (Phosphor) -->
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.2" defer></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variaveis_LUCAS.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/inicio.css">
+</head>
+<body>
+  <a href="#conteudo-principal" class="skip-link">Ir para o conteúdo principal</a>
+
+  <!-- ========================= CABEÇALHO ========================= -->
+  <header class="cabecalho">
+    <div class="container cabecalho__inner">
+      <a class="logo" href="index.html" aria-label="GSEG — Engenharia de Segurança do Trabalho, página inicial">
+        <!-- LOGO: símbolo G isolado (sem tile) — placeholder fiel ao portfólio.
+             Substituir os SVG em assets/brand/ pelo vetor original quando a Lívia enviar. -->
+        <img class="logo__simbolo" src="assets/brand/simbolo-positivo_LUCAS.svg" alt="" width="44" height="44">
+        <span class="logo__texto">
+          <span class="logo__nome">GSEG</span>
+          <span class="logo__descritor">Engenharia de Segurança do Trabalho</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Menu principal">
+        <ul class="nav__lista">
+          <li><a class="nav__link" href="index.html" aria-current="page">Início</a></li>
+          <li><a class="nav__link" href="sobre.html">Sobre</a></li>
+          <li><a class="nav__link" href="servicos.html">Serviços</a></li>
+          <li><a class="nav__link" href="beneficios.html">Benefícios</a></li>
+          <li><a class="nav__link" href="segmentos.html">Segmentos</a></li>
+          <li><a class="nav__link" href="faq.html">FAQ</a></li>
+          <li><a class="nav__link" href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="cabecalho__acoes">
+        <a class="btn btn--outline btn--sm" href="contato.html">Orçamento <span aria-hidden="true">→</span></a>
+        <a class="btn btn--primary btn--sm" href="https://wa.me/5534992076152?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20GSEG%20e%20gostaria%20de%20falar%20com%20a%20consultoria." target="_blank" rel="noopener noreferrer">
+          <i class="ph ph-whatsapp-logo" aria-hidden="true"></i> WhatsApp
+        </a>
+      </div>
+
+      <button class="hamburguer" id="btn-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-mobile">
+        <i class="ph ph-list" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================== MENU OFF-CANVAS (mobile) ===================== -->
+  <div class="menu-mobile" id="menu-mobile">
+    <div class="menu-mobile__overlay" data-fechar-menu></div>
+    <nav class="menu-mobile__painel" aria-label="Menu principal">
+      <div class="menu-mobile__topo">
+        <img class="menu-mobile__logo" src="assets/brand/logo-horizontal-negativo_LUCAS.svg" alt="GSEG — Engenharia de Segurança do Trabalho">
+        <button class="menu-mobile__fechar" data-fechar-menu aria-label="Fechar menu">
+          <i class="ph ph-x" aria-hidden="true"></i>
+        </button>
+      </div>
+      <p class="menu-mobile__kicker">Menu principal</p>
+      <ul class="menu-mobile__lista">
+        <li class="menu-mobile__item"><a class="menu-mobile__link" href="index.html" aria-current="page"><i class="ph ph-house" aria-hidden="true"></i> Início <i class="ph ph-arrow-right seta" aria-hidden="true"></i></a></li>
+        <li class="menu-mobile__item"><a class="menu-mobile__link" href="sobre.html"><i class="ph ph-briefcase" aria-hidden="true"></i> Sobre <i class="ph ph-arrow-right seta" aria-hidden="true"></i></a></li>
+        <li class="menu-mobile__item"><a class="menu-mobile__link" href="servicos.html"><i class="ph ph-shield-check" aria-hidden="true"></i> Serviços <i class="ph ph-arrow-right seta" aria-hidden="true"></i></a></li>
+        <li class="menu-mobile__item"><a class="menu-mobile__link" href="beneficios.html"><i class="ph ph-users-three" aria-hidden="true"></i> Benefícios <i class="ph ph-arrow-right seta" aria-hidden="true"></i></a></li>
+        <li class="menu-mobile__item"><a class="menu-mobile__link" href="segmentos.html"><i class="ph ph-squares-four" aria-hidden="true"></i> Segmentos <i class="ph ph-arrow-right seta" aria-hidden="true"></i></a></li>
+        <li class="menu-mobile__item"><a class="menu-mobile__link" href="faq.html"><i class="ph ph-question" aria-hidden="true"></i> FAQ <i class="ph ph-arrow-right seta" aria-hidden="true"></i></a></li>
+        <li class="menu-mobile__item"><a class="menu-mobile__link" href="contato.html"><i class="ph ph-phone" aria-hidden="true"></i> Contato <i class="ph ph-arrow-right seta" aria-hidden="true"></i></a></li>
+      </ul>
+      <div class="menu-mobile__acoes">
+        <a class="btn btn--light" href="contato.html">Solicitar orçamento <span aria-hidden="true">→</span></a>
+        <a class="btn btn--light-outline" href="https://wa.me/5534992076152?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20GSEG%20e%20gostaria%20de%20falar%20com%20a%20consultoria." target="_blank" rel="noopener noreferrer">
+          <i class="ph ph-whatsapp-logo" aria-hidden="true"></i> Falar no WhatsApp
+        </a>
+      </div>
+      <p class="menu-mobile__rodape"><i class="ph ph-shield-check" aria-hidden="true"></i> <span>Protegemos pessoas.<br>Fortalecemos negócios.</span></p>
+    </nav>
+  </div>
+
+  <main id="conteudo-principal">
+
+    <!-- ========================= HERO ========================= -->
+    <section class="hero">
+      <div class="hero__fundo">
+        <!-- PLACEHOLDER de foto (hero/LCP) — trocar por <img loading="eager"> real -->
+        <div class="ph-foto hero__ph">
+          <i class="ph ph-camera" aria-hidden="true"></i>
+          <span>Foto — aguardando cliente</span>
+        </div>
+        <div class="hero__overlay"></div>
+      </div>
+
+      <div class="container hero__inner">
+        <div class="hero__conteudo">
+          <span class="hero__badge"><span class="hero__ponto" aria-hidden="true"></span> Engenharia de</span>
+          <h1 class="hero__titulo">Segurança<br><span class="hero__titulo-2">do Trabalho</span></h1>
+          <p class="hero__tagline">“Proteger pessoas.<br>Fortalecer negócios.”</p>
+          <p class="hero__texto">Soluções técnicas e estratégicas para ambientes de trabalho mais seguros, produtivos e em conformidade.</p>
+          <div class="hero__ctas">
+            <a class="btn btn--light btn--lg" href="https://wa.me/5534992076152?text=Ol%C3%A1!%20Quero%20falar%20com%20um%20especialista%20da%20GSEG%20sobre%20Seguran%C3%A7a%20do%20Trabalho." target="_blank" rel="noopener noreferrer">
+              Falar com especialista <span aria-hidden="true">→</span>
+            </a>
+            <a class="btn btn--light-outline btn--lg" href="servicos.html">Conhecer serviços</a>
+          </div>
+        </div>
+
+        <div class="hero__selo" aria-label="Mais de 20 anos de experiência">
+          <span class="hero__selo-num">+20</span>
+          <span class="hero__selo-label">anos</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== INDICADORES DE AUTORIDADE ===================== -->
+    <section class="autoridade" aria-label="Indicadores da GSEG">
+      <div class="container autoridade__grid">
+        <div class="autoridade__item">
+          <i class="ph ph-shield-check" aria-hidden="true"></i>
+          <div><span class="autoridade__titulo">+20 anos</span><span class="autoridade__sub">de experiência</span></div>
+        </div>
+        <div class="autoridade__item">
+          <i class="ph ph-users" aria-hidden="true"></i>
+          <div><span class="autoridade__titulo">Atendimento</span><span class="autoridade__sub">personalizado</span></div>
+        </div>
+        <div class="autoridade__item">
+          <i class="ph ph-target" aria-hidden="true"></i>
+          <div><span class="autoridade__titulo">Foco em</span><span class="autoridade__sub">resultados</span></div>
+        </div>
+        <div class="autoridade__item">
+          <i class="ph ph-seal-check" aria-hidden="true"></i>
+          <div><span class="autoridade__titulo">Conformidade</span><span class="autoridade__sub">legal total</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ATALHOS (Serviços / Benefícios / Sobre) ===================== -->
+    <section class="atalhos" aria-label="Áreas do site">
+        <div class="atalhos__grid">
+          <a class="atalho" href="servicos.html">
+            <i class="ph ph-shield-check atalho__icone" aria-hidden="true"></i>
+            <span class="atalho__titulo">Serviços</span>
+            <span class="atalho__sub">Soluções completas em SST</span>
+            <i class="ph ph-arrow-right atalho__seta" aria-hidden="true"></i>
+          </a>
+          <a class="atalho atalho--alt" href="beneficios.html">
+            <i class="ph ph-users-three atalho__icone" aria-hidden="true"></i>
+            <span class="atalho__titulo">Benefícios</span>
+            <span class="atalho__sub">Menos riscos, mais resultados</span>
+            <i class="ph ph-arrow-right atalho__seta" aria-hidden="true"></i>
+          </a>
+          <a class="atalho atalho--escuro" href="sobre.html">
+            <i class="ph ph-user atalho__icone" aria-hidden="true"></i>
+            <span class="atalho__titulo">Sobre</span>
+            <span class="atalho__sub">Nossa história e valores</span>
+            <i class="ph ph-arrow-right atalho__seta" aria-hidden="true"></i>
+          </a>
+        </div>
+    </section>
+
+  </main>
+
+  <!-- ========================= RODAPÉ ========================= -->
+  <footer class="rodape">
+    <div class="container">
+      <div class="rodape__grid">
+        <div class="rodape__col rodape__marca">
+          <img class="rodape__logo" src="assets/brand/logo-horizontal-negativo_LUCAS.svg" alt="GSEG — Engenharia de Segurança do Trabalho">
+          <p class="rodape__slogan">“Proteger pessoas. Fortalecer negócios.”</p>
+          <p class="rodape__crea">Lívia Poliane · CREA nº 332747/MG</p>
+        </div>
+
+        <div class="rodape__col">
+          <h3>Contato</h3>
+          <div class="rodape__contato">
+            <a href="tel:+5534992076152"><i class="ph ph-phone" aria-hidden="true"></i> (34) 99207-6152</a>
+            <a href="mailto:liviapoliane@yahoo.com.br"><i class="ph ph-envelope" aria-hidden="true"></i> liviapoliane@yahoo.com.br</a>
+            <a href="https://wa.me/5534992076152?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20GSEG%20e%20gostaria%20de%20falar%20com%20a%20consultoria." target="_blank" rel="noopener noreferrer"><i class="ph ph-whatsapp-logo" aria-hidden="true"></i> Fale pelo WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="rodape__col">
+          <h3>Navegação</h3>
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="servicos.html">Serviços</a></li>
+            <li><a href="beneficios.html">Benefícios</a></li>
+            <li><a href="segmentos.html">Segmentos</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contato.html">Contato</a></li>
+          </ul>
+        </div>
+
+        <div class="rodape__col">
+          <h3>Área de atendimento</h3>
+          <p>Araxá/MG e região</p>
+          <p>Atendimento em todo o Triângulo Mineiro</p>
+        </div>
+      </div>
+
+      <div class="rodape__base">
+        <p>&copy; 2026 GSEG Engenharia de Segurança do Trabalho. Todos os direitos reservados.</p>
+        <p>Desenvolvido por <a href="#" rel="noopener noreferrer">Agência Riarley Dias</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp flutuante -->
+  <a class="whatsapp-float" href="https://wa.me/5534992076152?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20GSEG%20e%20gostaria%20de%20falar%20com%20a%20consultoria." target="_blank" rel="noopener noreferrer" aria-label="Falar com a GSEG pelo WhatsApp">
+    <i class="ph ph-whatsapp-logo" aria-hidden="true"></i>
+  </a>
+
+  <script src="js/menu.js" defer></script>
+  <script src="js/whatsapp.js" defer></script>
+</body>
+</html>

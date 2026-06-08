@@ -1,0 +1,6 @@
+# GSEG · robots.txt
+# Ajustar o domínio do Sitemap quando definido (provisório: gsegengenharia.com.br)
+User-agent: *
+Allow: /
+
+Sitemap: https://www.gsegengenharia.com.br/sitemap.xml

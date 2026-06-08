@@ -1,0 +1,71 @@
+/* =============================================================================
+   GSEG · beneficios.css — página Benefícios (hero escuro + 6 cards numerados)
+   ============================================================================= */
+
+/* ---------- Hero escuro ---------- */
+.benef-hero {
+  background: var(--verde-floresta);
+  color: var(--texto-claro);
+  padding-block: var(--space-section-mobile);
+}
+.benef-hero__titulo {
+  font-family: var(--font-accent);
+  font-weight: var(--fw-bold);
+  font-size: clamp(30px, 5vw, 48px);
+  color: var(--texto-claro);
+  line-height: 1.15;
+  max-width: 20ch;
+}
+.benef-hero__titulo em { font-style: italic; color: var(--areia); }
+.benef-hero__texto { color: var(--texto-claro-2); margin-top: var(--space-4); max-width: 62ch; }
+
+/* ---------- Grid de 6 cards (hairlines via gap:1px sobre fundo --borda) ---------- */
+.benef-secao { padding-block: var(--space-section-mobile); }
+.benef-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--borda);
+  border: 1px solid var(--borda);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+.benef {
+  background: var(--creme);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-height: 150px;
+}
+.benef__topo { display: flex; align-items: center; gap: var(--space-3); }
+.benef__num {
+  font-family: var(--font-accent);
+  font-weight: var(--fw-bold);
+  font-size: 40px;
+  line-height: 1;
+  color: var(--areia);
+}
+.benef__icone { font-size: 22px; color: var(--verde-musgo); }
+.benef__titulo {
+  font-family: var(--font-accent);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-h3);
+  color: var(--verde-floresta);
+  line-height: 1.15;
+  margin-top: var(--space-2);
+}
+.benef__desc { font-size: var(--fs-small); color: var(--grafite-suave); }
+
+@media (min-width: 768px) {
+  .benef-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 900px) {
+  .benef-hero { padding-block: var(--space-section-desktop); }
+  .benef-secao { padding-block: var(--space-section-desktop); }
+}
+@media (min-width: 1024px) {
+  .benef-grid { grid-template-columns: repeat(6, 1fr); }
+  .benef { padding: var(--space-5) var(--space-4); }
+  .benef__num { font-size: 34px; }
+}

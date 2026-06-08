@@ -1,0 +1,166 @@
+/* =============================================================================
+   GSEG · Engenharia de Segurança do Trabalho
+   variaveis_LUCAS.css — tokens oficiais da marca (cores · tipografia · espaçamento)
+   -----------------------------------------------------------------------------
+   Autoria : Lucas — Identidade Visual · Agência Riarley Dias
+   Projeto : livia-poliane · Handoff para: Rafael (front-end)
+   Base    : brandbook_LUCAS.pdf — §6 (tipografia) · §7 (gráficos) · §9 (tokens).
+             ESTE arquivo é a versão CANÔNICA e expandida do :root do brandbook:
+             os tokens do §9 estão reproduzidos exatamente; o que foi acrescentado
+             vem rotulado como "EXTENSÃO" (derivado dos mockups, sem contradizer o
+             brandbook).
+   Versão  : 1.0 · 06/06/2026
+   -----------------------------------------------------------------------------
+   COMO USAR (Rafael)
+     1. Carregar as fontes no <head> (snippet abaixo) — ou self-host .woff2 (LCP).
+     2. Colar este :root no topo de assets/css/styles.css (fonte única de verdade),
+        ou referenciar:  @import "../../css/variaveis_LUCAS.css";
+     3. Nunca usar HEX cru no componente — sempre var(--token).
+
+   FONTES — colar no <head> (Google Fonts, display=swap; brandbook §9):
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700&display=swap">
+
+   REGRAS DE OURO (brandbook)
+     • Verde é a identidade. NUNCA azul — o #2563EB é da AGÊNCIA e jamais entra aqui.
+     • Logo = "G" isolado, sem contêiner/tile. Versão principal = negativa (branca).
+     • Assets de logo PAUSADOS aguardando o vetor original da cliente
+       (ver ../../../00-briefing/mensagem-coleta-logo_SOFIA.md).
+       Estes tokens NÃO mudam com o vetor — ele refina só o traçado do "G"
+       (brandbook §10: "tokens permanecem").
+   ============================================================================= */
+
+:root {
+
+  /* ───────────────────────────────────────────────────────────────────────────
+     1 · CORES — MARCA (verde)            [idênticas ao brandbook §9 — NÃO alterar]
+     ─────────────────────────────────────────────────────────────────────────── */
+  --verde-floresta: #32472B;  /* PRIMÁRIA — header, títulos, botões, faixas CTA · AAA s/ creme 8.96:1 */
+  --verde-escuro:   #243520;  /* hover / realce do primário                                          */
+  --verde-musgo:    #49693F;  /* SECUNDÁRIA — destaque, numeral de pilar, marcador seta ►            */
+  --verde-claro:    #6E8B62;  /* apoio / gráfico                                                     */
+
+  /* Acentos quentes (amostrados dos mockups) */
+  --terracota:      #6F4634;  /* acento — 2ª palavra do título (itálico), selo Fazendas · AAA 7.14:1 */
+  --areia:          #C2B49B;  /* decorativo — kickers, numerais grandes (+20 / 01–06), divisórias    */
+
+  /* Neutros / papel */
+  --creme:          #F2F1EC;  /* FUNDO (papel)                          */
+  --creme-200:      #E6E7DF;  /* faixa / borda suave / card alternado   */
+  --branco:         #FFFFFF;  /* cards                                  */
+  --borda:          #D9D7CE;  /* divisor / borda de card                */
+
+  /* Texto */
+  --grafite:        #3A3A3A;  /* TEXTO corpo · AAA s/ creme             */
+  --grafite-suave:  #5C5C5C;  /* legenda / texto secundário            */
+  --texto-claro:    #F2F1EC;  /* texto sobre fundo verde / foto        */
+  --texto-claro-2:  #D8DDD3;  /* texto secundário sobre fundo verde    */
+
+  /* Funcionais (não-marca) */
+  --whatsapp:       #25D366;  /* EXCLUSIVO do botão WhatsApp           */
+  --erro:           #B3261E;  /* validação de formulário              */
+  --sucesso:        #1E7D32;  /* confirmação de envio                 */
+
+  /* ───────────────────────────────────────────────────────────────────────────
+     2 · TIPOGRAFIA                       [famílias = brandbook §6/§9; escala/medidas
+                                           derivadas dos mockups, consistentes]
+     ───────────────────────────────────────────────────────────────────────────
+     Papel de cada família (lido dos mockups):
+       • DISPLAY (Cinzel) ....... caixa-alta inscricional: wordmark "GSEG", hero
+         "SEGURANÇA DO TRABALHO", títulos de card (DOCUMENTAÇÃO…), faixa de CTA
+         ("PROTEGER PESSOAS…"), rótulos de pilar (ATENDIMENTO / CONFORMIDADE).
+       • ACCENT (Cormorant Garamond) ... caixa-baixa elegante + ITÁLICO: tagline
+         "Proteger pessoas. Fortalecer negócios." e a 2ª palavra do título em
+         itálico/terracota ("Serviços em SST", "Segmentos atendidos").
+       • BODY (Inter) ........... corpo, nav, kickers, botões, "VER MAIS",
+         micro-rótulos e formulário.                                              */
+
+  /* Famílias */
+  --font-display: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
+  --font-accent:  'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body:    'Inter', 'Source Sans 3', system-ui, 'Segoe UI', Arial, sans-serif;
+
+  /* Pesos (do import de fontes) */
+  --fw-regular:   400;  /* Inter — corpo                         */
+  --fw-medium:    500;  /* Inter — rótulos / nav                 */
+  --fw-semibold:  600;  /* Inter botões · Cinzel/Cormorant base  */
+  --fw-bold:      700;  /* Cinzel/Cormorant ênfase · Inter forte */
+
+  /* Escala — desktop (brandbook §6: H1 48 → corpo 17; 1 H1/página; máx. 68ch) */
+  --fs-hero:   clamp(48px, 7vw, 88px); /* EXTENSÃO: hero da home (display) — nunca < H1 */
+  --fs-h1:     48px;
+  --fs-h2:     34px;
+  --fs-h3:     22px;
+  --fs-body:   17px;
+  --fs-small:  14px;
+  --fs-kicker: 13px;   /* EXTENSÃO: eyebrow/kicker em caps ("COMO PODEMOS TE AJUDAR?") */
+
+  /* Entrelinha / tracking (derivados dos mockups) */
+  --lh-display: 1.05;   /* títulos caps grandes — linhas justas */
+  --lh-heading: 1.18;   /* H2 / H3                              */
+  --lh-body:    1.6;    /* leitura confortável                  */
+  --ls-caps:    0.14em; /* eyebrow / nav / micro-rótulos / botões (caps tracked) */
+  --ls-wordmark:0.06em; /* wordmark e títulos inscricionais     */
+  --measure:    68ch;   /* largura máxima de leitura (brandbook §6) */
+
+  /* ───────────────────────────────────────────────────────────────────────────
+     3 · ESPAÇAMENTO / GRID               [80·48·1140 = brandbook §9; degraus
+                                           intermediários = ritmo dos mockups]
+     ─────────────────────────────────────────────────────────────────────────── */
+  --container-max: 1140px;   /* largura útil (brandbook §9)                 */
+  --gutter:        24px;     /* respiro lateral do container em telas estreitas */
+
+  /* Escala base 4·8 */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;   /* coincide com --space-section-mobile  */
+  --space-8:  64px;
+  --space-9:  80px;   /* coincide com --space-section-desktop */
+  --space-10: 96px;
+
+  /* Semânticos (mapeados ao ritmo dos mockups) */
+  --space-section-desktop: 80px;  /* respiro vertical de seção — desktop (brandbook §9) */
+  --space-section-mobile:  48px;  /* respiro vertical de seção — mobile  (brandbook §9) */
+  --pad-card:    32px;  /* padding interno do card (grid Serviços/Benefícios)            */
+  --gap-grid:    0px;   /* grid de cards é CONTÍGUO, dividido por --borda (hairline)      */
+  --gap-stack:   24px;  /* respiro entre blocos empilhados                               */
+  --gap-inline:  12px;  /* ícone ↔ texto, chips, itens de nav                            */
+
+  /* ───────────────────────────────────────────────────────────────────────────
+     4 · RAIO · SOMBRA · FOCO · MOVIMENTO            [brandbook §7/§9 + extensões]
+     ─────────────────────────────────────────────────────────────────────────── */
+  --radius-card:   8px;   /* cards                          */
+  --radius-btn:    6px;   /* botões                         */
+  --radius-emblem: 14px;  /* emblemas/selos (brandbook 14–42px) */
+  --radius-pill:   42px;  /* pílula (limite superior)       */
+
+  --shadow-card:     0 2px 8px rgba(50, 71, 43, .08);   /* brandbook §9 — sombra esverdeada suave   */
+  --shadow-elevated: 0 8px 24px rgba(50, 71, 43, .12);  /* EXTENSÃO: hover / menu off-canvas        */
+
+  --tap-min:    44px;  /* alvo mínimo de toque (acessibilidade)                       */
+  --focus-ring: 0 0 0 3px rgba(110, 139, 98, .55);   /* EXTENSÃO: anel de foco (verde-claro) */
+  --transition: 180ms ease;                          /* EXTENSÃO: micro-interações (ver prefers-reduced-motion) */
+}
+
+/* -----------------------------------------------------------------------------
+   Nota de breakpoint — custom properties NÃO funcionam dentro de @media; usar o
+   valor literal. Referência: menu off-canvas e troca de respiro em max-width: 900px.
+
+   Exemplo de aplicação (para o styles.css do Rafael):
+     body        { font-family: var(--font-body); font-size: var(--fs-body);
+                   line-height: var(--lh-body); color: var(--grafite);
+                   background: var(--creme); }
+     h1          { font-family: var(--font-display); font-size: var(--fs-h1);
+                   line-height: var(--lh-display); letter-spacing: var(--ls-wordmark);
+                   color: var(--verde-floresta); }
+     .titulo-acento em { font-family: var(--font-accent); font-style: italic;
+                         color: var(--terracota); }   /* "Serviços <em>em SST</em>" */
+     .btn-primary { background: var(--verde-floresta); color: var(--texto-claro);
+                    border-radius: var(--radius-btn); min-height: var(--tap-min); }
+     .btn-primary:hover { background: var(--verde-escuro); }
+   ----------------------------------------------------------------------------- */

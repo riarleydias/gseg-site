@@ -1,0 +1,174 @@
+/* =============================================================================
+   GSEG · contato.css — página Contato (painel verde + formulário Web3Forms)
+   ============================================================================= */
+
+.contato { padding: 0; }
+.contato__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  padding: 0;
+  max-width: none;            /* full-bleed; o respiro vem das colunas */
+}
+
+/* ---------- Coluna esquerda (informações, fundo verde + foto) ---------- */
+.contato__info {
+  position: relative;
+  isolation: isolate;
+  background: var(--verde-floresta);
+  color: var(--texto-claro);
+  overflow: hidden;
+}
+.contato__info-bg { position: absolute; inset: 0; z-index: -1; }
+.contato__info-bg .ph-foto { width: 100%; height: 100%; }
+.contato__info-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, rgba(36,53,32,.92), rgba(50,71,43,.82));
+}
+.contato__info-conteudo {
+  padding: var(--space-7) var(--gutter);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.contato__texto { color: var(--texto-claro-2); max-width: 42ch; }
+
+.contato__lista { display: grid; gap: var(--space-3); margin-top: var(--space-4); }
+.contato__lista > li > a,
+.contato__item--atend {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background: rgba(242,241,236,.08);
+  border: 1px solid rgba(242,241,236,.14);
+  border-left: 3px solid var(--areia);
+  border-radius: var(--radius-btn);
+  color: var(--texto-claro);
+  min-height: var(--tap-min);
+}
+.contato__lista > li > a:hover { background: rgba(242,241,236,.14); color: var(--texto-claro); }
+.contato__circ {
+  flex: none;
+  width: 42px; height: 42px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(242,241,236,.12);
+  border-radius: 50%;
+  font-size: 20px;
+  color: var(--areia);
+}
+.contato__rotulo {
+  display: block;
+  font-size: var(--fs-kicker);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--texto-claro-2);
+}
+.contato__valor { display: block; font-weight: var(--fw-semibold); }
+
+.contato__crea {
+  display: flex; align-items: center; gap: var(--gap-inline);
+  margin-top: var(--space-4);
+  font-size: var(--fs-small);
+  color: var(--texto-claro-2);
+}
+.contato__tile { width: 22px; height: 22px; background: var(--areia); border-radius: 4px; flex: none; }
+
+/* ---------- Coluna direita (formulário) ---------- */
+.contato__form-wrap { padding: var(--space-7) var(--gutter); background: var(--creme); }
+
+.form__linha { display: grid; grid-template-columns: 1fr; gap: 0; }
+.form__grupo { display: flex; flex-direction: column; margin-bottom: var(--space-4); }
+.form__grupo label {
+  font-size: var(--fs-kicker);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--grafite-suave);
+  margin-bottom: var(--space-2);
+  font-weight: var(--fw-semibold);
+}
+.form__req { color: var(--terracota); }
+
+.form__grupo input,
+.form__grupo select,
+.form__grupo textarea {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  border-radius: var(--radius-btn);
+  font-size: var(--fs-body);
+  color: var(--grafite);
+  min-height: var(--tap-min);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.form__grupo textarea { resize: vertical; min-height: 110px; }
+.form__grupo input::placeholder,
+.form__grupo textarea::placeholder { color: var(--grafite-suave); opacity: .7; }
+.form__grupo input:focus,
+.form__grupo select:focus,
+.form__grupo textarea:focus {
+  outline: none;
+  border-color: var(--verde-musgo);
+  box-shadow: var(--focus-ring);
+}
+.form__grupo select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%235C5C5C' d='M8 11 3 6h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-4) center;
+  padding-right: var(--space-7);
+}
+.form__grupo input[aria-invalid="true"],
+.form__grupo textarea[aria-invalid="true"] { border-color: var(--erro); }
+.form__erro { color: var(--erro); font-size: var(--fs-small); margin-top: var(--space-2); min-height: 1em; }
+
+#btn-submit { margin-top: var(--space-2); }
+#btn-submit[aria-busy="true"] { opacity: .8; cursor: progress; }
+
+.form__aviso {
+  display: flex; align-items: center; gap: var(--gap-inline);
+  font-size: var(--fs-small);
+  color: var(--grafite-suave);
+  margin-top: var(--space-4);
+}
+.form__aviso i { color: var(--verde-musgo); font-size: 18px; }
+
+/* Mensagens de retorno (injetadas por formulario.js) */
+.form-msg {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--pad-card);
+  border-radius: var(--radius-card);
+}
+.form-msg:focus { outline: none; }
+.form-msg--ok {
+  background: rgba(30,125,50,.08);
+  border: 1px solid rgba(30,125,50,.35);
+}
+.form-msg--ok i { font-size: 40px; color: var(--sucesso); }
+.form-msg--ok h3 { color: var(--verde-floresta); }
+.form-msg--erro {
+  flex-direction: row;
+  align-items: center;
+  background: rgba(179,38,30,.07);
+  border: 1px solid rgba(179,38,30,.3);
+  margin-bottom: var(--space-4);
+}
+.form-msg--erro i { font-size: 24px; color: var(--erro); flex: none; }
+.form-msg--erro a { color: var(--erro); text-decoration: underline; }
+
+/* enxuta no mobile: empresa / telefone / segmento só no desktop (espelha o mockup) */
+.form__so-desktop { display: none; }
+
+/* ---------- Desktop ---------- */
+@media (min-width: 900px) {
+  .contato__grid { grid-template-columns: 0.92fr 1.08fr; }
+  .contato__info-conteudo { padding: var(--space-9) var(--space-8); justify-content: center; height: 100%; }
+  .contato__form-wrap { padding: var(--space-9) var(--space-8); }
+  .form__linha { grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+  .form__so-desktop { display: flex; }
+}

@@ -1,0 +1,25 @@
+# Sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Debug e temporários
+*.log
+*.tmp
+gseg-render/
+*-debug.*
+*-crop.*
+*-sm.*
+
+# Node (caso alguém adicione ferramentas futuramente)
+node_modules/
+npm-debug.log
+
+# Não versionar placeholders de render interno
+AppData/

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="36 36 168 168" role="img" aria-label="GSEG">
+  <title>GSEG — Favicon (G isolado)</title>
+  <desc>Favicon = símbolo G isolado, verde-floresta #32472B, sem contêiner. A versão com fundo aguarda aprovação do Riarley.</desc>
+  <defs>
+    <mask id="gfav">
+      <rect x="36" y="36" width="168" height="168" fill="#000"/>
+      <circle cx="120" cy="120" r="78" fill="#fff"/>
+      <circle cx="120" cy="120" r="44" fill="#000"/>
+      <rect x="120" y="99" width="92" height="42" fill="#000"/>
+      <rect x="114" y="110" width="64" height="18" rx="2" fill="#fff"/>
+      <rect x="160" y="110" width="18" height="33" rx="2" fill="#fff"/>
+    </mask>
+  </defs>
+  <rect x="36" y="36" width="168" height="168" fill="#32472B" mask="url(#gfav)"/>
+</svg>
