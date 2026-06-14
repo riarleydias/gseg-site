@@ -10,6 +10,25 @@
    ============================================================================= */
 
 /* ========================================================================
+   0 · ÍCONES SVG INLINE (redesign V-MESTRE — sem dependência externa)
+   ------------------------------------------------------------------------
+   Sprite <symbol> no topo do HTML; referência por <svg class="icone"><use/>.
+   Stroke herda currentColor → o ícone acompanha a cor do contexto.
+   ======================================================================== */
+.icone {
+  width: 30px;
+  height: 30px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: none;
+}
+.icone--sm { width: 22px; height: 22px; }
+.icone--fill { fill: currentColor; stroke: none; }
+
+/* ========================================================================
    1 · BASE / ELEMENTOS
    ======================================================================== */
 body {
@@ -171,9 +190,9 @@ strong, b { font-weight: var(--fw-semibold); color: var(--verde-floresta); }
 .btn:active { transform: translateY(1px); }
 .btn i { font-size: 1.2em; }
 
-/* Primário — verde sobre fundo claro */
-.btn--primary { background: var(--verde-musgo); color: var(--texto-claro); }
-.btn--primary:hover { background: var(--verde-floresta); color: var(--texto-claro); }
+/* Primário — verde-floresta sólido; hover escurece p/ verde-escuro (Parte 2.3) */
+.btn--primary { background: var(--verde-floresta); color: var(--texto-claro); }
+.btn--primary:hover { background: var(--verde-escuro); color: var(--texto-claro); }
 
 /* Outline — fundo claro */
 .btn--outline {
@@ -198,6 +217,8 @@ strong, b { font-weight: var(--fw-semibold); color: var(--verde-floresta); }
 /* WhatsApp em contexto (verde da marca, não o #25D366 — esse é só o flutuante) */
 .btn--lg { padding: var(--space-4) var(--space-7); font-size: var(--fs-body); letter-spacing: .1em; }
 .btn--full { width: 100%; }
+.btn .icone { width: 1.25em; height: 1.25em; }       /* ícone inline acompanha o texto do botão */
+.btn--wa-icon .icone { width: 19px; height: 19px; }
 
 /* ========================================================================
    5 · CABEÇALHO
@@ -208,37 +229,54 @@ strong, b { font-weight: var(--fw-semibold); color: var(--verde-floresta); }
   z-index: 1000;
   background: var(--creme);
   border-bottom: 1px solid var(--borda);
+  transition: box-shadow var(--transition), background var(--transition);
 }
 .cabecalho__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-5);
-  min-height: 64px;
+  min-height: var(--header-h-encolhido);  /* base mobile = altura encolhida */
+  transition: min-height var(--transition);
 }
 
-/* Logo (símbolo isolado + wordmark + descritor) */
-.logo { display: inline-flex; align-items: center; gap: var(--gap-inline); }
-.logo__simbolo { width: 36px; height: 36px; flex: none; }
+/* Header STICKY encolhido (Parte 3.1) — JS adiciona ao rolar.
+   Logo reduzida, descritor some, sombra sutil; CTA WhatsApp segue visível. */
+.cabecalho--encolhido {
+  box-shadow: 0 4px 16px rgba(50, 71, 43, .14);
+  background: rgba(242, 241, 236, .96);
+  backdrop-filter: blur(4px);
+}
+
+/* Logo (símbolo isolado + wordmark + descritor) — lockup do header */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-inline);
+  margin-right: auto;
+}
+.logo__simbolo { width: 36px; height: 36px; flex: none; transition: width var(--transition), height var(--transition); }
 .logo__texto { display: flex; flex-direction: column; line-height: 1; }
 .logo__nome {
-  font-family: var(--font-display);
+  font-family: var(--font-wordmark);
   font-weight: var(--fw-bold);
   font-size: 20px;
   letter-spacing: var(--ls-wordmark);
   color: var(--verde-floresta);
+  transition: font-size var(--transition);
 }
+/* Descritor em 2 linhas legíveis (correção 6.1) — some no mobile e ao encolher */
 .logo__descritor {
   display: none;
   font-family: var(--font-body);
-  font-size: 8px;
-  font-weight: var(--fw-medium);
+  font-size: 9.5px;
+  font-weight: var(--fw-semibold);
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: var(--grafite-suave);
-  margin-top: 4px;
-  max-width: 150px;
-  line-height: 1.35;
+  color: var(--verde-musgo);
+  margin-top: 3px;
+  line-height: 1.5;
+  white-space: nowrap;
 }
 
 /* Navegação desktop — escondida no mobile */
@@ -267,25 +305,42 @@ strong, b { font-weight: var(--fw-semibold); color: var(--verde-floresta); }
 .cabecalho__acoes { display: none; align-items: center; gap: var(--space-3); }
 .btn--sm { padding: var(--space-2) var(--space-4); min-height: 40px; }
 
-/* Hambúrguer (mobile) */
+/* Hambúrguer (mobile) — 3 barras desenhadas com <span> (sem fonte de ícone) */
 .hamburguer {
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 5px;
   width: var(--tap-min);
   height: var(--tap-min);
   color: var(--verde-floresta);
-  font-size: 28px;
+  font-size: 28px;            /* fallback p/ páginas que usam ícone de fonte */
+  border: 1.5px solid var(--verde-floresta);
   border-radius: var(--radius-btn);
+  padding: 10px;
+}
+.hamburguer span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--verde-floresta);
+  border-radius: 2px;
 }
 
 @media (min-width: 900px) {
-  .cabecalho__inner { min-height: 80px; }
+  .cabecalho__inner { min-height: var(--header-h); }
   .logo__simbolo { width: 44px; height: 44px; }
   .logo__descritor { display: block; }
   .nav { display: block; }
   .cabecalho__acoes { display: flex; }
   .hamburguer { display: none; }
+
+  /* Header encolhido (≥900px): logo menor, descritor some, inner mais baixo */
+  .cabecalho--encolhido .cabecalho__inner { min-height: var(--header-h-encolhido); }
+  .cabecalho--encolhido .logo__simbolo { width: 34px; height: 34px; }
+  .cabecalho--encolhido .logo__nome { font-size: 18px; }
+  .cabecalho--encolhido .logo__descritor { display: none; }
 }
 
 /* ========================================================================
@@ -306,9 +361,9 @@ body.sem-scroll { overflow: hidden; }
 .menu-mobile__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(20, 28, 16, .55);
+  background: var(--overlay-menu);
   opacity: 0;
-  transition: opacity var(--transition);
+  transition: opacity var(--transition-menu);   /* 250ms — estado do menu */
 }
 .menu-mobile[data-aberto="true"] .menu-mobile__overlay { opacity: 1; }
 
@@ -324,7 +379,7 @@ body.sem-scroll { overflow: hidden; }
   flex-direction: column;
   overflow-y: auto;
   transform: translateX(100%);
-  transition: transform var(--transition);
+  transition: transform var(--transition-menu);   /* 250ms ease — estado do menu */
   box-shadow: var(--shadow-elevated);
 }
 .menu-mobile[data-aberto="true"] .menu-mobile__painel { transform: translateX(0); }
@@ -374,6 +429,7 @@ body.sem-scroll { overflow: hidden; }
 }
 .menu-mobile__link i:first-child { font-size: 22px; color: var(--verde-claro); width: 28px; text-align: center; }
 .menu-mobile__link .seta { margin-left: auto; font-size: 16px; color: var(--texto-claro-2); }
+.menu-mobile__link svg.seta { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .menu-mobile__link[aria-current="page"] { color: var(--areia); }
 .menu-mobile__link[aria-current="page"] i:first-child { color: var(--areia); }
 
@@ -389,6 +445,8 @@ body.sem-scroll { overflow: hidden; }
   font-size: var(--fs-body);
 }
 .menu-mobile__rodape i { color: var(--verde-claro); font-size: 22px; }
+.menu-mobile__rodape .icone { color: var(--verde-claro); width: 22px; height: 22px; }
+.menu-mobile__rodape a { color: var(--areia); text-decoration: underline; }
 
 @media (min-width: 900px) { .menu-mobile { display: none; } }
 
@@ -513,6 +571,7 @@ body.sem-scroll { overflow: hidden; }
   box-shadow: var(--shadow-elevated);
   transition: transform var(--transition), bottom var(--transition);
 }
+.whatsapp-float .icone { width: 28px; height: 28px; }
 .whatsapp-float:hover { transform: scale(1.06); color: #fff; }
 .whatsapp-float:active { transform: scale(.98); }
 
@@ -537,7 +596,17 @@ body.sem-scroll { overflow: hidden; }
   color: var(--texto-claro);
   margin-bottom: var(--space-3);
 }
-.rodape__crea { font-size: var(--fs-small); color: var(--texto-claro-2); }
+.rodape__crea { font-size: var(--fs-small); color: var(--texto-claro-2); margin-top: var(--space-4); }
+
+/* Lockup do rodapé (negativa, SVG inline) — correção 6.2: descritor íntegro em 2 linhas */
+.logo--rodape .logo__simbolo { width: 44px; height: 44px; }
+.logo--rodape .logo__nome { color: var(--texto-claro); font-size: 24px; }
+.logo--rodape .logo__descritor {
+  display: block;
+  color: var(--texto-claro-2);
+  margin-top: 3px;
+  white-space: nowrap;
+}
 .rodape h3 {
   font-family: var(--font-body);
   font-size: var(--fs-kicker);
