@@ -188,6 +188,25 @@
      ouro). Disponível só p/ texto/borda de badge (ex.: prazo eSocial). P2 do
      handoff: o Lucas decide se formaliza no brandbook §9. */
   --alerta-ambar: #8A6D1E;
+
+  /* ───────────────────────────────────────────────────────────────────────────
+     6 · ALIASES SEMÂNTICOS — Prompt de Alterações (redesign-v-mestre · Rafael)
+     -----------------------------------------------------------------------------
+     O work order aprovado pelo Riarley nomeia tokens genéricos (--verde-marca,
+     --cor-borda, --fonte-display…). Estes aliases mapeiam esses nomes para os
+     tokens CANÔNICOS da marca declarados acima — a fonte única de verdade fica
+     preservada: ajustar a marca = ajustar o valor canônico, não a página.
+     (Regra de ouro mantida: nenhuma página usa HEX cru — só var(--token).)
+     ─────────────────────────────────────────────────────────────────────────── */
+  --verde-marca:       var(--verde-floresta);    /* verde primário da marca (#32472B)            */
+  --verde-marca-rgb:   50, 71, 43;               /* componentes RGB do primário (p/ rgba() em foco) */
+  --cor-borda:         var(--borda);             /* divisor / borda de card                       */
+  --cor-fundo-card:    var(--creme-200);         /* card preenchido / box de NRs / depoimento     */
+  --cor-texto-escuro:  var(--grafite);           /* texto forte / títulos de corpo                */
+  --cor-texto-medio:   var(--grafite-suave);     /* texto secundário / legenda                    */
+  --fonte-display:     var(--font-display-serif);/* H2 de seção — serifa display (Cormorant)      */
+  --fonte-corpo:       var(--font-body);         /* corpo / UI (Inter)                            */
+  --radius:            var(--radius-card);        /* raio de card/box (8px)                        */
 }
 
 /* -----------------------------------------------------------------------------
