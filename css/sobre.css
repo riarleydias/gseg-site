@@ -159,6 +159,7 @@
    ============================================================================= */
 .secao-cab { margin-bottom: var(--space-6); }
 .secao-cab .titulo-secao { margin-top: var(--space-2); }
+.metodo-grid > *, .depo-grid > *, .esp-lista > * { min-width: 0; }
 
 /* A · Nossa metodologia */
 .metodo-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }

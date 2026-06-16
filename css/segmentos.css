@@ -13,6 +13,7 @@
 .seg-bloco:last-child { padding-bottom: 0; }
 .seg-bloco + .seg-bloco { border-top: 1px solid var(--cor-borda); }
 .seg-bloco__grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
+.seg-bloco__grid > * { min-width: 0; }
 
 .seg-bloco__cab { display: flex; align-items: center; gap: var(--space-3); margin-top: var(--space-3); margin-bottom: var(--space-4); }
 .seg-bloco__icone {

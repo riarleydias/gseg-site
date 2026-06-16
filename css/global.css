@@ -565,14 +565,14 @@ body.sem-scroll { overflow: hidden; }
   align-items: center;
   justify-content: center;
   background: var(--whatsapp);
-  color: #fff;
+  color: var(--branco);
   border-radius: 50%;
   font-size: 30px;
   box-shadow: var(--shadow-elevated);
   transition: transform var(--transition), bottom var(--transition);
 }
 .whatsapp-float .icone { width: 28px; height: 28px; }
-.whatsapp-float:hover { transform: scale(1.06); color: #fff; }
+.whatsapp-float:hover { transform: scale(1.06); color: var(--branco); }
 .whatsapp-float:active { transform: scale(.98); }
 
 /* ========================================================================

@@ -29,6 +29,7 @@
 /* ---------- Seção cards + form ---------- */
 .contato-secao { padding-block: 64px; }
 .contato__grid { display: grid; grid-template-columns: 1fr; gap: 48px; }
+.contato__grid > * { min-width: 0; }   /* itens de grid encolhem (select longo não estoura a coluna) */
 
 /* ---------- Cards de contato (coluna esquerda) ---------- */
 .contato__cards { display: flex; flex-direction: column; }
@@ -63,7 +64,8 @@ a.contato-card:hover { border-color: var(--verde-marca); color: var(--grafite); 
   margin-bottom: 32px;
 }
 .form__linha { display: grid; grid-template-columns: 1fr; gap: 16px; }
-.form__grupo { display: flex; flex-direction: column; margin-bottom: 16px; }
+.form__linha > * { min-width: 0; }
+.form__grupo { display: flex; flex-direction: column; min-width: 0; margin-bottom: 16px; }
 
 .form__grupo input,
 .form__grupo select,
