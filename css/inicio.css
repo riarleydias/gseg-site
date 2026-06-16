@@ -544,3 +544,186 @@
   .cta-final__ctas { flex-direction: row; gap: var(--space-4); justify-content: center; width: auto; }
   .cta-final__ctas .btn { width: auto; }
 }
+
+/* =============================================================================
+   PROMPT DE ALTERAÇÕES (redesign-v-mestre · Rafael) — componentes adicionados.
+   Acrescenta ao sistema aprovado; tudo via tokens (variaveis_LUCAS.css).
+   ============================================================================= */
+
+/* #1 · S3 — cabeçalho em coluna única + subtítulo legível */
+.secao__cab--coluna { flex-direction: column; align-items: flex-start; }
+.s3__sub {
+  display: block;
+  max-width: 580px;
+  margin-top: 16px;
+  margin-bottom: 40px;
+  font-size: 18px;
+  font-weight: var(--fw-medium);
+  line-height: 1.6;
+  color: var(--cor-texto-escuro);
+}
+
+/* #4 · S5 — card da foto com moldura deslocada + logo mark "G"
+   (padding na .sobre__midia contém os deslocamentos -12/-24 → zero overflow) */
+.sobre__midia { padding: 12px 28px 32px 12px; max-width: 372px; }
+.foto-livia-container { position: relative; width: 100%; max-width: 480px; }
+.foto-livia-container::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--radius);
+  z-index: 0;
+}
+.foto-livia-inner {
+  position: relative;
+  z-index: 1;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  background: var(--cor-fundo-card);
+}
+.logo-mark-gseg {
+  position: absolute;
+  bottom: -24px;
+  right: -24px;
+  width: 80px;
+  height: 80px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--creme);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-elevated);
+}
+.logo-mark-gseg svg { width: 46px; height: 46px; }
+
+/* #5 · S6 — certificações: cards ricos, grade 3+2 centralizada */
+.cert__grid { display: flex; flex-direction: column; gap: 20px; }
+.cert-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 0;
+  min-height: 280px;
+  padding: 28px;
+  background: var(--branco);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--radius);
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+.cert-card:hover { border-color: var(--verde-marca); box-shadow: 0 4px 16px rgba(var(--verde-marca-rgb), .12); }
+.cert-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border: 1.5px solid var(--verde-marca);
+  border-radius: 50%;
+  color: var(--verde-marca);
+  flex: none;
+}
+.cert-badge .icone { width: 32px; height: 32px; }
+.cert-card__nome {
+  margin-top: 16px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: var(--fw-bold);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  color: var(--verde-floresta);
+}
+.cert-card__sub {
+  margin-top: 4px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: var(--fw-regular);
+  color: var(--cor-texto-medio);
+}
+.cert-card__texto {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--cor-texto-medio);
+  flex-grow: 1;
+}
+.cert-card__prazo {
+  width: 100%;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--cor-borda);
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--verde-marca);
+}
+.cert-card__tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.cert-tag {
+  padding: 4px 10px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 20px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: var(--fw-medium);
+  color: var(--cor-texto-medio);
+  white-space: nowrap;
+}
+.cert__cta { display: flex; justify-content: center; margin-top: 40px; }
+.cert__cta .btn { width: 100%; }
+
+/* #6 · S7 — metadados + CTA por card (sobre fundo verde: acentos em areia) */
+.passo { display: flex; flex-direction: column; }
+.passo .passo__desc { flex: 1 1 auto; }
+.passo__meta { list-style: none; margin-top: 16px; display: grid; gap: 6px; }
+.passo__meta li {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--areia);
+}
+.passo__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  margin-top: 16px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: var(--fw-semibold);
+  color: var(--areia);
+  transition: gap 200ms ease, color 200ms ease;
+}
+.passo__cta:hover { gap: 10px; color: var(--texto-claro); }
+
+/* #8 · S8 — ícone SVG técnico no lugar do emblema de letra */
+.seg__icone { width: 48px; height: 48px; color: var(--verde-musgo); margin-bottom: var(--space-4); }
+
+/* ───────── ≥900px — desktop dos componentes acima ───────── */
+@media (min-width: 900px) {
+  /* #1 mantém coluna única mesmo onde o cabeçalho vira linha */
+  .secao__cab--coluna { flex-direction: column; align-items: flex-start; }
+
+  /* #4 no desktop a foto não restringe largura, mas mantém respiro p/ moldura/logo */
+  .sobre__midia { max-width: none; padding: 12px 28px 32px 12px; }
+
+  /* #5 certificações — 3 na 1ª linha + 2 centralizados na 2ª */
+  .cert__grid { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 20px; }
+  .cert-card { flex: 0 1 calc((100% - 40px) / 3); padding: 28px; }
+
+  /* #6 numeral maior (52px) conforme o work order */
+  .passo__num { width: 52px; height: 52px; font-size: 20px; }
+
+  /* #8 ícone recolore no hover/foco/aberto como o emblema fazia */
+  .seg:hover .seg__icone, .seg:focus-visible .seg__icone, .seg.seg--aberto .seg__icone { color: var(--areia); }
+}
