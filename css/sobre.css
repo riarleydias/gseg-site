@@ -152,3 +152,81 @@
   .sobre__grid { grid-template-columns: 0.85fr 1.15fr; gap: var(--space-9); }
   .sobre__foto-moldura { margin-top: var(--space-4); }
 }
+
+/* =============================================================================
+   PROMPT DE ALTERAÇÕES #3 — metodologia · especialidade técnica · depoimentos
+   Tudo via tokens; ícones SVG inline (stroke var(--verde-marca)).
+   ============================================================================= */
+.secao-cab { margin-bottom: var(--space-6); }
+.secao-cab .titulo-secao { margin-top: var(--space-2); }
+.metodo-grid > *, .depo-grid > *, .esp-lista > * { min-width: 0; }
+
+/* A · Nossa metodologia */
+.metodo-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
+.metodo-card {
+  padding: 28px;
+  background: var(--branco);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--radius);
+}
+.metodo-card__icone {
+  width: 40px; height: 40px;
+  fill: none;
+  stroke: var(--verde-marca);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.metodo-card__titulo {
+  margin-top: var(--space-4);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: var(--fw-bold);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--verde-floresta);
+}
+.metodo-card__texto { margin-top: var(--space-2); font-size: 15px; line-height: 1.65; color: var(--cor-texto-medio); }
+
+/* B · Especialidade técnica */
+.esp-lista { display: grid; grid-template-columns: 1fr; gap: var(--space-3); list-style: none; }
+.esp-item { display: flex; align-items: flex-start; gap: var(--space-3); font-size: var(--fs-small); color: var(--grafite); }
+.esp-check {
+  width: 12px; height: 12px;
+  flex: none;
+  margin-top: 5px;
+  fill: none;
+  stroke: var(--verde-marca);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.esp-item--aguardando { color: var(--terracota); font-style: italic; }
+
+/* C · O que nossos clientes dizem */
+.depo-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
+.depo-card {
+  position: relative;
+  margin: 0;
+  padding: 28px;
+  background: var(--cor-fundo-card);
+  border-radius: var(--radius);
+}
+.depo-card__aspas {
+  display: block;
+  font-family: var(--font-accent);
+  font-size: 48px;
+  line-height: 1;
+  color: var(--verde-marca);
+  opacity: .3;
+}
+.depo-card__texto { margin: var(--space-2) 0 var(--space-4); font-size: 16px; font-style: italic; line-height: 1.7; color: var(--grafite); }
+.depo-card__autor { display: flex; flex-direction: column; }
+.depo-card__nome { font-weight: var(--fw-bold); color: var(--verde-floresta); }
+.depo-card__empresa { font-size: var(--fs-small); color: var(--cor-texto-medio); }
+
+@media (min-width: 768px) {
+  .metodo-grid { grid-template-columns: repeat(3, 1fr); }
+  .esp-lista { grid-template-columns: repeat(2, 1fr); gap: var(--space-3) var(--space-6); }
+  .depo-grid { grid-template-columns: repeat(3, 1fr); }
+}

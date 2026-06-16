@@ -145,6 +145,68 @@
   --tap-min:    44px;  /* alvo mínimo de toque (acessibilidade)                       */
   --focus-ring: 0 0 0 3px rgba(110, 139, 98, .55);   /* EXTENSÃO: anel de foco (verde-claro) */
   --transition: 180ms ease;                          /* EXTENSÃO: micro-interações (ver prefers-reduced-motion) */
+
+  /* ───────────────────────────────────────────────────────────────────────────
+     5 · EXTENSÃO V-MESTRE  (redesign aprovado — home 10 seções · Rafael, Fase 3)
+     -----------------------------------------------------------------------------
+     Tokens derivados do mockup-mestre (Marina) + mock-mestre.css. NÃO substituem
+     os valores acima usados pelas outras páginas; acrescentam o que o redesign da
+     home precisa, com nome semântico (regra: nada de HEX/medida crua na página).
+     P1 (Inter × Archivo/Sora) e P3 (numerais decorativos) seguem pendentes do
+     Lucas: por isso TUDO aqui é token — troca de fonte/cor depois = troca de token.
+     ─────────────────────────────────────────────────────────────────────────── */
+
+  /* Famílias com papel explícito (mesmas fontes do import; aliases semânticos) */
+  --font-display-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif; /* H1/H2 display serif */
+  --font-wordmark:      'Cinzel', Georgia, serif;   /* SÓ lockup do logo e selo CREA (ERRO #001) */
+  --font-ui:            var(--font-body);            /* rótulos, numerais, chips, nav, botões      */
+
+  /* Peso display extra (numerais grandes +20 / 01–06, wordmark do selo "+20") */
+  --fw-display: 800;
+
+  /* Tipografia da home — escala do mockup mestre (serifa display generosa) */
+  --fs-hero-mestre: clamp(44px, 4.9vw, 72px); /* H1 emocional em serifa display          */
+  --fs-h2-display:  46px;                     /* H2 de seção em serifa (mobile reduz p/ 32) */
+  --ls-display:    -0.005em;                  /* tracking dos títulos display              */
+  --ls-heading:    -0.005em;                  /* tracking de H2/H3                          */
+
+  /* Header sticky (Parte 3.1) — alturas dos dois estados */
+  --header-h:         80px;   /* repouso — descritor em 2 linhas */
+  --header-h-encolhido: 60px; /* encolhido na rolagem            */
+
+  /* Movimento por componente (durações exatas do handoff §5 / estados) */
+  --transition-menu: 250ms ease;  /* menu off-canvas (overlay + painel) */
+  --transition-card: 160ms ease;  /* hover de cards de serviço/segmento  */
+  --transition-faq:  220ms ease;  /* acordeão FAQ — anima height          */
+
+  /* Bordas/linhas sobre fundo verde (texto/divisores creme translúcido) */
+  --linha-clara:     rgba(242, 241, 236, .22);  /* divisor sobre verde     */
+  --linha-clara-2:   rgba(242, 241, 236, .32);  /* borda de chip sobre verde */
+  --overlay-menu:    rgba(20, 28, 17, .62);      /* overlay do menu mobile  */
+
+  /* Micro-alerta informativo — NUNCA em botões/links/fundos (Parte 2.1, regra de
+     ouro). Disponível só p/ texto/borda de badge (ex.: prazo eSocial). P2 do
+     handoff: o Lucas decide se formaliza no brandbook §9. */
+  --alerta-ambar: #8A6D1E;
+
+  /* ───────────────────────────────────────────────────────────────────────────
+     6 · ALIASES SEMÂNTICOS — Prompt de Alterações (redesign-v-mestre · Rafael)
+     -----------------------------------------------------------------------------
+     O work order aprovado pelo Riarley nomeia tokens genéricos (--verde-marca,
+     --cor-borda, --fonte-display…). Estes aliases mapeiam esses nomes para os
+     tokens CANÔNICOS da marca declarados acima — a fonte única de verdade fica
+     preservada: ajustar a marca = ajustar o valor canônico, não a página.
+     (Regra de ouro mantida: nenhuma página usa HEX cru — só var(--token).)
+     ─────────────────────────────────────────────────────────────────────────── */
+  --verde-marca:       var(--verde-floresta);    /* verde primário da marca (#32472B)            */
+  --verde-marca-rgb:   50, 71, 43;               /* componentes RGB do primário (p/ rgba() em foco) */
+  --cor-borda:         var(--borda);             /* divisor / borda de card                       */
+  --cor-fundo-card:    var(--creme-200);         /* card preenchido / box de NRs / depoimento     */
+  --cor-texto-escuro:  var(--grafite);           /* texto forte / títulos de corpo                */
+  --cor-texto-medio:   var(--grafite-suave);     /* texto secundário / legenda                    */
+  --fonte-display:     var(--font-display-serif);/* H2 de seção — serifa display (Cormorant)      */
+  --fonte-corpo:       var(--font-body);         /* corpo / UI (Inter)                            */
+  --radius:            var(--radius-card);        /* raio de card/box (8px)                        */
 }
 
 /* -----------------------------------------------------------------------------

@@ -1,5 +1,7 @@
 /* =============================================================================
-   GSEG · servicos.css — página Serviços (intro + 6 cards + faixa CTA)
+   GSEG · servicos.css — página Serviços (intro + acordeão de 6 serviços + CTA)
+   Acordeão: "Ver mais" expande o conteúdo detalhado na própria seção (WhatsApp
+   só DENTRO do painel, como CTA secundário). Anima height (220ms) via servicos.js.
    ============================================================================= */
 
 /* ---------- Intro ---------- */
@@ -12,41 +14,47 @@
   .servicos-intro .lead { justify-self: end; }
 }
 
-/* ---------- Grid de serviços ---------- */
+/* ---------- Lista de serviços (acordeão) ---------- */
 .servicos { padding-top: 0; }
-.servicos__grid {
-  display: grid;
-  grid-template-columns: 1fr;
+.servicos__lista {
   border: 1px solid var(--borda);
   border-radius: var(--radius-card);
   overflow: hidden;
   background: var(--branco);
 }
+.serv-item {
+  border-top: 1px solid var(--borda);
+  background: var(--branco);
+  scroll-margin-top: 96px;             /* não fica sob o header sticky ao abrir via âncora */
+  transition: background var(--transition);
+}
+.serv-item:first-child { border-top: 0; }
+.serv-item--aberto { background: var(--creme); }
 
-.cs {
+.serv-item__cab {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: var(--space-4);
+  width: 100%;
   padding: var(--space-5);
-  background: var(--creme);
-  border-top: 1px solid var(--borda);
-  color: var(--grafite);
-  transition: background var(--transition);
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  min-height: var(--tap-min);
 }
-.cs:first-child { border-top: 0; }
-
-.cs__icone {
+.serv-item__icone {
   flex: none;
   width: 46px; height: 46px;
   display: inline-flex; align-items: center; justify-content: center;
-  background: rgba(73,105,63,.10);
+  background: rgba(73, 105, 63, .10);
   border-radius: var(--radius-btn);
   color: var(--verde-musgo);
   font-size: 24px;
 }
-.cs__corpo { min-width: 0; }
-.cs__titulo {
+.serv-item__corpo { min-width: 0; }
+.serv-item__titulo {
   display: block;
   font-family: var(--font-display);
   font-size: var(--fs-h3);
@@ -56,9 +64,8 @@
   color: var(--verde-floresta);
   line-height: 1.15;
 }
-.cs__desc { display: block; font-size: var(--fs-small); color: var(--grafite-suave); margin-top: 4px; }
-
-.cs__ver {
+.serv-item__desc { display: block; font-size: var(--fs-small); color: var(--grafite-suave); margin-top: 4px; }
+.serv-item__ver {
   display: inline-flex;
   align-items: center;
   gap: var(--gap-inline);
@@ -69,34 +76,36 @@
   text-transform: uppercase;
   white-space: nowrap;
 }
-.cs__ver-txt { display: none; }                /* mobile: apenas a seta */
-.cs__ver i { font-size: 18px; transition: transform var(--transition); }
-.cs:hover { background: var(--branco); }
-.cs:hover .cs__ver i { transform: translateX(4px); }
+.serv-item__ver-txt { display: none; }          /* mobile: só o sinal +/- */
+.serv-item__ver i { font-size: 18px; }
+.serv-item__menos { display: none; }
+.serv-item--aberto .serv-item__mais { display: none; }
+.serv-item--aberto .serv-item__menos { display: inline; }
+.serv-item__cab:hover .serv-item__titulo { color: var(--verde-escuro); }
 
-/* card escuro (Consultoria) */
-.cs--escuro { background: var(--verde-floresta); color: var(--texto-claro-2); }
-.cs--escuro .cs__titulo { color: var(--texto-claro); }
-.cs--escuro .cs__icone { background: rgba(242,241,236,.12); color: var(--areia); }
-.cs--escuro .cs__ver { color: var(--areia); }
-.cs--escuro:hover { background: var(--verde-escuro); }
+/* painel colapsável (anima height via servicos.js — 220ms) */
+.serv-item__painel { height: 0; overflow: hidden; transition: height var(--transition-faq); }
+.servicos__lista:not([data-js="true"]) .serv-item__painel { height: auto; }   /* sem JS: aberto */
+.serv-item__painel-inner { padding: 0 var(--space-5) var(--space-5); color: var(--grafite-suave); }
+.serv-item__painel-inner p { font-size: var(--fs-small); max-width: 66ch; }
 
-/* ---------- Desktop: cards verticais 3×2 ---------- */
-@media (min-width: 768px) {
-  .servicos__grid { grid-template-columns: repeat(3, 1fr); }
-  .cs {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-3);
-    padding: var(--pad-card);
-    border-top: 0;
-    border-left: 1px solid var(--borda);
-    min-height: 248px;
-  }
-  .cs:nth-child(3n + 1) { border-left: 0; }
-  .cs:nth-child(n + 4)  { border-top: 1px solid var(--borda); }
-  .cs__icone { font-size: 28px; margin-bottom: var(--space-2); }
-  .cs__ver { margin-top: auto; padding-top: var(--space-4); }
-  .cs__ver-txt { display: inline; }
+.serv-lista { list-style: none; margin: var(--space-4) 0; display: grid; gap: var(--space-2); }
+.serv-lista li { position: relative; padding-left: var(--space-5); font-size: var(--fs-small); color: var(--grafite); }
+.serv-lista li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 7px;
+  height: 7px;
+  background: var(--verde-musgo);
+  border-radius: 2px;
+}
+.serv-item__painel-inner .btn { margin-top: var(--space-2); }
+
+/* ---------- Desktop ---------- */
+@media (min-width: 900px) {
+  .serv-item__cab { padding: var(--space-5) var(--space-6); }
+  .serv-item__ver-txt { display: inline; }
+  .serv-item__painel-inner { padding: 0 var(--space-6) var(--space-6); padding-left: calc(46px + var(--space-4) + var(--space-6)); }
 }
