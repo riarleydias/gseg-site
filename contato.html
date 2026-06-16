@@ -117,48 +117,45 @@
   </div>
 
   <main id="conteudo-principal">
-    <section class="contato">
+    <!-- Hero/banner -->
+    <section class="contato-hero">
+      <div class="ph-foto contato-hero__ph"><i class="ph ph-camera" aria-hidden="true"></i><span>Foto — aguardando cliente</span></div>
+      <div class="contato-hero__overlay" aria-hidden="true"></div>
+      <div class="container contato-hero__conteudo">
+        <h1 class="contato-hero__titulo">Vamos conversar?</h1>
+      </div>
+    </section>
+
+    <section class="secao contato-secao">
       <div class="container contato__grid">
 
-        <!-- Coluna esquerda — informações -->
-        <div class="contato__info">
-          <div class="contato__info-bg">
-            <div class="ph-foto contato__ph"><i class="ph ph-camera" aria-hidden="true"></i><span>Foto — aguardando cliente</span></div>
-            <div class="contato__info-overlay"></div>
+        <!-- Coluna esquerda — cards de contato -->
+        <div class="contato__cards">
+          <a class="contato-card" href="https://wa.me/5534992076152?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20GSEG%20e%20gostaria%20de%20falar%20com%20a%20consultoria." target="_blank" rel="noopener noreferrer">
+            <span class="contato-card__icone"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5.5h16v10H9l-4 3.5V5.5z"/><path d="M8 9.2h8M8 12.2h5"/></svg></span>
+            <span class="contato-card__txt"><span class="contato-card__valor">(34) 99207-6152</span><span class="contato-card__sub">Clique para falar agora</span></span>
+          </a>
+          <a class="contato-card" href="mailto:liviapoliane@yahoo.com.br">
+            <span class="contato-card__icone"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5.5" width="18" height="13" rx="1.5"/><path d="M3.5 6.5L12 13l8.5-6.5"/></svg></span>
+            <span class="contato-card__txt"><span class="contato-card__valor">liviapoliane@yahoo.com.br</span><span class="contato-card__sub">Respondemos em até 24h úteis</span></span>
+          </a>
+          <a class="contato-card" href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
+            <span class="contato-card__icone"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.6" y="3.6" width="16.8" height="16.8" rx="4.6"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg></span>
+            <span class="contato-card__txt"><span class="contato-card__valor">@{{instagram — aguardando cliente}}</span><span class="contato-card__sub">Siga no Instagram</span></span>
+          </a>
+          <div class="contato-card contato-card--estatico">
+            <span class="contato-card__icone"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6.5-5.4-6.5-10.2a6.5 6.5 0 1 1 13 0C18.5 15.6 12 21 12 21z"/><circle cx="12" cy="10.6" r="2.4"/></svg></span>
+            <span class="contato-card__txt"><span class="contato-card__valor">Empresas · Agroindústrias · Fazendas</span><span class="contato-card__sub">Araxá/MG e Triângulo Mineiro</span></span>
           </div>
-          <div class="contato__info-conteudo">
-            <p class="kicker kicker--areia">Fale conosco</p>
-            <h1 class="contato__titulo titulo-secao titulo-secao--claro">Vamos <em>conversar?</em></h1>
-            <p class="contato__texto">Entre em contato e solicite orientações ou um orçamento personalizado para a sua empresa.</p>
-
-            <ul class="contato__lista" role="list">
-              <li>
-                <a href="https://wa.me/5534992076152?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20GSEG%20e%20gostaria%20de%20falar%20com%20a%20consultoria." target="_blank" rel="noopener noreferrer">
-                  <span class="contato__circ"><i class="ph ph-whatsapp-logo" aria-hidden="true"></i></span>
-                  <span><span class="contato__rotulo">WhatsApp</span><span class="contato__valor">(34) 99207-6152</span></span>
-                </a>
-              </li>
-              <li>
-                <a href="mailto:liviapoliane@yahoo.com.br">
-                  <span class="contato__circ"><i class="ph ph-envelope" aria-hidden="true"></i></span>
-                  <span><span class="contato__rotulo">E-mail</span><span class="contato__valor">liviapoliane@yahoo.com.br</span></span>
-                </a>
-              </li>
-              <li class="contato__item--atend">
-                <span class="contato__circ"><i class="ph ph-buildings" aria-hidden="true"></i></span>
-                <span><span class="contato__rotulo">Atendimento</span><span class="contato__valor">Empresas · Agroindústrias · Fazendas</span></span>
-              </li>
-            </ul>
-
-            <p class="contato__crea"><span class="contato__tile" aria-hidden="true"></span> CREA nº 332747/MG · Lívia Poliane — Engenheira de Segurança do Trabalho</p>
+          <div class="contato-card contato-card--estatico contato-card--crea">
+            <span class="contato-card__icone"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l8 3v6c0 4.5-3.5 7.6-8 9-4.5-1.4-8-4.5-8-9V6l8-3z"/><path d="M8.8 12.2l2.4 2.4 4.2-4.8"/></svg></span>
+            <span class="contato-card__txt"><span class="contato-card__valor">CREA nº 332747/MG</span><span class="contato-card__sub">Lívia Poliane — Engenheira de Segurança do Trabalho</span></span>
           </div>
         </div>
 
         <!-- Coluna direita — formulário -->
         <div class="contato__form-wrap">
-          <p class="kicker">Formulário de contato</p>
-          <h2 class="titulo-secao">Envie sua <em>mensagem</em></h2>
-          <hr class="regua regua--esq">
+          <h2 class="contato__form-titulo">Envie sua mensagem</h2>
 
           <!-- =====================================================================
                Web3Forms — sem backend. Riarley: cadastrar em https://web3forms.com
@@ -174,31 +171,26 @@
 
             <div class="form__linha">
               <div class="form__grupo">
-                <label for="nome">Nome completo <span class="form__req" aria-hidden="true">*</span></label>
-                <input type="text" id="nome" name="nome" placeholder="Seu nome" required minlength="3" autocomplete="name" aria-required="true">
+                <input type="text" id="nome" name="nome" placeholder="Seu nome" required minlength="3" autocomplete="name" aria-required="true" aria-label="Seu nome">
                 <span class="form__erro" id="erro-nome" aria-live="polite"></span>
               </div>
-              <div class="form__grupo form__so-desktop">
-                <label for="empresa">Empresa</label>
-                <input type="text" id="empresa" name="empresa" placeholder="Nome da empresa" autocomplete="organization">
+              <div class="form__grupo">
+                <input type="text" id="empresa" name="empresa" placeholder="Nome da empresa" autocomplete="organization" aria-label="Nome da empresa">
               </div>
             </div>
 
             <div class="form__linha">
               <div class="form__grupo">
-                <label for="email">E-mail <span class="form__req" aria-hidden="true">*</span></label>
-                <input type="email" id="email" name="email" placeholder="seu@email.com" required autocomplete="email" inputmode="email" aria-required="true">
+                <input type="email" id="email" name="email" placeholder="seu@email.com" required autocomplete="email" inputmode="email" aria-required="true" aria-label="Seu e-mail">
                 <span class="form__erro" id="erro-email" aria-live="polite"></span>
               </div>
-              <div class="form__grupo form__so-desktop">
-                <label for="telefone">Telefone</label>
-                <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" autocomplete="tel" inputmode="tel">
+              <div class="form__grupo">
+                <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" autocomplete="tel" inputmode="tel" aria-label="Seu telefone">
               </div>
             </div>
 
-            <div class="form__grupo form__so-desktop">
-              <label for="segmento">Segmento</label>
-              <select id="segmento" name="segmento">
+            <div class="form__grupo">
+              <select id="segmento" name="segmento" aria-label="Segmento da sua empresa">
                 <option value="">Selecione o segmento da sua empresa</option>
                 <option value="Indústria">Indústria</option>
                 <option value="Agroindústria">Agroindústria</option>
@@ -208,17 +200,16 @@
             </div>
 
             <div class="form__grupo">
-              <label for="mensagem">Mensagem <span class="form__req" aria-hidden="true">*</span></label>
-              <textarea id="mensagem" name="mensagem" rows="4" placeholder="Como podemos ajudar sua empresa?" required aria-required="true"></textarea>
+              <textarea id="mensagem" name="mensagem" rows="6" placeholder="Como podemos ajudar sua empresa?" required aria-required="true" aria-label="Sua mensagem"></textarea>
               <span class="form__erro" id="erro-mensagem" aria-live="polite"></span>
             </div>
 
-            <button type="submit" class="btn btn--primary btn--full" id="btn-submit">
-              <i class="ph ph-paper-plane-tilt" aria-hidden="true"></i>
+            <button type="submit" class="btn btn--primary btn--full form__enviar" id="btn-submit">
+              <svg class="form__enviar-icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 12L20 4.5 13 20l-2.6-6.4z"/><path d="M10.4 13.6L20 4.5"/></svg>
               <span class="btn__texto">Enviar mensagem</span>
             </button>
 
-            <p class="form__aviso"><i class="ph ph-shield-check" aria-hidden="true"></i> Seus dados estão seguros. Respeitamos sua privacidade. Retornamos em até 24h úteis.</p>
+            <p class="form__aviso"><svg class="form__aviso-icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l8 3v6c0 4.5-3.5 7.6-8 9-4.5-1.4-8-4.5-8-9V6l8-3z"/></svg> Seus dados estão seguros. Respeitamos sua privacidade. Retornamos em até 24h úteis.</p>
           </form>
         </div>
 
@@ -241,6 +232,7 @@
             <a href="tel:+5534992076152"><i class="ph ph-phone" aria-hidden="true"></i> (34) 99207-6152</a>
             <a href="mailto:liviapoliane@yahoo.com.br"><i class="ph ph-envelope" aria-hidden="true"></i> liviapoliane@yahoo.com.br</a>
             <a href="https://wa.me/5534992076152?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20GSEG%20e%20gostaria%20de%20falar%20com%20a%20consultoria." target="_blank" rel="noopener noreferrer"><i class="ph ph-whatsapp-logo" aria-hidden="true"></i> Fale pelo WhatsApp</a>
+            <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer"><i class="ph ph-instagram-logo" aria-hidden="true"></i> @{{instagram — aguardando cliente}}</a>
           </div>
         </div>
         <div class="rodape__col">
