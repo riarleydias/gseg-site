@@ -492,6 +492,13 @@ body.sem-scroll { overflow: hidden; }
 .foto-real { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; z-index: 2; }
 .ph-foto__arquivo { position: relative; z-index: 1; margin-top: var(--space-2); font-size: 11px; font-weight: var(--fw-semibold); letter-spacing: .04em; opacity: .85; }
 
+/* ===== Efeitos de sofisticação (Onda 2B) — classes aplicadas por js/efeitos.js; sem JS, tudo visível ===== */
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+.fade-in.visible { opacity: 1; transform: none; }
+.line-draw::before { width: 0; transition: width .8s ease; }
+.kicker.line-draw.visible::before { width: 28px; }
+.eyebrow.line-draw.visible::before { width: 22px; }
+
 /* ========================================================================
    8 · GRID DE CARDS CONTÍGUO (Serviços / Benefícios)
    ------------------------------------------------------------------------

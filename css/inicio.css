@@ -235,13 +235,14 @@
 .prova-faixa__creatxt span { display: block; font-weight: var(--fw-semibold); font-size: 11px; color: var(--grafite-suave); letter-spacing: .08em; }
 .prova-faixa__sep { width: 1px; height: 34px; background: var(--borda); flex: none; }
 .prova-faixa__logos { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4) var(--space-5); min-width: 0; }
-.prova-mini { display: flex; align-items: center; }
+.prova-mini { display: flex; align-items: center; flex: 1 1 140px; }
 .prova-mini__ph {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 152px;
-  height: 56px;
+  width: 100%;
+  max-width: 240px;
+  height: 64px;
   background: var(--creme);
   border: 1px dashed var(--borda);
   border-radius: 6px;
@@ -255,6 +256,7 @@
   white-space: nowrap;
 }
 .prova-mini--vazio {
+  flex: 0 0 auto;
   color: var(--grafite-suave);
   opacity: .6;
   font-family: var(--font-body);
@@ -491,9 +493,12 @@
   .hero__selo { width: 140px; height: 140px; }
   .hero__selo-num { font-size: 52px; }
 
-  /* S2 prova — linha horizontal */
-  .prova-faixa__inner { flex-direction: row; align-items: center; gap: var(--space-8); padding-block: 18px; }
-  .prova-faixa__logos { flex: 1; gap: var(--space-6); }
+  /* S2 prova — registro na 1ª linha, logos de cliente em linha própria (5 em 1 linha) */
+  .prova-faixa__inner { flex-direction: row; flex-wrap: wrap; align-items: center; gap: var(--space-5) var(--space-8); padding-block: 18px; }
+  .prova-faixa__sep { display: none; }
+  .prova-faixa__logos { flex-basis: 100%; gap: var(--space-3) var(--space-4); }
+  .prova-mini { flex: 1 1 150px; }
+  .prova-mini__ph { height: 80px; }
 
   /* S3 serviços — grade contígua 3×2 */
   .cards-servicos { grid-template-columns: repeat(3, 1fr); }
