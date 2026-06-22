@@ -390,7 +390,16 @@ body.sem-scroll { overflow: hidden; }
   justify-content: space-between;
   margin-bottom: var(--space-6);
 }
-.menu-mobile__logo { height: 34px; width: auto; }
+/* Logo do menu mobile: símbolo (claro) + wordmark GSEG, em fundo escuro */
+.menu-mobile__logo { display: inline-flex; align-items: center; gap: var(--gap-inline); }
+.menu-mobile__logo .logo__simbolo { width: 34px; height: 34px; flex: none; }
+.menu-mobile__logo .logo__nome {
+  font-family: var(--font-wordmark);
+  font-weight: var(--fw-bold);
+  font-size: 20px;
+  letter-spacing: var(--ls-wordmark);
+  color: var(--texto-claro);
+}
 .menu-mobile__fechar {
   display: inline-flex;
   align-items: center;
@@ -479,6 +488,9 @@ body.sem-scroll { overflow: hidden; }
   background: radial-gradient(120% 80% at 50% 0%, rgba(255,255,255,.06), transparent 60%);
   pointer-events: none;
 }
+/* Foto real (drop-in): cobre o placeholder quando o arquivo existir; se faltar, o onerror remove o <img> e a caixa segue visível */
+.foto-real { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; z-index: 2; }
+.ph-foto__arquivo { position: relative; z-index: 1; margin-top: var(--space-2); font-size: 11px; font-weight: var(--fw-semibold); letter-spacing: .04em; opacity: .85; }
 
 /* ========================================================================
    8 · GRID DE CARDS CONTÍGUO (Serviços / Benefícios)
@@ -523,6 +535,7 @@ body.sem-scroll { overflow: hidden; }
 }
 .faixa-cta__texto { display: flex; align-items: center; gap: var(--space-4); }
 .faixa-cta__tile { width: 28px; height: 28px; background: var(--areia); border-radius: 4px; flex: none; }
+.faixa-cta__logo { width: auto; height: 122px; flex: none; }
 .faixa-cta__titulo {
   font-family: var(--font-display);
   font-size: var(--fs-h3);
@@ -599,8 +612,8 @@ body.sem-scroll { overflow: hidden; }
 .rodape__crea { font-size: var(--fs-small); color: var(--texto-claro-2); margin-top: var(--space-4); }
 
 /* Lockup do rodapé (negativa, SVG inline) — correção 6.2: descritor íntegro em 2 linhas */
-.logo--rodape .logo__simbolo { width: 44px; height: 44px; }
-.logo--rodape .logo__nome { color: var(--texto-claro); font-size: 24px; }
+.logo--rodape .logo__simbolo { width: 56px; height: 56px; }
+.logo--rodape .logo__nome { color: var(--texto-claro); font-size: 27px; }
 .logo--rodape .logo__descritor {
   display: block;
   color: var(--texto-claro-2);

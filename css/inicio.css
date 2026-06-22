@@ -230,28 +230,40 @@
   padding: var(--space-4) var(--gutter);
 }
 .prova-faixa__crea { display: flex; align-items: center; gap: var(--space-3); flex: none; }
-.prova-faixa__selo { width: 46px; height: 46px; flex: none; }
+.prova-faixa__selo { width: 101px; height: 101px; flex: none; }
 .prova-faixa__creatxt { font-family: var(--font-display); font-size: var(--fs-kicker); font-weight: var(--fw-bold); line-height: 1.25; letter-spacing: .04em; text-transform: uppercase; color: var(--verde-floresta); }
 .prova-faixa__creatxt span { display: block; font-weight: var(--fw-semibold); font-size: 11px; color: var(--grafite-suave); letter-spacing: .08em; }
 .prova-faixa__sep { width: 1px; height: 34px; background: var(--borda); flex: none; }
 .prova-faixa__logos { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4) var(--space-5); min-width: 0; }
-.prova-mini {
+.prova-mini { display: flex; align-items: center; }
+.prova-mini__ph {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
+  justify-content: center;
+  width: 152px;
+  height: 56px;
+  background: var(--creme);
+  border: 1px dashed var(--borda);
+  border-radius: 6px;
   color: var(--grafite-suave);
-  filter: grayscale(1);
-  opacity: .7;
   font-family: var(--font-body);
   font-size: 11px;
   font-weight: var(--fw-semibold);
   line-height: 1.2;
-  letter-spacing: .06em;
+  letter-spacing: .1em;
   text-transform: uppercase;
   white-space: nowrap;
 }
-.prova-mini .icone { width: 18px; height: 18px; color: var(--verde-musgo); }
-.prova-mini--vazio { opacity: .5; font-style: normal; }
+.prova-mini--vazio {
+  color: var(--grafite-suave);
+  opacity: .6;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
 
 /* ═══════════════════════ S3 · GRID DE SERVIÇOS ═══════════════════════ */
 .cards-servicos {
@@ -450,6 +462,7 @@
 .cta-final { background: var(--verde-escuro); color: var(--texto-claro); text-align: center; }
 .cta-final__inner { padding-block: var(--space-9); display: flex; flex-direction: column; align-items: center; gap: var(--space-6); }
 .cta-final__tile { width: 18px; height: 18px; background: var(--areia); }
+.cta-final__logo { width: auto; height: 118px; margin-bottom: var(--space-2); }
 .cta-final__tagline { font-family: var(--font-accent); font-style: italic; font-weight: var(--fw-semibold); font-size: 30px; line-height: 1.25; color: var(--texto-claro); max-width: 24ch; }
 .cta-final__ctas { display: flex; flex-direction: column; gap: var(--space-4); width: 100%; }
 .cta-final__ctas .btn { width: 100%; min-height: 52px; }
@@ -565,7 +578,7 @@
 
 /* #4 · S5 — card da foto com moldura deslocada + logo mark "G"
    (padding na .sobre__midia contém os deslocamentos -12/-24 → zero overflow) */
-.sobre__midia { padding: 12px 28px 32px 12px; max-width: 372px; }
+.sobre__midia { padding: 12px 72px 72px 12px; max-width: 416px; }
 .foto-livia-container { position: relative; width: 100%; max-width: 480px; }
 .foto-livia-container::before {
   content: "";
@@ -589,19 +602,17 @@
 }
 .logo-mark-gseg {
   position: absolute;
-  bottom: -24px;
-  right: -24px;
-  width: 80px;
-  height: 80px;
+  bottom: -66px;   /* metade do selo (132px) → G centrado sobre a quina da foto */
+  right: -66px;
+  width: 132px;
+  height: 132px;
   z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--creme);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-elevated);
 }
-.logo-mark-gseg svg { width: 46px; height: 46px; }
+.logo-mark-gseg svg,
+.logo-mark-gseg img { width: 132px; height: 132px; }
 
 /* #5 · S6 — certificações: cards ricos, grade 3+2 centralizada */
 .cert__grid { display: flex; flex-direction: column; gap: 20px; }
