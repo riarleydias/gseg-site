@@ -6,7 +6,7 @@
 
 /* ---------- Intro ---------- */
 .servicos-intro { padding-bottom: var(--space-6); }
-.servicos-intro__inner { display: grid; grid-template-columns: 1fr; gap: var(--space-5); }
+.servicos-intro__inner { display: grid; grid-template-columns: 1fr; gap: var(--space-5); max-width: 1000px; margin-inline: auto; }
 .servicos-intro .lead { margin-top: var(--space-2); }
 
 @media (min-width: 900px) {
@@ -17,6 +17,8 @@
 /* ---------- Lista de serviços (acordeão) ---------- */
 .servicos { padding-top: 0; }
 .servicos__lista {
+  max-width: 1000px;
+  margin-inline: auto;
   border: 1px solid var(--borda);
   border-radius: var(--radius-card);
   overflow: hidden;

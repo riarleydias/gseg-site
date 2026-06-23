@@ -357,6 +357,7 @@ strong, b { font-weight: var(--fw-semibold); color: var(--verde-floresta); }
   z-index: 1100;
   visibility: hidden;
   pointer-events: none;
+  overflow: hidden;   /* clipa o painel off-canvas (translateX 100%) — evita scroll horizontal no mobile */
 }
 .menu-mobile[data-aberto="true"] { visibility: visible; pointer-events: auto; }
 
@@ -551,7 +552,7 @@ body.sem-scroll { overflow: hidden; }
 }
 .faixa-cta__texto { display: flex; align-items: center; gap: var(--space-4); }
 .faixa-cta__tile { width: 28px; height: 28px; background: var(--areia); border-radius: 4px; flex: none; }
-.faixa-cta__logo { width: auto; height: 122px; flex: none; }
+.faixa-cta__logo { width: auto; height: clamp(56px, 10vw, 122px); flex: none; }
 .faixa-cta__titulo {
   font-family: var(--font-display);
   font-size: var(--fs-h3);
