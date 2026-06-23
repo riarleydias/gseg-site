@@ -49,6 +49,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700&display=swap">
+  <!-- Onda 2B redesign: tipografia exclusiva da página Benefícios (decisão do Riarley) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@400;500;600;700&display=swap">
 
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.2" defer></script>
 
@@ -74,6 +76,7 @@
           <li><a class="nav__link" href="index.html">Início</a></li>
           <li><a class="nav__link" href="sobre.html">Sobre</a></li>
           <li><a class="nav__link" href="servicos.html">Serviços</a></li>
+          <li><a class="nav__link" href="beneficios.html" aria-current="page">Benefícios</a></li>
           <li><a class="nav__link" href="segmentos.html">Segmentos</a></li>
           <li><a class="nav__link" href="faq.html">FAQ</a></li>
           <li><a class="nav__link" href="contato.html">Contato</a></li>
@@ -106,6 +109,7 @@
         <li class="menu-mobile__item"><a class="menu-mobile__link" href="index.html"><i class="ph ph-house" aria-hidden="true"></i> Início <i class="ph ph-arrow-right seta" aria-hidden="true"></i></a></li>
         <li class="menu-mobile__item"><a class="menu-mobile__link" href="sobre.html"><i class="ph ph-briefcase" aria-hidden="true"></i> Sobre <i class="ph ph-arrow-right seta" aria-hidden="true"></i></a></li>
         <li class="menu-mobile__item"><a class="menu-mobile__link" href="servicos.html"><i class="ph ph-shield-check" aria-hidden="true"></i> Serviços <i class="ph ph-arrow-right seta" aria-hidden="true"></i></a></li>
+        <li class="menu-mobile__item"><a class="menu-mobile__link" href="beneficios.html" aria-current="page"><i class="ph ph-users-three" aria-hidden="true"></i> Benefícios <i class="ph ph-arrow-right seta" aria-hidden="true"></i></a></li>
         <li class="menu-mobile__item"><a class="menu-mobile__link" href="segmentos.html"><i class="ph ph-squares-four" aria-hidden="true"></i> Segmentos <i class="ph ph-arrow-right seta" aria-hidden="true"></i></a></li>
         <li class="menu-mobile__item"><a class="menu-mobile__link" href="faq.html"><i class="ph ph-question" aria-hidden="true"></i> FAQ <i class="ph ph-arrow-right seta" aria-hidden="true"></i></a></li>
         <li class="menu-mobile__item"><a class="menu-mobile__link" href="contato.html"><i class="ph ph-phone" aria-hidden="true"></i> Contato <i class="ph ph-arrow-right seta" aria-hidden="true"></i></a></li>
@@ -120,7 +124,7 @@
     </nav>
   </div>
 
-  <main id="conteudo-principal">
+  <main id="conteudo-principal" class="benef-main">
     <!-- Hero escuro -->
     <section class="benef-hero">
       <div class="container">
@@ -130,101 +134,185 @@
       </div>
     </section>
 
-    <!-- 6 cards numerados -->
-    <section class="benef-secao">
+    <!-- 6 cards (redesign Onda 2B) -->
+    <section class="benef-cards-secao">
+      <div class="benef-cards">
+
+        <article class="bcard">
+          <div class="bcard__topo"><span class="bcard__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.6-3.1 7.8-7 9-3.9-1.2-7-4.4-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="bcard__num" aria-hidden="true">01</span></div>
+          <h2 class="bcard__titulo">Conformidade Legal Completa</h2>
+          <p class="bcard__tagline">Sua empresa dentro da lei, sem surpresas.</p>
+          <ul class="bcard__lista">
+            <li>Laudos de insalubridade e periculosidade dentro do prazo legal</li>
+            <li>eSocial atualizado: S-2210, S-2220 e S-2240 em dia</li>
+            <li>Documentação que resiste a auditoria do Ministério do Trabalho</li>
+            <li>Zero passivos trabalhistas por falta de laudo ou registro</li>
+          </ul>
+        </article>
+
+        <article class="bcard">
+          <div class="bcard__topo"><span class="bcard__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 16H3z"/><path d="M12 9v5"/><path d="M12 17h.01"/></svg></span><span class="bcard__num" aria-hidden="true">02</span></div>
+          <h2 class="bcard__titulo">Prevenção de Acidentes</h2>
+          <p class="bcard__tagline">Menos acidente. Menos afastamento. Menos custo.</p>
+          <ul class="bcard__lista">
+            <li>Mapeamento de riscos por setor e função (PGR/GRO)</li>
+            <li>Treinamentos de NR aplicados na realidade da sua operação</li>
+            <li>Identificação antecipada de condições inseguras antes de virar problema</li>
+            <li>Redução de afastamentos por doença ocupacional</li>
+          </ul>
+        </article>
+
+        <article class="bcard">
+          <div class="bcard__topo"><span class="bcard__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M17 8h4v4"/></svg></span><span class="bcard__num" aria-hidden="true">03</span></div>
+          <h2 class="bcard__titulo">Produtividade Protegida</h2>
+          <p class="bcard__tagline">Equipe segura produz mais e com mais qualidade.</p>
+          <ul class="bcard__lista">
+            <li>Processos seguros eliminam paradas não planejadas</li>
+            <li>Equipe que se sente protegida tem mais engajamento</li>
+            <li>Menos absenteísmo e rotatividade por saúde ocupacional</li>
+            <li>Ambiente de trabalho que retém talento</li>
+          </ul>
+        </article>
+
+        <article class="bcard">
+          <div class="bcard__topo"><span class="bcard__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg></span><span class="bcard__num" aria-hidden="true">04</span></div>
+          <h2 class="bcard__titulo">Redução de Prejuízos Financeiros</h2>
+          <p class="bcard__tagline">Prevenir custa menos do que remediar.</p>
+          <ul class="bcard__lista">
+            <li>FAP/RAT controlado: menos imposto sobre a folha de pagamento</li>
+            <li>Menos ações trabalhistas e indenizações</li>
+            <li>Um único acidente sério pode custar mais do que anos de prevenção</li>
+            <li>Seguradoras exigem conformidade — sua apólice fica mais barata</li>
+          </ul>
+        </article>
+
+        <article class="bcard">
+          <div class="bcard__topo"><span class="bcard__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M9 13.4L8 21l4-2 4 2-1-7.6"/></svg></span><span class="bcard__num" aria-hidden="true">05</span></div>
+          <h2 class="bcard__titulo">Suporte Técnico com Autoridade</h2>
+          <p class="bcard__tagline">Decisões respaldadas por especialista com CREA ativo.</p>
+          <ul class="bcard__lista">
+            <li>Engenheira de Segurança com CREA 332747/MG e +20 anos de campo</li>
+            <li>Laudos com valor legal, aceitos por sindicato, Ministério e Justiça do Trabalho</li>
+            <li>Orientação na hora da fiscalização, não só no papel</li>
+            <li>Disponível para responder autuações e processos administrativos</li>
+          </ul>
+        </article>
+
+        <article class="bcard">
+          <div class="bcard__topo"><span class="bcard__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 6.2a3 3 0 0 1 0 5.6"/><path d="M19.5 20c0-2.6-1.1-4.7-3-5.7"/></svg></span><span class="bcard__num" aria-hidden="true">06</span></div>
+          <h2 class="bcard__titulo">Cultura de Segurança Instalada</h2>
+          <p class="bcard__tagline">Quando segurança é valor, não é só obrigação.</p>
+          <ul class="bcard__lista">
+            <li>CIPA estruturada e diálogos de segurança que funcionam na prática</li>
+            <li>Liderança treinada para multiplicar a cultura de prevenção</li>
+            <li>Segurança integrada à rotina, não só ao papel de parede</li>
+            <li>Empresa que cuida das pessoas retém e atrai melhores profissionais</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Comparativo custo × prejuízo (NOVA) -->
+    <section class="benef-comp">
       <div class="container">
-        <div class="benef-grid">
-          <div class="benef">
-            <div class="benef__topo"><span class="benef__num">01</span><i class="ph ph-shield-check benef__icone" aria-hidden="true"></i></div>
-            <h2 class="benef__titulo">Mais Conformidade Legal</h2>
-            <p class="benef__desc">Atende exigências e reduz passivos.</p>
-            <ul class="benef__lista">
-              <li>Laudos de insalubridade e periculosidade no prazo</li>
-              <li>Eventos do eSocial (S-2210, S-2220, S-2240) em dia</li>
-              <li>Sem autuações do Ministério do Trabalho</li>
+        <p class="benef-eyebrow">A conta que ninguém faz</p>
+        <h2 class="benef-secao-titulo">O que um único acidente pode custar à sua empresa</h2>
+        <div class="benef-comp__grid">
+          <div class="benef-comp__col benef-comp__col--risco">
+            <h3 class="benef-comp__col-titulo">Sem assessoria em SST</h3>
+            <ul class="benef-comp__lista benef-comp__lista--risco">
+              <li>Multa do Ministério do Trabalho — de R$ 2.000 a R$ 6.000 por irregularidade</li>
+              <li>CAT registrada — o FAP sobe e o imposto aumenta por anos</li>
+              <li>Afastamento pelo INSS — a empresa paga os 15 primeiros dias e perde produção</li>
+              <li>Ação trabalhista — em média de R$ 30.000 a R$ 80.000 em indenização</li>
+              <li>Paralisação da obra ou linha — prejuízo imediato e multa contratual</li>
+              <li>Dano reputacional — clientes e parceiros acompanham acidentes públicos</li>
+            </ul>
+            <p class="benef-comp__nota">Faixas médias de mercado, a título de referência.</p>
+          </div>
+          <div class="benef-comp__col benef-comp__col--ganho">
+            <h3 class="benef-comp__col-titulo">Com a GSEG ao seu lado</h3>
+            <ul class="benef-comp__lista benef-comp__lista--ganho">
+              <li>Documentação em dia — sem risco de autuação</li>
+              <li>FAP controlado — menos imposto na folha todo mês</li>
+              <li>Equipe treinada — menos acidentes e menos afastamento</li>
+              <li>Laudos com validade legal — aceitos por sindicato e Justiça</li>
+              <li>Suporte na fiscalização — você não enfrenta o auditor sozinho</li>
+              <li>Prevenção custa uma fração de um processo trabalhista</li>
             </ul>
           </div>
-          <div class="benef">
-            <div class="benef__topo"><span class="benef__num">02</span><i class="ph ph-warning benef__icone" aria-hidden="true"></i></div>
-            <h2 class="benef__titulo">Menos Riscos e Acidentes</h2>
-            <p class="benef__desc">Prevenção ativa e proteção para equipes.</p>
-            <ul class="benef__lista">
-              <li>Mapeamento de riscos por função e setor (PGR/GRO)</li>
-              <li>Treinamentos de NR aplicados à rotina real</li>
-              <li>Menos afastamentos por acidente e doença ocupacional</li>
-            </ul>
-          </div>
-          <div class="benef">
-            <div class="benef__topo"><span class="benef__num">03</span><i class="ph ph-trend-up benef__icone" aria-hidden="true"></i></div>
-            <h2 class="benef__titulo">Mais Produtividade</h2>
-            <p class="benef__desc">Processos seguros e equipes eficientes.</p>
-            <ul class="benef__lista">
-              <li>Processos seguros reduzem paradas e retrabalho</li>
-              <li>Equipe treinada trabalha com mais confiança</li>
-              <li>Menos absenteísmo e rotatividade</li>
-            </ul>
-          </div>
-          <div class="benef">
-            <div class="benef__topo"><span class="benef__num">04</span><i class="ph ph-coins benef__icone" aria-hidden="true"></i></div>
-            <h2 class="benef__titulo">Redução de Prejuízos</h2>
-            <p class="benef__desc">Menos afastamentos, multas e retrabalho.</p>
-            <ul class="benef__lista">
-              <li>Menos multas, ações trabalhistas e indenizações</li>
-              <li>FAP/RAT controlado — menos imposto na folha</li>
-              <li>Prevenir custa uma fração do preço de um acidente</li>
-            </ul>
-          </div>
-          <div class="benef">
-            <div class="benef__topo"><span class="benef__num">05</span><i class="ph ph-user-focus benef__icone" aria-hidden="true"></i></div>
-            <h2 class="benef__titulo">Apoio Técnico Especializado</h2>
-            <p class="benef__desc">Decisões mais seguras com suporte especialista.</p>
-            <ul class="benef__lista">
-              <li>Engenheira com CREA e +20 anos de campo ao seu lado</li>
-              <li>Respaldo técnico para fiscalização, sindicato e clientes</li>
-              <li>Orientação na hora de decidir, não só no papel</li>
-            </ul>
-          </div>
-          <div class="benef">
-            <div class="benef__topo"><span class="benef__num">06</span><i class="ph ph-users-three benef__icone" aria-hidden="true"></i></div>
-            <h2 class="benef__titulo">Cultura de Segurança</h2>
-            <p class="benef__desc">Ambientes responsáveis e maturidade em SST.</p>
-            <ul class="benef__lista">
-              <li>CIPA atuante e diálogos de segurança que funcionam</li>
-              <li>Liderança e equipe engajadas na prevenção</li>
-              <li>Segurança vira valor da empresa, não obrigação</li>
-            </ul>
-          </div>
+        </div>
+        <p class="benef-comp__destaque">“Investir em segurança não é custo. É proteção do que você já construiu.”</p>
+      </div>
+    </section>
+
+    <!-- Para quem atendemos (NOVA — 6 setores) -->
+    <section class="benef-seg">
+      <div class="benef-seg__inner">
+        <p class="benef-eyebrow">Segmentos que atendemos</p>
+        <h2 class="benef-secao-titulo">A GSEG conhece a realidade do seu setor</h2>
+        <p class="benef-seg__sub">Cada segmento tem suas normas, seus riscos e sua linguagem. Lívia Poliane conhece todos.</p>
+        <div class="benef-seg__grid">
+          <article class="bseg">
+            <span class="bseg__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14a9 9 0 0 1 18 0"/><path d="M2 14h20v2.4a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/><path d="M12 5.2v3.6M9.4 5.6l-.7 3.2M14.6 5.6l.7 3.2"/></svg></span>
+            <h3 class="bseg__nome">Construção Civil</h3>
+            <p class="bseg__desc">NRs específicas, APR, PCMAT e PPRA. Documentação que o canteiro de obras exige.</p>
+          </article>
+          <article class="bseg">
+            <span class="bseg__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V10l6 3.5V10l6 3.5V6h3v15z"/><path d="M7 17h2M13 17h2"/></svg></span>
+            <h3 class="bseg__nome">Indústria e Manufatura</h3>
+            <p class="bseg__desc">PGR, LTCAT e laudos de periculosidade. Linha de produção protegida e documentada.</p>
+          </article>
+          <article class="bseg">
+            <span class="bseg__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V8"/><path d="M12 11C9.6 11 8 9.4 8 7c2.4 0 4 1.6 4 4z"/><path d="M12 11c2.4 0 4-1.6 4-4-2.4 0-4 1.6-4 4z"/><path d="M12 8c0-1.8 1.2-3 3-3 0 1.8-1.2 3-3 3z"/></svg></span>
+            <h3 class="bseg__nome">Agroindústria e Fazendas</h3>
+            <p class="bseg__desc">Atividades rurais têm NRs próprias. A GSEG domina cada uma delas.</p>
+          </article>
+          <article class="bseg">
+            <span class="bseg__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.2-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.8-7 10-7 10z"/><path d="M7.5 12h2l1-2 1.6 3.4 1-1.4H16"/></svg></span>
+            <h3 class="bseg__nome">Saúde e Clínicas</h3>
+            <p class="bseg__desc">Riscos biológicos, químicos e ergonômicos. Mapeamento completo para o setor.</p>
+          </article>
+          <article class="bseg">
+            <span class="bseg__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9l1-4h14l1 4"/><path d="M4 9h16v1.2a2.2 2.2 0 0 1-4.4 0 2.2 2.2 0 0 1-4.4 0 2.2 2.2 0 0 1-4.4 0A2.2 2.2 0 0 1 4 10.2z"/><path d="M5 13v7h14v-7"/></svg></span>
+            <h3 class="bseg__nome">Comércio e Serviços</h3>
+            <p class="bseg__desc">Muitas empresas não sabem que precisam de laudo. Precisam — e a GSEG resolve.</p>
+          </article>
+          <article class="bseg">
+            <span class="bseg__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.6 5.6a3.8 3.8 0 0 0-5 5l-5.3 5.3a1.5 1.5 0 0 0 2.1 2.1l5.3-5.3a3.8 3.8 0 0 0 5-5l-2.2 2.2-1.9-1.9z"/></svg></span>
+            <h3 class="bseg__nome">Manutenção e Utilidades</h3>
+            <p class="bseg__desc">Trabalho em altura, espaço confinado, riscos elétricos — tudo documentado.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- Seção de contexto — custo de não investir -->
-    <section class="benef-contexto">
-      <div class="container benef-contexto__inner">
-        <p class="kicker">A verdadeira conta da segurança</p>
-        <h2 class="benef-contexto__titulo">Quem não investe em SST paga mais caro depois</h2>
-        <div class="benef-contexto__texto">
+    <!-- Final: quem não investe paga mais caro -->
+    <section class="benef-final">
+      <div class="container benef-final__inner">
+        <p class="benef-eyebrow">A verdadeira conta da segurança</p>
+        <h2 class="benef-secao-titulo">Quem não investe em SST paga mais caro depois</h2>
+        <div class="benef-final__texto">
           <p>A conta da segurança não some quando é ignorada — só muda de lugar e fica mais cara. Um único acidente vira afastamento, ação trabalhista, multa e FAP elevado por anos.</p>
           <p>Sem laudos e documentação em dia, a empresa fica exposta: a fiscalização não avisa antes de chegar, e o sindicato e os próprios funcionários conhecem seus direitos.</p>
           <p>Investir em SST é o contrário de gasto — é blindar o negócio contra passivos que custam muito mais que a prevenção. A GSEG organiza isso antes de virar problema.</p>
         </div>
+        <div class="benef-cred">
+          <div class="benef-cred__item">
+            <span class="benef-cred__num">+20 anos</span>
+            <span class="benef-cred__label">de experiência em campo</span>
+          </div>
+          <div class="benef-cred__item">
+            <span class="benef-cred__num">CREA 332747/MG</span>
+            <span class="benef-cred__label">registro ativo em MG</span>
+          </div>
+          <div class="benef-cred__item">
+            <span class="benef-cred__num">Triângulo Mineiro</span>
+            <span class="benef-cred__label">área de atendimento</span>
+          </div>
+        </div>
         <a class="btn btn--primary btn--lg" href="https://wa.me/5534992076152?text=Ol%C3%A1!%20Quero%20proteger%20minha%20empresa%20e%20saber%20como%20a%20GSEG%20pode%20ajudar." target="_blank" rel="noopener noreferrer">Quero proteger minha empresa <span aria-hidden="true">→</span></a>
-      </div>
-    </section>
-      </div>
-    </section>
-
-    <!-- Faixa CTA (creme) -->
-    <section class="faixa-cta faixa-cta--creme">
-      <div class="container faixa-cta__inner">
-        <p class="faixa-cta__texto">
-          <img class="faixa-cta__logo faixa-cta__logo--verde" src="assets/brand/logo.svg" alt="GSEG" width="110" height="40">
-          <span>
-            <span class="kicker kicker--sem-traco" style="margin:0;">Nosso propósito</span>
-            <span class="faixa-cta__titulo">Segurança do trabalho que gera resultado.</span>
-          </span>
-        </p>
-        <a class="btn btn--primary" href="contato.html">Solicitar orçamento <span aria-hidden="true">→</span></a>
       </div>
     </section>
   </main>

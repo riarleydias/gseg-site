@@ -92,7 +92,7 @@ strong, b { font-weight: var(--fw-semibold); color: var(--verde-floresta); }
   width: 100%;
   max-width: var(--container-max);
   margin-inline: auto;
-  padding-inline: var(--gutter);
+  padding-inline: clamp(24px, 4vw, 64px);   /* responsivo: ~24 mobile · ~32 tablet · 64 desktop */
 }
 
 .secao { padding-block: var(--space-section-mobile); }
@@ -235,7 +235,7 @@ strong, b { font-weight: var(--fw-semibold); color: var(--verde-floresta); }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-5);
+  gap: var(--space-4);
   min-height: var(--header-h-encolhido);  /* base mobile = altura encolhida */
   transition: min-height var(--transition);
 }
@@ -281,7 +281,7 @@ strong, b { font-weight: var(--fw-semibold); color: var(--verde-floresta); }
 
 /* Navegação desktop — escondida no mobile */
 .nav { display: none; }
-.nav__lista { display: flex; align-items: center; gap: var(--space-6); list-style: none; }
+.nav__lista { display: flex; align-items: center; gap: 12px; list-style: none; }
 .nav__link {
   font-family: var(--font-body);
   font-size: var(--fs-small);
@@ -332,15 +332,20 @@ strong, b { font-weight: var(--fw-semibold); color: var(--verde-floresta); }
   .cabecalho__inner { min-height: var(--header-h); }
   .logo__simbolo { width: 44px; height: 44px; }
   .logo__descritor { display: block; }
-  .nav { display: block; }
   .cabecalho__acoes { display: flex; }
-  .hamburguer { display: none; }
 
   /* Header encolhido (≥900px): logo menor, descritor some, inner mais baixo */
   .cabecalho--encolhido .cabecalho__inner { min-height: var(--header-h-encolhido); }
   .cabecalho--encolhido .logo__simbolo { width: 34px; height: 34px; }
   .cabecalho--encolhido .logo__nome { font-size: 18px; }
   .cabecalho--encolhido .logo__descritor { display: none; }
+}
+
+/* Nav horizontal completo (7 itens + ações) só onde cabe no container de 1140px;
+   abaixo disso, menu off-canvas (hamburguer) — que também lista os 7 itens. */
+@media (min-width: 1280px) {
+  .nav { display: block; }
+  .hamburguer { display: none; }
 }
 
 /* ========================================================================
@@ -498,6 +503,10 @@ body.sem-scroll { overflow: hidden; }
 .line-draw::before { width: 0; transition: width .8s ease; }
 .kicker.line-draw.visible::before { width: 28px; }
 .eyebrow.line-draw.visible::before { width: 22px; }
+/* Reveal por seção (classe adicionada por JS — sem JS, tudo visível) */
+.section-reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.section-reveal.visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .section-reveal { opacity: 1; transform: none; transition: none; } }
 
 /* ========================================================================
    8 · GRID DE CARDS CONTÍGUO (Serviços / Benefícios)

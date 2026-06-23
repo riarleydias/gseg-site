@@ -15,15 +15,25 @@
   function semAncestralFade(el) {
     var p = el.parentElement;
     while (p) {
-      if (p.classList && p.classList.contains('fade-in')) return false;
+      if (p.classList && (p.classList.contains('fade-in') || p.classList.contains('section-reveal'))) return false;
       p = p.parentElement;
     }
     return true;
   }
 
+  // 0) REVEAL POR SEÇÃO — só onde a página opta (main[data-reveal-sections]); classe via JS (sem JS = visível)
+  var mainRev = document.querySelector('main[data-reveal-sections]');
+  if (mainRev) {
+    slice(mainRev.children).forEach(function (sec) {
+      if (sec.tagName === 'SECTION' && sec.className.indexOf('hero') === -1) sec.classList.add('section-reveal');
+    });
+  }
+  var reveals = slice(document.querySelectorAll('.section-reveal'));
+
   // 1) FADE-IN — blocos e títulos principais do conteúdo (nunca header/CTA)
-  var fadeSel = 'main h2, main h3, main .benef, main .seg-bloco, main .seg-stat, ' +
-                'main .card-servico, main .cert-card, main .faq__item, main .diag-card, main .lead';
+  var fadeSel = 'main h2, main h3, main .benef, main .bcard, main .bseg, main .benef-comp__col, ' +
+                'main .seg-bloco, main .seg-stat, main .card-servico, main .cert-card, ' +
+                'main .faq__item, main .diag-card, main .lead';
   var faders = slice(document.querySelectorAll(fadeSel)).filter(semAncestralFade);
   faders.forEach(function (el) { el.classList.add('fade-in'); });
 
@@ -32,7 +42,7 @@
   linhas.forEach(function (el) { el.classList.add('line-draw'); });
 
   // 3) CONTADORES — números de impacto (não o CREA, não placeholders)
-  var contadores = slice(document.querySelectorAll('.hero__selo-num, .seg-stat__num:not(.seg-stat__num--ph)'));
+  var contadores = slice(document.querySelectorAll('.seg-stat__num:not(.seg-stat__num--ph)'));
 
   function parseNum(txt) {
     var m = txt.trim().match(/^(\D*?)(\d+)(\D*)$/);
@@ -43,6 +53,7 @@
   if (reduce || !('IntersectionObserver' in window)) {
     faders.forEach(function (el) { el.classList.add('visible'); });
     linhas.forEach(function (el) { el.classList.add('visible'); });
+    reveals.forEach(function (el) { el.classList.add('visible'); });
     return;
   }
 
@@ -86,6 +97,7 @@
   faders.forEach(function (el) { io.observe(el); });
   linhas.forEach(function (el) { io.observe(el); });
   contadores.forEach(function (el) { io.observe(el); });
+  reveals.forEach(function (el) { io.observe(el); });
 
   // Rede de segurança SÓ para contadores: se o IO não disparar (nunca em navegador real),
   // garante o valor final correto — nunca deixa um número travado em "0".

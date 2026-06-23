@@ -1,88 +1,106 @@
 /* =============================================================================
-   GSEG · beneficios.css — página Benefícios (hero escuro + 6 cards numerados)
+   GSEG · beneficios.css — REDESIGN v2 (Onda 2B)
+   Tipografia exclusiva da página: Playfair Display (títulos) + Montserrat (corpo),
+   escopada em .benef-main (nav/footer ficam fora). Paleta prescrita no prompt
+   como tokens locais de página (--bf-*). Zero border-radius nos elementos novos.
    ============================================================================= */
 
+.benef-main {
+  --bf-display: 'Playfair Display', var(--font-display-serif), Georgia, serif;
+  --bf-body:    'Montserrat', var(--font-body), system-ui, sans-serif;
+  --bf-card:        #ffffff;
+  --bf-vermelho:    #C0392B;  /* marcador "custo" — coluna sem assessoria        */
+  --bf-verde-claro: #A8C89A;  /* marcador "ganho" / labels — coluna GSEG          */
+  --bf-titulo:      #1C2B1A;  /* títulos de card/seção                            */
+  --bf-preto:       #1A1A1A;
+  --bf-tag:         #7A7A6A;
+  --bf-creme-comp:  #F5EFE0;  /* fundo coluna sem assessoria                      */
+  --bf-creme-cred:  #E0CFAE;  /* números das credenciais / número do card        */
+  --bf-creme-seg:   #F5F2EC;  /* fundo seção segmentos                            */
+  --bf-texto:       #333333;
+  --bf-sub:         #555555;
+  --bf-desc:        #666666;
+  font-family: var(--bf-body);
+  color: var(--bf-texto);
+}
+.benef-main p, .benef-main li, .benef-main span, .benef-main a { font-family: var(--bf-body); }
+
+/* ---------- Eyebrow + título de seção ---------- */
+.benef-eyebrow { display: inline-block; font-weight: 600; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--verde-musgo); margin-bottom: 16px; }
+.benef-eyebrow--areia { color: var(--areia); }
+.benef-secao-titulo { font-family: var(--bf-display); font-weight: 700; font-size: clamp(28px, 4vw, 36px); line-height: 1.15; color: var(--bf-titulo); margin-bottom: 10px; }
+
 /* ---------- Hero escuro ---------- */
-.benef-hero {
-  background: var(--verde-floresta);
-  color: var(--texto-claro);
-  padding-block: var(--space-section-mobile);
-}
-.benef-hero__titulo {
-  font-family: var(--font-accent);
-  font-weight: var(--fw-bold);
-  font-size: clamp(30px, 5vw, 48px);
-  color: var(--texto-claro);
-  line-height: 1.15;
-  max-width: 20ch;
-}
+.benef-hero { background: var(--verde-floresta); color: var(--texto-claro); padding-block: 88px 80px; }
+.benef-hero .kicker { color: var(--areia); }
+.benef-hero__titulo { font-family: var(--bf-display); font-weight: 700; font-size: clamp(32px, 5.2vw, 52px); color: var(--texto-claro); line-height: 1.12; max-width: 18ch; }
 .benef-hero__titulo em { font-style: italic; color: var(--areia); }
-.benef-hero__texto { color: var(--texto-claro-2); margin-top: var(--space-4); max-width: 62ch; }
+.benef-hero__texto { color: var(--texto-claro-2); margin-top: var(--space-4); max-width: 60ch; font-size: 16px; line-height: 1.7; }
 
-/* ---------- Grid de 6 cards (hairlines via gap:1px sobre fundo --borda) ---------- */
-.benef-secao { padding-block: var(--space-section-mobile); }
-.benef-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1px;
-  background: var(--borda);
-  border: 1px solid var(--borda);
-  border-radius: var(--radius-card);
-  overflow: hidden;
-}
-.benef {
-  background: var(--creme);
-  padding: var(--space-5);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  min-height: 150px;
-}
-.benef__topo { display: flex; align-items: center; gap: var(--space-3); }
-.benef__num {
-  font-family: var(--font-accent);
-  font-weight: var(--fw-bold);
-  font-size: 40px;
-  line-height: 1;
-  color: var(--areia);
-}
-.benef__icone { font-size: 22px; color: var(--verde-musgo); }
-.benef__titulo {
-  font-family: var(--font-accent);
-  font-weight: var(--fw-bold);
-  font-size: var(--fs-h3);
-  color: var(--verde-floresta);
-  line-height: 1.15;
-  margin-top: var(--space-2);
-}
-.benef__desc { font-size: var(--fs-small); color: var(--grafite-suave); }
+/* ---------- 6 cards: seção verde, grid 3col, gap 1px, cards brancos sem radius ---------- */
+.benef-cards-secao { background: var(--verde-floresta); padding: 64px 24px; }
+.benef-cards { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--verde-floresta); }
+.bcard { background: var(--bf-card); padding: 36px 32px; border: 0; border-radius: 0; }
+.bcard__topo { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.bcard__icone { display: inline-flex; color: var(--verde-musgo); }
+.bcard__icone svg { width: 24px; height: 24px; }
+.bcard__num { font-family: var(--bf-display); font-weight: 700; font-size: 48px; line-height: 1; color: var(--bf-creme-cred); }
+.bcard__titulo { font-family: var(--bf-display); font-weight: 700; font-size: 18px; color: var(--bf-titulo); line-height: 1.2; margin-bottom: 6px; }
+.bcard__tagline { font-style: italic; font-size: 13px; color: var(--bf-tag); margin-bottom: 20px; }
+.bcard__lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.bcard__lista li { position: relative; padding-left: 16px; font-size: 14px; line-height: 1.7; color: var(--bf-texto); }
+.bcard__lista li::before { content: "—"; position: absolute; left: 0; top: 0; color: var(--verde-musgo); }
 
-/* Bullets concretos por card (Onda 2B) */
-.benef__lista { list-style: none; margin: 0; margin-top: var(--space-3); padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
-.benef__lista li { position: relative; padding-left: 20px; font-size: var(--fs-small); color: var(--grafite); line-height: 1.45; }
-.benef__lista li::before { content: ""; position: absolute; left: 2px; top: 7px; width: 7px; height: 7px; border-radius: 50%; background: var(--verde-musgo); }
+/* ---------- Comparativo custo × prejuízo (cores: GSEG = verde, sem proteção = neutro) ---------- */
+.benef-comp { background: var(--creme-200); padding-block: 72px; }
+.benef-comp .container { max-width: 1100px; }
+.benef-comp__grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 28px; }
+.benef-comp__col { padding: 40px 36px; border-radius: 0; }
+.benef-comp__col--risco { background: var(--bf-creme-comp); color: var(--bf-texto); border-top: 4px solid var(--bf-vermelho); }
+.benef-comp__col--ganho { background: var(--verde-floresta); color: var(--bf-creme-cred); border-top: 4px solid var(--bf-verde-claro); }
+.benef-comp__col-titulo { font-family: var(--bf-display); font-weight: 700; font-size: 20px; margin-bottom: 20px; }
+.benef-comp__col--risco .benef-comp__col-titulo { color: var(--bf-preto); }
+.benef-comp__col--ganho .benef-comp__col-titulo { color: var(--bf-creme-cred); }
+.benef-comp__lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.benef-comp__lista li { position: relative; padding-left: 28px; font-size: 14px; line-height: 1.8; }
+.benef-comp__lista--risco li { color: var(--bf-texto); }
+.benef-comp__lista--risco li::before { content: "→"; position: absolute; left: 0; top: 0; font-weight: 700; color: var(--bf-vermelho); }
+.benef-comp__lista--ganho li { color: var(--bf-creme-cred); }
+.benef-comp__lista--ganho li::before { content: "✓"; position: absolute; left: 0; top: 0; font-weight: 700; color: var(--bf-verde-claro); }
+.benef-comp__nota { margin-top: 16px; font-size: 11px; line-height: 1.4; color: var(--bf-tag); }
+.benef-comp__destaque { font-family: var(--bf-display); font-style: italic; font-weight: 500; font-size: 24px; text-align: center; color: var(--verde-floresta); max-width: 700px; margin: 0 auto; padding-block: 48px; line-height: 1.4; }
 
-/* Seção de contexto — custo de não investir */
-.benef-contexto { padding-block: var(--space-section-mobile); border-top: 1px solid var(--borda); }
-.benef-contexto__inner { max-width: 760px; }
-.benef-contexto__titulo {
-  font-family: var(--font-accent);
-  font-weight: var(--fw-bold);
-  font-size: clamp(26px, 4vw, 40px);
-  color: var(--verde-floresta);
-  line-height: 1.15;
-  margin-bottom: var(--space-5);
-}
-.benef-contexto__texto { display: flex; flex-direction: column; gap: var(--space-4); color: var(--grafite); line-height: 1.7; margin-bottom: var(--space-6); }
+/* ---------- Segmentos (6 setores, fundo creme claro) ---------- */
+.benef-seg { background: var(--bf-creme-seg); padding: 80px 24px; }
+.benef-seg__inner { max-width: 1100px; margin-inline: auto; }
+.benef-seg .benef-secao-titulo { max-width: 600px; }
+.benef-seg__sub { font-size: 15px; line-height: 1.6; color: var(--bf-sub); max-width: 560px; margin-bottom: 56px; }
+.benef-seg__grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+.bseg { background: var(--bf-card); padding: 28px 24px; border: 1px solid var(--borda); border-top: 3px solid var(--verde-musgo); border-radius: 0; }
+.bseg__icone { display: inline-flex; color: var(--verde-musgo); }
+.bseg__icone svg { width: 32px; height: 32px; }
+.bseg__nome { font-family: var(--bf-display); font-weight: 600; font-size: 16px; color: var(--bf-titulo); margin: 12px 0 6px; }
+.bseg__desc { font-size: 13px; line-height: 1.6; color: var(--bf-desc); }
 
+/* ---------- Seção final + credenciais ---------- */
+.benef-final { background: var(--creme); padding-block: 72px; }
+.benef-final__inner { max-width: 860px; }
+.benef-final__texto { display: flex; flex-direction: column; gap: 14px; color: var(--bf-texto); line-height: 1.8; margin: 16px 0 32px; }
+.benef-cred { display: grid; grid-template-columns: 1fr; gap: 24px; background: var(--verde-floresta); padding: 32px 40px; margin-bottom: 32px; }
+.benef-cred__num { display: block; font-family: var(--bf-display); font-weight: 700; font-size: clamp(24px, 3vw, 36px); line-height: 1.1; color: var(--bf-creme-cred); }
+.benef-cred__label { display: block; margin-top: 8px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--bf-verde-claro); }
+
+/* ===================== RESPONSIVO (375 / 768 / 1024+) ===================== */
 @media (min-width: 768px) {
-  .benef-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (min-width: 900px) {
-  .benef-hero { padding-block: var(--space-section-desktop); }
-  .benef-secao { padding-block: var(--space-section-desktop); }
-  .benef-contexto { padding-block: var(--space-section-desktop); }
+  .benef-hero { padding-block: 112px 96px; }
+  .benef-cards-secao { padding: 80px 60px; }
+  .benef-cards { grid-template-columns: 1fr 1fr; }
+  .benef-comp__grid { grid-template-columns: 1fr 1fr; }
+  .benef-seg { padding: 80px 60px; }
+  .benef-seg__grid { grid-template-columns: 1fr 1fr; }
+  .benef-cred { grid-template-columns: repeat(3, 1fr); }
 }
 @media (min-width: 1024px) {
-  .benef-grid { grid-template-columns: repeat(3, 1fr); }
+  .benef-cards { grid-template-columns: repeat(3, 1fr); }
+  .benef-seg__grid { grid-template-columns: repeat(3, 1fr); }
 }

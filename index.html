@@ -115,6 +115,7 @@
           <li><a class="nav__link" href="index.html" aria-current="page">Início</a></li>
           <li><a class="nav__link" href="sobre.html">Sobre</a></li>
           <li><a class="nav__link" href="servicos.html">Serviços</a></li>
+          <li><a class="nav__link" href="beneficios.html">Benefícios</a></li>
           <li><a class="nav__link" href="segmentos.html">Segmentos</a></li>
           <li><a class="nav__link" href="faq.html">FAQ</a></li>
           <li><a class="nav__link" href="contato.html">Contato</a></li>
@@ -152,6 +153,7 @@
         <li class="menu-mobile__item"><a class="menu-mobile__link" href="index.html" aria-current="page">Início <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a></li>
         <li class="menu-mobile__item"><a class="menu-mobile__link" href="sobre.html">Sobre <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a></li>
         <li class="menu-mobile__item"><a class="menu-mobile__link" href="servicos.html">Serviços <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a></li>
+        <li class="menu-mobile__item"><a class="menu-mobile__link" href="beneficios.html">Benefícios <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a></li>
         <li class="menu-mobile__item"><a class="menu-mobile__link" href="segmentos.html">Segmentos <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a></li>
         <li class="menu-mobile__item"><a class="menu-mobile__link" href="faq.html">FAQ <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a></li>
         <li class="menu-mobile__item"><a class="menu-mobile__link" href="contato.html">Contato <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a></li>
@@ -162,11 +164,11 @@
           <svg class="icone icone--sm icone--fill" aria-hidden="true" focusable="false"><use href="#i-whatsapp"/></svg> WhatsApp
         </a>
       </div>
-      <p class="menu-mobile__rodape"><svg class="icone" aria-hidden="true" focusable="false"><use href="#i-shield-check"/></svg> <span>Benefícios e mais em <a href="beneficios.html">beneficios.html</a></span></p>
+      <p class="menu-mobile__rodape"><svg class="icone" aria-hidden="true" focusable="false"><use href="#i-shield-check"/></svg> <span>Protegemos pessoas.<br>Fortalecemos negócios.</span></p>
     </nav>
   </div>
 
-  <main id="conteudo-principal">
+  <main id="conteudo-principal" data-reveal-sections>
 
     <!-- ========================= S1 · HERO — emoção acima da dobra ========================= -->
     <section class="hero" aria-labelledby="hero-titulo">
@@ -196,31 +198,34 @@
             <span>Foto — aguardando cliente</span>
             <span class="ph-tag">hero-campo.jpg · 1280×860</span>
           </div>
-          <div class="hero__selo" aria-label="Mais de 20 anos de experiência">
-            <span class="hero__selo-num">+20</span>
-            <span class="hero__selo-label">anos</span>
+          <div class="hero__selo" aria-label="Mais de 20 anos de experiência em campo">
+            <span class="hero__selo-num"><span class="hero__selo-mais" aria-hidden="true">+</span>20</span>
+            <span class="hero__selo-label">Anos</span>
+            <span class="hero__selo-sub">de experiência em campo</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ========================= S2 · FAIXA DE PROVA SOCIAL (1ª dobra) ========================= -->
-    <section class="prova-faixa" aria-label="Prova social — registro e experiência">
+    <!-- ========================= S2 · FAIXA DE CREDENCIAIS ========================= -->
+    <section class="prova-faixa" aria-label="Credenciais — registro e experiência">
       <div class="prova-faixa__inner">
-        <div class="prova-faixa__crea">
-          <!-- Selo circular oficial da cliente (assets/brand/selo.svg · ERRO #001: usado como está) -->
-          <img class="prova-faixa__selo" src="assets/brand/selo.svg" alt="Selo GSEG — CREA Nº 332747/MG" width="46" height="46">
-          <span class="prova-faixa__creatxt">+20 anos de experiência<span>CREA Nº 332747/MG · Araxá-MG</span></span>
+        <div class="cred-bloco cred-bloco--marca">
+          <img class="cred-simbolo" src="assets/brand/simbolo.svg" alt="" width="48" height="48" aria-hidden="true">
+          <span class="cred-marca-txt">
+            <span class="cred-marca-nome">GSEG Engenharia</span>
+            <span class="cred-marca-sub">Segurança do Trabalho</span>
+          </span>
         </div>
-        <span class="prova-faixa__sep" aria-hidden="true"></span>
-        <ul class="prova-faixa__logos">
-          <li class="prova-mini"><span class="prova-mini__ph">Logo cliente</span></li>
-          <li class="prova-mini"><span class="prova-mini__ph">Logo cliente</span></li>
-          <li class="prova-mini"><span class="prova-mini__ph">Logo cliente</span></li>
-          <li class="prova-mini"><span class="prova-mini__ph">Logo cliente</span></li>
-          <li class="prova-mini"><span class="prova-mini__ph">Logo cliente</span></li>
-          <li class="prova-mini prova-mini--vazio">Em breve</li>
-        </ul>
+        <div class="cred-bloco">
+          <span class="cred-num">+20</span>
+          <span class="cred-label">Anos de experiência em campo</span>
+        </div>
+        <div class="cred-bloco">
+          <span class="cred-crea">CREA Nº 332747/MG</span>
+          <span class="cred-local">Araxá/MG · Triângulo Mineiro</span>
+          <span class="cred-reg">Registro ativo em Minas Gerais</span>
+        </div>
       </div>
     </section>
 
@@ -231,7 +236,12 @@
           <div>
             <span class="eyebrow">Serviços e documentação SST</span>
             <h2 class="h2" id="servicos-titulo">O que fazemos?</h2>
-            <p class="s3__sub">Precisa de um laudo, treinamento ou documento exigido pelo fiscal, contador ou eSocial? A GSEG resolve com agilidade e validade legal.</p>
+            <p class="s3__sub">A GSEG cuida de toda a documentação obrigatória que sua empresa precisa — laudos técnicos, treinamentos de NR, registros no eSocial e consultoria especializada. Tudo assinado por engenheira com CREA ativo e mais de 20 anos de campo.</p>
+            <div class="micro-stats">
+              <div class="micro-stat"><span class="micro-stat__num">6</span><span class="micro-stat__label">áreas de atuação</span></div>
+              <div class="micro-stat"><span class="micro-stat__num">+20</span><span class="micro-stat__label">anos de experiência</span></div>
+              <div class="micro-stat"><span class="micro-stat__num">CREA</span><span class="micro-stat__label">registro ativo</span></div>
+            </div>
           </div>
         </div>
         <div class="cards-servicos">
@@ -239,6 +249,7 @@
             <svg class="icone cs__icone" aria-hidden="true" focusable="false"><use href="#i-file-text"/></svg>
             <span class="cs__titulo">Documentação</span>
             <span class="cs__desc">Programas, laudos e ordens de serviço exigidos das empresas.</span>
+            <span class="cs__ctx">GRO, PPR, PCMSO, LTCAT, laudos de insalubridade e periculosidade — sua empresa documentada do início ao fim.</span>
             <span class="cs__chips"><span class="chip">PGR</span><span class="chip">LTCAT</span><span class="chip">PPP</span><span class="chip">OS NR-1</span></span>
             <span class="cs__ver"><span>Ver mais</span><span class="seta" aria-hidden="true">→</span></span>
           </a>
@@ -246,6 +257,7 @@
             <svg class="icone cs__icone" aria-hidden="true" focusable="false"><use href="#i-check-square"/></svg>
             <span class="cs__titulo">Treinamentos</span>
             <span class="cs__desc">Capacitações obrigatórias para equipes, com validade legal.</span>
+            <span class="cs__ctx">Capacitações obrigatórias por lei, aplicadas na realidade da sua operação — não só teoria, mas prática para o dia a dia.</span>
             <span class="cs__chips"><span class="chip">CIPA</span><span class="chip">CIPATR</span><span class="chip">NR-10</span><span class="chip">NR-33</span><span class="chip">NR-35</span><span class="chip">NR-6</span></span>
             <span class="cs__ver"><span>Ver mais</span><span class="seta" aria-hidden="true">→</span></span>
           </a>
@@ -253,6 +265,7 @@
             <svg class="icone cs__icone" aria-hidden="true" focusable="false"><use href="#i-shield-check"/></svg>
             <span class="cs__titulo">Consultoria</span>
             <span class="cs__desc">Diagnóstico in loco, cultura de segurança e plano de ação.</span>
+            <span class="cs__ctx">Diagnóstico presencial, mapeamento de riscos e plano de ação personalizado para o seu segmento.</span>
             <span class="cs__chips"><span class="chip">Diagnóstico</span><span class="chip">NRs</span><span class="chip">Gestão</span></span>
             <span class="cs__ver"><span>Ver mais</span><span class="seta" aria-hidden="true">→</span></span>
           </a>
@@ -260,6 +273,7 @@
             <svg class="icone cs__icone" aria-hidden="true" focusable="false"><use href="#i-table"/></svg>
             <span class="cs__titulo">eSocial SST</span>
             <span class="cs__desc">Apoio nos eventos obrigatórios de SST do eSocial.</span>
+            <span class="cs__ctx">Eventos S-2210, S-2220 e S-2240 enviados corretamente, sem risco de multa por inconsistência.</span>
             <span class="cs__chips"><span class="chip">S-2210</span><span class="chip">S-2220</span><span class="chip">S-2240</span></span>
             <span class="cs__ver"><span>Ver mais</span><span class="seta" aria-hidden="true">→</span></span>
           </a>
@@ -267,6 +281,7 @@
             <svg class="icone cs__icone" aria-hidden="true" focusable="false"><use href="#i-magnifier"/></svg>
             <span class="cs__titulo">Inspeções e Laudos</span>
             <span class="cs__desc">Avaliações técnicas assinadas por engenheira registrada.</span>
+            <span class="cs__ctx">Laudos com valor legal aceitos por sindicato, Ministério do Trabalho e Justiça — assinados por engenheira registrada.</span>
             <span class="cs__chips"><span class="chip">Insalubridade</span><span class="chip">Periculosidade</span></span>
             <span class="cs__ver"><span>Ver mais</span><span class="seta" aria-hidden="true">→</span></span>
           </a>
@@ -274,6 +289,7 @@
             <svg class="icone cs__icone" aria-hidden="true" focusable="false"><use href="#i-user"/></svg>
             <span class="cs__titulo">Atendimento Personalizado</span>
             <span class="cs__desc">Soluções sob medida para o seu segmento.</span>
+            <span class="cs__ctx">Indústria, construção, agro, saúde ou comércio — cada setor tem suas normas e a GSEG conhece todas.</span>
             <span class="cs__chips"><span class="chip">Indústria</span><span class="chip">Agroindústria</span><span class="chip">Fazenda</span></span>
             <span class="cs__ver"><span>Ver mais</span><span class="seta" aria-hidden="true">→</span></span>
           </a>
@@ -293,24 +309,28 @@
             <h2 class="h2" id="objecao-titulo">O custo de não estar em&nbsp;dia</h2>
           </div>
         </div>
-        <p class="objecao__intro">Documentação e treinamentos em dia não são burocracia: são o que protege a empresa quando a fiscalização chega — e o que reduz afastamentos, multas e retrabalho.</p>
+        <p class="objecao__intro">Fiscalização não avisa antes de chegar. Sindicato e funcionários conhecem os direitos deles. Documentação vencida ou ausente expõe a empresa a multas, embargos e processos que custam muito mais do que a prevenção custaria.</p>
         <div class="riscos">
           <div class="risco">
             <div class="risco__topo"><span class="risco__num" aria-hidden="true">01</span><svg class="icone risco__icone" aria-hidden="true" focusable="false"><use href="#i-coins"/></svg></div>
             <h3 class="h3 risco__titulo">Multas e autuações</h3>
             <p class="risco__desc">Documentação incompleta ou vencida expõe a empresa em qualquer fiscalização ou exigência do eSocial.</p>
+            <p class="risco__extra">Valores de R$ 2.000 a R$ 6.000 por irregularidade — e o histórico fica registrado no sistema do MTE.</p>
           </div>
           <div class="risco">
             <div class="risco__topo"><span class="risco__num" aria-hidden="true">02</span><svg class="icone risco__icone" aria-hidden="true" focusable="false"><use href="#i-gavel"/></svg></div>
             <h3 class="h3 risco__titulo">Processos trabalhistas</h3>
             <p class="risco__desc">Laudos e treinamentos com validade legal são a defesa técnica da empresa e reduzem passivos.</p>
+            <p class="risco__extra">Sem laudo técnico, a empresa não tem defesa. Com laudo, tem. A diferença é a documentação.</p>
           </div>
           <div class="risco">
             <div class="risco__topo"><span class="risco__num" aria-hidden="true">03</span><svg class="icone risco__icone" aria-hidden="true" focusable="false"><use href="#i-barricade"/></svg></div>
             <h3 class="h3 risco__titulo">Embargos e paralisações</h3>
             <p class="risco__desc">Irregularidades graves podem embargar a obra ou interditar a operação — e parar custa mais que prevenir.</p>
+            <p class="risco__extra">Uma obra embargada ou linha paralisada gera prejuízo imediato — multa contratual, perda de cliente e custo de retomada.</p>
           </div>
         </div>
+        <p class="objecao__reforco">A GSEG organiza isso antes de virar problema. Consulta sem compromisso.</p>
         <div class="objecao__fecho">
           <p class="objecao__transicao">A prevenção custa menos. E protege quem importa.</p>
           <a class="btn btn--outline" href="https://wa.me/5534992076152?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20GSEG%20e%20preciso%20regularizar%20a%20documenta%C3%A7%C3%A3o%20de%20SST%20da%20minha%20empresa." target="_blank" rel="noopener noreferrer">Falar com a engenheira <span aria-hidden="true">→</span></a>
@@ -483,10 +503,16 @@
           <a class="link-seta" href="segmentos.html">Ver todos os segmentos <span class="seta" aria-hidden="true">→</span></a>
         </div>
         <div class="segmentos__grid">
+          <a class="seg" href="segmentos.html#empresas">
+            <svg class="icone seg__icone" aria-hidden="true" focusable="false"><use href="#i-building"/></svg>
+            <h3 class="seg__titulo">Empresas</h3>
+            <p class="seg__desc">Comércio, serviços e empresas urbanas com funcionários CLT. Se a sua empresa tem colaboradores, ela tem obrigações de SST — a GSEG cuida de tudo, do diagnóstico à documentação.</p>
+            <span class="seg__expandido">Ver soluções <span class="seta" aria-hidden="true">→</span></span>
+          </a>
           <a class="seg" href="segmentos.html#industrias">
             <svg class="icone seg__icone" aria-hidden="true" focusable="false"><use href="#i-fabrica"/></svg>
-            <h3 class="seg__titulo">Indústrias e Empresas</h3>
-            <p class="seg__desc">Madeireiras, fábricas de ração, mineração, metal, cerâmica, oficinas mecânicas, comércio e empresas de qualquer porte com funcionários CLT. Se sua empresa tem colaboradores, ela tem obrigações de SST — a GSEG cuida de tudo.</p>
+            <h3 class="seg__titulo">Indústrias</h3>
+            <p class="seg__desc">Madeireiras, fábricas, mineração, metal, cerâmica e oficinas mecânicas. Ambientes com máquinas, ruído e agentes que exigem controle técnico rigoroso.</p>
             <span class="seg__expandido">Ver soluções <span class="seta" aria-hidden="true">→</span></span>
           </a>
           <a class="seg" href="segmentos.html#agroindustrias">

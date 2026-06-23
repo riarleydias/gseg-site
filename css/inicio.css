@@ -65,7 +65,7 @@
   margin-bottom: var(--space-6);
 }
 .secao__cab .eyebrow { margin-bottom: var(--space-3); }
-.secao__intro { max-width: 44ch; font-size: var(--fs-small); color: var(--grafite-suave); }
+.secao__intro { max-width: 72ch; font-size: var(--fs-small); color: var(--grafite-suave); }
 .secao__rodape { display: flex; justify-content: center; margin-top: var(--space-7); }
 .secao__rodape .btn { width: 100%; }
 .secao__cab--centro { align-items: center; text-align: center; }
@@ -129,8 +129,9 @@
   margin: var(--space-4) 0 var(--space-3);
 }
 .hero__titulo .destaque { color: var(--areia); }   /* areia s/ verde-floresta — texto grande AA 4.97:1 */
-.hero__risco { width: 64px; height: 3px; background: var(--areia); margin-bottom: var(--space-5); }
-.hero__texto { max-width: 50ch; font-size: var(--fs-body); color: var(--texto-claro-2); margin-bottom: var(--space-6); }
+.hero__risco { width: 40px; height: 2px; background: var(--verde-claro); margin: 16px 0 24px; transition: width .4s ease; }
+.hero:hover .hero__risco { width: 72px; }
+.hero__texto { max-width: 64ch; font-size: var(--fs-body); color: var(--texto-claro-2); margin-bottom: var(--space-6); }
 
 .hero__ctas { display: flex; flex-direction: column; gap: var(--space-3); align-items: stretch; }
 .hero__ctas .btn { width: 100%; min-height: 52px; white-space: normal; }
@@ -204,77 +205,51 @@
   position: absolute;
   right: 0;
   bottom: 0;
-  width: 114px;
-  height: 114px;
-  background: var(--creme);
-  border-radius: var(--radius-card);
+  min-width: 120px;
+  background: var(--branco);
+  border-left: 4px solid var(--verde-musgo);
   box-shadow: var(--shadow-elevated);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.hero__selo-num { font-family: var(--font-display); font-weight: var(--fw-display); font-size: 40px; line-height: 1; letter-spacing: -.01em; color: var(--verde-floresta); }
-.hero__selo-label { font-family: var(--font-body); font-size: var(--fs-kicker); font-weight: var(--fw-semibold); letter-spacing: var(--ls-caps); text-transform: uppercase; color: var(--verde-musgo); margin-top: var(--space-2); }
-
-/* ═════════════════════ S2 · FAIXA DE PROVA SOCIAL ═════════════════════ */
-.prova-faixa { background: var(--creme-200); border-bottom: 1px solid var(--borda); }
-.prova-faixa__inner {
-  position: relative;
-  display: flex;
-  flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-4);
+  padding: 16px 20px;
+}
+.hero__selo-num { font-family: var(--font-display); font-weight: var(--fw-bold); font-size: 48px; line-height: 1; letter-spacing: -2px; color: var(--verde-floresta); }
+.hero__selo-mais { font-family: var(--font-body); font-weight: var(--fw-semibold); font-size: 22px; letter-spacing: 0; color: var(--verde-musgo); vertical-align: super; }
+.hero__selo-label { font-family: var(--font-body); font-size: 10px; font-weight: var(--fw-semibold); letter-spacing: 3px; text-transform: uppercase; color: var(--grafite-suave); margin-top: 6px; }
+.hero__selo-sub { font-family: var(--font-body); font-size: 9px; font-weight: var(--fw-regular); letter-spacing: 1.5px; text-transform: uppercase; color: var(--grafite-suave); opacity: .7; margin-top: 2px; }
+
+/* ═════════════════════ S2 · FAIXA DE CREDENCIAIS (3 blocos) ═════════════════════ */
+.prova-faixa { background: var(--creme-200); border-block: 1px solid var(--borda); }
+.prova-faixa__inner {
   max-width: var(--container-max);
   margin-inline: auto;
-  padding: var(--space-4) var(--gutter);
-}
-.prova-faixa__crea { display: flex; align-items: center; gap: var(--space-3); flex: none; }
-.prova-faixa__selo { width: 101px; height: 101px; flex: none; }
-.prova-faixa__creatxt { font-family: var(--font-display); font-size: var(--fs-kicker); font-weight: var(--fw-bold); line-height: 1.25; letter-spacing: .04em; text-transform: uppercase; color: var(--verde-floresta); }
-.prova-faixa__creatxt span { display: block; font-weight: var(--fw-semibold); font-size: 11px; color: var(--grafite-suave); letter-spacing: .08em; }
-.prova-faixa__sep { width: 1px; height: 34px; background: var(--borda); flex: none; }
-.prova-faixa__logos { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4) var(--space-5); min-width: 0; }
-.prova-mini { display: flex; align-items: center; flex: 1 1 140px; }
-.prova-mini__ph {
+  padding: 40px clamp(20px, 4vw, 40px);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 240px;
-  height: 64px;
-  background: var(--creme);
-  border: 1px dashed var(--borda);
-  border-radius: 6px;
-  color: var(--grafite-suave);
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: var(--fw-semibold);
-  line-height: 1.2;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  white-space: nowrap;
+  flex-direction: column;
 }
-.prova-mini--vazio {
-  flex: 0 0 auto;
-  color: var(--grafite-suave);
-  opacity: .6;
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: var(--fw-semibold);
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
+.cred-bloco { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 16px 0; text-align: center; }
+.cred-bloco--marca { flex-direction: row; align-items: center; gap: var(--space-3); text-align: left; }
+.cred-bloco + .cred-bloco { border-top: 1px solid var(--areia); }   /* separador horizontal no mobile */
+.cred-simbolo { width: auto; height: 48px; flex: none; opacity: .85; }
+.cred-marca-txt { display: flex; flex-direction: column; gap: 2px; }
+.cred-marca-nome { font-family: var(--font-body); font-size: 10px; font-weight: var(--fw-semibold); letter-spacing: .18em; text-transform: uppercase; color: var(--verde-floresta); }
+.cred-marca-sub { font-family: var(--font-body); font-size: 12px; color: var(--grafite-suave); }
+.cred-num { font-family: var(--font-display); font-weight: var(--fw-bold); font-size: 32px; line-height: 1; color: var(--verde-floresta); }
+.cred-label { font-family: var(--font-body); font-size: 9px; font-weight: var(--fw-semibold); letter-spacing: .14em; text-transform: uppercase; color: var(--grafite-suave); }
+.cred-crea { font-family: var(--font-body); font-size: 11px; font-weight: var(--fw-semibold); color: var(--verde-floresta); }
+.cred-local { font-family: var(--font-body); font-size: 10px; color: var(--grafite-suave); }
+.cred-reg { font-family: var(--font-body); font-size: 9px; font-style: italic; color: var(--grafite-suave); opacity: .8; }
 
 /* ═══════════════════════ S3 · GRID DE SERVIÇOS ═══════════════════════ */
 .cards-servicos {
   display: grid;
   grid-template-columns: 1fr;
+  gap: 1px;
   border: 1px solid var(--borda);
-  border-radius: var(--radius-card);
+  border-radius: 0;
   overflow: hidden;
-  background: var(--branco);
+  background: var(--borda);   /* cor das linhas de 1px entre os cards (grade hairline) */
 }
 .cs {
   position: relative;
@@ -282,12 +257,10 @@
   flex-direction: column;
   gap: var(--space-3);
   padding: var(--pad-card);
-  border-bottom: 1px solid var(--borda);
   background: var(--branco);
   color: var(--grafite);
   transition: background var(--transition-card);   /* 160ms — hover do card */
 }
-.cs:last-child { border-bottom: none; }
 .cs__icone { width: 30px; height: 30px; color: var(--verde-floresta); }
 .cs__titulo { font-family: var(--font-display); font-weight: var(--fw-bold); font-size: 18px; line-height: 1.25; letter-spacing: var(--ls-heading); text-transform: uppercase; color: var(--verde-floresta); }
 .cs__desc { font-size: var(--fs-small); color: var(--grafite-suave); flex: 1; }
@@ -331,14 +304,31 @@
 .cs:hover .cs__ver, .cs:focus-visible .cs__ver { color: var(--areia); border-top-color: var(--linha-clara); }
 .cs:hover .cs__ver .seta, .cs:focus-visible .cs__ver .seta { transform: translateX(4px); }
 
+/* Micro-stats do header de serviços (Onda 2B) */
+.micro-stats { display: flex; flex-wrap: wrap; align-items: center; gap: 40px; margin: var(--space-5) 0 var(--space-6); }
+.micro-stat { position: relative; display: flex; flex-direction: column; gap: 4px; }
+.micro-stat + .micro-stat::before { content: ""; position: absolute; left: -20px; top: 50%; transform: translateY(-50%); width: 1px; height: 32px; background: var(--areia); }
+.micro-stat__num { font-family: var(--font-display); font-weight: var(--fw-bold); font-size: 24px; line-height: 1; color: var(--verde-floresta); }
+.micro-stat__label { font-family: var(--font-body); font-size: 10px; font-weight: var(--fw-semibold); letter-spacing: .14em; text-transform: uppercase; color: var(--grafite-suave); }
+
+/* Linha de contexto nos cards de serviço */
+.cs__desc { flex: none; }
+.cs__ctx { flex: 1; font-size: 13px; line-height: 1.5; color: var(--grafite-suave); }
+
+/* Hover do "Ver mais" (letter-spacing) */
+.cs__ver { transition: color var(--transition-card), border-top-color var(--transition-card), letter-spacing var(--transition-card); }
+.cs:hover .cs__ver, .cs:focus-visible .cs__ver { letter-spacing: .12em; }
+
 /* ═══════════════════ S4 · QUEBRA DE OBJEÇÃO ═══════════════════ */
-.objecao__intro { max-width: 62ch; font-size: var(--fs-body); color: var(--grafite-suave); margin: calc(-1 * var(--space-4)) 0 var(--space-6); }
+.objecao__intro { max-width: 80ch; font-size: var(--fs-body); color: var(--grafite-suave); margin: calc(-1 * var(--space-4)) 0 var(--space-6); }
 .riscos { display: grid; grid-template-columns: 1fr; gap: var(--space-7); }
 .risco__topo { display: flex; align-items: flex-end; justify-content: space-between; border-bottom: 1px solid var(--borda); padding-bottom: var(--space-4); margin-bottom: var(--space-4); }
 .risco__num { font-family: var(--font-display); font-weight: var(--fw-display); font-size: 64px; line-height: .9; letter-spacing: -.01em; color: var(--areia); }
 .risco__icone { width: 30px; height: 30px; color: var(--verde-musgo); margin-bottom: 4px; }
 .risco__titulo { margin-bottom: var(--space-2); }
 .risco__desc { font-size: var(--fs-small); color: var(--grafite-suave); }
+.risco__extra { font-size: 13px; line-height: 1.5; color: var(--grafite-suave); margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--borda); }
+.objecao__reforco { font-family: var(--font-body); font-size: 14px; font-weight: var(--fw-semibold); color: var(--verde-musgo); margin-top: var(--space-7); }
 .objecao__fecho {
   display: flex;
   flex-direction: column;
@@ -379,7 +369,7 @@
 .sobre__nome { margin: 0 0 var(--space-2); }
 .sobre__texto .eyebrow { margin-bottom: var(--space-3); }
 .sobre__cargo { font-family: var(--font-body); font-size: var(--fs-kicker); font-weight: var(--fw-semibold); letter-spacing: var(--ls-caps); text-transform: uppercase; color: var(--terracota); margin-bottom: var(--space-4); }
-.sobre__bio { max-width: 54ch; color: var(--grafite); margin-bottom: var(--space-4); }
+.sobre__bio { max-width: 68ch; color: var(--grafite); margin-bottom: var(--space-4); }
 .sobre__citacao { font-family: var(--font-accent); font-style: italic; font-weight: var(--fw-semibold); font-size: 19px; line-height: 1.4; color: var(--verde-musgo); max-width: 50ch; border-left: 3px solid var(--areia); padding-left: var(--space-4); margin-bottom: var(--space-6); }
 
 .timeline {
@@ -398,7 +388,7 @@
 
 /* ═══════════════════ S6 · CERTIFICAÇÕES do agro (enquadre L7) ═══════════════════ */
 .cert { background: var(--creme-200); }
-.cert__intro { max-width: 64ch; font-size: var(--fs-body); color: var(--grafite-suave); margin: calc(-1 * var(--space-4)) 0 var(--space-6); }
+.cert__intro { max-width: 80ch; font-size: var(--fs-body); color: var(--grafite-suave); margin: calc(-1 * var(--space-4)) 0 var(--space-6); }
 .cert__intro strong { color: var(--verde-floresta); font-weight: var(--fw-bold); }
 .cert__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
 .cert-card { position: relative; display: flex; flex-direction: column; align-items: center; gap: var(--space-3); text-align: center; padding: var(--space-6) var(--space-5); background: var(--branco); border: 1px solid var(--borda); border-radius: var(--radius-card); }
@@ -475,7 +465,7 @@
 @media (min-width: 900px) {
   /* títulos voltam à escala display do mockup */
   .secao__cab { flex-direction: row; align-items: flex-end; justify-content: space-between; gap: var(--space-5); margin-bottom: var(--space-7); }
-  .secao__cab > div { max-width: 60ch; }
+  .secao__cab > div { max-width: 80ch; }
   .secao__cab--centro { justify-content: center; }
   .secao__cab--centro > div { margin-inline: auto; }
   .secao__rodape .btn { width: auto; }
@@ -490,21 +480,19 @@
   .hero__trust { flex-direction: row; flex-wrap: wrap; gap: var(--space-3) var(--space-7); }
   .hero__midia { padding: 0 var(--space-6) var(--space-6) 0; }
   .hero__ph { aspect-ratio: 4 / 4.5; }
-  .hero__selo { width: 140px; height: 140px; }
-  .hero__selo-num { font-size: 52px; }
+  .hero__selo { min-width: 150px; padding: 24px 28px; }
+  .hero__selo-num { font-size: 64px; }
+  .hero__selo-mais { font-size: 28px; }
 
-  /* S2 prova — registro na 1ª linha, logos de cliente em linha própria (5 em 1 linha) */
-  .prova-faixa__inner { flex-direction: row; flex-wrap: wrap; align-items: center; gap: var(--space-5) var(--space-8); padding-block: 18px; }
-  .prova-faixa__sep { display: none; }
-  .prova-faixa__logos { flex-basis: 100%; gap: var(--space-3) var(--space-4); }
-  .prova-mini { flex: 1 1 150px; }
-  .prova-mini__ph { height: 80px; }
+  /* S2 credenciais — 3 blocos lado a lado, separados por linha vertical */
+  .prova-faixa__inner { flex-direction: row; justify-content: space-between; align-items: center; gap: var(--space-7); }
+  .cred-bloco { flex: 1; flex-direction: column; align-items: flex-start; text-align: left; padding: 0; gap: 4px; }
+  .cred-bloco--marca { flex-direction: row; align-items: center; }
+  .cred-bloco + .cred-bloco { border-top: none; border-left: 1px solid var(--areia); padding-left: var(--space-7); }
 
-  /* S3 serviços — grade contígua 3×2 */
+  /* S3 serviços — grade contígua 3×2 (linhas via gap 1px) */
   .cards-servicos { grid-template-columns: repeat(3, 1fr); }
-  .cs { min-height: 268px; border-right: 1px solid var(--borda); border-bottom: 1px solid var(--borda); }
-  .cs:nth-child(3n) { border-right: none; }
-  .cs:nth-child(n+4) { border-bottom: none; }
+  .cs { min-height: 268px; }
 
   /* S4 objeção */
   .objecao__intro { margin: calc(-1 * var(--space-7)) 0 var(--space-7); }
@@ -538,7 +526,7 @@
   .diag__rodape .btn { width: auto; }
 
   /* S8 segmentos — 3 colunas, expandido só na interação */
-  .segmentos__grid { grid-template-columns: repeat(3, 1fr); }
+  .segmentos__grid { grid-template-columns: repeat(2, 1fr); }
   .seg { padding: 34px 30px; border-right: 1px solid var(--borda); border-bottom: none; }
   .seg:last-child { border-right: none; }
   .seg__desc { font-size: 15px; }

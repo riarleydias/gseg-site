@@ -108,7 +108,7 @@
      3 · ESPAÇAMENTO / GRID               [80·48·1140 = brandbook §9; degraus
                                            intermediários = ritmo dos mockups]
      ─────────────────────────────────────────────────────────────────────────── */
-  --container-max: 1140px;   /* largura útil (brandbook §9)                 */
+  --container-max: 1400px;   /* full-width (Onda 2B opção C) — fundos 100% vp, container interno 1400 */
   --gutter:        24px;     /* respiro lateral do container em telas estreitas */
 
   /* Escala base 4·8 */
