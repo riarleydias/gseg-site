@@ -32,7 +32,10 @@
     document.body.classList.add('sem-scroll');
     document.addEventListener('keydown', aoTeclar);
     var alvos = focaveis();
-    if (alvos.length) alvos[0].focus();
+    // preventScroll: focar o 1º link sem que o browser tente rolar o painel
+    // off-canvas (translateX) para a vista — era o que causava o "engasga"
+    // (avança/recua/avança) na abertura do menu.
+    if (alvos.length) alvos[0].focus({ preventScroll: true });
   }
 
   function fechar_() {

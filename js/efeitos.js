@@ -94,10 +94,21 @@
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  faders.forEach(function (el) { io.observe(el); });
-  linhas.forEach(function (el) { io.observe(el); });
-  contadores.forEach(function (el) { io.observe(el); });
-  reveals.forEach(function (el) { io.observe(el); });
+  // Elementos já dentro (ou acima) da viewport no carregamento NÃO devem fazer a
+  // animação de entrada — senão "piscam"/saltam ao abrir a página (sobretudo no
+  // mobile, com a tela curta). Esses vão direto ao estado final; só os que estão
+  // abaixo da dobra entram com a transição ao rolar.
+  function ativar(el) {
+    el.classList.add('visible');
+    if (el.dataset.alvo === '1' && !el.dataset.contado) { el.dataset.contado = '1'; animar(el); }
+  }
+  function jaNaVista(el) { return el.getBoundingClientRect().top < window.innerHeight; }
+
+  [faders, linhas, contadores, reveals].forEach(function (lista) {
+    lista.forEach(function (el) {
+      if (jaNaVista(el)) ativar(el); else io.observe(el);
+    });
+  });
 
   // Rede de segurança SÓ para contadores: se o IO não disparar (nunca em navegador real),
   // garante o valor final correto — nunca deixa um número travado em "0".
