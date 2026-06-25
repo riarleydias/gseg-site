@@ -686,4 +686,20 @@ body.sem-scroll { overflow: hidden; }
   /* Item 05 — CTAs grandes: menos padding lateral e fonte ajustada p/ caber em ≤2 linhas */
   .btn--lg { padding-inline: var(--space-5); letter-spacing: .05em; }
   .hero__ctas .btn { font-size: 14px; }
+
+  /* Item 19 — corpo de texto um pouco menor no mobile (mais palavras por linha,
+     leitura menos fragmentada) + hifenização p/ evitar quebras feias de palavras
+     longas em PT (usa lang="pt-BR" do <html>). Redefinir o token cascateia p/ todo
+     o corpo sem tocar no desktop (≥900px mantém 17px). */
+  :root { --fs-body: 15.5px; }
+  p { hyphens: auto; -webkit-hyphens: auto; }
+
+  /* Item 16 — bloco de marca (logo + CREA) do rodapé sai no mobile: o usuário vai
+     direto dos CTAs finais p/ os dados de contato. Header/identidade já cobrem a marca. */
+  .rodape__marca { display: none; }
+
+  /* Item 17 — navegação do rodapé em 2 colunas (era coluna única, alta demais);
+     o último item (Contato) ocupa a linha inteira, centralizado. */
+  .rodape__col ul { grid-template-columns: 1fr 1fr; gap: 12px 20px; }
+  .rodape__col ul li:last-child { grid-column: 1 / -1; text-align: center; }
 }
