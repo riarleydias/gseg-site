@@ -379,6 +379,7 @@
   margin-top: var(--space-7);
   border-left: 1px solid var(--borda);
   padding-left: var(--space-5);
+  list-style: none;   /* <ol> sem role=list: zera o marcador nativo (evitava "●." junto do dot .tl::before) */
 }
 .tl { position: relative; padding: 0 0 var(--space-6); }
 .tl:last-child { padding-bottom: 0; }
@@ -730,4 +731,24 @@
 
   /* #8 ícone recolore no hover/foco/aberto como o emblema fazia */
   .seg:hover .seg__icone, .seg:focus-visible .seg__icone, .seg.seg--aberto .seg__icone { color: var(--areia); }
+}
+
+/* ════════════════ AJUSTES MOBILE (≤899px · não afeta desktop ≥900) ════════════════
+   Override pontual dos valores base p/ telas pequenas. Espelha o breakpoint real do
+   projeto (900px = onde o desktop assume). Onde o desktop já sobrescreve, esta regra
+   não o alcança (viewports mutuamente exclusivos). */
+@media (max-width: 899.98px) {
+  /* Item 04 — hero: título menos imponente e com respiro entre linhas no mobile */
+  .hero__titulo { font-size: 30px; line-height: 1.15; }
+
+  /* Item 07 — numerais 01/02/03 deixam de dominar a tela */
+  .risco__num { font-size: 44px; }
+
+  /* Item 10 — intro da venda consultiva mais leve sobre o fundo escuro */
+  .diag__sub { font-size: 15.5px; line-height: 1.55; }
+
+  /* Item 11 — cards de processo mais compactos e proporcionais */
+  .passo { padding: var(--space-5); }
+  .passo__num { width: 40px; height: 40px; font-size: 16px; margin-bottom: var(--space-3); }
+  .passo__titulo { font-size: 17px; }
 }

@@ -265,9 +265,9 @@ strong, b { font-weight: var(--fw-semibold); color: var(--verde-floresta); }
   color: var(--verde-floresta);
   transition: font-size var(--transition);
 }
-/* Descritor em 2 linhas legíveis (correção 6.1) — some no mobile e ao encolher */
+/* Descritor em 2 linhas legíveis (correção 6.1) — visível também no mobile; some ao encolher (≥900) */
 .logo__descritor {
-  display: none;
+  display: block;
   font-family: var(--font-body);
   font-size: 9.5px;
   font-weight: var(--fw-semibold);
@@ -674,4 +674,16 @@ body.sem-scroll { overflow: hidden; }
   .rodape__grid { grid-template-columns: 1.6fr 1fr 1fr 1.2fr; }
   .rodape__marca { grid-column: auto; }
   .rodape__base { flex-direction: row; justify-content: space-between; align-items: center; }
+}
+
+/* ════════════════ AJUSTES MOBILE (≤899px · não afeta desktop ≥900) ════════════════
+   Espelha o breakpoint real do projeto (900px). Onde o desktop já sobrescreve, esta
+   regra não o alcança (viewports mutuamente exclusivos). */
+@media (max-width: 899.98px) {
+  /* Item 01 — descritor compacto p/ caber no header estreito sem empurrar o hambúrguer */
+  .logo__descritor { font-size: 8.5px; letter-spacing: .1em; margin-top: 2px; }
+
+  /* Item 05 — CTAs grandes: menos padding lateral e fonte ajustada p/ caber em ≤2 linhas */
+  .btn--lg { padding-inline: var(--space-5); letter-spacing: .05em; }
+  .hero__ctas .btn { font-size: 14px; }
 }
