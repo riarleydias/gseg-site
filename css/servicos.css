@@ -80,6 +80,7 @@
 }
 .serv-item__ver-txt { display: none; }          /* mobile: só o sinal +/- */
 .serv-item__ver i { font-size: 18px; }
+.serv-item__ver .icone { width: 18px; height: 18px; }            /* A5: ícone SVG +/- */
 .serv-item__menos { display: none; }
 .serv-item--aberto .serv-item__mais { display: none; }
 .serv-item--aberto .serv-item__menos { display: inline; }

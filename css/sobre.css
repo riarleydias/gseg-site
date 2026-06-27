@@ -75,6 +75,7 @@
   color: var(--texto-claro-2);
 }
 .sobre__placa-crea i { color: var(--areia); }
+.sobre__placa-crea .icone { color: var(--areia); }               /* A5: ícone SVG na placa */
 
 /* ---------- Texto ---------- */
 .sobre__texto { display: flex; flex-direction: column; gap: var(--space-4); }
@@ -103,6 +104,13 @@
   position: absolute;
   top: var(--space-3); right: var(--space-4);
   font-size: 28px;
+  color: var(--verde-claro);
+  opacity: .6;
+}
+.sobre__citacao .icone {                                          /* A5: ícone SVG de aspas */
+  position: absolute;
+  top: var(--space-3); right: var(--space-4);
+  width: 28px; height: 28px;
   color: var(--verde-claro);
   opacity: .6;
 }
