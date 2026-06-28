@@ -88,11 +88,30 @@
 /* ═════════════════════════════ S1 · HERO ═════════════════════════════ */
 .hero {
   position: relative;
-  background: var(--verde-floresta);
+  background-color: var(--verde-floresta);                 /* fallback de marca */
+  background-image: url("../assets/images/hero-livia.webp");
+  background-size: cover;
+  background-position: 75% center;                          /* mobile: mantém a Lívia no quadro */
+  background-repeat: no-repeat;
   color: var(--texto-claro);
   overflow: hidden;
 }
+.hero::before {                                             /* overlay verde GSEG (#32472B) — legibilidade do copy */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(50, 71, 43, 0.70) 0%,
+    rgba(50, 71, 43, 0.35) 45%,
+    transparent 75%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
 .hero__inner {
+  position: relative;                                       /* acima do ::before */
+  z-index: 2;
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-8);
@@ -218,6 +237,17 @@
 .hero__selo-mais { font-family: var(--font-body); font-weight: var(--fw-semibold); font-size: 22px; letter-spacing: 0; color: var(--verde-musgo); vertical-align: super; }
 .hero__selo-label { font-family: var(--font-body); font-size: 10px; font-weight: var(--fw-semibold); letter-spacing: 3px; text-transform: uppercase; color: var(--grafite-suave); margin-top: 6px; }
 .hero__selo-sub { font-family: var(--font-body); font-size: 9px; font-weight: var(--fw-regular); letter-spacing: 1.5px; text-transform: uppercase; color: var(--grafite-suave); opacity: .7; margin-top: 2px; }
+
+/* Hero full-bleed — no mobile o texto ocupa a largura toda: overlay verde mais forte p/ legibilidade */
+@media (max-width: 899.98px) {
+  .hero::before {
+    background: linear-gradient(
+      to bottom,
+      rgba(50, 71, 43, 0.82) 0%,
+      rgba(50, 71, 43, 0.58) 100%
+    );
+  }
+}
 
 /* ═════════════════════ S2 · FAIXA DE CREDENCIAIS (3 blocos) ═════════════════════ */
 .prova-faixa { background: var(--creme-200); border-block: 1px solid var(--borda); }
@@ -360,6 +390,7 @@
 }
 .sobre__ph::before { content: ""; position: absolute; inset: 0; opacity: .6; background-image: repeating-linear-gradient(135deg, rgba(110, 139, 98, .08) 0 2px, transparent 2px 12px); }
 .sobre__ph > * { position: relative; }
+.sobre__ph > .foto-real { position: absolute; }   /* foto real cobre o placeholder (fora do fluxo); vence o relative acima */
 .sobre__ph-icone { width: 38px; height: 38px; }
 .sobre__ph span { font-family: var(--font-body); font-size: var(--fs-kicker); font-weight: var(--fw-medium); line-height: 1.5; letter-spacing: .06em; text-transform: uppercase; text-align: center; max-width: 22ch; }
 .sobre__ph .ph-tag { font-size: 12px; font-weight: var(--fw-semibold); letter-spacing: .02em; text-transform: none; color: var(--terracota); border: 1px solid var(--areia); border-radius: 4px; padding: var(--space-2) var(--space-3); }
@@ -471,19 +502,16 @@
   .secao__cab--centro > div { margin-inline: auto; }
   .secao__rodape .btn { width: auto; }
 
-  /* S1 hero — 2 colunas, botões lado a lado */
-  .hero__inner { grid-template-columns: 1.18fr .82fr; gap: var(--space-9); align-items: center; padding-top: 76px; padding-bottom: 60px; }
+  /* S1 hero — full-bleed: foto de fundo + overlay; conteúdo numa coluna à esquerda */
+  .hero { min-height: 600px; display: flex; align-items: center; background-position: center right; }
+  .hero__inner { grid-template-columns: 1fr; width: 100%; gap: var(--space-9); padding-top: 88px; padding-bottom: 88px; }
+  .hero__conteudo { max-width: 600px; }
   .hero__badge { font-size: var(--fs-kicker); letter-spacing: var(--ls-caps); padding: 9px 18px; }
   .hero__titulo { font-size: var(--fs-hero-mestre); margin: 22px 0 18px; }
-  .hero__texto { font-size: 18px; }
-  .hero__ctas { flex-direction: row; gap: var(--space-4); flex-wrap: nowrap; }
+  .hero__texto { font-size: 18px; max-width: 46ch; }
+  .hero__ctas { flex-direction: row; gap: var(--space-4); flex-wrap: wrap; align-items: stretch; }
   .hero__ctas .btn { width: auto; padding-inline: var(--space-5); font-size: 12px; white-space: nowrap; min-height: 54px; }
   .hero__trust { flex-direction: row; flex-wrap: wrap; gap: var(--space-3) var(--space-7); }
-  .hero__midia { padding: 0 var(--space-6) var(--space-6) 0; }
-  .hero__ph { aspect-ratio: 4 / 4.5; }
-  .hero__selo { min-width: 150px; padding: 24px 28px; }
-  .hero__selo-num { font-size: 64px; }
-  .hero__selo-mais { font-size: 28px; }
 
   /* S2 credenciais — 3 blocos lado a lado, separados por linha vertical */
   .prova-faixa__inner { flex-direction: row; justify-content: space-between; align-items: center; gap: var(--space-7); }
