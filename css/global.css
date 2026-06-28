@@ -341,9 +341,9 @@ strong, b { font-weight: var(--fw-semibold); color: var(--verde-floresta); }
   .cabecalho--encolhido .logo__descritor { display: none; }
 }
 
-/* Nav horizontal completo (7 itens + ações) só onde cabe no container de 1140px;
-   abaixo disso, menu off-canvas (hamburguer) — que também lista os 7 itens. */
-@media (min-width: 1280px) {
+/* Nav horizontal e off-canvas trocam no MESMO ponto (900px): ≥900px nav inline + hambúrguer
+   some; <900px hambúrguer + menu off-canvas. Alinhado com cabecalho__acoes — sem zona morta. */
+@media (min-width: 900px) {
   .nav { display: block; }
   .hamburguer { display: none; }
 }
@@ -463,7 +463,7 @@ body.sem-scroll { overflow: hidden; }
 .menu-mobile__rodape .icone { color: var(--verde-claro); width: 22px; height: 22px; }
 .menu-mobile__rodape a { color: var(--areia); text-decoration: underline; }
 
-@media (min-width: 1280px) { .menu-mobile { display: none; } }
+@media (min-width: 900px) { .menu-mobile { display: none; } }
 
 /* ========================================================================
    7 · PLACEHOLDER DE FOTO (acervo da cliente pendente)
