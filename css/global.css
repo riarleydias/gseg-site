@@ -37,6 +37,9 @@ body {
   line-height: var(--lh-body);
   color: var(--grafite);
   background: var(--creme);
+  hyphens: none;
+  -webkit-hyphens: none;
+  overflow-wrap: break-word;
 }
 
 h1, h2, h3, h4 {
@@ -44,6 +47,14 @@ h1, h2, h3, h4 {
   line-height: var(--lh-heading);
   color: var(--verde-floresta);
   font-weight: var(--fw-semibold);
+}
+
+p,
+li,
+h1, h2, h3, h4, h5, h6 {
+  hyphens: none;
+  -webkit-hyphens: none;
+  overflow-wrap: break-word;
 }
 
 a { color: var(--verde-floresta); }
@@ -689,11 +700,9 @@ body.sem-scroll { overflow: hidden; }
   .hero__ctas .btn { font-size: 14px; }
 
   /* Item 19 — corpo de texto um pouco menor no mobile (mais palavras por linha,
-     leitura menos fragmentada) + hifenização p/ evitar quebras feias de palavras
-     longas em PT (usa lang="pt-BR" do <html>). Redefinir o token cascateia p/ todo
-     o corpo sem tocar no desktop (≥900px mantém 17px). */
+     leitura menos fragmentada). Redefinir o token cascateia p/ todo o corpo sem
+     tocar no desktop (≥900px mantém 17px). */
   :root { --fs-body: 15.5px; }
-  p { hyphens: auto; -webkit-hyphens: auto; }
 
   /* Item 16 — bloco de marca (logo + CREA) do rodapé sai no mobile: o usuário vai
      direto dos CTAs finais p/ os dados de contato. Header/identidade já cobrem a marca. */

@@ -431,7 +431,7 @@
 .cert__nota .icone { width: 17px; height: 17px; color: var(--verde-musgo); flex: none; margin-top: 1px; }
 .cert__nota-aguardando { color: var(--terracota); }
 
-/* ═══════════════════ S7 · DIAGNÓSTICO IN LOCO ═══════════════════ */
+/* ═══════════════════ S7 · VISITA TÉCNICA ═══════════════════ */
 .diag { background: var(--verde-floresta); color: var(--texto-claro); }
 .diag__cab { max-width: 60ch; margin-bottom: var(--space-6); }
 .diag__cab .eyebrow { color: var(--areia); }
@@ -546,7 +546,7 @@
   .cert-card { padding: 30px 22px; }
   .cert__nota { align-items: center; text-align: center; }
 
-  /* S7 diagnóstico — 3 passos lado a lado */
+  /* S7 visita técnica — 3 passos lado a lado */
   .diag__cab { margin-bottom: var(--space-7); }
   .diag__sub { font-size: 18px; }
   .passos { grid-template-columns: repeat(3, 1fr); }
@@ -783,6 +783,37 @@
   /* Item 19 — H2 de seção (display serif) era 46px em todas as larguras: grande
      demais no mobile, fragmentava os títulos. Reduzido só no mobile. */
   .h2 { font-size: 28px; line-height: 1.2; }
+
+  /* Lote 2 — cards de serviços mais compactos no mobile, sem ocultar informação */
+  .cs {
+    gap: 8px;
+    padding: 14px 16px;
+  }
+  .cs__icone {
+    width: 22px;
+    height: 22px;
+  }
+  .cs__titulo {
+    font-size: 15px;
+    line-height: 1.15;
+  }
+  .cs__desc {
+    font-size: 13px;
+    line-height: 1.35;
+  }
+  .cs__ctx {
+    font-size: 12px;
+    line-height: 1.35;
+  }
+  .cs__chips { gap: 4px; }
+  .cs .chip {
+    font-size: 10px;
+    padding: 4px 7px;
+  }
+  .cs__ver {
+    padding-top: 8px;
+    font-size: 10px;
+  }
 
   /* Item 14 — badges CREA/+20/Araxá da hero saem no mobile (repetem a faixa de
      credenciais logo abaixo). No desktop seguem visíveis. */
