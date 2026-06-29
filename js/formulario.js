@@ -30,6 +30,7 @@
   /* limpa o erro ao corrigir o campo */
   Array.prototype.forEach.call(form.querySelectorAll('[required]'), function (campo) {
     campo.addEventListener('input', function () { marcarErro(campo, ''); });
+    campo.addEventListener('change', function () { marcarErro(campo, ''); });
     campo.addEventListener('blur', function () { validarCampo(campo); });
   });
 
@@ -37,11 +38,10 @@
     var ok = true;
     var obrigatorios = form.querySelectorAll('[required]');
     Array.prototype.forEach.call(obrigatorios, function (campo) {
-      if (!validarCampo(campo) && ok) {
+      var campoValido = validarCampo(campo);
+      if (!campoValido && ok) {
         ok = false;
-        campo.focus();
-      } else {
-        validarCampo(campo);
+        campo.focus({ preventScroll: true });
       }
     });
     return ok;
@@ -121,11 +121,13 @@
     var alerta = document.createElement('div');
     alerta.className = 'form-msg form-msg--erro';
     alerta.setAttribute('role', 'alert');
+    alerta.setAttribute('tabindex', '-1');
     alerta.innerHTML =
       '<i class="ph ph-warning-circle" aria-hidden="true"></i>' +
       '<p>Não foi possível enviar agora. Tente novamente ou fale direto pelo ' +
       '<a href="' + WPP + '" target="_blank" rel="noopener noreferrer">WhatsApp</a>.</p>';
     form.insertBefore(alerta, form.firstChild);
     alerta.scrollIntoView({ block: 'center' });
+    alerta.focus({ preventScroll: true });
   }
 })();

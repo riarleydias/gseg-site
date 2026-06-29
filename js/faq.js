@@ -50,9 +50,38 @@
     });
   });
 
+  function focaveisDoCorpo(corpo) {
+    return corpo.querySelectorAll(
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), ' +
+      'textarea:not([disabled]), [tabindex]'
+    );
+  }
+
+  function definirCorpoAcessivel(corpo, aberto) {
+    corpo.setAttribute('aria-hidden', String(!aberto));
+    if ('inert' in corpo) corpo.inert = !aberto;
+
+    Array.prototype.forEach.call(focaveisDoCorpo(corpo), function (el) {
+      if (!aberto) {
+        if (!el.hasAttribute('data-tabindex-original')) {
+          el.setAttribute('data-tabindex-original', el.getAttribute('tabindex') || '');
+        }
+        el.setAttribute('tabindex', '-1');
+        return;
+      }
+
+      if (!el.hasAttribute('data-tabindex-original')) return;
+      var original = el.getAttribute('data-tabindex-original');
+      if (original) el.setAttribute('tabindex', original);
+      else el.removeAttribute('tabindex');
+      el.removeAttribute('data-tabindex-original');
+    });
+  }
+
   function definir(item, botao, corpo, aberto, inicial) {
     botao.setAttribute('aria-expanded', String(aberto));
     item.classList.toggle('faq__item--aberta', aberto);
+    definirCorpoAcessivel(corpo, aberto);
 
     if (aberto) {
       if (inicial) {

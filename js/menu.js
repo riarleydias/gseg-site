@@ -17,6 +17,7 @@
   var overlay = menu.querySelector('.menu-mobile__overlay');
   var fechar  = menu.querySelectorAll('[data-fechar-menu]');
   var ultimoFoco = null;
+  var mqDesktop = window.matchMedia ? window.matchMedia('(min-width: 900px)') : null;
 
   function focaveis() {
     return Array.prototype.filter.call(
@@ -26,6 +27,10 @@
   }
 
   function abrir() {
+    if (mqDesktop && mqDesktop.matches) {
+      fechar_({ restaurarFoco: false });
+      return;
+    }
     ultimoFoco = document.activeElement;
     menu.setAttribute('data-aberto', 'true');
     botao.setAttribute('aria-expanded', 'true');
@@ -38,12 +43,15 @@
     if (alvos.length) alvos[0].focus({ preventScroll: true });
   }
 
-  function fechar_() {
+  function fechar_(opcoes) {
+    var restaurarFoco = !opcoes || opcoes.restaurarFoco !== false;
     menu.removeAttribute('data-aberto');
     botao.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('sem-scroll');
     document.removeEventListener('keydown', aoTeclar);
-    if (ultimoFoco && typeof ultimoFoco.focus === 'function') ultimoFoco.focus();
+    if (restaurarFoco && ultimoFoco && typeof ultimoFoco.focus === 'function') {
+      ultimoFoco.focus({ preventScroll: true });
+    }
   }
 
   function aoTeclar(e) {
@@ -69,4 +77,17 @@
     menu.querySelectorAll('.menu-mobile__link'),
     function (a) { a.addEventListener('click', fechar_); }
   );
+
+  function aoMudarBreakpoint(e) {
+    if (e.matches) fechar_({ restaurarFoco: false });
+  }
+
+  if (mqDesktop) {
+    if (typeof mqDesktop.addEventListener === 'function') {
+      mqDesktop.addEventListener('change', aoMudarBreakpoint);
+    } else if (typeof mqDesktop.addListener === 'function') {
+      mqDesktop.addListener(aoMudarBreakpoint);
+    }
+    if (mqDesktop.matches) fechar_({ restaurarFoco: false });
+  }
 })();

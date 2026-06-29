@@ -66,6 +66,12 @@ a.contato-card:hover { border-color: var(--verde-marca); color: var(--grafite); 
 .form__linha { display: grid; grid-template-columns: 1fr; gap: 16px; }
 .form__linha > * { min-width: 0; }
 .form__grupo { display: flex; flex-direction: column; min-width: 0; margin-bottom: 16px; }
+.form__label {
+  color: var(--cor-texto-forte);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+}
 
 .form__grupo input,
 .form__grupo select,
@@ -100,6 +106,7 @@ a.contato-card:hover { border-color: var(--verde-marca); color: var(--grafite); 
   cursor: pointer;
 }
 .form__grupo input[aria-invalid="true"],
+.form__grupo select[aria-invalid="true"],
 .form__grupo textarea[aria-invalid="true"] { border-color: var(--erro); }
 .form__erro { color: var(--erro); font-size: var(--fs-small); margin-top: var(--space-2); min-height: 1em; }
 
@@ -114,7 +121,7 @@ a.contato-card:hover { border-color: var(--verde-marca); color: var(--grafite); 
 
 /* Mensagens de retorno (injetadas por formulario.js — ícones Phosphor) */
 .form-msg { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); padding: var(--pad-card); border-radius: var(--radius-card); }
-.form-msg:focus { outline: none; }
+.form-msg:focus { outline: 2px solid var(--verde-floresta); outline-offset: 3px; }
 .form-msg--ok { background: rgba(30, 125, 50, .08); border: 1px solid rgba(30, 125, 50, .35); }
 .form-msg--ok i { font-size: 40px; color: var(--sucesso); }
 .form-msg--ok h3 { color: var(--verde-floresta); }

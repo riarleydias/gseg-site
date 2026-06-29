@@ -18,6 +18,8 @@
 
   var itens = Array.prototype.slice.call(lista.querySelectorAll('.serv-item'));
   if (!itens.length) return;
+  var reduzirMovimento = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // Liga o modo JS (habilita o colapso definido no CSS)
   lista.setAttribute('data-js', 'true');
@@ -57,16 +59,45 @@
       definir(alvo, botao, painel, true, false);
     }
     requestAnimationFrame(function () {
-      alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      alvo.scrollIntoView({ behavior: reduzirMovimento ? 'auto' : 'smooth', block: 'start' });
     });
   }
 
   abrirPorHash();
   window.addEventListener('hashchange', abrirPorHash);
 
+  function focaveisDoPainel(painel) {
+    return painel.querySelectorAll(
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), ' +
+      'textarea:not([disabled]), [tabindex]'
+    );
+  }
+
+  function definirPainelAcessivel(painel, aberto) {
+    painel.setAttribute('aria-hidden', String(!aberto));
+    if ('inert' in painel) painel.inert = !aberto;
+
+    Array.prototype.forEach.call(focaveisDoPainel(painel), function (el) {
+      if (!aberto) {
+        if (!el.hasAttribute('data-tabindex-original')) {
+          el.setAttribute('data-tabindex-original', el.getAttribute('tabindex') || '');
+        }
+        el.setAttribute('tabindex', '-1');
+        return;
+      }
+
+      if (!el.hasAttribute('data-tabindex-original')) return;
+      var original = el.getAttribute('data-tabindex-original');
+      if (original) el.setAttribute('tabindex', original);
+      else el.removeAttribute('tabindex');
+      el.removeAttribute('data-tabindex-original');
+    });
+  }
+
   function definir(item, botao, painel, aberto, inicial) {
     botao.setAttribute('aria-expanded', String(aberto));
     item.classList.toggle('serv-item--aberto', aberto);
+    definirPainelAcessivel(painel, aberto);
 
     if (aberto) {
       if (inicial) {
