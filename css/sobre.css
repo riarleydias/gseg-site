@@ -232,9 +232,140 @@
 .depo-card__autor { display: flex; flex-direction: column; }
 .depo-card__nome { font-weight: var(--fw-bold); color: var(--verde-floresta); }
 .depo-card__empresa { font-size: var(--fs-small); color: var(--cor-texto-medio); }
-
 @media (min-width: 768px) {
   .metodo-grid { grid-template-columns: repeat(3, 1fr); }
   .esp-lista { grid-template-columns: repeat(2, 1fr); gap: var(--space-3) var(--space-6); }
   .depo-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 899.98px) {
+  .sobre__grid { gap: var(--space-5); }
+  .sobre__texto {
+    gap: 12px;
+  }
+  .sobre__texto > p,
+  .sobre__intro {
+    max-width: none;
+    line-height: 1.55;
+  }
+  .sobre__intro {
+    margin: 0 0 var(--space-3);
+  }
+  .sobre__ola {
+    font-size: 22px;
+  }
+  .sobre__citacao {
+    padding: 18px 18px 16px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .sobre__citacao .icone {
+    width: 24px;
+    height: 24px;
+    top: 12px;
+    right: 12px;
+  }
+  .sobre__pilares {
+    grid-template-columns: 1fr;
+    margin-block: var(--space-2);
+    border: 0;
+    gap: 8px;
+    overflow: visible;
+  }
+  .sobre__pilar {
+    align-items: flex-start;
+    text-align: left;
+    padding: 14px 16px;
+    border: 1px solid var(--borda);
+    border-left: 1px solid var(--borda);
+    background: var(--branco);
+    border-radius: var(--radius-card);
+  }
+  .sobre__pilar-desc {
+    display: block;
+  }
+  .sobre__texto .btn {
+    width: 100%;
+  }
+
+  .secao-cab {
+    margin-bottom: var(--space-4);
+  }
+  .metodo-grid {
+    gap: 10px;
+  }
+  .metodo-card,
+  .depo-card {
+    padding: 18px;
+  }
+  .metodo-card__icone {
+    width: 34px;
+    height: 34px;
+  }
+  .metodo-card__titulo {
+    margin-top: 12px;
+    font-size: 12px;
+  }
+  .metodo-card__texto {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .esp-lista {
+    gap: 8px;
+  }
+  .esp-item {
+    padding: 12px 14px;
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-card);
+    background: var(--branco);
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  .esp-check {
+    margin-top: 4px;
+  }
+  .depo__intro {
+    margin: 0 0 var(--space-3);
+    max-width: none;
+    line-height: 1.5;
+  }
+  .depo-grid {
+    gap: 10px;
+  }
+  .depo-card {
+    border: 1px solid var(--borda);
+    background: var(--branco);
+  }
+  .depo-card__badge {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    margin-bottom: 8px;
+    padding: 4px 8px;
+    border: 1px solid var(--borda);
+    border-radius: 999px;
+    background: var(--creme-200);
+    font-size: 10px;
+    line-height: 1;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--grafite-suave);
+  }
+  .depo-card__aspas {
+    display: none;
+  }
+  .depo-card__texto {
+    margin: 0 0 10px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .depo-card__nome {
+    font-size: 12px;
+    line-height: 1.25;
+  }
+  .depo-card__empresa {
+    font-size: 11px;
+    line-height: 1.35;
+  }
 }
