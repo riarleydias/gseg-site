@@ -698,8 +698,8 @@ body.sem-scroll { overflow: hidden; }
   /* Lote B — densidade mobile global: reduz rolagem sem apertar a leitura */
   :root {
     --fs-body: 15.5px;
-    --space-section-mobile: 40px;
-    --pad-card: 24px;
+    --space-section-mobile: 34px;
+    --pad-card: 20px;
   }
 
   body { line-height: 1.55; }
@@ -709,50 +709,50 @@ body.sem-scroll { overflow: hidden; }
   .regua { margin-block: var(--space-3) var(--space-4); }
   .lead { line-height: 1.55; }
   .card { gap: var(--space-2); }
-  .faixa-cta__inner { gap: var(--space-4); padding-block: var(--space-5); }
+  .faixa-cta__inner { gap: var(--space-3); padding-block: var(--space-4); }
 
-  body .secao__cab { gap: var(--space-3); margin-bottom: var(--space-5); }
-  body .secao__rodape { margin-top: var(--space-5); }
-  body .prova-faixa__inner { padding-block: 28px; }
-  body .cred-bloco { padding-block: 12px; }
-  body .micro-stats { gap: 24px; margin: var(--space-4) 0 var(--space-5); }
-  body .riscos { gap: var(--space-5); }
-  body .risco__topo { padding-bottom: var(--space-3); margin-bottom: var(--space-3); }
+  body .secao__cab { gap: var(--space-2); margin-bottom: var(--space-4); }
+  body .secao__rodape { margin-top: var(--space-4); }
+  body .prova-faixa__inner { padding-block: 22px; }
+  body .cred-bloco { padding-block: 9px; }
+  body .micro-stats { gap: 18px; margin: var(--space-3) 0 var(--space-4); }
+  body .riscos { gap: var(--space-4); }
+  body .risco__topo { padding-bottom: var(--space-2); margin-bottom: var(--space-2); }
 
   body .sobre__grid,
-  body .sobre__inner { gap: var(--space-6); }
+  body .sobre__inner { gap: var(--space-5); }
   body .sobre__texto { gap: var(--space-3); }
   body .sobre__citacao { padding: var(--space-4) var(--space-5); }
   body .secao-cab { margin-bottom: var(--space-4); }
   body .metodo-card,
-  body .depo-card { padding: var(--space-5); }
+  body .depo-card { padding: 20px; }
   body .metodo-card__titulo { margin-top: var(--space-3); }
-  body .depo-card__aspas { font-size: 40px; }
+  body .depo-card__aspas { font-size: 34px; }
   body .depo-card__texto { margin: var(--space-2) 0 var(--space-3); line-height: 1.55; }
 
-  body .seg-intro { padding-bottom: var(--space-4); }
-  body .seg-bloco { padding-block: 44px; }
-  body .seg-bloco__grid { gap: var(--space-4); }
-  body .seg-pills { gap: 6px; margin-top: var(--space-4); }
-  body .seg-bloco__box { padding: var(--space-5); }
-  body .seg-stats__grid { gap: var(--space-4) 0; padding-block: var(--space-6); }
+  body .seg-intro { padding-bottom: var(--space-3); }
+  body .seg-bloco { padding-block: 34px; }
+  body .seg-bloco__grid { gap: var(--space-3); }
+  body .seg-pills { gap: 5px; margin-top: var(--space-3); }
+  body .seg-bloco__box { padding: 20px; }
+  body .seg-stats__grid { gap: var(--space-3) 0; padding-block: var(--space-5); }
 
-  body .faq-layout { gap: var(--space-4); }
-  body .faq-foto { min-height: 260px; }
+  body .faq-layout { gap: var(--space-3); }
+  body .faq-foto { min-height: 230px; }
   body .faq-foto__conteudo,
-  body .faq-cta { padding: var(--space-5); }
-  body .faq__pergunta { gap: 12px; padding: 16px 18px; }
-  body .faq__corpo-inner { padding: 0 18px 18px; }
-  body .faq__corpo-inner p { padding-top: 8px; padding-left: 24px; line-height: 1.55; }
+  body .faq-cta { padding: 20px; }
+  body .faq__pergunta { gap: 10px; padding: 14px 16px; }
+  body .faq__corpo-inner { padding: 0 16px 16px; }
+  body .faq__corpo-inner p { padding-top: 6px; padding-left: 20px; line-height: 1.5; }
 
-  body .contato-hero { min-height: 280px; }
-  body .contato-hero__conteudo { padding-block: var(--space-7); }
+  body .contato-hero { min-height: 250px; }
+  body .contato-hero__conteudo { padding-block: var(--space-6); }
   body .contato-secao { padding-block: var(--space-section-mobile); }
-  body .contato__grid { gap: var(--space-6); }
-  body .contato-card { gap: 12px; padding: 16px 18px; }
-  body .contato__form-titulo { margin-bottom: var(--space-5); font-size: 28px; }
+  body .contato__grid { gap: var(--space-5); }
+  body .contato-card { gap: 10px; padding: 14px 16px; }
+  body .contato__form-titulo { margin-bottom: var(--space-4); font-size: 27px; }
   body .form__grupo { margin-bottom: var(--space-3); }
-  body .form__grupo textarea { min-height: 150px; }
+  body .form__grupo textarea { min-height: 132px; }
 
   /* Item 05 — CTAs grandes: menos padding lateral e fonte ajustada p/ caber em ≤2 linhas */
   .btn--lg { padding-inline: var(--space-5); letter-spacing: .05em; }
@@ -764,33 +764,33 @@ body.sem-scroll { overflow: hidden; }
 
   /* Lote B — rodapé mobile compacto, com respiro para WhatsApp flutuante/safe-area */
   .rodape__grid {
-    gap: var(--space-5);
-    padding-block: var(--space-6) var(--space-5);
+    gap: var(--space-4);
+    padding-block: var(--space-5) var(--space-3);
   }
   .rodape h3 {
-    margin-bottom: var(--space-2);
-    font-size: 10px;
+    margin-bottom: 6px;
+    font-size: 11px;
   }
   .rodape__col a,
   .rodape__col p {
     font-size: 13px;
     line-height: 1.45;
   }
-  .rodape__col p + p { margin-top: 4px; }
-  .rodape__contato { gap: 8px; }
-  .rodape__contato a { min-height: 30px; }
-  .rodape__col ul { grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+  .rodape__col p + p { margin-top: 2px; }
+  .rodape__contato { gap: 5px; }
+  .rodape__contato a { min-height: 28px; }
+  .rodape__col ul { grid-template-columns: 1fr 1fr; gap: 6px 14px; }
   .rodape__col ul li:last-child { grid-column: 1 / -1; text-align: center; }
   .rodape__base {
-    gap: 6px;
-    padding-block: var(--space-3) calc(var(--space-3) + env(safe-area-inset-bottom));
-    padding-right: 76px;
+    gap: 4px;
+    padding-block: 10px calc(10px + env(safe-area-inset-bottom));
+    padding-right: 72px;
   }
   .whatsapp-float {
-    right: var(--space-4);
-    bottom: calc(var(--space-4) + env(safe-area-inset-bottom));
-    width: 52px;
-    height: 52px;
+    right: var(--space-3);
+    bottom: calc(var(--space-3) + env(safe-area-inset-bottom));
+    width: 50px;
+    height: 50px;
   }
-  .whatsapp-float .icone { width: 26px; height: 26px; }
+  .whatsapp-float .icone { width: 25px; height: 25px; }
 }
