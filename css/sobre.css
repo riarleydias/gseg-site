@@ -369,3 +369,92 @@
     line-height: 1.35;
   }
 }
+
+/* Refinamento mestre desktop - sobre */
+@media (min-width: 900px) {
+  .sobre__pilares {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+    grid-auto-rows: 1fr;
+    gap: 12px;
+    border: 0;
+    overflow: visible;
+    margin-block: 28px;
+  }
+  .sobre__pilar,
+  .sobre__pilar:first-child {
+    min-height: 176px;
+    align-items: flex-start;
+    text-align: left;
+    padding: 22px 18px;
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-card);
+    background: linear-gradient(180deg, var(--branco), var(--creme));
+  }
+  .sobre__pilar-num { color: var(--verde-musgo); }
+  .sobre__pilar-nome {
+    max-width: 100%;
+    font-size: 17px;
+    line-height: 1.18;
+    letter-spacing: .025em;
+    overflow-wrap: normal;
+    word-break: normal;
+    text-wrap: balance;
+  }
+  .sobre__pilar-desc {
+    display: block;
+    margin-top: 8px;
+    line-height: 1.55;
+  }
+
+  .especialidade .secao-cab { margin-bottom: 18px; }
+  .especialidade .sobre__intro {
+    max-width: 74ch;
+    margin: 0 0 34px;
+    font-size: 18px;
+    line-height: 1.65;
+  }
+  .esp-lista { gap: 16px 18px; }
+  .esp-item {
+    min-height: 68px;
+    padding: 16px 18px;
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-card);
+    background: var(--branco);
+    line-height: 1.55;
+  }
+  .esp-check { width: 14px; height: 14px; margin-top: 6px; }
+
+  .depoimentos .secao-cab { margin-bottom: var(--space-5); }
+  .depo-grid { gap: 18px; align-items: stretch; }
+  .depo-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 282px;
+    padding: 30px;
+    border: 1px solid var(--borda);
+    background: var(--branco);
+  }
+  .depo-card__badge {
+    align-self: flex-start;
+    margin-bottom: 18px;
+    padding: 5px 10px;
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-pill);
+    background: var(--creme);
+    font-size: 10px;
+    font-weight: var(--fw-semibold);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--verde-musgo);
+  }
+  .depo-card__texto {
+    flex: 1;
+    margin: 0 0 18px;
+    line-height: 1.64;
+  }
+  .depo-card__autor {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid var(--borda);
+  }
+}

@@ -21,8 +21,11 @@
 .contato-hero__titulo {
   font-family: var(--font-display-serif);
   font-weight: var(--fw-bold);
-  font-size: 32px;
-  line-height: 1.1;
+  font-size: 30px;
+  line-height: 1.08;
+  max-width: 18ch;
+  margin-inline: auto;
+  text-wrap: balance;
   color: var(--texto-claro);
 }
 
@@ -143,7 +146,7 @@ a.contato-card:hover { border-color: var(--verde-marca); color: var(--grafite); 
 
 /* ---------- Desktop ---------- */
 @media (min-width: 768px) {
-  .contato-hero__titulo { font-size: 48px; }
+  .contato-hero__titulo { font-size: 44px; max-width: 980px; }
 }
 @media (min-width: 900px) {
   .contato-secao { padding-block: 96px; }

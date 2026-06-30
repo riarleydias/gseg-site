@@ -980,3 +980,94 @@
   .cred-bloco--marca { display: none; }
   .cred-bloco--marca + .cred-bloco { border-top: none; }
 }
+
+/* Refinamento mestre desktop - riscos e certificacoes */
+@media (min-width: 900px) {
+  .riscos { gap: 24px; }
+  .risco {
+    position: relative;
+    min-height: 292px;
+    padding: 30px 28px 28px;
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-card);
+    background:
+      linear-gradient(180deg, rgba(242, 241, 236, .62), rgba(255, 255, 255, .92)),
+      var(--branco);
+    box-shadow: var(--shadow-card);
+  }
+  .risco::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    background: var(--verde-musgo);
+  }
+  .risco__topo {
+    align-items: center;
+    border-bottom: 0;
+    padding-bottom: 0;
+    margin-bottom: var(--space-5);
+  }
+  .risco__num {
+    font-size: 58px;
+    color: var(--areia);
+  }
+  .risco__icone {
+    box-sizing: border-box;
+    width: 56px;
+    height: 56px;
+    padding: 13px;
+    margin-bottom: 0;
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-emblem);
+    background: var(--creme-200);
+    color: var(--verde-musgo);
+  }
+  .risco__titulo { margin-bottom: var(--space-3); }
+  .risco__extra { margin-top: var(--space-4); padding-top: var(--space-4); }
+
+  .cert .secao__cab { margin-bottom: var(--space-5); }
+  .cert__intro {
+    max-width: 64ch;
+    margin: 0 0 var(--space-5);
+    font-size: 18px;
+    line-height: 1.62;
+  }
+  .cert__nota {
+    position: relative;
+    justify-content: flex-start;
+    max-width: 980px;
+    margin: 0 0 var(--space-7);
+    padding: 18px 22px 18px 24px;
+    border: 1px solid var(--borda);
+    border-left: 4px solid var(--verde-musgo);
+    border-radius: var(--radius-card);
+    background: var(--branco);
+    box-shadow: var(--shadow-card);
+    text-align: left;
+  }
+  .cert__nota .icone {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+  }
+  .cert__grid { gap: 20px; }
+  .cert-card {
+    min-height: 304px;
+    padding: 30px 28px;
+    border-color: var(--borda);
+  }
+  .cert-card::before {
+    content: "";
+    width: 36px;
+    height: 3px;
+    margin-bottom: 18px;
+    background: var(--areia);
+  }
+  .cert .cert-badge {
+    width: 58px;
+    height: 58px;
+    border-radius: var(--radius-emblem);
+  }
+  .cert-card__texto { line-height: 1.62; }
+}

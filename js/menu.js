@@ -17,7 +17,6 @@
   var overlay = menu.querySelector('.menu-mobile__overlay');
   var fechar  = menu.querySelectorAll('[data-fechar-menu]');
   var ultimoFoco = null;
-  var mqDesktop = window.matchMedia ? window.matchMedia('(min-width: 900px)') : null;
 
   function focaveis() {
     return Array.prototype.filter.call(
@@ -27,10 +26,6 @@
   }
 
   function abrir() {
-    if (mqDesktop && mqDesktop.matches) {
-      fechar_({ restaurarFoco: false });
-      return;
-    }
     ultimoFoco = document.activeElement;
     menu.setAttribute('data-aberto', 'true');
     botao.setAttribute('aria-expanded', 'true');
@@ -78,16 +73,4 @@
     function (a) { a.addEventListener('click', fechar_); }
   );
 
-  function aoMudarBreakpoint(e) {
-    if (e.matches) fechar_({ restaurarFoco: false });
-  }
-
-  if (mqDesktop) {
-    if (typeof mqDesktop.addEventListener === 'function') {
-      mqDesktop.addEventListener('change', aoMudarBreakpoint);
-    } else if (typeof mqDesktop.addListener === 'function') {
-      mqDesktop.addListener(aoMudarBreakpoint);
-    }
-    if (mqDesktop.matches) fechar_({ restaurarFoco: false });
-  }
 })();

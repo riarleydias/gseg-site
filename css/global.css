@@ -356,7 +356,7 @@ strong, b { font-weight: var(--fw-semibold); color: var(--verde-floresta); }
    some; <900px hambúrguer + menu off-canvas. Alinhado com cabecalho__acoes — sem zona morta. */
 @media (min-width: 900px) {
   .nav { display: block; }
-  .hamburguer { display: none; }
+  .hamburguer { display: inline-flex; flex: none; }
 }
 
 /* ========================================================================
@@ -474,7 +474,7 @@ body.sem-scroll { overflow: hidden; }
 .menu-mobile__rodape .icone { color: var(--verde-claro); width: 22px; height: 22px; }
 .menu-mobile__rodape a { color: var(--areia); text-decoration: underline; }
 
-@media (min-width: 900px) { .menu-mobile { display: none; } }
+/* O off-canvas tambem atende ao menu institucional aberto no desktop. */
 
 /* ========================================================================
    7 · PLACEHOLDER DE FOTO (acervo da cliente pendente)
@@ -794,4 +794,50 @@ body.sem-scroll { overflow: hidden; }
     height: 48px;
   }
   .whatsapp-float .icone { width: 24px; height: 24px; }
+}
+
+/* Refinamento mestre - navegacao aberta em desktop */
+.menu-mobile__logo .logo__texto { display: flex; flex-direction: column; line-height: 1; }
+.menu-mobile__logo .logo__descritor {
+  display: block;
+  color: var(--texto-claro-2);
+  font-size: 8.5px;
+  margin-top: 4px;
+}
+
+@media (min-width: 900px) {
+  .cabecalho__inner { gap: var(--space-3); }
+  .nav__lista { gap: 10px; }
+  .menu-mobile__overlay { background: rgba(20, 28, 17, .72); backdrop-filter: blur(2px); }
+  .menu-mobile__painel {
+    width: min(44vw, 540px);
+    min-width: 430px;
+    padding: var(--space-6) var(--space-7) var(--space-7);
+    transform: translateX(38px) scale(.97);
+    opacity: 0;
+    transition: transform 280ms ease, opacity 280ms ease;
+  }
+  .menu-mobile__painel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(135deg, rgba(242, 241, 236, .08), transparent 34%),
+      repeating-linear-gradient(90deg, rgba(242, 241, 236, .035) 0 1px, transparent 1px 88px);
+  }
+  .menu-mobile__painel > * { position: relative; z-index: 1; }
+  .menu-mobile[data-aberto="true"] .menu-mobile__painel { transform: translateX(0) scale(1); opacity: 1; }
+  .menu-mobile__topo { margin-bottom: var(--space-7); }
+  .menu-mobile__logo .logo__simbolo { width: 42px; height: 42px; }
+  .menu-mobile__logo .logo__nome { font-size: 24px; }
+  .menu-mobile__logo .logo__descritor { display: block; font-size: 9.5px; letter-spacing: .12em; }
+  .menu-mobile__kicker { margin-bottom: var(--space-5); }
+  .menu-mobile__link { padding: 18px 0; font-size: 25px; }
+  .menu-mobile__acoes { grid-template-columns: 1fr 1fr; gap: var(--space-3); margin-top: var(--space-7); }
+  .menu-mobile__rodape { margin-top: auto; padding-top: var(--space-6); }
+}
+
+@media (min-width: 900px) and (max-width: 1120px) {
+  .nav { display: none; }
 }
