@@ -695,21 +695,102 @@ body.sem-scroll { overflow: hidden; }
   /* Item 01 — descritor compacto p/ caber no header estreito sem empurrar o hambúrguer */
   .logo__descritor { font-size: 8.5px; letter-spacing: .1em; margin-top: 2px; }
 
+  /* Lote B — densidade mobile global: reduz rolagem sem apertar a leitura */
+  :root {
+    --fs-body: 15.5px;
+    --space-section-mobile: 40px;
+    --pad-card: 24px;
+  }
+
+  body { line-height: 1.55; }
+  .container { padding-inline: clamp(20px, 5vw, 32px); }
+  .secao { padding-block: var(--space-section-mobile); }
+  .kicker { margin-bottom: var(--space-3); }
+  .regua { margin-block: var(--space-3) var(--space-4); }
+  .lead { line-height: 1.55; }
+  .card { gap: var(--space-2); }
+  .faixa-cta__inner { gap: var(--space-4); padding-block: var(--space-5); }
+
+  body .secao__cab { gap: var(--space-3); margin-bottom: var(--space-5); }
+  body .secao__rodape { margin-top: var(--space-5); }
+  body .prova-faixa__inner { padding-block: 28px; }
+  body .cred-bloco { padding-block: 12px; }
+  body .micro-stats { gap: 24px; margin: var(--space-4) 0 var(--space-5); }
+  body .riscos { gap: var(--space-5); }
+  body .risco__topo { padding-bottom: var(--space-3); margin-bottom: var(--space-3); }
+
+  body .sobre__grid,
+  body .sobre__inner { gap: var(--space-6); }
+  body .sobre__texto { gap: var(--space-3); }
+  body .sobre__citacao { padding: var(--space-4) var(--space-5); }
+  body .secao-cab { margin-bottom: var(--space-4); }
+  body .metodo-card,
+  body .depo-card { padding: var(--space-5); }
+  body .metodo-card__titulo { margin-top: var(--space-3); }
+  body .depo-card__aspas { font-size: 40px; }
+  body .depo-card__texto { margin: var(--space-2) 0 var(--space-3); line-height: 1.55; }
+
+  body .seg-intro { padding-bottom: var(--space-4); }
+  body .seg-bloco { padding-block: 44px; }
+  body .seg-bloco__grid { gap: var(--space-4); }
+  body .seg-pills { gap: 6px; margin-top: var(--space-4); }
+  body .seg-bloco__box { padding: var(--space-5); }
+  body .seg-stats__grid { gap: var(--space-4) 0; padding-block: var(--space-6); }
+
+  body .faq-layout { gap: var(--space-4); }
+  body .faq-foto { min-height: 260px; }
+  body .faq-foto__conteudo,
+  body .faq-cta { padding: var(--space-5); }
+  body .faq__pergunta { gap: 12px; padding: 16px 18px; }
+  body .faq__corpo-inner { padding: 0 18px 18px; }
+  body .faq__corpo-inner p { padding-top: 8px; padding-left: 24px; line-height: 1.55; }
+
+  body .contato-hero { min-height: 280px; }
+  body .contato-hero__conteudo { padding-block: var(--space-7); }
+  body .contato-secao { padding-block: var(--space-section-mobile); }
+  body .contato__grid { gap: var(--space-6); }
+  body .contato-card { gap: 12px; padding: 16px 18px; }
+  body .contato__form-titulo { margin-bottom: var(--space-5); font-size: 28px; }
+  body .form__grupo { margin-bottom: var(--space-3); }
+  body .form__grupo textarea { min-height: 150px; }
+
   /* Item 05 — CTAs grandes: menos padding lateral e fonte ajustada p/ caber em ≤2 linhas */
   .btn--lg { padding-inline: var(--space-5); letter-spacing: .05em; }
   .hero__ctas .btn { font-size: 14px; }
-
-  /* Item 19 — corpo de texto um pouco menor no mobile (mais palavras por linha,
-     leitura menos fragmentada). Redefinir o token cascateia p/ todo o corpo sem
-     tocar no desktop (≥900px mantém 17px). */
-  :root { --fs-body: 15.5px; }
 
   /* Item 16 — bloco de marca (logo + CREA) do rodapé sai no mobile: o usuário vai
      direto dos CTAs finais p/ os dados de contato. Header/identidade já cobrem a marca. */
   .rodape__marca { display: none; }
 
-  /* Item 17 — navegação do rodapé em 2 colunas (era coluna única, alta demais);
-     o último item (Contato) ocupa a linha inteira, centralizado. */
-  .rodape__col ul { grid-template-columns: 1fr 1fr; gap: 12px 20px; }
+  /* Lote B — rodapé mobile compacto, com respiro para WhatsApp flutuante/safe-area */
+  .rodape__grid {
+    gap: var(--space-5);
+    padding-block: var(--space-6) var(--space-5);
+  }
+  .rodape h3 {
+    margin-bottom: var(--space-2);
+    font-size: 10px;
+  }
+  .rodape__col a,
+  .rodape__col p {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  .rodape__col p + p { margin-top: 4px; }
+  .rodape__contato { gap: 8px; }
+  .rodape__contato a { min-height: 30px; }
+  .rodape__col ul { grid-template-columns: 1fr 1fr; gap: 8px 16px; }
   .rodape__col ul li:last-child { grid-column: 1 / -1; text-align: center; }
+  .rodape__base {
+    gap: 6px;
+    padding-block: var(--space-3) calc(var(--space-3) + env(safe-area-inset-bottom));
+    padding-right: 76px;
+  }
+  .whatsapp-float {
+    right: var(--space-4);
+    bottom: calc(var(--space-4) + env(safe-area-inset-bottom));
+    width: 52px;
+    height: 52px;
+  }
+  .whatsapp-float .icone { width: 26px; height: 26px; }
 }
