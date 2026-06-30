@@ -815,6 +815,161 @@
     font-size: 10px;
   }
 
+  /* Lote C — C1: síntese de serviços mais objetiva no mobile */
+  .s3__sub {
+    max-width: none;
+    margin-top: 10px;
+    margin-bottom: 18px;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .s3__sub p + p { margin-top: 8px; }
+  .micro-stats--servicos {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin: 0;
+  }
+  .micro-stats--servicos .micro-stat {
+    padding: 12px 14px;
+    border: 1px solid var(--borda);
+    background: var(--branco);
+  }
+  .micro-stats--servicos .micro-stat + .micro-stat::before { display: none; }
+  .micro-stats--servicos .micro-stat__num {
+    font-size: 12px;
+    line-height: 1.25;
+  }
+  .micro-stats--servicos .micro-stat__label {
+    margin-top: 3px;
+    font-size: 10px;
+    line-height: 1.35;
+    letter-spacing: .08em;
+  }
+
+  /* Lote C — C2: riscos em lista executiva, sem ornamento dominante */
+  .objecao__intro {
+    margin: 0 0 var(--space-4);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .riscos {
+    gap: 0;
+    border: 1px solid var(--borda);
+    background: var(--borda);
+  }
+  .risco {
+    padding: 16px;
+    background: var(--branco);
+    border-bottom: 1px solid var(--borda);
+  }
+  .risco:last-child { border-bottom: 0; }
+  .risco__topo {
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 0;
+    padding-bottom: 0;
+    margin-bottom: 8px;
+  }
+  .risco__num {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--areia);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: var(--fw-bold);
+    line-height: 1;
+    letter-spacing: .08em;
+    color: var(--verde-musgo);
+  }
+  .risco__icone { display: none; }
+  .risco__titulo {
+    margin-bottom: 6px;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+  .risco__desc,
+  .risco__extra {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  .risco__extra {
+    margin-top: 8px;
+    padding-top: 8px;
+  }
+  .objecao__reforco { margin-top: var(--space-4); }
+  .objecao__fecho {
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+  }
+  .objecao__transicao { font-size: 19px; }
+
+  /* Lote C — C3: protocolos/certificações mais compactos e institucionais */
+  .cert__intro {
+    margin: 0 0 var(--space-3);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .cert__nota {
+    justify-content: flex-start;
+    margin: 0 0 var(--space-4);
+    padding: 12px 14px;
+    border: 1px solid var(--borda);
+    background: var(--branco);
+    font-size: 12px;
+    line-height: 1.45;
+  }
+  .cert__grid {
+    gap: 10px;
+  }
+  .cert-card {
+    min-height: 0;
+    padding: 16px;
+  }
+  .cert .cert-badge {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-emblem);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: var(--fw-bold);
+    letter-spacing: .08em;
+  }
+  .cert-card__nome {
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+  .cert-card__sub {
+    margin-top: 2px;
+    font-size: 11px;
+  }
+  .cert-card__texto {
+    margin-top: 8px;
+    font-size: 12.5px;
+    line-height: 1.45;
+  }
+  .cert-card__prazo {
+    margin-top: 10px;
+    padding-top: 8px;
+    font-size: 10px;
+    line-height: 1.35;
+  }
+  .cert-card__tags {
+    gap: 5px;
+    margin-top: 6px;
+  }
+  .cert-tag {
+    padding: 3px 7px;
+    font-size: 10px;
+  }
+  .cert__cta { margin-top: var(--space-4); }
+
   /* Item 14 — badges CREA/+20/Araxá da hero saem no mobile (repetem a faixa de
      credenciais logo abaixo). No desktop seguem visíveis. */
   .hero__trust { display: none; }

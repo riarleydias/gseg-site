@@ -697,62 +697,62 @@ body.sem-scroll { overflow: hidden; }
 
   /* Lote B — densidade mobile global: reduz rolagem sem apertar a leitura */
   :root {
-    --fs-body: 15.5px;
-    --space-section-mobile: 34px;
-    --pad-card: 20px;
+    --fs-body: 15.25px;
+    --space-section-mobile: 30px;
+    --pad-card: 18px;
   }
 
-  body { line-height: 1.55; }
-  .container { padding-inline: clamp(20px, 5vw, 32px); }
+  body { line-height: 1.52; }
+  .container { padding-inline: clamp(18px, 4.5vw, 30px); }
   .secao { padding-block: var(--space-section-mobile); }
   .kicker { margin-bottom: var(--space-3); }
   .regua { margin-block: var(--space-3) var(--space-4); }
-  .lead { line-height: 1.55; }
-  .card { gap: var(--space-2); }
-  .faixa-cta__inner { gap: var(--space-3); padding-block: var(--space-4); }
+  .lead { line-height: 1.5; }
+  .card { gap: 10px; }
+  .faixa-cta__inner { gap: 10px; padding-block: 18px; }
 
-  body .secao__cab { gap: var(--space-2); margin-bottom: var(--space-4); }
-  body .secao__rodape { margin-top: var(--space-4); }
-  body .prova-faixa__inner { padding-block: 22px; }
-  body .cred-bloco { padding-block: 9px; }
-  body .micro-stats { gap: 18px; margin: var(--space-3) 0 var(--space-4); }
-  body .riscos { gap: var(--space-4); }
-  body .risco__topo { padding-bottom: var(--space-2); margin-bottom: var(--space-2); }
+  body .secao__cab { gap: 6px; margin-bottom: var(--space-3); }
+  body .secao__rodape { margin-top: var(--space-3); }
+  body .prova-faixa__inner { padding-block: 18px; }
+  body .cred-bloco { padding-block: 7px; }
+  body .micro-stats { gap: 12px; margin: 10px 0 var(--space-3); }
+  body .riscos { gap: var(--space-3); }
+  body .risco__topo { padding-bottom: 6px; margin-bottom: 6px; }
 
   body .sobre__grid,
-  body .sobre__inner { gap: var(--space-5); }
-  body .sobre__texto { gap: var(--space-3); }
-  body .sobre__citacao { padding: var(--space-4) var(--space-5); }
-  body .secao-cab { margin-bottom: var(--space-4); }
+  body .sobre__inner { gap: var(--space-4); }
+  body .sobre__texto { gap: 10px; }
+  body .sobre__citacao { padding: 18px 20px; }
+  body .secao-cab { margin-bottom: var(--space-3); }
   body .metodo-card,
-  body .depo-card { padding: 20px; }
+  body .depo-card { padding: 18px; }
   body .metodo-card__titulo { margin-top: var(--space-3); }
-  body .depo-card__aspas { font-size: 34px; }
-  body .depo-card__texto { margin: var(--space-2) 0 var(--space-3); line-height: 1.55; }
+  body .depo-card__aspas { font-size: 32px; }
+  body .depo-card__texto { margin: 8px 0 10px; line-height: 1.5; }
 
-  body .seg-intro { padding-bottom: var(--space-3); }
-  body .seg-bloco { padding-block: 34px; }
-  body .seg-bloco__grid { gap: var(--space-3); }
-  body .seg-pills { gap: 5px; margin-top: var(--space-3); }
-  body .seg-bloco__box { padding: 20px; }
-  body .seg-stats__grid { gap: var(--space-3) 0; padding-block: var(--space-5); }
+  body .seg-intro { padding-bottom: 10px; }
+  body .seg-bloco { padding-block: 30px; }
+  body .seg-bloco__grid { gap: 10px; }
+  body .seg-pills { gap: 4px; margin-top: 10px; }
+  body .seg-bloco__box { padding: 18px; }
+  body .seg-stats__grid { gap: 10px 0; padding-block: var(--space-4); }
 
-  body .faq-layout { gap: var(--space-3); }
-  body .faq-foto { min-height: 230px; }
+  body .faq-layout { gap: 10px; }
+  body .faq-foto { min-height: 210px; }
   body .faq-foto__conteudo,
-  body .faq-cta { padding: 20px; }
-  body .faq__pergunta { gap: 10px; padding: 14px 16px; }
-  body .faq__corpo-inner { padding: 0 16px 16px; }
-  body .faq__corpo-inner p { padding-top: 6px; padding-left: 20px; line-height: 1.5; }
+  body .faq-cta { padding: 18px; }
+  body .faq__pergunta { gap: 8px; padding: 12px 14px; }
+  body .faq__corpo-inner { padding: 0 14px 14px; }
+  body .faq__corpo-inner p { padding-top: 4px; padding-left: 18px; line-height: 1.45; }
 
-  body .contato-hero { min-height: 250px; }
-  body .contato-hero__conteudo { padding-block: var(--space-6); }
+  body .contato-hero { min-height: 230px; }
+  body .contato-hero__conteudo { padding-block: var(--space-5); }
   body .contato-secao { padding-block: var(--space-section-mobile); }
-  body .contato__grid { gap: var(--space-5); }
-  body .contato-card { gap: 10px; padding: 14px 16px; }
-  body .contato__form-titulo { margin-bottom: var(--space-4); font-size: 27px; }
-  body .form__grupo { margin-bottom: var(--space-3); }
-  body .form__grupo textarea { min-height: 132px; }
+  body .contato__grid { gap: var(--space-4); }
+  body .contato-card { gap: 8px; padding: 12px 14px; }
+  body .contato__form-titulo { margin-bottom: var(--space-3); font-size: 26px; }
+  body .form__grupo { margin-bottom: 10px; }
+  body .form__grupo textarea { min-height: 120px; }
 
   /* Item 05 — CTAs grandes: menos padding lateral e fonte ajustada p/ caber em ≤2 linhas */
   .btn--lg { padding-inline: var(--space-5); letter-spacing: .05em; }
@@ -764,33 +764,34 @@ body.sem-scroll { overflow: hidden; }
 
   /* Lote B — rodapé mobile compacto, com respiro para WhatsApp flutuante/safe-area */
   .rodape__grid {
-    gap: var(--space-4);
-    padding-block: var(--space-5) var(--space-3);
+    gap: var(--space-3);
+    padding-block: 20px 14px;
   }
   .rodape h3 {
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     font-size: 11px;
+    line-height: 1.2;
   }
   .rodape__col a,
   .rodape__col p {
-    font-size: 13px;
-    line-height: 1.45;
+    font-size: 12.5px;
+    line-height: 1.4;
   }
-  .rodape__col p + p { margin-top: 2px; }
-  .rodape__contato { gap: 5px; }
-  .rodape__contato a { min-height: 28px; }
-  .rodape__col ul { grid-template-columns: 1fr 1fr; gap: 6px 14px; }
+  .rodape__col p + p { margin-top: 1px; }
+  .rodape__contato { gap: 4px; }
+  .rodape__contato a { min-height: 26px; }
+  .rodape__col ul { grid-template-columns: 1fr 1fr; gap: 5px 12px; }
   .rodape__col ul li:last-child { grid-column: 1 / -1; text-align: center; }
   .rodape__base {
-    gap: 4px;
-    padding-block: 10px calc(10px + env(safe-area-inset-bottom));
-    padding-right: 72px;
+    gap: 3px;
+    padding-block: 8px calc(8px + env(safe-area-inset-bottom));
+    padding-right: 76px;
   }
   .whatsapp-float {
     right: var(--space-3);
     bottom: calc(var(--space-3) + env(safe-area-inset-bottom));
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
   }
-  .whatsapp-float .icone { width: 25px; height: 25px; }
+  .whatsapp-float .icone { width: 24px; height: 24px; }
 }
