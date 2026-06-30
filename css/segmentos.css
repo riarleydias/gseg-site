@@ -116,6 +116,15 @@
     padding-top: var(--space-4);
     padding-bottom: var(--space-5);
   }
+  .seg-stats__bg .ph-foto {
+    background:
+      radial-gradient(120% 90% at 50% 0%, rgba(255, 255, 255, .08), transparent 58%),
+      linear-gradient(135deg, #243520, #32472B);
+  }
+  .seg-stats__bg .ph-foto .icone,
+  .seg-stats__bg .ph-foto span {
+    display: none;
+  }
   .seg-intro__hero {
     position: relative;
     padding: 22px 18px 18px;

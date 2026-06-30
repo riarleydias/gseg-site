@@ -121,6 +121,16 @@
     gap: 12px;
   }
 
+  .faq-foto__ph {
+    background:
+      radial-gradient(120% 88% at 50% 0%, rgba(255, 255, 255, .08), transparent 58%),
+      linear-gradient(135deg, #32472B, #1F2B1C);
+  }
+  .faq-foto__ph .icone,
+  .faq-foto__ph span {
+    display: none;
+  }
+
   .faq-foto {
     min-height: 276px;
     border: 1px solid var(--borda);
