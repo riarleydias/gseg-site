@@ -505,3 +505,72 @@
   }
   .serv-item__ver .icone { width: 14px; height: 14px; }
 }
+
+/* ---------- Imagens temáticas nos serviços principais ---------- */
+.serv-item[data-service="doc"] { --service-image: url("../assets/img/servicos/svc-doc.jpg"); }
+.serv-item[data-service="trein"] { --service-image: url("../assets/img/servicos/svc-trein.jpg"); }
+.serv-item[data-service="consult"] { --service-image: url("../assets/img/servicos/svc-consult.jpg"); }
+.serv-item[data-service="esocial"] { --service-image: url("../assets/img/servicos/svc-esocial.jpg"); }
+
+.serv-item[data-service] .serv-item__icone { display: none; }
+.serv-item[data-service] .serv-item__cab {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.serv-item[data-service] .serv-item__cab::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 54%;
+  background-image:
+    linear-gradient(90deg, var(--branco) 0%, rgba(255, 255, 255, .94) 24%, rgba(255, 255, 255, .68) 54%, rgba(255, 255, 255, .18) 100%),
+    var(--service-image);
+  background-position: right center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: .58;
+  pointer-events: none;
+}
+.serv-item[data-service] .serv-item__cab > * {
+  z-index: 1;
+}
+
+@media (max-width: 899px) {
+  .serv-item[data-service] .serv-item__cab {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .serv-item[data-service] .serv-item__corpo {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .serv-item[data-service] .serv-item__cab::after {
+    width: min(58%, 280px);
+    background-image:
+      linear-gradient(90deg, var(--branco) 0%, rgba(255, 255, 255, .98) 32%, rgba(255, 255, 255, .82) 62%, rgba(255, 255, 255, .34) 100%),
+      var(--service-image);
+    opacity: .48;
+  }
+}
+
+@media (min-width: 900px) {
+  .serv-item[data-service] .serv-item__cab {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .serv-item[data-service] .serv-item__painel-inner {
+    padding-left: 30px;
+  }
+  .serv-item[data-service] .serv-item__cab::after {
+    width: min(50%, 560px);
+    opacity: .66;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1280px) {
+  .serv-item[data-service] .serv-item__ver {
+    margin-right: 32px;
+  }
+}
