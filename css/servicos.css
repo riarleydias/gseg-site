@@ -9,6 +9,49 @@
 .servicos-intro__inner { display: grid; grid-template-columns: 1fr; gap: var(--space-5); max-width: 1000px; margin-inline: auto; }
 .servicos-intro .lead { margin-top: var(--space-2); }
 
+@media (max-width: 899px) {
+  .servicos-intro {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-block: clamp(52px, 13vw, 78px) clamp(46px, 11vw, 68px);
+    background: var(--verde-floresta);
+    color: var(--texto-claro);
+  }
+  .servicos-intro::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background:
+      linear-gradient(115deg, rgba(var(--verde-marca-rgb), .95) 4%, rgba(var(--verde-marca-rgb), .77) 100%),
+      url("../assets/images/segmentos-campo.jpg") 64% center / cover no-repeat;
+  }
+  .servicos-intro::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(180deg, transparent 45%, rgba(20, 28, 17, .28) 100%),
+      repeating-linear-gradient(90deg, rgba(242, 241, 236, .055) 0 1px, transparent 1px 72px);
+  }
+  .servicos-intro__inner { gap: var(--space-4); }
+  .servicos-intro .kicker { color: var(--texto-claro-2); }
+  .servicos-intro .kicker::before { background: var(--areia); }
+  .servicos-intro .titulo-secao { max-width: 11ch; color: var(--texto-claro); }
+  .servicos-intro .titulo-secao em { color: var(--areia); }
+  .servicos-intro .lead {
+    max-width: 58ch;
+    margin-top: 0;
+    padding: 16px 18px;
+    border-left: 3px solid var(--areia);
+    background: rgba(29, 43, 26, .42);
+    color: var(--texto-claro-2);
+    backdrop-filter: blur(2px);
+  }
+}
+
 @media (min-width: 900px) {
   .servicos-intro__inner { grid-template-columns: 1.1fr 1fr; align-items: end; gap: var(--space-8); }
   .servicos-intro .lead { justify-self: end; }
@@ -106,6 +149,109 @@
 }
 .serv-item__painel-inner .btn { margin-top: var(--space-2); }
 
+/* ---------- Refinamento mobile ---------- */
+@media (max-width: 899px) {
+  .servicos {
+    padding-top: clamp(30px, 8vw, 48px);
+    background: var(--creme);
+  }
+  .servicos__lista {
+    display: grid;
+    gap: 12px;
+    border: 0;
+    border-radius: 0;
+    overflow: visible;
+    background: transparent;
+  }
+  .serv-item,
+  .serv-item:first-child {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--borda);
+    border-radius: var(--radius-card);
+    background: var(--branco);
+    box-shadow: 0 8px 22px rgba(50, 71, 43, .07);
+  }
+  .serv-item::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 3px;
+    background: var(--verde-musgo);
+    opacity: .46;
+    transition: opacity var(--transition);
+  }
+  .serv-item--aberto { background: var(--branco); }
+  .serv-item--aberto::before { opacity: 1; }
+  .serv-item__cab {
+    grid-template-columns: 48px minmax(0, 1fr) 30px;
+    gap: 12px;
+    padding: 18px 16px;
+  }
+  .serv-item__icone {
+    position: relative;
+    box-sizing: border-box;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(73, 105, 63, .24);
+    border-radius: var(--radius-emblem);
+    background: linear-gradient(145deg, var(--creme-200), rgba(73, 105, 63, .12));
+    box-shadow: inset 0 0 0 4px rgba(255, 255, 255, .34);
+  }
+  .serv-item__icone::after {
+    content: "";
+    position: absolute;
+    right: -2px;
+    bottom: -2px;
+    width: 9px;
+    height: 9px;
+    border: 2px solid var(--branco);
+    border-radius: 2px;
+    background: var(--terracota);
+  }
+  .serv-item__icone .icone { width: 25px; height: 25px; }
+  .serv-item__titulo {
+    font-size: clamp(16.5px, 4.8vw, 21px);
+    letter-spacing: .045em;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
+  }
+  .serv-item__desc {
+    margin-top: 5px;
+    font-size: clamp(12.5px, 3.45vw, 14px);
+    line-height: 1.45;
+  }
+  .serv-item__ver {
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--borda);
+    border-radius: 50%;
+    background: var(--creme);
+  }
+  .serv-item__ver .icone { width: 16px; height: 16px; }
+  .serv-item__painel-inner { padding: 0 18px 20px; }
+  .serv-item__painel-inner p,
+  .serv-lista li { line-height: 1.55; }
+  .serv-item__painel-inner .btn {
+    width: 100%;
+    padding-inline: var(--space-3);
+    text-align: center;
+  }
+}
+
+@media (max-width: 359px) {
+  .serv-item__cab {
+    grid-template-columns: 44px minmax(0, 1fr) 28px;
+    gap: 9px;
+    padding-inline: 13px;
+  }
+  .serv-item__icone { width: 44px; height: 44px; }
+  .serv-item__titulo { font-size: 15px; letter-spacing: .02em; }
+  .serv-item__ver { width: 28px; height: 28px; }
+}
+
 /* ---------- Desktop ---------- */
 @media (min-width: 900px) {
   .serv-item__cab { padding: var(--space-5) var(--space-6); }
@@ -193,12 +339,25 @@
     padding: 26px 30px;
   }
   .serv-item__icone {
+    position: relative;
     box-sizing: border-box;
     width: 58px;
     height: 58px;
-    border: 1px solid var(--borda);
+    border: 1px solid rgba(73, 105, 63, .24);
     border-radius: var(--radius-emblem);
-    background: var(--creme-200);
+    background: linear-gradient(145deg, var(--creme-200), rgba(73, 105, 63, .12));
+    box-shadow: inset 0 0 0 5px rgba(255, 255, 255, .38);
+  }
+  .serv-item__icone::after {
+    content: "";
+    position: absolute;
+    right: -3px;
+    bottom: -3px;
+    width: 11px;
+    height: 11px;
+    border: 2px solid var(--branco);
+    border-radius: 2px;
+    background: var(--terracota);
   }
   .serv-item__icone .icone { width: 30px; height: 30px; }
   .serv-item__titulo { font-size: 24px; letter-spacing: .045em; }
@@ -222,30 +381,127 @@
   }
   .serv-lista li { line-height: 1.5; }
 
-  .faixa-cta--servicos { background: var(--verde-floresta); }
+  .faixa-cta--servicos {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: linear-gradient(110deg, rgba(var(--verde-marca-rgb), 1), rgba(73, 105, 63, .96));
+  }
+  .faixa-cta--servicos::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(90deg, transparent 0 64%, rgba(242, 241, 236, .06) 64% 64.1%, transparent 64.1%),
+      radial-gradient(circle at 84% 20%, rgba(209, 185, 139, .14), transparent 28%);
+  }
   .faixa-cta--servicos .faixa-cta__inner {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr) auto;
     gap: var(--space-7);
-    padding-block: 34px;
+    padding-block: 38px;
   }
   .faixa-cta--servicos .faixa-cta__texto {
-    display: contents;
-  }
-  .faixa-cta--servicos .faixa-cta__logo {
-    height: 66px;
-    align-self: center;
+    display: block;
+    min-width: 0;
   }
   .faixa-cta--servicos .faixa-cta__titulo {
-    align-self: center;
-    max-width: 24ch;
+    display: block;
+    max-width: 27ch;
     font-family: var(--font-accent);
     font-style: italic;
-    font-size: 30px;
+    font-size: clamp(28px, 2.5vw, 34px);
     line-height: 1.15;
     letter-spacing: 0;
     text-transform: none;
     color: var(--texto-claro);
   }
   .faixa-cta--servicos .btn { justify-self: end; }
+}
+
+/* ---------- Fechamento de Serviços no mobile ---------- */
+@media (max-width: 899px) {
+  .faixa-cta--servicos {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: linear-gradient(125deg, var(--verde-floresta), var(--verde-musgo));
+  }
+  .faixa-cta--servicos::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      repeating-linear-gradient(90deg, rgba(242, 241, 236, .05) 0 1px, transparent 1px 72px),
+      radial-gradient(circle at 88% 12%, rgba(209, 185, 139, .15), transparent 32%);
+  }
+  .faixa-cta--servicos .faixa-cta__inner {
+    align-items: stretch;
+    gap: 18px;
+    padding-block: 30px;
+  }
+  .faixa-cta--servicos .faixa-cta__texto {
+    display: block;
+    min-width: 0;
+  }
+  .faixa-cta--servicos .faixa-cta__titulo {
+    display: block;
+    max-width: 24ch;
+    font-family: var(--font-accent);
+    font-size: clamp(24px, 7.2vw, 30px);
+    font-style: italic;
+    line-height: 1.16;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .faixa-cta--servicos .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ---------- Faixa segura para o WhatsApp flutuante ---------- */
+@media (max-width: 899px) {
+  .whatsapp-float {
+    right: env(safe-area-inset-right, 0px);
+    width: 44px;
+    height: 44px;
+  }
+  .whatsapp-float .icone { width: 22px; height: 22px; }
+
+  .serv-item__cab {
+    position: relative;
+    width: calc(100% - 28px - env(safe-area-inset-right, 0px));
+    grid-template-columns: 48px minmax(0, 1fr);
+  }
+  .serv-item__icone {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .serv-item__corpo {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .serv-item__desc { padding-right: 34px; }
+  .serv-item__ver {
+    position: absolute;
+    right: 13px;
+    bottom: 13px;
+    width: 30px;
+    height: 30px;
+  }
+  .serv-item__painel-inner .btn {
+    width: calc(100% - 12px - env(safe-area-inset-right, 0px));
+  }
+}
+
+@media (max-width: 359px) {
+  .serv-item__cab { grid-template-columns: 44px minmax(0, 1fr); }
+  .serv-item__ver {
+    width: 24px;
+    height: 24px;
+  }
+  .serv-item__ver .icone { width: 14px; height: 14px; }
 }

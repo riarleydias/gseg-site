@@ -352,11 +352,11 @@ strong, b { font-weight: var(--fw-semibold); color: var(--verde-floresta); }
   .cabecalho--encolhido .logo__descritor { display: none; }
 }
 
-/* Nav horizontal e off-canvas trocam no MESMO ponto (900px): ≥900px nav inline + hambúrguer
-   some; <900px hambúrguer + menu off-canvas. Alinhado com cabecalho__acoes — sem zona morta. */
+/* Nav horizontal e off-canvas trocam no mesmo ponto: a partir de 900px,
+   navegação inline sem hambúrguer; abaixo disso, menu off-canvas. */
 @media (min-width: 900px) {
   .nav { display: block; }
-  .hamburguer { display: inline-flex; flex: none; }
+  .hamburguer { display: none; }
 }
 
 /* ========================================================================
@@ -796,6 +796,10 @@ body.sem-scroll { overflow: hidden; }
   .whatsapp-float .icone { width: 24px; height: 24px; }
 }
 
+@media (max-width: 359px) {
+  .menu-mobile__painel { padding-inline: 16px; }
+}
+
 /* Refinamento mestre - navegacao aberta em desktop */
 .menu-mobile__logo .logo__texto { display: flex; flex-direction: column; line-height: 1; }
 .menu-mobile__logo .logo__descritor {
@@ -838,6 +842,32 @@ body.sem-scroll { overflow: hidden; }
   .menu-mobile__rodape { margin-top: auto; padding-top: var(--space-6); }
 }
 
-@media (min-width: 900px) and (max-width: 1120px) {
-  .nav { display: none; }
+@media (min-width: 900px) and (max-width: 1279px) {
+  .cabecalho__inner,
+  .cabecalho--encolhido .cabecalho__inner {
+    flex-wrap: wrap;
+    row-gap: 8px;
+    min-height: 0;
+    padding-block: 12px 8px;
+  }
+  .logo { order: 1; }
+  .cabecalho__acoes { order: 2; }
+  .nav {
+    order: 3;
+    flex: 0 0 100%;
+    padding-top: 7px;
+    border-top: 1px solid var(--borda);
+  }
+  .nav__lista {
+    justify-content: center;
+    gap: clamp(16px, 3vw, 30px);
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1365px) {
+  .cabecalho__acoes { gap: 8px; }
+  .cabecalho__acoes .btn--sm {
+    padding-inline: 12px;
+    white-space: nowrap;
+  }
 }

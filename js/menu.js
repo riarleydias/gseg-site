@@ -73,4 +73,16 @@
     function (a) { a.addEventListener('click', fechar_); }
   );
 
+  /* Se o viewport cruza para desktop com o painel aberto, remove também
+     o scroll lock e o estado ARIA que ficariam ativos fora da tela. */
+  var desktop = window.matchMedia('(min-width: 900px)');
+  function aoMudarViewport(e) {
+    if (e.matches && menu.hasAttribute('data-aberto')) {
+      fechar_({ restaurarFoco: false });
+    }
+  }
+  if (desktop.addEventListener) desktop.addEventListener('change', aoMudarViewport);
+  else desktop.addListener(aoMudarViewport);
+  window.addEventListener('resize', function () { aoMudarViewport(desktop); });
+
 })();
