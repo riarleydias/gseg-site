@@ -507,23 +507,23 @@
 }
 
 /* ---------- Imagens temáticas nos serviços principais ---------- */
-.serv-item[data-service="doc"] { --service-image: url("../assets/img/servicos/svc-doc.jpg"); }
+.serv-item[data-service="doc"] { --service-image: url("../assets/img/servicos/svc-doc.jpg"); --service-bg-position-desktop: right center; }
 .serv-item[data-service="trein"] { --service-image: url("../assets/img/servicos/svc-trein.jpg"); }
 .serv-item[data-service="consult"] { --service-image: url("../assets/img/servicos/svc-consult.jpg"); }
 .serv-item[data-service="esocial"] { --service-image: url("../assets/img/servicos/svc-esocial.jpg"); }
 .serv-item[data-service="laudos"] {
   --service-image: url("../assets/img/servicos/svc-laudos.jpg");
   --service-bg-position-mobile: right center;
-  --service-bg-position-desktop: right center;
+  --service-bg-position-desktop: right 30%;
   --service-bg-size-mobile: cover;
-  --service-bg-size-desktop: auto 100%;
+  --service-bg-size-desktop: cover;
 }
 .serv-item[data-service="atendimento"] {
   --service-image: url("../assets/img/servicos/svc-atendimento.jpg");
   --service-bg-position-mobile: right center;
-  --service-bg-position-desktop: right center;
+  --service-bg-position-desktop: right 30%;
   --service-bg-size-mobile: cover;
-  --service-bg-size-desktop: auto 100%;
+  --service-bg-size-desktop: cover;
 }
 
 .serv-item[data-service] .serv-item__icone { display: none; }
@@ -556,13 +556,17 @@
 @media (max-width: 899px) {
   .serv-item[data-service] .serv-item__cab {
     grid-template-columns: minmax(0, 1fr);
+    overflow: visible;                     /* o clip passa a ser do .serv-item (borda real do card) */
   }
   .serv-item[data-service] .serv-item__corpo {
     grid-column: 1;
     grid-row: 1;
   }
   .serv-item[data-service] .serv-item__cab::after {
-    width: min(58%, 280px);
+    /* o cab é 28px+safe-area mais estreito que o card (faixa segura do WhatsApp);
+       estende a imagem por baixo dessa faixa até a borda real do card */
+    right: calc(-28px - env(safe-area-inset-right, 0px));
+    width: calc(min(58%, 280px) + 28px + env(safe-area-inset-right, 0px));
     background-image:
       linear-gradient(90deg, var(--branco) 0%, rgba(255, 255, 255, .98) 32%, rgba(255, 255, 255, .82) 62%, rgba(255, 255, 255, .34) 100%),
       var(--service-image);
@@ -584,8 +588,8 @@
     background-image:
       linear-gradient(90deg, var(--branco) 0%, rgba(255, 255, 255, .95) 30%, rgba(255, 255, 255, .60) 58%, rgba(255, 255, 255, .22) 100%),
       var(--service-image);
-    background-position: right center, var(--service-bg-position-desktop, right center);
-    background-size: cover, var(--service-bg-size-desktop, auto 100%);
+    background-position: right center, var(--service-bg-position-desktop, right 30%);
+    background-size: cover, var(--service-bg-size-desktop, cover);
     opacity: .66;
   }
 }
