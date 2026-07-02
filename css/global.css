@@ -302,19 +302,42 @@ strong, b { font-weight: var(--fw-semibold); color: var(--verde-floresta); }
   color: var(--grafite);
   padding-block: var(--space-2);
   position: relative;
+  transition: color var(--transition);
 }
-.nav__link:hover { color: var(--verde-floresta); }
-.nav__link[aria-current="page"] { color: var(--verde-floresta); font-weight: var(--fw-semibold); }
-.nav__link[aria-current="page"]::after {
+/* Fase 1 · A1 — linha editorial 1px que se desenha no hover/foco */
+.nav__link::after {
   content: "";
   position: absolute;
   left: 0; right: 0; bottom: -4px;
-  height: 2px;
+  height: 1px;
   background: var(--verde-musgo);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--transition);
+}
+.nav__link:hover { color: var(--verde-floresta); }
+.nav__link:hover::after,
+.nav__link:focus-visible::after { transform: scaleX(1); }
+.nav__link[aria-current="page"] { color: var(--verde-floresta); font-weight: var(--fw-semibold); }
+/* Fase 1 · A2 — ativo: traço 2px com fecho em areia (divisória do brandbook) */
+.nav__link[aria-current="page"]::after {
+  height: 2px;
+  transform: scaleX(1);
+  background: linear-gradient(90deg, var(--verde-musgo) 0%, var(--verde-musgo) 62%, var(--areia) 100%);
 }
 
 .cabecalho__acoes { display: none; align-items: center; gap: var(--space-3); }
 .btn--sm { padding: var(--space-2) var(--space-4); min-height: 40px; }
+
+/* Fase 1 · A4 — CTAs do header: outline responde sem inverter (hierarquia do
+   primário preservada no hover); primário ganha sombra seca. Escopado ao header. */
+.cabecalho__acoes .btn--outline { border-color: rgba(var(--verde-marca-rgb), .5); }
+.cabecalho__acoes .btn--outline:hover {
+  background: rgba(var(--verde-marca-rgb), .08);
+  color: var(--verde-escuro);
+  border-color: var(--verde-floresta);
+}
+.cabecalho__acoes .btn--primary:hover { box-shadow: var(--shadow-card); }
 
 /* Hambúrguer (mobile) — 3 barras desenhadas com <span> (sem fonte de ícone) */
 .hamburguer {
@@ -389,14 +412,18 @@ body.sem-scroll { overflow: hidden; }
   inset-block: 0;
   right: 0;
   width: min(92vw, 420px);
-  background: var(--verde-floresta);
+  /* Fase 1 · A3 — gradiente institucional + textura mínima (mesma gramática dos heros) */
+  background:
+    repeating-linear-gradient(90deg, rgba(242, 241, 236, .045) 0 1px, transparent 1px 84px),
+    linear-gradient(168deg, var(--verde-floresta) 0%, var(--verde-escuro) 100%);
   color: var(--texto-claro);
   padding: var(--space-5) var(--space-5) var(--space-7);
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   transform: translateX(100%);
-  transition: transform var(--transition-menu);   /* 250ms ease — estado do menu */
+  transition: transform var(--transition-menu);   /* 250ms — estado do menu */
+  transition-timing-function: cubic-bezier(.22, .61, .36, 1);   /* Fase 1 · A3 — chegada suave */
   box-shadow: var(--shadow-elevated);
 }
 .menu-mobile[data-aberto="true"] .menu-mobile__painel { transform: translateX(0); }
@@ -405,7 +432,10 @@ body.sem-scroll { overflow: hidden; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: var(--space-6);
+  /* Fase 1 · A3 — hairline sob o topo: separa a marca do menu, arquitetura do painel */
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--linha-clara);
+  margin-bottom: var(--space-5);
 }
 /* Logo do menu mobile: símbolo (claro) + wordmark GSEG, em fundo escuro */
 .menu-mobile__logo { display: inline-flex; align-items: center; gap: var(--gap-inline); }
@@ -621,7 +651,11 @@ body.sem-scroll { overflow: hidden; }
    11 · RODAPÉ
    ======================================================================== */
 .rodape {
-  background: var(--verde-floresta);
+  /* Fase 1 · B2 — traço editorial de fechamento + gradiente vertical sutil + textura mínima */
+  border-top: 2px solid var(--areia);
+  background:
+    repeating-linear-gradient(90deg, rgba(242, 241, 236, .035) 0 1px, transparent 1px 96px),
+    linear-gradient(180deg, var(--verde-floresta) 0%, var(--verde-escuro) 100%);
   color: var(--texto-claro-2);
 }
 .rodape__grid {
@@ -664,7 +698,9 @@ body.sem-scroll { overflow: hidden; }
 .rodape__contato { display: grid; gap: var(--space-3); }
 .rodape__contato a { display: inline-flex; align-items: center; gap: var(--gap-inline); min-height: 32px; }
 .rodape__contato i { color: var(--verde-claro); font-size: 18px; }
-.rodape__col a:hover { color: var(--texto-claro); }
+/* Fase 1 · B3 — hover em areia com transição (mesma família do header); ícones acompanham */
+.rodape__col a { transition: color var(--transition); }
+.rodape__col a:hover { color: var(--areia); }
 
 .rodape__base {
   border-top: 1px solid rgba(242, 241, 236, .14);
@@ -675,8 +711,10 @@ body.sem-scroll { overflow: hidden; }
   font-size: var(--fs-small);
   color: var(--texto-claro-2);
 }
-.rodape__base a { color: var(--areia); }
+.rodape__base a { color: var(--areia); transition: color var(--transition); }
 .rodape__base a:hover { color: var(--texto-claro); }
+/* Fase 1 · B4 — crédito Fator: destaque sutil (texto intacto) */
+.rodape__base p span { color: var(--texto-claro); font-weight: var(--fw-medium); }
 
 @media (min-width: 600px) {
   .rodape__grid { grid-template-columns: 1.4fr 1fr 1fr; }
@@ -686,6 +724,17 @@ body.sem-scroll { overflow: hidden; }
   .rodape__grid { grid-template-columns: 1.6fr 1fr 1fr 1.2fr; }
   .rodape__marca { grid-column: auto; }
   .rodape__base { flex-direction: row; justify-content: space-between; align-items: center; }
+  /* Fase 1 · B1 — traço editorial de 22px sob os títulos de coluna (só desktop;
+     o rodapé mobile compacto aprovado no Lote B permanece intocado) */
+  .rodape h3::after {
+    content: "";
+    display: block;
+    width: 22px;
+    height: 1px;
+    background: var(--areia);
+    opacity: .75;
+    margin-top: 10px;
+  }
 }
 
 /* ════════════════ AJUSTES MOBILE (≤899px · não afeta desktop ≥900) ════════════════
