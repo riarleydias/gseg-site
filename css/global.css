@@ -784,7 +784,6 @@ body.sem-scroll { overflow: hidden; }
   body .seg-bloco__grid { gap: 10px; }
   body .seg-pills { gap: 4px; margin-top: 10px; }
   body .seg-bloco__box { padding: 18px; }
-  body .seg-stats__grid { gap: 10px 0; padding-block: var(--space-4); }
 
   body .faq-layout { gap: 10px; }
   body .faq-foto { min-height: 210px; }
