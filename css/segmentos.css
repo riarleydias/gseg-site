@@ -4,8 +4,74 @@
 
 .nowrap { white-space: nowrap; }
 
-.seg-intro { padding-bottom: var(--space-6); }
-.seg-intro .lead { margin-top: var(--space-3); }
+/* ---------- Capa institucional ---------- */
+.seg-intro {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(64px, 7vw, 96px) clamp(58px, 6vw, 80px);
+  background: var(--verde-floresta);
+  color: var(--texto-claro);
+}
+.seg-intro::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(90deg, rgba(20, 28, 17, .96) 0%, rgba(var(--verde-marca-rgb), .86) 38%, rgba(var(--verde-marca-rgb), .52) 70%, rgba(20, 28, 17, .38) 100%),
+    url(../assets/images/segmentos-campo.jpg) 62% center / cover no-repeat;
+}
+.seg-intro::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(72% 110% at 88% 14%, rgba(224, 213, 177, .13), transparent 62%),
+    linear-gradient(180deg, rgba(20, 28, 17, .04) 42%, rgba(20, 28, 17, .34) 100%),
+    repeating-linear-gradient(90deg, rgba(242, 241, 236, .045) 0 1px, transparent 1px 96px);
+}
+.seg-intro > .container {
+  position: relative;
+  z-index: 1;
+}
+.seg-intro__hero {
+  max-width: 760px;
+  padding: clamp(28px, 3.2vw, 44px) clamp(24px, 3.5vw, 48px);
+  border: 1px solid rgba(242, 241, 236, .2);
+  border-left: 3px solid var(--areia);
+  border-radius: var(--radius-card);
+  background: linear-gradient(135deg, rgba(20, 28, 17, .7), rgba(36, 53, 32, .38));
+  box-shadow: 0 24px 56px rgba(20, 28, 17, .2);
+  backdrop-filter: blur(3px);
+}
+.seg-intro .kicker {
+  margin-bottom: 12px;
+  color: var(--texto-claro-2);
+}
+.seg-intro .kicker::before { background: var(--areia); }
+.seg-intro .titulo-secao {
+  max-width: 12ch;
+  color: var(--texto-claro);
+}
+.seg-intro .titulo-secao em { color: var(--areia); }
+.seg-intro .lead {
+  max-width: 62ch;
+  margin-top: 18px;
+  color: var(--texto-claro-2);
+  line-height: 1.58;
+}
+.seg-intro__apoio {
+  max-width: 66ch;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(242, 241, 236, .2);
+  color: rgba(242, 241, 236, .78);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
 
 /* ---------- Blocos de segmento (conteúdo 55% / box NRs+CTA 45% no desktop) ---------- */
 .seg-bloco { padding-block: 64px; scroll-margin-top: 96px; }   /* separador entre segmentos */
@@ -115,6 +181,40 @@
 .seg-cta__btn { width: 100%; }
 
 /* ---------- Desktop ---------- */
+@media (min-width: 900px) {
+  .seg-intro__hero {
+    display: grid;
+    grid-template-columns: minmax(260px, .85fr) minmax(380px, 1.15fr);
+    grid-template-areas:
+      'kicker lead'
+      'title lead'
+      'title support';
+    column-gap: clamp(36px, 5vw, 64px);
+    row-gap: 0;
+    max-width: 1080px;
+    padding: 36px clamp(34px, 4vw, 48px);
+  }
+  .seg-intro .kicker {
+    grid-area: kicker;
+    align-self: end;
+    margin-bottom: 14px;
+  }
+  .seg-intro .titulo-secao { grid-area: title; }
+  .seg-intro .lead {
+    grid-area: lead;
+    align-self: end;
+    margin-top: 0;
+    padding: 0 0 14px 32px;
+    border-left: 1px solid rgba(242, 241, 236, .2);
+  }
+  .seg-intro__apoio {
+    grid-area: support;
+    margin-top: 0;
+    padding: 14px 0 0 32px;
+    border-top-color: rgba(242, 241, 236, .16);
+    border-left: 1px solid rgba(242, 241, 236, .2);
+  }
+}
 @media (min-width: 768px) {
   .seg-bloco__grid { grid-template-columns: 55fr 45fr; gap: var(--space-8); align-items: start; }
 }
@@ -123,9 +223,19 @@
 }
 
 @media (max-width: 899.98px) {
-  .seg-intro {
-    padding-top: var(--space-4);
-    padding-bottom: var(--space-5);
+  body .seg-intro {
+    padding-block: clamp(40px, 10vw, 58px);
+  }
+  .seg-intro::before {
+    background:
+      linear-gradient(135deg, rgba(20, 28, 17, .94) 0%, rgba(var(--verde-marca-rgb), .82) 54%, rgba(var(--verde-marca-rgb), .66) 100%),
+      url(../assets/images/segmentos-campo.jpg) 68% center / cover no-repeat;
+  }
+  .seg-intro::after {
+    background:
+      radial-gradient(90% 72% at 82% 5%, rgba(224, 213, 177, .11), transparent 68%),
+      linear-gradient(180deg, rgba(20, 28, 17, .02) 34%, rgba(20, 28, 17, .38) 100%),
+      repeating-linear-gradient(90deg, rgba(242, 241, 236, .04) 0 1px, transparent 1px 72px);
   }
   .seg-stats__bg .ph-foto {
     background:
@@ -137,40 +247,34 @@
     display: none;
   }
   .seg-intro__hero {
-    position: relative;
-    padding: 22px 18px 18px;
-    border: 1px solid var(--borda);
-    border-radius: var(--radius-card);
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, .98), rgba(242, 241, 236, .96));
-    overflow: hidden;
-  }
-  .seg-intro__hero::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--verde-musgo), var(--areia));
+    max-width: 620px;
+    margin-inline: auto;
+    padding: clamp(22px, 6vw, 34px) clamp(20px, 5.5vw, 32px);
+    border-color: rgba(242, 241, 236, .22);
+    border-left-color: var(--areia);
+    background: linear-gradient(145deg, rgba(20, 28, 17, .74), rgba(36, 53, 32, .48));
+    box-shadow: 0 20px 44px rgba(20, 28, 17, .24);
   }
   .seg-intro .kicker {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
   .seg-intro .titulo-secao {
-    font-size: 30px;
-    line-height: 1.12;
+    font-size: clamp(32px, 9.5vw, 40px);
+    line-height: 1.08;
   }
   .seg-intro .lead {
-    margin-top: 10px;
+    margin-top: 14px;
     max-width: none;
     font-size: 15px;
-    line-height: 1.5;
+    line-height: 1.55;
   }
   .seg-intro__apoio {
-    margin-top: 10px;
+    margin-top: 14px;
+    padding-top: 14px;
     max-width: none;
     font-size: 13.5px;
-    line-height: 1.5;
-    color: var(--grafite-suave);
+    line-height: 1.55;
+    color: rgba(242, 241, 236, .78);
   }
 
   .seg-bloco {
