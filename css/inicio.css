@@ -983,16 +983,15 @@
 
 /* Refinamento mestre desktop - riscos e certificacoes */
 @media (min-width: 900px) {
+  /* Item 02 — cards em "índice editorial": numeral-display e chip de ícone saem;
+     entra linha de índice (traço areia + nº caps + ícone nu) e o título protagoniza. */
   .riscos { gap: 24px; }
   .risco {
     position: relative;
-    min-height: 292px;
-    padding: 30px 28px 28px;
+    padding: var(--pad-card);
     border: 1px solid var(--borda);
     border-radius: var(--radius-card);
-    background:
-      linear-gradient(180deg, rgba(242, 241, 236, .62), rgba(255, 255, 255, .92)),
-      var(--branco);
+    background: var(--branco);
     box-shadow: var(--shadow-card);
   }
   .risco::before {
@@ -1003,24 +1002,33 @@
     background: var(--verde-musgo);
   }
   .risco__topo {
+    justify-content: flex-start;
     align-items: center;
-    border-bottom: 0;
-    padding-bottom: 0;
-    margin-bottom: var(--space-5);
+    gap: var(--gap-inline);
+    border-bottom: 1px solid var(--borda);
+    padding-bottom: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+  .risco__topo::before {
+    content: "";
+    width: 22px;
+    height: 1px;
+    background: var(--areia);
+    flex: none;
   }
   .risco__num {
-    font-size: 58px;
-    color: var(--areia);
+    margin-right: auto;
+    font-family: var(--font-body);
+    font-size: var(--fs-kicker);
+    font-weight: var(--fw-semibold);
+    line-height: 1;
+    letter-spacing: var(--ls-caps);
+    color: var(--verde-musgo);
   }
   .risco__icone {
-    box-sizing: border-box;
-    width: 56px;
-    height: 56px;
-    padding: 13px;
+    width: 26px;
+    height: 26px;
     margin-bottom: 0;
-    border: 1px solid var(--borda);
-    border-radius: var(--radius-emblem);
-    background: var(--creme-200);
     color: var(--verde-musgo);
   }
   .risco__titulo { margin-bottom: var(--space-3); }
