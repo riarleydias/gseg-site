@@ -1,6 +1,6 @@
 # GSEG Engenharia de Segurança do Trabalho — Site Institucional
 
-Site institucional desenvolvido pela **Agência Riarley Dias** para
+Site institucional desenvolvido pela **FATOR Engenharia de Software** para
 GSEG Engenharia de Segurança do Trabalho (Lívia Poliane, CREA 332747/MG).
 
 ---
@@ -10,7 +10,7 @@ GSEG Engenharia de Segurança do Trabalho (Lívia Poliane, CREA 332747/MG).
 - **Cliente:** GSEG Engenharia de Segurança do Trabalho
 - **Responsável:** Lívia Poliane | CREA 332747/MG
 - **Localização:** Araxá/MG e região
-- **Desenvolvido por:** Agência Riarley Dias
+- **Desenvolvido por:** FATOR Engenharia de Software
 - **Data de entrega:** 27/06/2026
 
 ## Stack
@@ -61,4 +61,4 @@ Sem build, sem dependências, sem instalação.
 
 ---
 
-*Repositório privado — Agência Riarley Dias © 2026*
+*Repositório privado — FATOR Engenharia de Software © 2026*

@@ -507,19 +507,19 @@
 }
 
 /* ---------- Imagens temáticas nos serviços principais ---------- */
-.serv-item[data-service="doc"] { --service-image: url("../assets/img/servicos/svc-doc.jpg"); --service-bg-position-desktop: right center; }
-.serv-item[data-service="trein"] { --service-image: url("../assets/img/servicos/svc-trein.jpg"); }
-.serv-item[data-service="consult"] { --service-image: url("../assets/img/servicos/svc-consult.jpg"); }
-.serv-item[data-service="esocial"] { --service-image: url("../assets/img/servicos/svc-esocial.jpg"); }
+.serv-item[data-service="doc"] { --service-image: url("../assets/images/servicos/svc-doc.jpg"); --service-bg-position-desktop: right center; }
+.serv-item[data-service="trein"] { --service-image: url("../assets/images/servicos/svc-trein.jpg"); }
+.serv-item[data-service="consult"] { --service-image: url("../assets/images/servicos/svc-consult.jpg"); }
+.serv-item[data-service="esocial"] { --service-image: url("../assets/images/servicos/svc-esocial.jpg"); }
 .serv-item[data-service="laudos"] {
-  --service-image: url("../assets/img/servicos/svc-laudos.jpg");
+  --service-image: url("../assets/images/servicos/svc-laudos.jpg");
   --service-bg-position-mobile: right center;
   --service-bg-position-desktop: right 30%;
   --service-bg-size-mobile: cover;
   --service-bg-size-desktop: cover;
 }
 .serv-item[data-service="atendimento"] {
-  --service-image: url("../assets/img/servicos/svc-atendimento.jpg");
+  --service-image: url("../assets/images/servicos/svc-atendimento.jpg");
   --service-bg-position-mobile: right center;
   --service-bg-position-desktop: right 30%;
   --service-bg-size-mobile: cover;
