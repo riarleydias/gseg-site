@@ -31,21 +31,41 @@
 .benef-secao-titulo { font-family: var(--bf-display); font-weight: 700; font-size: clamp(28px, 4vw, 36px); line-height: 1.15; color: var(--bf-titulo); margin-bottom: 10px; }
 
 /* ---------- Hero escuro ---------- */
-.benef-hero { background: var(--verde-floresta); color: var(--texto-claro); padding-block: 88px 80px; }
+.benef-hero {
+  background:
+    radial-gradient(80% 120% at 92% 12%, rgba(194,180,155,.10), transparent 60%),   /* E4 — acento areia canto sup-dir */
+    radial-gradient(120% 90% at 50% 0%, rgba(255,255,255,.05), transparent 58%),      /* E3 — brilho de topo */
+    repeating-linear-gradient(90deg, rgba(242,241,236,.045) 0 1px, transparent 1px 84px), /* E2 */
+    linear-gradient(168deg, var(--verde-floresta) 0%, var(--verde-escuro) 100%);      /* E1 */
+  color: var(--texto-claro);
+  padding-block: 88px 80px;
+}
 .benef-hero .kicker { color: var(--areia); }
 .benef-hero__titulo { font-family: var(--bf-display); font-weight: 700; font-size: clamp(32px, 5.2vw, 52px); color: var(--texto-claro); line-height: 1.12; max-width: 18ch; }
 .benef-hero__titulo em { font-style: italic; color: var(--areia); }
 .benef-hero__texto { color: var(--texto-claro-2); margin-top: var(--space-4); max-width: 60ch; font-size: 16px; line-height: 1.7; }
 
 /* ---------- 6 cards: seção verde, grid 3col, gap 1px, cards brancos sem radius ---------- */
-.benef-cards-secao { background: var(--verde-floresta); padding: 64px 24px; }
-.benef-cards { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--verde-floresta); }
-.bcard { background: var(--bf-card); padding: 36px 32px; border: 0; border-radius: 0; }
+.benef-cards-secao {
+  background:
+    repeating-linear-gradient(90deg, rgba(242,241,236,.04) 0 1px, transparent 1px 96px),  /* E2b */
+    linear-gradient(180deg, var(--verde-floresta) 0%, var(--verde-escuro) 100%);           /* E1 (180deg vertical) */
+  padding: 64px 24px;
+}
+.benef-cards {
+  display: grid; grid-template-columns: 1fr; gap: 1px;
+  background:
+    repeating-linear-gradient(90deg, rgba(242,241,236,.04) 0 1px, transparent 1px 96px),  /* E2b */
+    linear-gradient(180deg, var(--verde-floresta) 0%, var(--verde-escuro) 100%);           /* E1 */
+}
+.bcard { background: var(--bf-card); padding: 36px 32px; border: 0; border-radius: 0; transition: box-shadow var(--transition); }
+.bcard:hover { box-shadow: var(--shadow-elevated); }
 .bcard__topo { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
 .bcard__icone { display: inline-flex; color: var(--verde-musgo); }
 .bcard__icone svg { width: 24px; height: 24px; }
 .bcard__num { font-family: var(--bf-display); font-weight: 700; font-size: 48px; line-height: 1; color: var(--bf-creme-cred); }
-.bcard__titulo { font-family: var(--bf-display); font-weight: 700; font-size: 18px; color: var(--bf-titulo); line-height: 1.2; margin-bottom: 6px; }
+.bcard__titulo { font-family: var(--bf-display); font-weight: 700; font-size: 18px; color: var(--bf-titulo); line-height: 1.2; margin-bottom: 4px; }
+.bcard__titulo::after { content: ""; display: block; width: 22px; height: 2px; background: var(--areia); margin-top: 10px; }
 .bcard__tagline { font-style: italic; font-size: 13px; color: var(--bf-tag); margin-bottom: 20px; }
 .bcard__lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
 .bcard__lista li { position: relative; padding-left: 16px; font-size: 14px; line-height: 1.7; color: var(--bf-texto); }
@@ -57,7 +77,13 @@
 .benef-comp__grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 28px; }
 .benef-comp__col { padding: 40px 36px; border-radius: 0; }
 .benef-comp__col--risco { background: var(--bf-creme-comp); color: var(--bf-texto); border-top: 4px solid var(--bf-vermelho); }
-.benef-comp__col--ganho { background: var(--verde-floresta); color: var(--bf-creme-cred); border-top: 4px solid var(--bf-verde-claro); }
+.benef-comp__col--ganho {
+  background:
+    repeating-linear-gradient(90deg, rgba(242,241,236,.04) 0 1px, transparent 1px 72px),  /* E2b, pitch 72 */
+    linear-gradient(160deg, var(--verde-floresta) 0%, var(--verde-escuro) 100%);           /* E1 */
+  color: var(--bf-creme-cred);
+  border-top: 4px solid var(--bf-verde-claro);
+}
 .benef-comp__col-titulo { font-family: var(--bf-display); font-weight: 700; font-size: 20px; margin-bottom: 20px; }
 .benef-comp__col--risco .benef-comp__col-titulo { color: var(--bf-preto); }
 .benef-comp__col--ganho .benef-comp__col-titulo { color: var(--bf-creme-cred); }
@@ -86,7 +112,13 @@
 .benef-final { background: var(--creme); padding-block: 72px; }
 .benef-final__inner { max-width: 860px; }
 .benef-final__texto { display: flex; flex-direction: column; gap: 14px; color: var(--bf-texto); line-height: 1.8; margin: 16px 0 32px; }
-.benef-cred { display: grid; grid-template-columns: 1fr; gap: 24px; background: var(--verde-floresta); padding: 32px 40px; margin-bottom: 32px; }
+.benef-cred {
+  display: grid; grid-template-columns: 1fr; gap: 24px;
+  background:
+    repeating-linear-gradient(90deg, rgba(242,241,236,.04) 0 1px, transparent 1px 84px),  /* E2 */
+    linear-gradient(168deg, var(--verde-floresta) 0%, var(--verde-escuro) 100%);           /* E1 */
+  padding: 32px 40px; margin-bottom: 32px;
+}
 .benef-cred__num { display: block; font-family: var(--bf-display); font-weight: 700; font-size: clamp(24px, 3vw, 36px); line-height: 1.1; color: var(--bf-creme-cred); }
 .benef-cred__label { display: block; margin-top: 8px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--bf-verde-claro); }
 
