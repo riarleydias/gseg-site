@@ -31,7 +31,7 @@
   /* ── Camadas decorativas (Marina §2 — N2/N4/N7/N8) ─────────────────────────── */
   --grafite-04:   rgba(58, 58, 58, .04);   /* N2-css — stand-in do grão institucional */
   --areia-18:     rgba(194, 180, 155, .18); /* N7 — acento radial de canto */
-  --terracota-08: rgba(111, 70, 52, .08);   /* sopro de terracota — TESTE A/B, só S10 */
+  --terracota-08: rgba(111, 70, 52, .08);   /* sopro de terracota — aprovado como padrão do S10 em 10/07 */
 
   /* ── Sombra da marca sobre neutro (Marina §2 — N5/N6; NUNCA cinza) ─────────── */
   --shadow-soft: 0 12px 36px rgba(50, 71, 43, .07);
@@ -174,36 +174,28 @@
   object-position: center 35%;
   z-index: 0;
 }
+/* Scrim quente + sopro de terracota — decisão do Riarley em 10/07 (visto em
+   comparação A/B, aprovado como padrão do S10 mesmo sobre placeholder; será
+   reconferido quando a foto atmosférica real existir). Camada de terracota
+   incorporada direto na regra base — deixou de ser teste opcional. */
 .cta-final::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    rgba(26, 20, 15, .42) 0%,   /* topo — quente translúcido, atmosfera aparece */
-    rgba(26, 20, 15, .66) 55%,  /* meio — assenta a tagline */
-    rgba(20, 28, 17, .86) 100% /* base — verde-quase-preto, verde só como apoio */
-  );
-}
-.cta-final__inner {
-  position: relative;
-  z-index: 2;
-}
-
-/* Sopro de terracota — ÚNICO uso de terracota do protótipo, marcado como TESTE
-   A/B (Marina §4.3). Classe modificadora opcional em .cta-final, liga/desliga
-   fácil pra comparação lado a lado; NÃO é a decisão final. */
-.cta-final--terracota-test::after {
   background:
     linear-gradient(180deg, var(--terracota-08) 0%, var(--terracota-08) 100%),
     linear-gradient(
       180deg,
-      rgba(26, 20, 15, .42) 0%,
-      rgba(26, 20, 15, .66) 55%,
-      rgba(20, 28, 17, .86) 100%
+      rgba(26, 20, 15, .42) 0%,   /* topo — quente translúcido, atmosfera aparece */
+      rgba(26, 20, 15, .66) 55%,  /* meio — assenta a tagline */
+      rgba(20, 28, 17, .86) 100% /* base — verde-quase-preto, verde só como apoio */
     );
+}
+.cta-final__inner {
+  position: relative;
+  z-index: 2;
 }
 
 /* =============================================================================
