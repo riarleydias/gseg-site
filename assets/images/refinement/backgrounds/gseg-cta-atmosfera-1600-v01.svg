@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Placeholder — foto pendente, atmosfera CTA final">
+  <defs>
+    <linearGradient id="ph-cta-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1A140F"/>
+      <stop offset="34%" stop-color="#3A2E22"/>
+      <stop offset="70%" stop-color="#6F4634"/>
+      <stop offset="100%" stop-color="#DED5C6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#ph-cta-grad)"/>
+  <rect width="1600" height="900" fill="none" stroke="#C2B49B" stroke-width="8"/>
+  <text x="800" y="430" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="700" fill="#F2F1EC" letter-spacing="1">FOTO PENDENTE</text>
+  <text x="800" y="478" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" fill="#DED5C6" letter-spacing=".5">gseg-cta-atmosfera — 1600×900</text>
+  <text x="800" y="60" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" fill="#DED5C6" letter-spacing=".3" opacity=".75">terço superior escuro/limpo — zona reservada p/ logo + tagline</text>
+</svg>

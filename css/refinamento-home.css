@@ -1,0 +1,242 @@
+/* =============================================================================
+   GSEG · refinamento-home.css — PROTÓTIPO isolado (Etapa 2, S4 · S8 · S10)
+   -----------------------------------------------------------------------------
+   Autoria : Diego — front-end vanilla · FATOR Engenharia de Software
+   Origem  : vault/Marina/prototipo-etapa2-s4-s8-s10_MARINA.md (spec de direção
+             de arte) + .claude/clientes/gseg/plano-refinamento-visual-home_REFERENCIA.md.
+   Branch  : refactor/gseg-refinamento-visual (worktree isolado — NÃO produção).
+   Carregado DEPOIS de inicio.css (ver index.html <head>).
+
+   ⚠️ PROTÓTIPO — NÃO É SISTEMA APROVADO.
+   Os tokens abaixo são NOVOS e vivem só neste arquivo até o Riarley aprovar
+   visualmente o protótipo (§8 do doc da Marina). Não copiar para
+   variaveis_LUCAS.css nem para o DESIGN.md antes disso.
+
+   ⚠️ FOTOS PLACEHOLDER — as 5 fotografias reais (4 de Segmentos + 1 do CTA)
+   ainda NÃO existem (só os callsheets de prompt do Lucas, sem ferramenta de
+   geração disponível nesta sessão). Os <img> abaixo apontam para SVGs de
+   placeholder em assets/images/refinement/{segments,backgrounds}/ — mesma tag
+   <img>, mesmas dimensões-alvo (800×450 / 1600×900); quando a foto real
+   existir, troca-se SOMENTE o atributo src (extensão .webp), nada de HTML/CSS
+   muda. Convenção de nome mantida (gseg-<tipo>-<variante>-<breakpoint>-v01),
+   com extensão .svg em vez de .webp só enquanto o placeholder estiver ativo.
+   ============================================================================= */
+
+:root {
+  /* ── Neutros complementares (plano §4.1 / Marina §2 — N1 base) ────────────── */
+  --porcelana:    #F7F5EF;
+  --linho-medio:  #ECE7DC;
+  --pedra-quente: #DED5C6;
+
+  /* ── Camadas decorativas (Marina §2 — N2/N4/N7/N8) ─────────────────────────── */
+  --grafite-04:   rgba(58, 58, 58, .04);   /* N2-css — stand-in do grão institucional */
+  --areia-18:     rgba(194, 180, 155, .18); /* N7 — acento radial de canto */
+  --terracota-08: rgba(111, 70, 52, .08);   /* sopro de terracota — TESTE A/B, só S10 */
+
+  /* ── Sombra da marca sobre neutro (Marina §2 — N5/N6; NUNCA cinza) ─────────── */
+  --shadow-soft: 0 12px 36px rgba(50, 71, 43, .07);
+
+  /* ── Movimento (plano §4.1 / Marina §6 — escala do refinamento) ────────────── */
+  --motion-fast: 160ms ease;
+  --motion-base: 240ms ease;
+  --motion-slow: 420ms cubic-bezier(.2, .7, .2, 1);
+}
+
+/* =============================================================================
+   1 · S4 · RISCOS — fundo neutro quente institucional (item 1/2/3/4 do checklist)
+   ============================================================================= */
+
+/* Item 2 — fundo .objecao: N7 (acento areia canto) + N2-css (grão, fallback sem
+   asset) + N1 (base linho-médio → pedra-quente). Texto de leitura fica na ponta
+   clara (topo) — não inverter a direção do gradiente (contraste do
+   .objecao__intro cai pra ~4.5:1 na base; ~5.5:1 no topo). */
+.objecao {
+  background:
+    radial-gradient(82% 120% at 92% 6%, var(--areia-18) 0%, transparent 58%),
+    repeating-linear-gradient(0deg, var(--grafite-04) 0 1px, transparent 1px 3px),
+    linear-gradient(176deg, var(--linho-medio) 0%, var(--pedra-quente) 100%);
+  background-size: auto, auto, auto;
+  background-repeat: no-repeat, repeat, no-repeat;
+}
+
+/* Item 3 — régua documental (N4), assinatura de S4. Só ≥900px (respiro lateral).
+   Ancorada em left:0 dentro de um padding-left de 24px no próprio .riscos —
+   optei direto pelo fallback que a própria Marina liberou no doc ("se colidir
+   com o container, ancorar em left:0 dentro de padding-left:24px") em vez do
+   valor primário "left:-24px", porque o Eyes/Playwright não rodou nesta sessão
+   (bug de fork do Bash, ver relatório) e eu não tinha como validar no render
+   se -24px vazava do container. Fica registrado para a Marina conferir no
+   screenshot antes de aprovar — se -24px também funcionar bem, dá pra trocar. */
+@media (min-width: 900px) {
+  .riscos {
+    position: relative;
+    padding-left: 24px;
+  }
+  .riscos::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 2px;
+    background: var(--areia);
+  }
+}
+
+/* Item 4 — elevação de sombra no hover do card .risco (N5→N6), sem transform
+   (evita pulo). Só faz sentido no card de desktop (mobile é lista sem sombra). */
+.risco {
+  transition: box-shadow var(--motion-base);
+}
+@media (min-width: 900px) {
+  .risco:hover,
+  .risco:focus-within {
+    box-shadow: var(--shadow-soft);
+  }
+}
+
+/* =============================================================================
+   2 · S8 · SEGMENTOS — faixa fotográfica full-bleed nos 4 cards (itens 5/6/7/8)
+   ============================================================================= */
+
+/* Item 6 — fundo da seção: porcelana lisa (a foto é a textura, sem grão aqui). */
+.segmentos {
+  background: var(--porcelana);
+}
+
+/* Item 7 — reestrutura full-bleed: o <a class="seg"> perde o padding (que agora
+   vive em .seg__corpo) e ganha overflow:hidden pra recortar a foto + conter o
+   scale do hover. Propriedades não redeclaradas aqui (border-right/bottom,
+   background, transition) seguem vindas de inicio.css — cascata por
+   propriedade, não por regra. */
+.seg {
+  padding: 0;
+  overflow: hidden;
+}
+.seg__corpo {
+  padding: var(--space-6); /* 32px — mobile; ver override desktop abaixo */
+}
+@media (min-width: 900px) {
+  .seg__corpo {
+    padding: 34px 30px; /* preserva o respiro desktop original do .seg (inicio.css:559) */
+  }
+}
+
+.seg__foto {
+  display: block;
+  width: 100%;
+  height: 180px; /* mobile-first — Marina §4.2 "Mobile: altura 180px" */
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.92) contrast(1.02); /* grade fotográfica leve — costura entre as 4 fotos */
+  transition: transform var(--motion-base), filter var(--motion-base);
+}
+@media (min-width: 900px) {
+  .seg__foto {
+    height: 168px; /* Marina §4.2 — faixa de topo do card no desktop */
+  }
+}
+
+/* Item 8 — hover/focus (desktop ≥900px, onde existe hover de verdade): scale
+   contido pelo overflow:hidden do .seg + escurece levemente a foto. Reduced
+   motion tira SÓ o scale (fica o filter) — regra dura do handoff (§6). */
+@media (min-width: 900px) {
+  .seg:hover .seg__foto,
+  .seg:focus-visible .seg__foto,
+  .seg.seg--aberto .seg__foto {
+    transform: scale(1.03);
+    filter: saturate(1.05) brightness(.94);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .seg__foto { transition: filter var(--motion-base); }
+  .seg:hover .seg__foto,
+  .seg:focus-visible .seg__foto,
+  .seg.seg--aberto .seg__foto {
+    transform: none;
+  }
+}
+
+/* =============================================================================
+   3 · S10 · CTA FINAL — fotografia atmosférica + scrim quente (itens 9/10)
+   ============================================================================= */
+
+.cta-final {
+  position: relative;
+  overflow: hidden; /* .cta-final__bg em position:absolute recortado aqui */
+}
+.cta-final__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* NUNCA background-size:auto 100% — erro conhecido do DESIGN.md */
+  object-position: center 35%;
+  z-index: 0;
+}
+.cta-final::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(26, 20, 15, .42) 0%,   /* topo — quente translúcido, atmosfera aparece */
+    rgba(26, 20, 15, .66) 55%,  /* meio — assenta a tagline */
+    rgba(20, 28, 17, .86) 100% /* base — verde-quase-preto, verde só como apoio */
+  );
+}
+.cta-final__inner {
+  position: relative;
+  z-index: 2;
+}
+
+/* Sopro de terracota — ÚNICO uso de terracota do protótipo, marcado como TESTE
+   A/B (Marina §4.3). Classe modificadora opcional em .cta-final, liga/desliga
+   fácil pra comparação lado a lado; NÃO é a decisão final. */
+.cta-final--terracota-test::after {
+  background:
+    linear-gradient(180deg, var(--terracota-08) 0%, var(--terracota-08) 100%),
+    linear-gradient(
+      180deg,
+      rgba(26, 20, 15, .42) 0%,
+      rgba(26, 20, 15, .66) 55%,
+      rgba(20, 28, 17, .86) 100%
+    );
+}
+
+/* =============================================================================
+   4 · MOVIMENTO — stagger de entrada entre cards (Marina §6: 60–80ms entre
+   cards). Reusa o .section-reveal/IntersectionObserver JÁ existente em
+   efeitos.js — ZERO segundo observer, zero JS novo. O estado oculto só se
+   aplica quando o ancestral tem a classe .section-reveal (adicionada só via
+   JS) e ainda não tem .visible — sem JS, os cards nunca ficam ocultos
+   (progressive enhancement, mesmo contrato do efeitos.js).
+   ============================================================================= */
+.riscos .risco,
+.segmentos__grid .seg {
+  transition: opacity var(--motion-slow), transform var(--motion-slow);
+}
+.section-reveal:not(.visible) .riscos .risco,
+.section-reveal:not(.visible) .segmentos__grid .seg {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.section-reveal.visible .riscos .risco:nth-child(2),
+.section-reveal.visible .segmentos__grid .seg:nth-child(2) { transition-delay: 70ms; }
+.section-reveal.visible .riscos .risco:nth-child(3),
+.section-reveal.visible .segmentos__grid .seg:nth-child(3) { transition-delay: 140ms; }
+.section-reveal.visible .segmentos__grid .seg:nth-child(4) { transition-delay: 210ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .riscos .risco,
+  .segmentos__grid .seg {
+    transition: none;
+  }
+  .section-reveal:not(.visible) .riscos .risco,
+  .section-reveal:not(.visible) .segmentos__grid .seg {
+    opacity: 1;
+    transform: none;
+  }
+}
