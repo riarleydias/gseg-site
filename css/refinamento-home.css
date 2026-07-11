@@ -122,16 +122,19 @@
   }
 }
 
-/* Ajuste de leitura no mobile (a pedido do Riarley, 10/07): o parágrafo de
-   descrição (.seg__desc) em 14px/1.6 (herdado de inicio.css:458) lia pesado
-   demais empilhado 4x na coluna estreita do card. Título (.seg__titulo)
-   NÃO muda de tamanho — só o corpo do parágrafo. Só <900px (desktop já tem
-   seu próprio ajuste em inicio.css:561, 15px, não mexido aqui). */
+/* Editorial (Riarley, 10/07, 2ª rodada): a copy virou 2 frases curtas por
+   card (benefício → especialização/segmentos), cada uma seu <p class="seg__desc">
+   — troca a estratégia "encolher a fonte pra caber texto longo" (1ª rodada,
+   13px) por "texto curto o bastante pra usar fonte confortável". Título
+   (.seg__titulo) NÃO muda de tamanho. Só <900px — desktop segue o ajuste
+   próprio de inicio.css:561 (15px), não mexido aqui. */
 @media (max-width: 899px) {
   .seg__desc {
-    font-size: 13px;
-    line-height: 1.55;
-    letter-spacing: .003em;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .seg__desc + .seg__desc {
+    margin-top: 8px; /* respiro entre a frase de benefício e a de especialização */
   }
 }
 
