@@ -37,6 +37,11 @@
   --areia-18:     rgba(194, 180, 155, .18); /* N7 — acento radial de canto */
   --terracota-08: rgba(111, 70, 52, .08);   /* sopro de terracota — aprovado como padrão do S10 em 10/07 */
 
+  /* ── Camada 2 — acabamento S2/S3 (Marina §2, refinamento-s2-s3-camada2) ────── */
+  --luz-quente:      rgba(255, 250, 242, .42); /* iluminação institucional quente — S2 e S3 (lift varia com a base) */
+  --divisor-cred:    rgba(194, 180, 155, .5);  /* areia 50% — divisórias delicadas da S2 */
+  --pedra-transicao: rgba(222, 213, 198, .35); /* pedra-quente 35% — aprofundamento da base da S3 rumo ao S4 */
+
   /* ── Sombra da marca sobre neutro (Marina §2 — N5/N6; NUNCA cinza) ─────────── */
   --shadow-soft: 0 12px 36px rgba(50, 71, 43, .07);
 
@@ -261,11 +266,34 @@
 /* Item 1 — só troca o background; border-block (hairline que delimita a faixa)
    continua vindo de inicio.css:253, não redeclarado aqui (cascata por
    propriedade). Grão em todos os breakpoints (full-bleed atrás dos blocos,
-   não compete com texto). */
+   não compete com texto).
+   CAMADA 2 (10/07, refinamento-s2-s3-camada2): +luz institucional quente
+   (entre o grão e a base) +sombra inset de transição S1→S2. */
 .prova-faixa {
+  position: relative;
+  isolation: isolate;
   background:
-    repeating-linear-gradient(0deg, var(--grafite-04) 0 1px, transparent 1px 3px),  /* N2-css grão */
-    var(--linho-medio);                                                             /* N1 base flat */
+    repeating-linear-gradient(0deg, var(--grafite-04) 0 1px, transparent 1px 3px),   /* CAMADA 1 — N2-css grão */
+    radial-gradient(82% 78% at 14% 2%, var(--luz-quente) 0%, transparent 58%),        /* CAMADA 2 — luz institucional */
+    var(--linho-medio);                                                              /* CAMADA 1 — N1 base flat */
+  box-shadow: inset 0 12px 22px -6px rgba(36, 53, 32, .05); /* CAMADA 2 — transição S1→S2, verde-escuro 5%, nunca cinza */
+}
+
+/* CAMADA 2 — dissipa o grão nos últimos 36px antes da borda com a S3 (a S3
+   começa limpa, porcelana). Repinta a base linho por cima do grão só na
+   faixa inferior; cor S2 contínua até a hairline. */
+.prova-faixa::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 36px;
+  background: linear-gradient(to bottom, transparent 0%, var(--linho-medio) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+.prova-faixa__inner {
+  position: relative;
+  z-index: 1; /* conteúdo acima do fade — padding/flex de inicio.css:254 intactos, só stacking */
 }
 
 /* Itens 2/3 — contraste dos rótulos (achado do Otto: 9px + opacity .8 era
@@ -280,15 +308,57 @@
   opacity: 1;       /* era .8 */
 }
 
+/* CAMADA 2 — divisórias entre os 3 blocos, mais delicadas (areia 50% em vez
+   de sólida). Mobile: horizontal 70% centralizada. Desktop: vertical 60% de
+   altura, não toca topo/base. position:relative em .cred-bloco+.cred-bloco é
+   layout-neutro (nenhum descendente absoluto hoje). */
+.cred-bloco + .cred-bloco {
+  position: relative;
+  border-top: none; /* substitui a hairline sólida de inicio.css:263 */
+}
+.cred-bloco + .cred-bloco::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 15%; right: 15%; /* 70% de largura, centralizada */
+  height: 1px;
+  background: var(--divisor-cred);
+  pointer-events: none;
+}
+@media (max-width: 599px) {
+  /* marca oculta <600px (inicio.css:980) — 1º bloco visível não herda divisória fantasma */
+  .cred-bloco--marca + .cred-bloco::before { display: none; }
+}
+@media (min-width: 900px) {
+  .cred-bloco + .cred-bloco {
+    border-left: none; /* substitui a hairline sólida de inicio.css:520 — padding-left PERMANECE */
+  }
+  .cred-bloco + .cred-bloco::before {
+    top: 20%; bottom: 20%; /* 60% de altura, centralizada, não toca topo/base */
+    left: 0; right: auto;
+    width: 1px; height: auto;
+    background: var(--divisor-cred);
+  }
+}
+
 /* =============================================================================
    6 · S3 · SERVIÇOS — porcelana + textura linear só nos cantos (Lote 2, item 7)
    Origem: vault/Marina/refinamento-s2-s3-home-gseg_MARINA.md §4.
    Hook de markup: index.html — <section class="secao servicos">.
    ============================================================================= */
 
+/* CAMADA 2 (10/07): +luz suave atrás do cabeçalho +aprofundamento da base
+   rumo à S4. Ambas entram no background, atrás de tudo — os cards .cs são
+   brancos opacos no .container (z-index:1) e cobrem a luz por completo onde
+   existem; ela só aparece no espaço negativo do cabeçalho. isolation:isolate
+   é blindagem de stacking (no-op visual), não muda o z-index:0/1 já correto
+   dos cantos N3'/.container. */
 .servicos {
   position: relative;
-  background: var(--porcelana); /* N1 base flat — mais clara que a S2 */
+  isolation: isolate;
+  background:
+    radial-gradient(52% 40% at 9% 4%, var(--luz-quente) 0%, transparent 55%),     /* CAMADA 2 — luz atrás do cabeçalho */
+    linear-gradient(to bottom, transparent 78%, var(--pedra-transicao) 100%),      /* CAMADA 2 — aprofundamento base → S4 */
+    var(--porcelana);                                                             /* CAMADA 1 — N1 base flat */
   overflow: hidden;              /* recorta os cantos de textura */
 }
 .servicos::before,
@@ -316,6 +386,13 @@
 .servicos > .container {
   position: relative;
   z-index: 1; /* conteúdo sempre acima da textura decorativa */
+}
+
+/* CAMADA 2 — refino de timing do hover, nada mais. translateY/sombra ficaram
+   de fora de propósito: a grade dos cards é flush (gap:1px), então levantar
+   ou dar sombra no card escaparia da grade e revelaria a borda atrás. */
+.servicos .cs {
+  transition-duration: 200ms; /* era 160ms (var(--transition-card), inicio.css:292) */
 }
 
 /* Cantos só em desktop — no mobile o container ocupa a largura toda e o canto
