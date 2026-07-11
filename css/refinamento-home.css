@@ -42,6 +42,9 @@
   --divisor-cred:    rgba(194, 180, 155, .5);  /* areia 50% — divisórias delicadas da S2 */
   --pedra-transicao: rgba(222, 213, 198, .35); /* pedra-quente 35% — aprofundamento da base da S3 rumo ao S4 */
 
+  /* ── S5/S6 (Marina §3, refinamento-s5-s6) ──────────────────────────────────── */
+  --terracota-05: rgba(111, 70, 52, .05); /* forma orgânica quente da S5 (Humana) — token do plano §4.1 */
+
   /* ── Sombra da marca sobre neutro (Marina §2 — N5/N6; NUNCA cinza) ─────────── */
   --shadow-soft: 0 12px 36px rgba(50, 71, 43, .07);
 
@@ -402,4 +405,101 @@
   .servicos::after {
     display: none;
   }
+}
+
+/* =============================================================================
+   7 · S5 · AUTORIDADE (Lívia) — atmosfera Humana (item 8, Marina §4)
+   Origem: vault/Marina/refinamento-s5-s6-home-gseg_MARINA.md.
+   Hook de markup: index.html — <section class="secao autoridade">.
+   ============================================================================= */
+
+.autoridade {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(92% 66% at 28% 6%, var(--luz-quente) 0%, transparent 64%),    /* luz aberta atrás da foto/eyebrow */
+    radial-gradient(58% 62% at 85% 72%, var(--terracota-05) 0%, transparent 58%), /* forma orgânica terracota — calor humano */
+    var(--creme);                                                                /* base off-white */
+}
+
+/* Assenta o retrato na luz — sombra da marca (verde), nunca cinza. Conversa
+   com a drop-shadow verde que o selo CREA já tem (inicio.css:398). */
+.autoridade .sobre__ph {
+  box-shadow: var(--shadow-soft);
+}
+
+/* Timeline — entrada suave, reusa o .section-reveal/IntersectionObserver já
+   existente em efeitos.js. Sem JS novo. Sem section-reveal (ou sem JS), os
+   <li> nunca ficam ocultos — progressive enhancement. */
+.autoridade .timeline .tl {
+  transition: opacity var(--motion-slow), transform var(--motion-slow);
+}
+.section-reveal:not(.visible) .autoridade .timeline .tl {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.section-reveal.visible .autoridade .timeline .tl:nth-child(2) { transition-delay: 70ms; }
+.section-reveal.visible .autoridade .timeline .tl:nth-child(3) { transition-delay: 140ms; }
+.section-reveal.visible .autoridade .timeline .tl:nth-child(4) { transition-delay: 210ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .autoridade .timeline .tl { transition: none; }
+  .section-reveal:not(.visible) .autoridade .timeline .tl { opacity: 1; transform: none; }
+}
+
+/* =============================================================================
+   8 · S6 · CERTIFICAÇÕES — atmosfera Técnica/documental (item 8, Marina §5)
+   Origem: vault/Marina/refinamento-s5-s6-home-gseg_MARINA.md.
+   Régua dura: a GSEG organiza preparação para certificações, ela NÃO certifica
+   — zero selo/carimbo/borda de certificado/forma fechada de documento.
+   ============================================================================= */
+
+.cert {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--linho-medio); /* era --creme-200 (inicio.css:422) */
+}
+
+/* Réguas de formulário abstratas — só linhas horizontais, confinadas ao topo
+   (atrás do cabeçalho/intro/disclaimer), mascaradas antes dos cards. Nunca
+   uma forma fechada que possa ler como documento/selo simulado. */
+.cert::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 360px;
+  z-index: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, var(--grafite-04) 0 1px, transparent 1px 30px);
+  -webkit-mask: linear-gradient(180deg, #000 0%, #000 50%, transparent 100%);
+  mask: linear-gradient(180deg, #000 0%, #000 50%, transparent 100%);
+}
+.cert > .container {
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 767px) {
+  .cert::before { height: 240px; }
+}
+
+/* Entrada contida dos cards. A transition INCLUI border-color/box-shadow de
+   volta — .cert-card já tem transition própria (inicio.css:652) pro hover
+   verde; sem isso o seletor mais específico mataria o hover. */
+.cert__grid .cert-card {
+  transition: opacity var(--motion-slow), transform var(--motion-slow),
+              border-color 200ms ease, box-shadow 200ms ease;
+}
+.section-reveal:not(.visible) .cert__grid .cert-card {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.section-reveal.visible .cert__grid .cert-card:nth-child(2) { transition-delay: 60ms; }
+.section-reveal.visible .cert__grid .cert-card:nth-child(3) { transition-delay: 120ms; }
+.section-reveal.visible .cert__grid .cert-card:nth-child(4) { transition-delay: 180ms; }
+.section-reveal.visible .cert__grid .cert-card:nth-child(5) { transition-delay: 240ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cert__grid .cert-card { transition: border-color 200ms ease, box-shadow 200ms ease; }
+  .section-reveal:not(.visible) .cert__grid .cert-card { opacity: 1; transform: none; }
 }
