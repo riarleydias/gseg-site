@@ -636,28 +636,40 @@
 .logo-mark-gseg svg,
 .logo-mark-gseg img { width: 132px; height: 132px; }
 
-/* #5 · S6 — certificações: ficha editorial de 5 zonas (refinamento 11/07,
-   vault/Marina/refinamento-cards-s6-arquitetura_MARINA.md). Substitui o
-   badge circular por monograma tipográfico + zonas à esquerda. Grade 3+2 e
-   atmosfera da seção (refinamento-home.css) intocadas. */
-.cert__grid { display: flex; flex-direction: column; gap: 20px; }
-.cert-card {
+/* #5 · S6 — certificações: catálogo técnico contínuo (refinamento 11/07,
+   2ª rodada — vault/Diego, briefing do Riarley: "cards" viram "fichas" de
+   um catálogo único, zero border-radius, zero sombra individual, bordas
+   compartilhadas via grid gap:1px (mesmo truque de .segmentos__grid/
+   .cards-servicos). Reduz altura mobile (era 2 parágrafos + zonas soltas,
+   agora 1 parágrafo compacto + sigla/nome na mesma linha). Atmosfera da
+   seção (refinamento-home.css: fundo linho-médio, réguas de fundo)
+   intocada. */
+.cert-catalogo {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1px;
+  background: var(--cor-borda);
+  border: 1px solid var(--cor-borda);
+}
+.cert-ficha:nth-child(1),
+.cert-ficha:nth-child(2),
+.cert-ficha:nth-child(3) { grid-column: span 2; } /* 1ª linha: 3 fichas × 2 = 6 */
+.cert-ficha:nth-child(4),
+.cert-ficha:nth-child(5) { grid-column: span 3; } /* 2ª linha: 2 fichas × 3 = 6, sem célula vazia */
+
+.cert-ficha {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  min-height: 280px;
-  padding: 24px;
+  min-width: 0;
+  padding: 26px;
   background: var(--branco);
-  border: 1px solid var(--cor-borda);
-  border-radius: var(--radius);
-  transition: border-color 200ms ease, box-shadow 200ms ease, background-color 200ms ease;
+  border-left: 1px solid var(--areia); /* identidade + gancho do hover (engrossa) */
+  transition: border-left-width 200ms ease, border-left-color 200ms ease, background-color 200ms ease;
 }
 
-/* Zona 1 — identificação técnica */
-.cert-card__id { margin-bottom: 18px; }
-.cert-card__indice {
-  display: block;
+/* Zona 1 — identificação técnica (índice + categoria, 1 linha só) */
+.cert-ficha__ref {
+  margin-bottom: 14px;
   font-family: var(--font-body);
   font-size: 11px;
   font-weight: var(--fw-semibold);
@@ -665,126 +677,128 @@
   text-transform: uppercase;
   line-height: 1.4;
   color: var(--cor-texto-medio);
-  transition: color 200ms ease;
-}
-.cert-card__regua {
-  display: block;
-  width: 40px;
-  height: 1px;
-  margin-top: 10px;
-  background: var(--areia);
-  transition: background-color 200ms ease;
 }
 
-/* Zona 2 — sigla (monograma tipográfico, SEM container/borda/fundo) + nome */
-.cert-card__sigla {
-  display: block;
+/* Zona 2 — sigla (monograma tipográfico, sem container) + nome. Empilhados
+   no desktop, lado a lado no mobile (media query abaixo). */
+.cert-ficha__identity { display: flex; flex-direction: column; gap: 6px; }
+.cert-ficha__sigla {
   font-family: var(--font-display);
   font-weight: var(--fw-bold);
-  font-size: 40px;
+  font-size: 42px;
   line-height: 1;
   letter-spacing: .02em;
   color: var(--verde-floresta);
-  transition: color 200ms ease;
 }
-.cert-card__nome {
-  margin: 8px 0 0;
+.cert-ficha__sigla-sub { font-size: .55em; letter-spacing: 0; margin-left: 2px; }
+.cert-ficha__nome {
+  margin: 0;
   font-family: var(--font-accent);
   font-weight: var(--fw-semibold);
-  font-size: 20px;
+  font-size: 19px;
   line-height: 1.15;
   color: var(--verde-floresta);
-  transition: color 200ms ease;
 }
 
 /* Zona 3 — contexto */
-.cert-card__contexto {
-  display: block;
-  margin-top: 8px;
+.cert-ficha__contexto {
+  margin: 10px 0 0;
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: var(--fw-semibold);
   letter-spacing: .02em;
   line-height: 1.4;
   color: var(--verde-musgo);
-  transition: color 200ms ease;
 }
 
-/* Zona 4 — corpo, 2 parágrafos curtos; flex:1 empurra a meta pro rodapé */
-.cert-card__corpo { margin-top: 16px; flex: 1 1 auto; }
-.cert-card__corpo p {
+/* Zona 4 — corpo, 1 parágrafo compacto; flex:1 empurra a meta pro rodapé */
+.cert-ficha__copy { margin-top: 14px; flex: 1 1 auto; }
+.cert-ficha__copy p {
   margin: 0;
   font-family: var(--font-body);
   font-size: 14px;
-  line-height: 1.65;
+  line-height: 1.55;
   color: var(--cor-texto-medio);
-  transition: color 200ms ease;
 }
-.cert-card__corpo p + p { margin-top: 16px; }
 
-/* Zona 5 — meta documental (rótulo + valor, sem chips/pílulas) */
-.cert-card__meta {
+/* Zona 5 — meta documental, rótulo + valor em linha (não empilhado) */
+.cert-ficha__meta {
   margin-top: auto;
-  width: 100%;
-  padding-top: 16px;
+  padding-top: 14px;
   border-top: 1px solid var(--cor-borda);
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  transition: border-color 200ms ease;
+  gap: 6px;
 }
-.cert-card__meta-linha { display: flex; flex-direction: column; gap: 2px; }
-.cert-card__meta dt {
+.cert-ficha__meta-row {
+  display: grid;
+  grid-template-columns: 68px 1fr;
+  column-gap: 8px;
+  align-items: baseline;
+}
+.cert-ficha__meta dt {
   margin: 0;
   font-family: var(--font-body);
   font-size: 10px;
   font-weight: var(--fw-semibold);
-  letter-spacing: .14em;
+  letter-spacing: .1em;
   text-transform: uppercase;
-  line-height: 1.3;
   color: var(--cor-texto-medio);
-  transition: color 200ms ease;
 }
-.cert-card__meta dd {
+.cert-ficha__meta dd {
   margin: 0;
   font-family: var(--font-body);
   font-size: 13px;
   font-weight: var(--fw-medium);
   line-height: 1.4;
   color: var(--grafite);
-  transition: color 200ms ease;
 }
 
-/* Hover — inversão completa pra verde institucional (espelha .seg:hover do
-   S8). Nunca cinza. Lift <=2px, sem zoom/rotação/glow/flip. */
-.cert-card:hover {
-  background: var(--verde-marca);
-  border-color: var(--verde-marca);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(var(--verde-marca-rgb), .16);
+/* Hover/foco — faixa lateral engrossa (prioridade explícita do Riarley sobre
+   a inversão total pra verde: a S6 tem texto pra ler, inversão competia com
+   a leitura). Nunca cinza, nunca sombra, nunca zoom/rotação. */
+.cert-ficha:hover,
+.cert-ficha:focus-within {
+  border-left-width: 4px;
+  border-left-color: var(--verde-musgo);
+  background: var(--porcelana);
 }
-.cert-card:hover .cert-card__indice { color: var(--texto-claro-2); }
-.cert-card:hover .cert-card__regua { background: var(--areia); }
-.cert-card:hover .cert-card__sigla { color: var(--areia); }
-.cert-card:hover .cert-card__nome { color: var(--texto-claro); }
-.cert-card:hover .cert-card__contexto { color: var(--texto-claro-2); }
-.cert-card:hover .cert-card__corpo p { color: var(--texto-claro-2); }
-.cert-card:hover .cert-card__meta { border-top-color: var(--linha-clara); }
-.cert-card:hover .cert-card__meta dt { color: var(--areia); }
-.cert-card:hover .cert-card__meta dd { color: var(--texto-claro); }
+.cert-ficha:hover .cert-ficha__sigla,
+.cert-ficha:focus-within .cert-ficha__sigla { color: var(--verde-floresta); }
 
 .cert__cta { display: flex; justify-content: center; margin-top: 40px; }
 .cert__cta .btn { width: 100%; }
 
+@media (max-width: 899px) {
+  .cert-catalogo {
+    display: block;
+    background: var(--branco);
+    border: none;
+  }
+  .cert-ficha {
+    border-left: none;
+    border-bottom: 1px solid var(--cor-borda);
+    padding: 20px 4px;
+  }
+  .cert-ficha:last-child { border-bottom: none; }
+  .cert-ficha:hover,
+  .cert-ficha:focus-within { background: var(--porcelana); }
+  .cert-ficha__identity {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: baseline;
+    column-gap: 12px;
+  }
+  .cert-ficha__sigla { font-size: 32px; }
+  .cert-ficha__contexto { margin-top: 4px; }
+}
+
 @media (min-width: 900px) {
-  .cert-card { padding: 32px 28px; min-height: 300px; }
-  .cert-card__sigla { font-size: 52px; }
-  .cert-card__nome { font-size: 22px; }
-  .cert-card__corpo p + p { margin-top: 12px; }
+  .cert-ficha { padding: 28px 26px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cert-card:hover { transform: none; }
+  .cert-ficha { transition: none; }
 }
 
 /* #6 · S7 — metadados + CTA por card (sobre fundo verde: acentos em areia) */

@@ -483,28 +483,25 @@
   .cert::before { height: 240px; }
 }
 
-/* Entrada contida dos cards. A transition INCLUI background-color/border-color/
-   box-shadow de volta — .cert-card já tem transition própria (inicio.css) pro
-   hover verde (inversão completa desde o refinamento de arquitetura de 11/07);
-   sem isso o seletor mais específico mataria o hover. transform desceu de
-   --motion-slow (420ms) pra 240ms: serve o rise do reveal E fica dentro da
-   faixa 180-240ms pedida pro lift do hover (não há conflito — o reveal só
-   aplica transform enquanto :not(.visible); visível, o hover assume). */
-.cert__grid .cert-card {
-  transition: opacity var(--motion-slow), transform 240ms cubic-bezier(.2, .7, .2, 1),
-              background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+/* Entrada contida das fichas (catálogo contínuo, 2ª rodada 11/07 — era
+   .cert__grid .cert-card, renomeado pra .cert-catalogo .cert-ficha). A
+   transition INCLUI border-left-width/border-left-color/background-color de
+   volta — .cert-ficha já tem transition própria (inicio.css) pro hover de
+   faixa lateral; sem isso o seletor mais específico mataria o hover. */
+.cert-catalogo .cert-ficha {
+  transition: opacity var(--motion-slow), transform var(--motion-slow),
+              border-left-width 200ms ease, border-left-color 200ms ease, background-color 200ms ease;
 }
-.section-reveal:not(.visible) .cert__grid .cert-card {
+.section-reveal:not(.visible) .cert-catalogo .cert-ficha {
   opacity: 0;
   transform: translateY(12px);
 }
-.section-reveal.visible .cert__grid .cert-card:nth-child(2) { transition-delay: 60ms; }
-.section-reveal.visible .cert__grid .cert-card:nth-child(3) { transition-delay: 120ms; }
-.section-reveal.visible .cert__grid .cert-card:nth-child(4) { transition-delay: 180ms; }
-.section-reveal.visible .cert__grid .cert-card:nth-child(5) { transition-delay: 240ms; }
+.section-reveal.visible .cert-catalogo .cert-ficha:nth-child(2) { transition-delay: 60ms; }
+.section-reveal.visible .cert-catalogo .cert-ficha:nth-child(3) { transition-delay: 120ms; }
+.section-reveal.visible .cert-catalogo .cert-ficha:nth-child(4) { transition-delay: 180ms; }
+.section-reveal.visible .cert-catalogo .cert-ficha:nth-child(5) { transition-delay: 240ms; }
 
 @media (prefers-reduced-motion: reduce) {
-  .cert__grid .cert-card { transition: background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease; }
-  .cert-card:hover { transform: none; }
-  .section-reveal:not(.visible) .cert__grid .cert-card { opacity: 1; transform: none; }
+  .cert-catalogo .cert-ficha { transition: border-left-width 200ms ease, border-left-color 200ms ease, background-color 200ms ease; }
+  .section-reveal:not(.visible) .cert-catalogo .cert-ficha { opacity: 1; transform: none; }
 }
