@@ -483,12 +483,16 @@
   .cert::before { height: 240px; }
 }
 
-/* Entrada contida dos cards. A transition INCLUI border-color/box-shadow de
-   volta — .cert-card já tem transition própria (inicio.css:652) pro hover
-   verde; sem isso o seletor mais específico mataria o hover. */
+/* Entrada contida dos cards. A transition INCLUI background-color/border-color/
+   box-shadow de volta — .cert-card já tem transition própria (inicio.css) pro
+   hover verde (inversão completa desde o refinamento de arquitetura de 11/07);
+   sem isso o seletor mais específico mataria o hover. transform desceu de
+   --motion-slow (420ms) pra 240ms: serve o rise do reveal E fica dentro da
+   faixa 180-240ms pedida pro lift do hover (não há conflito — o reveal só
+   aplica transform enquanto :not(.visible); visível, o hover assume). */
 .cert__grid .cert-card {
-  transition: opacity var(--motion-slow), transform var(--motion-slow),
-              border-color 200ms ease, box-shadow 200ms ease;
+  transition: opacity var(--motion-slow), transform 240ms cubic-bezier(.2, .7, .2, 1),
+              background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
 }
 .section-reveal:not(.visible) .cert__grid .cert-card {
   opacity: 0;
@@ -500,6 +504,7 @@
 .section-reveal.visible .cert__grid .cert-card:nth-child(5) { transition-delay: 240ms; }
 
 @media (prefers-reduced-motion: reduce) {
-  .cert__grid .cert-card { transition: border-color 200ms ease, box-shadow 200ms ease; }
+  .cert__grid .cert-card { transition: background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease; }
+  .cert-card:hover { transform: none; }
   .section-reveal:not(.visible) .cert__grid .cert-card { opacity: 1; transform: none; }
 }
