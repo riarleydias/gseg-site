@@ -1,16 +1,20 @@
 /* =============================================================================
-   GSEG · refinamento-home.css — PROTÓTIPO isolado (Etapa 2, S4 · S8 · S10)
+   GSEG · refinamento-home.css — refinamento visual da home (branch de trabalho)
    -----------------------------------------------------------------------------
    Autoria : Diego — front-end vanilla · FATOR Engenharia de Software
-   Origem  : vault/Marina/prototipo-etapa2-s4-s8-s10_MARINA.md (spec de direção
-             de arte) + .claude/clientes/gseg/plano-refinamento-visual-home_REFERENCIA.md.
-   Branch  : refactor/gseg-refinamento-visual (worktree isolado — NÃO produção).
+   Origem  : vault/Marina/prototipo-etapa2-s4-s8-s10_MARINA.md (S4/S8/S10) +
+             vault/Marina/refinamento-s2-s3-home-gseg_MARINA.md (S2/S3) +
+             .claude/clientes/gseg/plano-refinamento-visual-home_REFERENCIA.md.
+   Branch  : refactor/gseg-refinamento-visual (worktree isolado — NÃO produção
+             ainda: S8/S10 usam fotos placeholder até o Lucas gerar as reais).
    Carregado DEPOIS de inicio.css (ver index.html <head>).
 
-   ⚠️ PROTÓTIPO — NÃO É SISTEMA APROVADO.
-   Os tokens abaixo são NOVOS e vivem só neste arquivo até o Riarley aprovar
-   visualmente o protótipo (§8 do doc da Marina). Não copiar para
-   variaveis_LUCAS.css nem para o DESIGN.md antes disso.
+   ✅ TOKENS OFICIAIS desde 10/07 — aprovados pelo Riarley via protótipo
+   renderizado (S4/S8/S10) e já documentados em `.claude/clientes/gseg/DESIGN.md`
+   ("Refinamento visual da HOME — Etapa 2 aprovada"). Seguem vivendo só neste
+   arquivo (não em variaveis_LUCAS.css) até a branch ser mergeada em produção,
+   mas não são mais protótipo pendente de aprovação — S2/S3 (Lote 2, abaixo)
+   já foram especificados reusando esses tokens com confiança total.
 
    ⚠️ FOTOS PLACEHOLDER — as 5 fotografias reais (4 de Segmentos + 1 do CTA)
    ainda NÃO existem (só os callsheets de prompt do Lucas, sem ferramenta de
@@ -246,5 +250,79 @@
   .section-reveal:not(.visible) .segmentos__grid .seg {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* =============================================================================
+   5 · S2 · CREDENCIAIS — linho médio + grão institucional (Lote 2, item 7)
+   Origem: vault/Marina/refinamento-s2-s3-home-gseg_MARINA.md §3.
+   ============================================================================= */
+
+/* Item 1 — só troca o background; border-block (hairline que delimita a faixa)
+   continua vindo de inicio.css:253, não redeclarado aqui (cascata por
+   propriedade). Grão em todos os breakpoints (full-bleed atrás dos blocos,
+   não compete com texto). */
+.prova-faixa {
+  background:
+    repeating-linear-gradient(0deg, var(--grafite-04) 0 1px, transparent 1px 3px),  /* N2-css grão */
+    var(--linho-medio);                                                             /* N1 base flat */
+}
+
+/* Itens 2/3 — contraste dos rótulos (achado do Otto: 9px + opacity .8 era
+   risco de legibilidade). Sobe 1px e remove a opacity do .cred-reg (era o que
+   mais derrubava o contraste efetivo). .cred-num/.cred-crea/.cred-local
+   intactos — já passavam com folga. */
+.cred-label {
+  font-size: 10px; /* era 9px, inicio.css:269 */
+}
+.cred-reg {
+  font-size: 10px; /* era 9px, inicio.css:272 */
+  opacity: 1;       /* era .8 */
+}
+
+/* =============================================================================
+   6 · S3 · SERVIÇOS — porcelana + textura linear só nos cantos (Lote 2, item 7)
+   Origem: vault/Marina/refinamento-s2-s3-home-gseg_MARINA.md §4.
+   Hook de markup: index.html — <section class="secao servicos">.
+   ============================================================================= */
+
+.servicos {
+  position: relative;
+  background: var(--porcelana); /* N1 base flat — mais clara que a S2 */
+  overflow: hidden;              /* recorta os cantos de textura */
+}
+.servicos::before,
+.servicos::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  width: clamp(160px, 20vw, 280px);
+  height: clamp(160px, 20vw, 280px);
+  background: repeating-linear-gradient(45deg, var(--grafite-04) 0 1px, transparent 1px 8px); /* N3' */
+}
+.servicos::before {
+  top: 0;
+  right: 0;
+  -webkit-mask: radial-gradient(120% 120% at 100% 0%, #000 0%, transparent 62%);
+  mask: radial-gradient(120% 120% at 100% 0%, #000 0%, transparent 62%);
+}
+.servicos::after {
+  bottom: 0;
+  left: 0;
+  -webkit-mask: radial-gradient(120% 120% at 0% 100%, #000 0%, transparent 62%);
+  mask: radial-gradient(120% 120% at 0% 100%, #000 0%, transparent 62%);
+}
+.servicos > .container {
+  position: relative;
+  z-index: 1; /* conteúdo sempre acima da textura decorativa */
+}
+
+/* Cantos só em desktop — no mobile o container ocupa a largura toda e o canto
+   encostaria no texto; a diferença de cor entre S2/S3/S4 já faz o ritmo. */
+@media (max-width: 767px) {
+  .servicos::before,
+  .servicos::after {
+    display: none;
   }
 }
