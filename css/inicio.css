@@ -776,13 +776,36 @@
     border: none;
   }
   .cert-ficha {
+    position: relative;
     border-left: none;
-    border-bottom: 1px solid var(--cor-borda);
-    padding: 20px 4px;
+    padding: 16px 14px;
   }
-  .cert-ficha:last-child { border-bottom: none; }
   .cert-ficha:hover,
   .cert-ficha:focus-within { background: var(--porcelana); }
+
+  /* Divisória editorial entre fichas (refinamento 11/07, 3ª rodada): troca o
+     border-bottom simples por uma linha fina + um trecho curto de acento
+     terracota — único uso de terracota desta rodada, concentrado aqui, pra
+     não virar cor dominante. Recuada das laterais (não encosta na borda da
+     tela). Sem pseudo na 1ª ficha (não há divisória "antes" dela). */
+  .cert-ficha + .cert-ficha::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 18px; right: 18px;
+    height: 1px;
+    background: var(--areia);
+    opacity: .65;
+  }
+  .cert-ficha + .cert-ficha::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 18px;
+    width: 28px;
+    height: 2px;
+    background: var(--terracota);
+    opacity: .85;
+  }
+
   .cert-ficha__identity {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -790,7 +813,9 @@
     column-gap: 12px;
   }
   .cert-ficha__sigla { font-size: 32px; }
+  .cert-ficha__nome { font-size: 18px; font-weight: var(--fw-bold); } /* 600->700: mais peso relativo sem crescer em altura */
   .cert-ficha__contexto { margin-top: 4px; }
+  .cert-ficha__meta dd { color: var(--verde-musgo); } /* era --grafite — reforça a paleta, token já existente */
 }
 
 @media (min-width: 900px) {
