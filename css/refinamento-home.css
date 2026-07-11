@@ -45,6 +45,10 @@
   /* ── S5/S6 (Marina §3, refinamento-s5-s6) ──────────────────────────────────── */
   --terracota-05: rgba(111, 70, 52, .05); /* forma orgânica quente da S5 (Humana) — token do plano §4.1 */
 
+  /* ── S7/S8/S9 (Marina, refinamento-s7-s8-s9) ───────────────────────────────── */
+  --grao-claro:   rgba(242, 241, 236, .04); /* grão estrutural claro sobre superfícies escuras (S7) — contraparte de --grafite-04 */
+  --trilha-passo: rgba(194, 180, 155, .45); /* trilha de progressão 1→2→3 (areia 45%) sobre o verde da S7 */
+
   /* ── Sombra da marca sobre neutro (Marina §2 — N5/N6; NUNCA cinza) ─────────── */
   --shadow-soft: 0 12px 36px rgba(50, 71, 43, .07);
 
@@ -111,9 +115,18 @@
    2 · S8 · SEGMENTOS — faixa fotográfica full-bleed nos 4 cards (itens 5/6/7/8)
    ============================================================================= */
 
-/* Item 6 — fundo da seção: porcelana lisa (a foto é a textura, sem grão aqui). */
+/* Item 6 — fundo da seção: porcelana lisa (a foto é a textura, sem grão aqui).
+   Camada 2 (11/07, refinamento-s7-s8-s9): S8 era a única seção clara sem o
+   acabamento que S3/S5/S6 já têm. +isolation +luz de cabeçalho, discreta
+   sobre porcelana (mesmo sistema de S3) — amortece a transição S7(verde)→S8.
+   Fotos/cards/hover/grade/reveal continuam intocados, zero textura aqui
+   (a foto é a textura, regra da atmosfera Setorial). */
 .segmentos {
-  background: var(--porcelana);
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(60% 45% at 12% 8%, var(--luz-quente) 0%, transparent 58%),
+    var(--porcelana);
 }
 
 /* Item 7 — reestrutura full-bleed: o <a class="seg"> perde o padding (que agora
@@ -504,4 +517,86 @@
 @media (prefers-reduced-motion: reduce) {
   .cert-catalogo .cert-ficha { transition: border-left-width 200ms ease, border-left-color 200ms ease, background-color 200ms ease; }
   .section-reveal:not(.visible) .cert-catalogo .cert-ficha { opacity: 1; transform: none; }
+}
+
+/* =============================================================================
+   9 · S7 · MÉTODO — grão estrutural vertical + trilha de progressão
+   Origem: vault/Marina/refinamento-s7-s8-s9-home-gseg_MARINA.md §3.
+   REGRA DURA: background verde-floresta de .diag (inicio.css:435) NÃO é
+   redeclarado — S7 é a única seção intermediária que continua verde forte
+   de propósito. Tudo aqui é camada por cima.
+   ============================================================================= */
+
+.diag {
+  position: relative;
+  isolation: isolate;
+}
+.diag::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 280px;
+  z-index: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(90deg, var(--grao-claro) 0 1px, transparent 1px 40px);
+  -webkit-mask: linear-gradient(180deg, #000 0%, #000 45%, transparent 100%);
+  mask: linear-gradient(180deg, #000 0%, #000 45%, transparent 100%);
+}
+.diag > .container {
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 899.98px) {
+  .diag::before { height: 200px; }
+}
+
+/* Trilha de progressão 1→2→3 — só desktop. No mobile os passos empilham e o
+   <ol> numerado já lê como sequência; uma trilha vertical seria frágil de
+   ancorar (descrições de comprimento variável) — decisão deliberada de não
+   levar a trilha pro mobile (Marina §3.3). */
+@media (min-width: 900px) {
+  .passos {
+    position: relative;
+  }
+  .passos::before {
+    content: "";
+    position: absolute;
+    top: 60px; /* padding-top(34px) + raio do círculo(26px) — recalcular se algum mudar */
+    left: 16.67%; right: 16.67%;
+    height: 1.5px;
+    background: var(--trilha-passo);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .passo {
+    z-index: 1; /* .passo já é position:relative (inicio.css:443) */
+  }
+  .passo__num {
+    background: var(--verde-floresta); /* preenche o círculo (mesma cor do fundo) — mascara a trilha no interior, ela só aparece entre os nós */
+  }
+}
+
+/* =============================================================================
+   10 · S9 · FAQ — fundo limpo + luz mínima + numeral ativo no estado aberto
+   Origem: vault/Marina/refinamento-s7-s8-s9-home-gseg_MARINA.md §5.
+   Escopo .faq (não .secao--branca, classe compartilhada com outras seções).
+   ============================================================================= */
+
+.faq {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(60% 40% at 50% 0%, var(--luz-quente) 0%, transparent 60%),
+    var(--branco);
+}
+
+/* Numeral decorativo (aria-hidden, achado do Otto: areia sobre branco ≈1.9:1)
+   vira índice inativo intencional — ativa pra verde-floresta junto com o
+   resto do estado aberto (borda + ícone já ativam), sem JS novo (engancha
+   na classe .faq__item--aberta que o faq.js já aplica). */
+.faq__num {
+  transition: color var(--transition-faq);
+}
+.faq__item--aberta .faq__num {
+  color: var(--verde-floresta);
 }
