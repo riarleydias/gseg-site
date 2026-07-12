@@ -600,3 +600,59 @@
 .faq__item--aberta .faq__num {
   color: var(--verde-floresta);
 }
+
+/* =============================================================================
+   11 · S1 · HERO — sequência de entrada + fecho de saída (S1→S2)
+   Origem: vault/Marina/refinamento-item11-globais-home-gseg_MARINA.md §1.
+   Header/menu/WhatsApp/rodapé NÃO mudam (auditados, já camada-2-consistentes
+   desde a Fase 1) — ver mesma spec §2-4. Único arquivo tocado neste item.
+   ============================================================================= */
+
+@keyframes heroSettle {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* .hero__titulo (LCP) fica de fora de propósito — pinta imediato, sem fade.
+   O headline crava, o resto assenta ao redor dele. */
+.hero__badge,
+.hero__risco,
+.hero__texto,
+.hero__ctas,
+.hero__trust {
+  animation: heroSettle var(--motion-slow) both;
+}
+.hero__badge { animation-delay: 60ms; }
+.hero__risco { animation-delay: 180ms; }
+.hero__texto { animation-delay: 240ms; }
+.hero__ctas  { animation-delay: 320ms; }
+.hero__trust { animation-delay: 400ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__badge, .hero__risco, .hero__texto, .hero__ctas, .hero__trust {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Fecho inferior do hero — handoff fecha-escuro (verde-marca) → abre-quente
+   (S2 já abre com --luz-quente + grão). Camada separada do overlay ::before
+   (legibilidade AA, não mexer); z-index:1, abaixo do conteúdo (__inner z:2). */
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 110px;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(36, 53, 32, .32) 0%,
+    rgba(36, 53, 32, .10) 50%,
+    transparent 100%
+  );
+}
+@media (min-width: 900px) {
+  .hero::after { height: 150px; }
+}
