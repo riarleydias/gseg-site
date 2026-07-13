@@ -39,6 +39,15 @@
 .sobre__ph {
   aspect-ratio: 4 / 5;
   border-radius: var(--radius-card);
+  box-shadow: var(--shadow-elevated);   /* E6 — profundidade, âncora da página */
+}
+.sobre__ph::before {                    /* overlay de leitura p/ a placa: acima da <img> (z-index:2), abaixo da placa */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(36,53,32,.18) 100%);
+  pointer-events: none;
+  z-index: 3;
 }
 .sobre__placa {
   position: absolute;
@@ -90,7 +99,9 @@
 
 .sobre__citacao {
   position: relative;
-  background: var(--verde-floresta);
+  background:
+    repeating-linear-gradient(90deg, rgba(242,241,236,.04) 0 1px, transparent 1px 84px),  /* E2 */
+    linear-gradient(168deg, var(--verde-floresta) 0%, var(--verde-escuro) 100%);           /* E1 */
   color: var(--texto-claro);
   font-family: var(--font-accent);
   font-style: italic;
@@ -98,6 +109,7 @@
   line-height: 1.4;
   padding: var(--space-5) var(--space-6);
   border-radius: var(--radius-card);
+  border-left: 2px solid var(--areia);   /* E7 — hairline: marcador estrutural de citação */
   margin-block: var(--space-2);
 }
 .sobre__citacao i {
@@ -176,6 +188,11 @@
   background: var(--branco);
   border: 1px solid var(--cor-borda);
   border-radius: var(--radius);
+  transition: box-shadow var(--transition), border-color var(--transition);
+}
+.metodo-card:hover {
+  box-shadow: var(--shadow-card);        /* E5 */
+  border-color: var(--verde-musgo);
 }
 .metodo-card__icone {
   width: 40px; height: 40px;
@@ -198,7 +215,15 @@
 
 /* B · Especialidade técnica */
 .esp-lista { display: grid; grid-template-columns: 1fr; gap: var(--space-3); list-style: none; }
-.esp-item { display: flex; align-items: flex-start; gap: var(--space-3); font-size: var(--fs-small); color: var(--grafite); }
+.esp-item {
+  display: flex; align-items: flex-start; gap: var(--space-3);
+  font-size: var(--fs-small); color: var(--grafite);
+  transition: box-shadow var(--transition), border-color var(--transition);
+}
+.esp-item:hover {
+  box-shadow: var(--shadow-card);        /* E5 */
+  border-color: var(--verde-musgo);
+}
 .esp-check {
   width: 12px; height: 12px;
   flex: none;
@@ -219,6 +244,11 @@
   padding: 28px;
   background: var(--cor-fundo-card);
   border-radius: var(--radius);
+  transition: box-shadow var(--transition), border-color var(--transition);
+}
+.depo-card:hover {
+  box-shadow: var(--shadow-card);        /* E5 */
+  border-color: var(--verde-musgo);
 }
 .depo-card__aspas {
   display: block;
