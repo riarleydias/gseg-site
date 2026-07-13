@@ -88,3 +88,45 @@
 /* .benef-comp__col--risco / --ganho: NÃO TOCAR — cores semânticas
    documentadas (vermelho=custo/risco, verde=ganho). O tratamento acima
    mexe só no fundo da <section>, atrás das duas colunas. */
+
+/* =============================================================================
+   4 · SERVIÇOS — 1 seção nova de 3 (acordeão). Intro (verde+foto) e CTA fecho
+   (gradiente verde já tratado) ficam intocados — âncoras/apoio já resolvidos.
+   Origem: Marina §2.2.
+   ============================================================================= */
+
+.servicos {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(52% 40% at 9% 4%, var(--luz-quente) 0%, transparent 55%),
+    linear-gradient(to bottom, transparent 82%, var(--pedra-transicao) 100%),
+    var(--porcelana);
+}
+
+/* =============================================================================
+   5 · SEGMENTOS — 2 seções novas de 4. Intro e a banda de escopo/stats
+   (foto+overlay) ficam intocadas — âncora verde + banda fotográfica.
+   Origem: Marina §2.4.
+   ============================================================================= */
+
+.seg-blocos {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(60% 45% at 10% 5%, var(--luz-quente) 0%, transparent 58%),
+    var(--porcelana);
+}
+@media (min-width: 900px) {
+  .seg-bloco__box { transition: box-shadow var(--motion-base); }
+  .seg-bloco__box:hover,
+  .seg-bloco__box:focus-within { box-shadow: var(--shadow-soft); }
+}
+.seg-cta {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(80% 70% at 50% 0%, var(--luz-quente) 0%, transparent 62%),
+    radial-gradient(50% 60% at 84% 82%, var(--terracota-05) 0%, transparent 58%),
+    var(--creme);
+}
