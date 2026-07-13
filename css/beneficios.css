@@ -45,18 +45,19 @@
 .benef-hero__titulo em { font-style: italic; color: var(--areia); }
 .benef-hero__texto { color: var(--texto-claro-2); margin-top: var(--space-4); max-width: 60ch; font-size: 16px; line-height: 1.7; }
 
-/* ---------- 6 cards: seção verde, grid 3col, gap 1px, cards brancos sem radius ---------- */
+/* ---------- 6 cards: campo claro (porcelana), grid 3col, gap 1px, cards brancos sem radius ----------
+   Reconciliação cromática 13/07 (Cenário B — vault/Marina/beneficios-mapa-ocupacao-cromatica-baseline_MARINA.md):
+   bloco sem função semântica (não é âncora nem comparativo) — vira claro, mesma receita R1
+   já usada em Serviços/Segmentos (porcelana + luz sutil). Verde preservado em ícones/números/hover. */
 .benef-cards-secao {
   background:
-    repeating-linear-gradient(90deg, rgba(242,241,236,.04) 0 1px, transparent 1px 96px),  /* E2b */
-    linear-gradient(180deg, var(--verde-floresta) 0%, var(--verde-escuro) 100%);           /* E1 (180deg vertical) */
+    radial-gradient(60% 45% at 10% 5%, var(--luz-quente) 0%, transparent 58%),
+    var(--porcelana);
   padding: 64px 24px;
 }
 .benef-cards {
   display: grid; grid-template-columns: 1fr; gap: 1px;
-  background:
-    repeating-linear-gradient(90deg, rgba(242,241,236,.04) 0 1px, transparent 1px 96px),  /* E2b */
-    linear-gradient(180deg, var(--verde-floresta) 0%, var(--verde-escuro) 100%);           /* E1 */
+  background: var(--porcelana);
 }
 .bcard { background: var(--bf-card); padding: 36px 32px; border: 0; border-radius: 0; transition: box-shadow var(--motion-base); }
 .bcard:hover { box-shadow: var(--shadow-soft); } /* auditoria premium 13/07: alinhado ao token de hover de card (era --shadow-elevated) */
@@ -112,15 +113,19 @@
 .benef-final { background: var(--creme); padding-block: 72px; }
 .benef-final__inner { max-width: 860px; }
 .benef-final__texto { display: flex; flex-direction: column; gap: 14px; color: var(--bf-texto); line-height: 1.8; margin: 16px 0 32px; }
+/* Reconciliação cromática 13/07 (Cenário B): faixa de credenciais vira clara (linho médio
+   documental) — bloco sem função semântica própria (autoridade vem da tipografia/números,
+   não do fundo verde). Geometria da luz distinta da S2 da home, pra não repetir a faixa. */
 .benef-cred {
   display: grid; grid-template-columns: 1fr; gap: 24px;
   background:
-    repeating-linear-gradient(90deg, rgba(242,241,236,.04) 0 1px, transparent 1px 84px),  /* E2 */
-    linear-gradient(168deg, var(--verde-floresta) 0%, var(--verde-escuro) 100%);           /* E1 */
+    repeating-linear-gradient(0deg, var(--grafite-04) 0 1px, transparent 1px 3px),
+    radial-gradient(70% 60% at 50% 0%, var(--luz-quente) 0%, transparent 60%),
+    var(--linho-medio);
   padding: 32px 40px; margin-bottom: 32px;
 }
-.benef-cred__num { display: block; font-family: var(--bf-display); font-weight: 700; font-size: clamp(24px, 3vw, 36px); line-height: 1.1; color: var(--bf-creme-cred); }
-.benef-cred__label { display: block; margin-top: 8px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--bf-verde-claro); }
+.benef-cred__num { display: block; font-family: var(--bf-display); font-weight: 700; font-size: clamp(24px, 3vw, 36px); line-height: 1.1; color: var(--verde-floresta); } /* era --bf-creme-cred (claro, pensado pra fundo escuro) */
+.benef-cred__label { display: block; margin-top: 8px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--verde-musgo); } /* era --bf-verde-claro (claro, pensado pra fundo escuro) */
 
 /* ===================== RESPONSIVO (375 / 768 / 1024+) ===================== */
 @media (min-width: 768px) {
