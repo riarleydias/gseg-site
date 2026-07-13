@@ -1,0 +1,90 @@
+/* =============================================================================
+   GSEG · refinamento-paginas.css — refinamento visual das páginas internas
+   -----------------------------------------------------------------------------
+   Autoria : Diego — front-end vanilla · FATOR Engenharia de Software
+   Origem  : vault/Marina/refinamento-item16-paginas-internas-gseg_MARINA.md
+             (item 16 do plano — Lote 5: Sobre, Serviços, Benefícios,
+             Segmentos, FAQ, Contato, 404).
+   Carregado DEPOIS do CSS de cada página (vence por cascata os fundos lisos
+   atuais) e DEPOIS de refinamento-tokens.css (tokens compartilhados).
+   Branch: refactor/gseg-refinamento-visual (worktree isolado — NÃO produção).
+   Regra-mãe: zero mudança de copy/HTML/estrutura — só fundo/luz/textura.
+   Verde-floresta nunca redeclarado como fundo novo; cada página mantém 1
+   âncora verde (o hero/intro que já tinha).
+   ============================================================================= */
+
+/* =============================================================================
+   1 · SOBRE — 4 seções, 4 receitas distintas (quebra creme/creme-200/creme/creme-200)
+   Origem: Marina §2.1. Composição existente (moldura da foto, citação, cards)
+   permanece intocada — só o fundo de cada <section>.
+   ============================================================================= */
+
+.sobre {
+  /* R4 · clara-humana */
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(92% 66% at 24% 6%, var(--luz-quente) 0%, transparent 64%),
+    radial-gradient(58% 62% at 85% 72%, var(--terracota-05) 0%, transparent 58%),
+    var(--creme);
+}
+.metodologia {
+  /* R2 · linho-grão (vence .secao--alt) */
+  position: relative;
+  isolation: isolate;
+  background:
+    repeating-linear-gradient(0deg, var(--grafite-04) 0 1px, transparent 1px 3px),
+    radial-gradient(82% 78% at 14% 4%, var(--luz-quente) 0%, transparent 58%),
+    var(--linho-medio);
+}
+.especialidade {
+  /* R1 · clara-luz */
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(60% 45% at 10% 6%, var(--luz-quente) 0%, transparent 58%),
+    var(--porcelana);
+}
+.depoimentos {
+  /* R3 · neutro-profundo (vence .secao--alt) */
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(82% 120% at 92% 6%, var(--areia-18) 0%, transparent 58%),
+    repeating-linear-gradient(0deg, var(--grafite-04) 0 1px, transparent 1px 3px),
+    linear-gradient(176deg, var(--linho-medio) 0%, var(--pedra-quente) 100%);
+}
+
+@media (min-width: 900px) {
+  .depoimentos .depo-card { transition: box-shadow var(--motion-base); }
+  .depoimentos .depo-card:hover,
+  .depoimentos .depo-card:focus-within { box-shadow: var(--shadow-soft); }
+}
+
+/* =============================================================================
+   3 · BENEFÍCIOS — toque mínimo (identidade própria --bf-*, outlier aprovado)
+   Origem: Marina §2.3 + auditoria §3.2. .benef-hero JÁ tem grão da Fase 1
+   (10/07, commit 723f173 — repeating-linear-gradient 90deg .045 sobre o
+   verde) — confirmado no worktree após o merge de main. NÃO redeclarar
+   grão no hero (duplicaria textura). Cards/gutter/credenciais intocados —
+   verde é funcional ali, não decorativo.
+   ============================================================================= */
+
+.benef-comp {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(58% 42% at 12% 6%, var(--luz-quente) 0%, transparent 58%),
+    var(--creme-200); /* base mantida — só ganha luz */
+}
+.benef-final {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(90% 60% at 22% 6%, var(--luz-quente) 0%, transparent 64%),
+    radial-gradient(56% 60% at 86% 74%, var(--terracota-05) 0%, transparent 58%),
+    var(--creme);
+}
+/* .benef-comp__col--risco / --ganho: NÃO TOCAR — cores semânticas
+   documentadas (vermelho=custo/risco, verde=ganho). O tratamento acima
+   mexe só no fundo da <section>, atrás das duas colunas. */
