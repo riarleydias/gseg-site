@@ -130,3 +130,50 @@
     radial-gradient(50% 60% at 84% 82%, var(--terracota-05) 0%, transparent 58%),
     var(--creme);
 }
+
+/* =============================================================================
+   6 · FAQ — página inteira, 1 seção. Fundo limpo, luz mínima, zero textura
+   (o plano quer a FAQ calma). Accordion, foto aside e cta box intocados.
+   Origem: Marina §2.5 + §4 (acessibilidade).
+   ============================================================================= */
+
+.faq-secao {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(60% 40% at 50% 0%, var(--luz-quente) 0%, transparent 60%),
+    var(--porcelana);
+}
+/* Não replicar a ativação de .faq__num da home aqui: em faq.html o
+   .faq__num já é var(--verde-marca) (contraste ok), não o areia da home. */
+
+/* =============================================================================
+   7 · CONTATO — 1 seção nova. Hero (foto+overlay) intocado. Luz só no
+   topo-esquerda para não reduzir a distinção campo branco × fundo — a
+   coluna do formulário (à direita, desktop) fica sobre porcelana lisa.
+   Origem: Marina §2.6 + §4 (acessibilidade de formulário).
+   ============================================================================= */
+
+.contato-secao {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(46% 40% at 6% 4%, var(--luz-quente) 0%, transparent 60%),
+    var(--porcelana);
+}
+/* Formulário (input/select/textarea, :focus, [aria-invalid], .form-msg,
+   cards de contato) NÃO tocado — wiring Web3Forms + formulario.js preservado. */
+
+/* =============================================================================
+   8 · 404 — página de erro deve tranquilizar, não alarmar. Clara-humana leve.
+   Origem: Marina §2.7. Sem CSS de página própria — vive só aqui.
+   ============================================================================= */
+
+.erro404 {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(80% 66% at 20% 6%, var(--luz-quente) 0%, transparent 64%),
+    radial-gradient(52% 58% at 84% 78%, var(--terracota-05) 0%, transparent 58%),
+    var(--creme);
+}
