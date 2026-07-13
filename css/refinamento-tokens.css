@@ -1,0 +1,43 @@
+/* =============================================================================
+   GSEG · refinamento-tokens.css — tokens compartilhados do refinamento visual
+   -----------------------------------------------------------------------------
+   Autoria : Diego — front-end vanilla · FATOR Engenharia de Software
+   Origem  : extraído do :root de refinamento-home.css (item 16 do plano —
+             vault/Marina/refinamento-item16-paginas-internas-gseg_MARINA.md §1).
+   Fonte única dos tokens novos do refinamento — carregado em TODAS as 8
+   páginas (home + 7 internas), logo após global.css. Evita duplicação/
+   divergência entre home e internas (decisão registrada na spec da Marina).
+   Branch: refactor/gseg-refinamento-visual (worktree isolado — NÃO produção).
+   ============================================================================= */
+
+:root {
+  /* ── Neutros complementares (plano §4.1 / Marina §2 — N1 base) ────────────── */
+  --porcelana:    #F7F5EF;
+  --linho-medio:  #ECE7DC;
+  --pedra-quente: #DED5C6;
+
+  /* ── Camadas decorativas (Marina §2 — N2/N4/N7/N8) ─────────────────────────── */
+  --grafite-04:   rgba(58, 58, 58, .04);   /* N2-css — stand-in do grão institucional */
+  --areia-18:     rgba(194, 180, 155, .18); /* N7 — acento radial de canto */
+  --terracota-08: rgba(111, 70, 52, .08);   /* sopro de terracota — aprovado como padrão do S10 em 10/07 */
+
+  /* ── Camada 2 — acabamento S2/S3 (Marina §2, refinamento-s2-s3-camada2) ────── */
+  --luz-quente:      rgba(255, 250, 242, .42); /* iluminação institucional quente — S2 e S3 (lift varia com a base) */
+  --divisor-cred:    rgba(194, 180, 155, .5);  /* areia 50% — divisórias delicadas da S2 */
+  --pedra-transicao: rgba(222, 213, 198, .35); /* pedra-quente 35% — aprofundamento da base da S3 rumo ao S4 */
+
+  /* ── S5/S6 (Marina §3, refinamento-s5-s6) ──────────────────────────────────── */
+  --terracota-05: rgba(111, 70, 52, .05); /* forma orgânica quente da S5 (Humana) — token do plano §4.1 */
+
+  /* ── S7/S8/S9 (Marina, refinamento-s7-s8-s9) ───────────────────────────────── */
+  --grao-claro:   rgba(242, 241, 236, .04); /* grão estrutural claro sobre superfícies escuras (S7) — contraparte de --grafite-04 */
+  --trilha-passo: rgba(194, 180, 155, .45); /* trilha de progressão 1→2→3 (areia 45%) sobre o verde da S7 */
+
+  /* ── Sombra da marca sobre neutro (Marina §2 — N5/N6; NUNCA cinza) ─────────── */
+  --shadow-soft: 0 12px 36px rgba(50, 71, 43, .07);
+
+  /* ── Movimento (plano §4.1 / Marina §6 — escala do refinamento) ────────────── */
+  --motion-fast: 160ms ease;
+  --motion-base: 240ms ease;
+  --motion-slow: 420ms cubic-bezier(.2, .7, .2, 1);
+}
