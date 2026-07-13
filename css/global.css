@@ -132,7 +132,7 @@ strong, b { font-weight: var(--fw-semibold); color: var(--verde-floresta); }
 }
 .kicker::before {
   content: "";
-  width: 28px;
+  width: 22px; /* auditoria premium 13/07: 28→22, alinhado ao .eyebrow::before (mesmo papel) */
   height: 2px;
   background: var(--areia);
 }
@@ -159,8 +159,8 @@ strong, b { font-weight: var(--fw-semibold); color: var(--verde-floresta); }
 
 /* Filete sob o título */
 .regua {
-  width: 64px;
-  height: 3px;
+  width: 40px; /* auditoria premium 13/07: 64(longa/rara)→40(media/padrao de secao interna) */
+  height: 2px; /* auditoria premium 13/07: 3→2, teto do acento (spec: traco 1px, acento max 2px) */
   background: var(--areia);
   border: 0;
   margin-block: var(--space-4) var(--space-5);
@@ -867,7 +867,7 @@ body.sem-scroll { overflow: hidden; }
     padding: var(--space-6) var(--space-7) var(--space-7);
     transform: translateX(38px) scale(.97);
     opacity: 0;
-    transition: transform 280ms ease, opacity 280ms ease;
+    transition: transform var(--transition-menu), opacity var(--transition-menu); /* auditoria premium 13/07: era 280ms cru, alinhado ao token de menu (250ms), igual ao mobile */
   }
   .menu-mobile__painel::before {
     content: "";

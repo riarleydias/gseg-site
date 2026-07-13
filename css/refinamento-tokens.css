@@ -38,6 +38,6 @@
 
   /* ── Movimento (plano §4.1 / Marina §6 — escala do refinamento) ────────────── */
   --motion-fast: 160ms ease;
-  --motion-base: 240ms ease;
+  --motion-base: 220ms ease; /* auditoria premium 13/07: 240→220, teto da faixa "card" (180-220ms) */
   --motion-slow: 420ms cubic-bezier(.2, .7, .2, 1);
 }

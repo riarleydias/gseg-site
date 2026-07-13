@@ -58,8 +58,8 @@
     repeating-linear-gradient(90deg, rgba(242,241,236,.04) 0 1px, transparent 1px 96px),  /* E2b */
     linear-gradient(180deg, var(--verde-floresta) 0%, var(--verde-escuro) 100%);           /* E1 */
 }
-.bcard { background: var(--bf-card); padding: 36px 32px; border: 0; border-radius: 0; transition: box-shadow var(--transition); }
-.bcard:hover { box-shadow: var(--shadow-elevated); }
+.bcard { background: var(--bf-card); padding: 36px 32px; border: 0; border-radius: 0; transition: box-shadow var(--motion-base); }
+.bcard:hover { box-shadow: var(--shadow-soft); } /* auditoria premium 13/07: alinhado ao token de hover de card (era --shadow-elevated) */
 .bcard__topo { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
 .bcard__icone { display: inline-flex; color: var(--verde-musgo); }
 .bcard__icone svg { width: 24px; height: 24px; }

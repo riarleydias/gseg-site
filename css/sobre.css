@@ -188,10 +188,10 @@
   background: var(--branco);
   border: 1px solid var(--cor-borda);
   border-radius: var(--radius);
-  transition: box-shadow var(--transition), border-color var(--transition);
+  transition: box-shadow var(--motion-base), border-color var(--transition);
 }
 .metodo-card:hover {
-  box-shadow: var(--shadow-card);        /* E5 */
+  box-shadow: var(--shadow-soft);        /* auditoria premium 13/07: alinhado ao token de hover de card (era --shadow-card) */
   border-color: var(--verde-musgo);
 }
 .metodo-card__icone {
@@ -218,10 +218,10 @@
 .esp-item {
   display: flex; align-items: flex-start; gap: var(--space-3);
   font-size: var(--fs-small); color: var(--grafite);
-  transition: box-shadow var(--transition), border-color var(--transition);
+  transition: box-shadow var(--motion-base), border-color var(--transition);
 }
 .esp-item:hover {
-  box-shadow: var(--shadow-card);        /* E5 */
+  box-shadow: var(--shadow-soft);        /* auditoria premium 13/07: alinhado ao token de hover de card (era --shadow-card) */
   border-color: var(--verde-musgo);
 }
 .esp-check {
@@ -374,7 +374,7 @@
     margin-bottom: 8px;
     padding: 4px 8px;
     border: 1px solid var(--borda);
-    border-radius: 999px;
+    border-radius: var(--radius-pill); /* auditoria premium 13/07: era 999px cru */
     background: var(--creme-200);
     font-size: 10px;
     line-height: 1;
