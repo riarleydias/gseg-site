@@ -1,5 +1,14 @@
 # GSEG Engenharia de Segurança do Trabalho — Site Institucional
 
+> ⚠️ **AMBIENTE DE HOMOLOGAÇÃO — NÃO É PRODUÇÃO.**
+> Este repositório existe só para revisão interna do refinamento visual antes da
+> publicação oficial. A versão em produção, já enviada à cliente, vive em repositório
+> separado (`gseg-site`, branch `codex/gseg-mobile`,
+> https://riarleydias.github.io/gseg-site/). Bloqueado para indexação
+> (`robots.txt` + `noindex` em todas as páginas). Detalhes em
+> `docs/homologacao/AMBIENTES.md`. Nenhuma mudança feita aqui é transferida
+> para produção automaticamente — ver regra de segurança abaixo.
+
 Site institucional desenvolvido pela **FATOR Engenharia de Software** para
 GSEG Engenharia de Segurança do Trabalho (Lívia Poliane, CREA 332747/MG).
 

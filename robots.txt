@@ -1,6 +1,3 @@
-# GSEG · robots.txt
-# Ajustar o domínio do Sitemap quando definido (provisório: gsegengenharia.com.br)
+# GSEG · robots.txt — AMBIENTE DE HOMOLOGAÇÃO (não é produção)
 User-agent: *
-Allow: /
-
-Sitemap: https://www.gsegengenharia.com.br/sitemap.xml
+Disallow: /
