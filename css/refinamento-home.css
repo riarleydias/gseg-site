@@ -133,15 +133,22 @@
 .seg__foto {
   display: block;
   width: 100%;
-  height: 180px; /* mobile-first — Marina §4.2 "Mobile: altura 180px" */
+  height: 230px; /* era 180px (Marina §4.2) — subido pra reduzir o corte vertical das fotos reais MFII, achado do Riarley 2026-07-15 */
   object-fit: cover;
   object-position: center;
   filter: saturate(.92) contrast(1.02); /* grade fotográfica leve — costura entre as 4 fotos */
   transition: transform var(--motion-base), filter var(--motion-base);
 }
+/* fotos reais MFII (retrato documental, engenheira de costas, capacete no
+   terço superior do enquadramento original 16:9) — mesmo com a caixa mais
+   alta, no desktop (card bem mais largo que alto) ainda sobra corte
+   vertical; sobe o ponto de foco pra manter capacete+colete no crop */
+.seg__foto--v02 {
+  object-position: center 12%;
+}
 @media (min-width: 900px) {
   .seg__foto {
-    height: 168px; /* Marina §4.2 — faixa de topo do card no desktop */
+    height: 216px; /* era 168px (Marina §4.2) — subido junto com o mobile, achado do Riarley 2026-07-15 */
   }
 }
 
