@@ -1,14 +1,14 @@
 # GSEG Engenharia de Segurança do Trabalho — Site Institucional
 
 Site institucional desenvolvido pela **FATOR Engenharia de Software** para
-GSEG Engenharia de Segurança do Trabalho (Lívia Poliane, CREA 332747/MG).
+GSEG Engenharia de Segurança do Trabalho (Lívia Cardoso, CREA 332747/MG).
 
 ---
 
 ## Sobre o projeto
 
 - **Cliente:** GSEG Engenharia de Segurança do Trabalho
-- **Responsável:** Lívia Poliane | CREA 332747/MG
+- **Responsável:** Lívia Cardoso | CREA 332747/MG
 - **Localização:** Araxá/MG e região
 - **Desenvolvido por:** FATOR Engenharia de Software
 - **Data de entrega:** 27/06/2026

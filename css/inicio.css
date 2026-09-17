@@ -519,9 +519,10 @@
   .cred-bloco--marca { flex-direction: row; align-items: center; }
   .cred-bloco + .cred-bloco { border-top: none; border-left: 1px solid var(--areia); padding-left: var(--space-7); }
 
-  /* S3 serviços — grade contígua 3×2 (linhas via gap 1px) */
+  /* S3 serviços — grade contígua 3×2 (linhas via gap 1px) + 7º card (Meio Ambiente) full-width */
   .cards-servicos { grid-template-columns: repeat(3, 1fr); }
   .cs { min-height: 268px; }
+  .cs--full { grid-column: 1 / -1; }
 
   /* S4 objeção */
   .objecao__intro { margin: calc(-1 * var(--space-7)) 0 var(--space-7); }
