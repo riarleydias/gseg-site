@@ -1,0 +1,632 @@
+/* =============================================================================
+   GSEG · refinamento-home.css — refinamento visual da home (branch de trabalho)
+   -----------------------------------------------------------------------------
+   Autoria : Diego — front-end vanilla · FATOR Engenharia de Software
+   Origem  : vault/Marina/prototipo-etapa2-s4-s8-s10_MARINA.md (S4/S8/S10) +
+             vault/Marina/refinamento-s2-s3-home-gseg_MARINA.md (S2/S3) +
+             .claude/clientes/gseg/plano-refinamento-visual-home_REFERENCIA.md.
+   Branch  : refactor/gseg-refinamento-visual (worktree isolado — NÃO produção
+             ainda: S8/S10 usam fotos placeholder até o Lucas gerar as reais).
+   Carregado DEPOIS de inicio.css (ver index.html <head>).
+
+   Tokens migraram para `refinamento-tokens.css` (carregado antes deste, logo
+   após global.css, em todas as 8 páginas — item 16 do plano, decisão da
+   Marina em vault/Marina/refinamento-item16-paginas-internas-gseg_MARINA.md
+   §1: fonte única evita duplicação/divergência entre home e internas). Aqui
+   só ficam as regras específicas da home (seções numeradas abaixo).
+
+   ⚠️ FOTOS PLACEHOLDER — as 5 fotografias reais (4 de Segmentos + 1 do CTA)
+   ainda NÃO existem (só os callsheets de prompt do Lucas, sem ferramenta de
+   geração disponível nesta sessão). Os <img> abaixo apontam para SVGs de
+   placeholder em assets/images/refinement/{segments,backgrounds}/ — mesma tag
+   <img>, mesmas dimensões-alvo (800×450 / 1600×900); quando a foto real
+   existir, troca-se SOMENTE o atributo src (extensão .webp), nada de HTML/CSS
+   muda. Convenção de nome mantida (gseg-<tipo>-<variante>-<breakpoint>-v01),
+   com extensão .svg em vez de .webp só enquanto o placeholder estiver ativo.
+   ============================================================================= */
+
+/* =============================================================================
+   1 · S4 · RISCOS — fundo neutro quente institucional (item 1/2/3/4 do checklist)
+   ============================================================================= */
+
+/* Item 2 — fundo .objecao: N7 (acento areia canto) + N2-css (grão, fallback sem
+   asset) + N1 (base linho-médio → pedra-quente). Texto de leitura fica na ponta
+   clara (topo) — não inverter a direção do gradiente (contraste do
+   .objecao__intro cai pra ~4.5:1 na base; ~5.5:1 no topo). */
+.objecao {
+  background:
+    radial-gradient(82% 120% at 92% 6%, var(--areia-18) 0%, transparent 58%),
+    repeating-linear-gradient(0deg, var(--grafite-04) 0 1px, transparent 1px 3px),
+    linear-gradient(176deg, var(--linho-medio) 0%, var(--pedra-quente) 100%);
+  background-size: auto, auto, auto;
+  background-repeat: no-repeat, repeat, no-repeat;
+}
+
+/* Item 3 — régua documental (N4), assinatura de S4. Só ≥900px (respiro lateral).
+   Ancorada em left:0 dentro de um padding-left de 24px no próprio .riscos —
+   optei direto pelo fallback que a própria Marina liberou no doc ("se colidir
+   com o container, ancorar em left:0 dentro de padding-left:24px") em vez do
+   valor primário "left:-24px", porque o Eyes/Playwright não rodou nesta sessão
+   (bug de fork do Bash, ver relatório) e eu não tinha como validar no render
+   se -24px vazava do container. Fica registrado para a Marina conferir no
+   screenshot antes de aprovar — se -24px também funcionar bem, dá pra trocar. */
+@media (min-width: 900px) {
+  .riscos {
+    position: relative;
+    padding-left: 24px;
+  }
+  .riscos::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 2px;
+    background: var(--areia);
+  }
+}
+
+/* Item 4 — elevação de sombra no hover do card .risco (N5→N6), sem transform
+   (evita pulo). Só faz sentido no card de desktop (mobile é lista sem sombra). */
+.risco {
+  transition: box-shadow var(--motion-base);
+}
+@media (min-width: 900px) {
+  .risco:hover,
+  .risco:focus-within {
+    box-shadow: var(--shadow-soft);
+  }
+}
+
+/* =============================================================================
+   2 · S8 · SEGMENTOS — faixa fotográfica full-bleed nos 4 cards (itens 5/6/7/8)
+   ============================================================================= */
+
+/* Item 6 — fundo da seção: porcelana lisa (a foto é a textura, sem grão aqui).
+   Camada 2 (11/07, refinamento-s7-s8-s9): S8 era a única seção clara sem o
+   acabamento que S3/S5/S6 já têm. +isolation +luz de cabeçalho, discreta
+   sobre porcelana (mesmo sistema de S3) — amortece a transição S7(verde)→S8.
+   Fotos/cards/hover/grade/reveal continuam intocados, zero textura aqui
+   (a foto é a textura, regra da atmosfera Setorial). */
+.segmentos {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(60% 45% at 12% 8%, var(--luz-quente) 0%, transparent 58%),
+    var(--porcelana);
+}
+
+/* Item 7 — reestrutura full-bleed: o <a class="seg"> perde o padding (que agora
+   vive em .seg__corpo) e ganha overflow:hidden pra recortar a foto + conter o
+   scale do hover. Propriedades não redeclaradas aqui (border-right/bottom,
+   background, transition) seguem vindas de inicio.css — cascata por
+   propriedade, não por regra. */
+.seg {
+  padding: 0;
+  overflow: hidden;
+}
+.seg__corpo {
+  padding: var(--space-6); /* 32px — mobile; ver override desktop abaixo */
+}
+@media (min-width: 900px) {
+  .seg__corpo {
+    padding: 34px 30px; /* preserva o respiro desktop original do .seg (inicio.css:559) */
+  }
+}
+
+/* Editorial (Riarley, 10/07, 2ª rodada): a copy virou 2 frases curtas por
+   card (benefício → especialização/segmentos), cada uma seu <p class="seg__desc">
+   — troca a estratégia "encolher a fonte pra caber texto longo" (1ª rodada,
+   13px) por "texto curto o bastante pra usar fonte confortável". Título
+   (.seg__titulo) NÃO muda de tamanho. Só <900px — desktop segue o ajuste
+   próprio de inicio.css:561 (15px), não mexido aqui. */
+@media (max-width: 899px) {
+  .seg__desc {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .seg__desc + .seg__desc {
+    margin-top: 8px; /* respiro entre a frase de benefício e a de especialização */
+  }
+}
+
+.seg__foto {
+  display: block;
+  width: 100%;
+  height: 230px; /* era 180px (Marina §4.2) — subido pra reduzir o corte vertical das fotos reais MFII, achado do Riarley 2026-07-15 */
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.92) contrast(1.02); /* grade fotográfica leve — costura entre as 4 fotos */
+  transition: transform var(--motion-base), filter var(--motion-base);
+}
+/* fotos reais MFII (retrato documental, engenheira de costas, capacete no
+   terço superior do enquadramento original 16:9) — mesmo com a caixa mais
+   alta, no desktop (card bem mais largo que alto) ainda sobra corte
+   vertical; sobe o ponto de foco pra manter capacete+colete no crop */
+.seg__foto--v02 {
+  object-position: center 12%;
+}
+@media (min-width: 900px) {
+  .seg__foto {
+    height: 216px; /* era 168px (Marina §4.2) — subido junto com o mobile, achado do Riarley 2026-07-15 */
+  }
+}
+
+/* Item 8 — hover/focus (desktop ≥900px, onde existe hover de verdade): scale
+   contido pelo overflow:hidden do .seg + escurece levemente a foto. Reduced
+   motion tira SÓ o scale (fica o filter) — regra dura do handoff (§6). */
+@media (min-width: 900px) {
+  .seg:hover .seg__foto,
+  .seg:focus-visible .seg__foto,
+  .seg.seg--aberto .seg__foto {
+    transform: scale(1.03);
+    filter: saturate(1.05) brightness(.94);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .seg__foto { transition: filter var(--motion-base); }
+  .seg:hover .seg__foto,
+  .seg:focus-visible .seg__foto,
+  .seg.seg--aberto .seg__foto {
+    transform: none;
+  }
+}
+
+/* =============================================================================
+   3 · S10 · CTA FINAL — fotografia atmosférica + scrim quente (itens 9/10)
+   ============================================================================= */
+
+.cta-final {
+  position: relative;
+  overflow: hidden; /* .cta-final__bg em position:absolute recortado aqui */
+}
+.cta-final__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* NUNCA background-size:auto 100% — erro conhecido do DESIGN.md */
+  object-position: center 35%;
+  z-index: 0;
+}
+/* Scrim quente + sopro de terracota — decisão do Riarley em 10/07 (visto em
+   comparação A/B, aprovado como padrão do S10 mesmo sobre placeholder; será
+   reconferido quando a foto atmosférica real existir). Camada de terracota
+   incorporada direto na regra base — deixou de ser teste opcional. */
+.cta-final::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, var(--terracota-08) 0%, var(--terracota-08) 100%),
+    linear-gradient(
+      180deg,
+      rgba(26, 20, 15, .42) 0%,   /* topo — quente translúcido, atmosfera aparece */
+      rgba(26, 20, 15, .66) 55%,  /* meio — assenta a tagline */
+      rgba(20, 28, 17, .86) 100% /* base — verde-quase-preto, verde só como apoio */
+    );
+}
+.cta-final__inner {
+  position: relative;
+  z-index: 2;
+}
+
+/* =============================================================================
+   4 · MOVIMENTO — stagger de entrada entre cards (Marina §6: 60–80ms entre
+   cards). Reusa o .section-reveal/IntersectionObserver JÁ existente em
+   efeitos.js — ZERO segundo observer, zero JS novo. O estado oculto só se
+   aplica quando o ancestral tem a classe .section-reveal (adicionada só via
+   JS) e ainda não tem .visible — sem JS, os cards nunca ficam ocultos
+   (progressive enhancement, mesmo contrato do efeitos.js).
+   ============================================================================= */
+.riscos .risco,
+.segmentos__grid .seg {
+  transition: opacity var(--motion-slow), transform var(--motion-slow);
+}
+.section-reveal:not(.visible) .riscos .risco,
+.section-reveal:not(.visible) .segmentos__grid .seg {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.section-reveal.visible .riscos .risco:nth-child(2),
+.section-reveal.visible .segmentos__grid .seg:nth-child(2) { transition-delay: 70ms; }
+.section-reveal.visible .riscos .risco:nth-child(3),
+.section-reveal.visible .segmentos__grid .seg:nth-child(3) { transition-delay: 140ms; }
+.section-reveal.visible .segmentos__grid .seg:nth-child(4) { transition-delay: 210ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .riscos .risco,
+  .segmentos__grid .seg {
+    transition: none;
+  }
+  .section-reveal:not(.visible) .riscos .risco,
+  .section-reveal:not(.visible) .segmentos__grid .seg {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* =============================================================================
+   5 · S2 · CREDENCIAIS — linho médio + grão institucional (Lote 2, item 7)
+   Origem: vault/Marina/refinamento-s2-s3-home-gseg_MARINA.md §3.
+   ============================================================================= */
+
+/* Item 1 — só troca o background; border-block (hairline que delimita a faixa)
+   continua vindo de inicio.css:253, não redeclarado aqui (cascata por
+   propriedade). Grão em todos os breakpoints (full-bleed atrás dos blocos,
+   não compete com texto).
+   CAMADA 2 (10/07, refinamento-s2-s3-camada2): +luz institucional quente
+   (entre o grão e a base) +sombra inset de transição S1→S2. */
+.prova-faixa {
+  position: relative;
+  isolation: isolate;
+  background:
+    repeating-linear-gradient(0deg, var(--grafite-04) 0 1px, transparent 1px 3px),   /* CAMADA 1 — N2-css grão */
+    radial-gradient(82% 78% at 14% 2%, var(--luz-quente) 0%, transparent 58%),        /* CAMADA 2 — luz institucional */
+    var(--linho-medio);                                                              /* CAMADA 1 — N1 base flat */
+  box-shadow: inset 0 12px 22px -6px rgba(36, 53, 32, .05); /* CAMADA 2 — transição S1→S2, verde-escuro 5%, nunca cinza */
+}
+
+/* CAMADA 2 — dissipa o grão nos últimos 36px antes da borda com a S3 (a S3
+   começa limpa, porcelana). Repinta a base linho por cima do grão só na
+   faixa inferior; cor S2 contínua até a hairline. */
+.prova-faixa::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 36px;
+  background: linear-gradient(to bottom, transparent 0%, var(--linho-medio) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+.prova-faixa__inner {
+  position: relative;
+  z-index: 1; /* conteúdo acima do fade — padding/flex de inicio.css:254 intactos, só stacking */
+}
+
+/* Itens 2/3 — contraste dos rótulos (achado do Otto: 9px + opacity .8 era
+   risco de legibilidade). Sobe 1px e remove a opacity do .cred-reg (era o que
+   mais derrubava o contraste efetivo). .cred-num/.cred-crea/.cred-local
+   intactos — já passavam com folga. */
+.cred-label {
+  font-size: 10px; /* era 9px, inicio.css:269 */
+}
+.cred-reg {
+  font-size: 10px; /* era 9px, inicio.css:272 */
+  opacity: 1;       /* era .8 */
+}
+
+/* CAMADA 2 — divisórias entre os 3 blocos, mais delicadas (areia 50% em vez
+   de sólida). Mobile: horizontal 70% centralizada. Desktop: vertical 60% de
+   altura, não toca topo/base. position:relative em .cred-bloco+.cred-bloco é
+   layout-neutro (nenhum descendente absoluto hoje). */
+.cred-bloco + .cred-bloco {
+  position: relative;
+  border-top: none; /* substitui a hairline sólida de inicio.css:263 */
+}
+.cred-bloco + .cred-bloco::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 15%; right: 15%; /* 70% de largura, centralizada */
+  height: 1px;
+  background: var(--divisor-cred);
+  pointer-events: none;
+}
+@media (max-width: 599px) {
+  /* marca oculta <600px (inicio.css:980) — 1º bloco visível não herda divisória fantasma */
+  .cred-bloco--marca + .cred-bloco::before { display: none; }
+}
+@media (min-width: 900px) {
+  .cred-bloco + .cred-bloco {
+    border-left: none; /* substitui a hairline sólida de inicio.css:520 — padding-left PERMANECE */
+  }
+  .cred-bloco + .cred-bloco::before {
+    top: 20%; bottom: 20%; /* 60% de altura, centralizada, não toca topo/base */
+    left: 0; right: auto;
+    width: 1px; height: auto;
+    background: var(--divisor-cred);
+  }
+}
+
+/* =============================================================================
+   6 · S3 · SERVIÇOS — porcelana + textura linear só nos cantos (Lote 2, item 7)
+   Origem: vault/Marina/refinamento-s2-s3-home-gseg_MARINA.md §4.
+   Hook de markup: index.html — <section class="secao servicos">.
+   ============================================================================= */
+
+/* CAMADA 2 (10/07): +luz suave atrás do cabeçalho +aprofundamento da base
+   rumo à S4. Ambas entram no background, atrás de tudo — os cards .cs são
+   brancos opacos no .container (z-index:1) e cobrem a luz por completo onde
+   existem; ela só aparece no espaço negativo do cabeçalho. isolation:isolate
+   é blindagem de stacking (no-op visual), não muda o z-index:0/1 já correto
+   dos cantos N3'/.container. */
+.servicos {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(52% 40% at 9% 4%, var(--luz-quente) 0%, transparent 55%),     /* CAMADA 2 — luz atrás do cabeçalho */
+    linear-gradient(to bottom, transparent 78%, var(--pedra-transicao) 100%),      /* CAMADA 2 — aprofundamento base → S4 */
+    var(--porcelana);                                                             /* CAMADA 1 — N1 base flat */
+  overflow: hidden;              /* recorta os cantos de textura */
+}
+.servicos::before,
+.servicos::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  width: clamp(160px, 20vw, 280px);
+  height: clamp(160px, 20vw, 280px);
+  background: repeating-linear-gradient(45deg, var(--grafite-04) 0 1px, transparent 1px 8px); /* N3' */
+}
+.servicos::before {
+  top: 0;
+  right: 0;
+  -webkit-mask: radial-gradient(120% 120% at 100% 0%, #000 0%, transparent 62%);
+  mask: radial-gradient(120% 120% at 100% 0%, #000 0%, transparent 62%);
+}
+.servicos::after {
+  bottom: 0;
+  left: 0;
+  -webkit-mask: radial-gradient(120% 120% at 0% 100%, #000 0%, transparent 62%);
+  mask: radial-gradient(120% 120% at 0% 100%, #000 0%, transparent 62%);
+}
+.servicos > .container {
+  position: relative;
+  z-index: 1; /* conteúdo sempre acima da textura decorativa */
+}
+
+/* CAMADA 2 — refino de timing do hover, nada mais. translateY/sombra ficaram
+   de fora de propósito: a grade dos cards é flush (gap:1px), então levantar
+   ou dar sombra no card escaparia da grade e revelaria a borda atrás. */
+.servicos .cs {
+  transition-duration: 200ms; /* era 160ms (var(--transition-card), inicio.css:292) */
+}
+
+/* Cantos só em desktop — no mobile o container ocupa a largura toda e o canto
+   encostaria no texto; a diferença de cor entre S2/S3/S4 já faz o ritmo. */
+@media (max-width: 767px) {
+  .servicos::before,
+  .servicos::after {
+    display: none;
+  }
+}
+
+/* =============================================================================
+   7 · S5 · AUTORIDADE (Lívia) — atmosfera Humana (item 8, Marina §4)
+   Origem: vault/Marina/refinamento-s5-s6-home-gseg_MARINA.md.
+   Hook de markup: index.html — <section class="secao autoridade">.
+   ============================================================================= */
+
+.autoridade {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(92% 66% at 28% 6%, var(--luz-quente) 0%, transparent 64%),    /* luz aberta atrás da foto/eyebrow */
+    radial-gradient(58% 62% at 85% 72%, var(--terracota-05) 0%, transparent 58%), /* forma orgânica terracota — calor humano */
+    var(--creme);                                                                /* base off-white */
+}
+
+/* Assenta o retrato na luz — sombra da marca (verde), nunca cinza. Conversa
+   com a drop-shadow verde que o selo CREA já tem (inicio.css:398). */
+.autoridade .sobre__ph {
+  box-shadow: var(--shadow-soft);
+}
+
+/* Timeline — entrada suave, reusa o .section-reveal/IntersectionObserver já
+   existente em efeitos.js. Sem JS novo. Sem section-reveal (ou sem JS), os
+   <li> nunca ficam ocultos — progressive enhancement. */
+.autoridade .timeline .tl {
+  transition: opacity var(--motion-slow), transform var(--motion-slow);
+}
+.section-reveal:not(.visible) .autoridade .timeline .tl {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.section-reveal.visible .autoridade .timeline .tl:nth-child(2) { transition-delay: 70ms; }
+.section-reveal.visible .autoridade .timeline .tl:nth-child(3) { transition-delay: 140ms; }
+.section-reveal.visible .autoridade .timeline .tl:nth-child(4) { transition-delay: 210ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .autoridade .timeline .tl { transition: none; }
+  .section-reveal:not(.visible) .autoridade .timeline .tl { opacity: 1; transform: none; }
+}
+
+/* =============================================================================
+   8 · S6 · CERTIFICAÇÕES — atmosfera Técnica/documental (item 8, Marina §5)
+   Origem: vault/Marina/refinamento-s5-s6-home-gseg_MARINA.md.
+   Régua dura: a GSEG organiza preparação para certificações, ela NÃO certifica
+   — zero selo/carimbo/borda de certificado/forma fechada de documento.
+   ============================================================================= */
+
+.cert {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--linho-medio); /* era --creme-200 (inicio.css:422) */
+}
+
+/* Réguas de formulário abstratas — só linhas horizontais, confinadas ao topo
+   (atrás do cabeçalho/intro/disclaimer), mascaradas antes dos cards. Nunca
+   uma forma fechada que possa ler como documento/selo simulado. */
+.cert::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 360px;
+  z-index: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, var(--grafite-04) 0 1px, transparent 1px 30px);
+  -webkit-mask: linear-gradient(180deg, #000 0%, #000 50%, transparent 100%);
+  mask: linear-gradient(180deg, #000 0%, #000 50%, transparent 100%);
+}
+.cert > .container {
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 767px) {
+  .cert::before { height: 240px; }
+}
+
+/* Entrada contida das fichas (catálogo contínuo, 2ª rodada 11/07 — era
+   .cert__grid .cert-card, renomeado pra .cert-catalogo .cert-ficha). A
+   transition INCLUI border-left-width/border-left-color/background-color de
+   volta — .cert-ficha já tem transition própria (inicio.css) pro hover de
+   faixa lateral; sem isso o seletor mais específico mataria o hover. */
+.cert-catalogo .cert-ficha {
+  transition: opacity var(--motion-slow), transform var(--motion-slow),
+              border-left-width 200ms ease, border-left-color 200ms ease, background-color 200ms ease;
+}
+.section-reveal:not(.visible) .cert-catalogo .cert-ficha {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.section-reveal.visible .cert-catalogo .cert-ficha:nth-child(2) { transition-delay: 60ms; }
+.section-reveal.visible .cert-catalogo .cert-ficha:nth-child(3) { transition-delay: 120ms; }
+.section-reveal.visible .cert-catalogo .cert-ficha:nth-child(4) { transition-delay: 180ms; }
+.section-reveal.visible .cert-catalogo .cert-ficha:nth-child(5) { transition-delay: 240ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cert-catalogo .cert-ficha { transition: border-left-width 200ms ease, border-left-color 200ms ease, background-color 200ms ease; }
+  .section-reveal:not(.visible) .cert-catalogo .cert-ficha { opacity: 1; transform: none; }
+}
+
+/* =============================================================================
+   9 · S7 · MÉTODO — grão estrutural vertical + trilha de progressão
+   Origem: vault/Marina/refinamento-s7-s8-s9-home-gseg_MARINA.md §3.
+   REGRA DURA: background verde-floresta de .diag (inicio.css:435) NÃO é
+   redeclarado — S7 é a única seção intermediária que continua verde forte
+   de propósito. Tudo aqui é camada por cima.
+   ============================================================================= */
+
+.diag {
+  position: relative;
+  isolation: isolate;
+}
+.diag::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 280px;
+  z-index: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(90deg, var(--grao-claro) 0 1px, transparent 1px 40px);
+  -webkit-mask: linear-gradient(180deg, #000 0%, #000 45%, transparent 100%);
+  mask: linear-gradient(180deg, #000 0%, #000 45%, transparent 100%);
+}
+.diag > .container {
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 899.98px) {
+  .diag::before { height: 200px; }
+}
+
+/* Trilha de progressão 1→2→3 — só desktop. No mobile os passos empilham e o
+   <ol> numerado já lê como sequência; uma trilha vertical seria frágil de
+   ancorar (descrições de comprimento variável) — decisão deliberada de não
+   levar a trilha pro mobile (Marina §3.3). */
+@media (min-width: 900px) {
+  .passos {
+    position: relative;
+  }
+  .passos::before {
+    content: "";
+    position: absolute;
+    top: 60px; /* padding-top(34px) + raio do círculo(26px) — recalcular se algum mudar */
+    left: 16.67%; right: 16.67%;
+    height: 1.5px;
+    background: var(--trilha-passo);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .passo {
+    z-index: 1; /* .passo já é position:relative (inicio.css:443) */
+  }
+  .passo__num {
+    background: var(--verde-floresta); /* preenche o círculo (mesma cor do fundo) — mascara a trilha no interior, ela só aparece entre os nós */
+  }
+}
+
+/* =============================================================================
+   10 · S9 · FAQ — fundo limpo + luz mínima + numeral ativo no estado aberto
+   Origem: vault/Marina/refinamento-s7-s8-s9-home-gseg_MARINA.md §5.
+   Escopo .faq (não .secao--branca, classe compartilhada com outras seções).
+   ============================================================================= */
+
+.faq {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(60% 40% at 50% 0%, var(--luz-quente) 0%, transparent 60%),
+    var(--branco);
+}
+
+/* Numeral decorativo (aria-hidden, achado do Otto: areia sobre branco ≈1.9:1)
+   vira índice inativo intencional — ativa pra verde-floresta junto com o
+   resto do estado aberto (borda + ícone já ativam), sem JS novo (engancha
+   na classe .faq__item--aberta que o faq.js já aplica). */
+.faq__num {
+  transition: color var(--transition-faq);
+}
+.faq__item--aberta .faq__num {
+  color: var(--verde-floresta);
+}
+
+/* =============================================================================
+   11 · S1 · HERO — sequência de entrada + fecho de saída (S1→S2)
+   Origem: vault/Marina/refinamento-item11-globais-home-gseg_MARINA.md §1.
+   Header/menu/WhatsApp/rodapé NÃO mudam (auditados, já camada-2-consistentes
+   desde a Fase 1) — ver mesma spec §2-4. Único arquivo tocado neste item.
+   ============================================================================= */
+
+@keyframes heroSettle {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* .hero__titulo (LCP) fica de fora de propósito — pinta imediato, sem fade.
+   O headline crava, o resto assenta ao redor dele. */
+.hero__badge,
+.hero__risco,
+.hero__texto,
+.hero__ctas,
+.hero__trust {
+  animation: heroSettle var(--motion-slow) both;
+}
+.hero__badge { animation-delay: 60ms; }
+.hero__risco { animation-delay: 180ms; }
+.hero__texto { animation-delay: 240ms; }
+.hero__ctas  { animation-delay: 320ms; }
+.hero__trust { animation-delay: 400ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__badge, .hero__risco, .hero__texto, .hero__ctas, .hero__trust {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Fecho inferior do hero — handoff fecha-escuro (verde-marca) → abre-quente
+   (S2 já abre com --luz-quente + grão). Camada separada do overlay ::before
+   (legibilidade AA, não mexer); z-index:1, abaixo do conteúdo (__inner z:2). */
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 110px;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(36, 53, 32, .32) 0%,
+    rgba(36, 53, 32, .10) 50%,
+    transparent 100%
+  );
+}
+@media (min-width: 900px) {
+  .hero::after { height: 150px; }
+}

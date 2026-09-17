@@ -1,0 +1,179 @@
+/* =============================================================================
+   GSEG · refinamento-paginas.css — refinamento visual das páginas internas
+   -----------------------------------------------------------------------------
+   Autoria : Diego — front-end vanilla · FATOR Engenharia de Software
+   Origem  : vault/Marina/refinamento-item16-paginas-internas-gseg_MARINA.md
+             (item 16 do plano — Lote 5: Sobre, Serviços, Benefícios,
+             Segmentos, FAQ, Contato, 404).
+   Carregado DEPOIS do CSS de cada página (vence por cascata os fundos lisos
+   atuais) e DEPOIS de refinamento-tokens.css (tokens compartilhados).
+   Branch: refactor/gseg-refinamento-visual (worktree isolado — NÃO produção).
+   Regra-mãe: zero mudança de copy/HTML/estrutura — só fundo/luz/textura.
+   Verde-floresta nunca redeclarado como fundo novo; cada página mantém 1
+   âncora verde (o hero/intro que já tinha).
+   ============================================================================= */
+
+/* =============================================================================
+   1 · SOBRE — 4 seções, 4 receitas distintas (quebra creme/creme-200/creme/creme-200)
+   Origem: Marina §2.1. Composição existente (moldura da foto, citação, cards)
+   permanece intocada — só o fundo de cada <section>.
+   ============================================================================= */
+
+.sobre {
+  /* R4 · clara-humana */
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(92% 66% at 24% 6%, var(--luz-quente) 0%, transparent 64%),
+    radial-gradient(58% 62% at 85% 72%, var(--terracota-05) 0%, transparent 58%),
+    var(--creme);
+}
+.metodologia {
+  /* R2 · linho-grão (vence .secao--alt) */
+  position: relative;
+  isolation: isolate;
+  background:
+    repeating-linear-gradient(0deg, var(--grafite-04) 0 1px, transparent 1px 3px),
+    radial-gradient(82% 78% at 14% 4%, var(--luz-quente) 0%, transparent 58%),
+    var(--linho-medio);
+}
+.especialidade {
+  /* R1 · clara-luz */
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(60% 45% at 10% 6%, var(--luz-quente) 0%, transparent 58%),
+    var(--porcelana);
+}
+.depoimentos {
+  /* R3 · neutro-profundo (vence .secao--alt) */
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(82% 120% at 92% 6%, var(--areia-18) 0%, transparent 58%),
+    repeating-linear-gradient(0deg, var(--grafite-04) 0 1px, transparent 1px 3px),
+    linear-gradient(176deg, var(--linho-medio) 0%, var(--pedra-quente) 100%);
+}
+
+@media (min-width: 900px) {
+  .depoimentos .depo-card { transition: box-shadow var(--motion-base); }
+  .depoimentos .depo-card:hover,
+  .depoimentos .depo-card:focus-within { box-shadow: var(--shadow-soft); }
+}
+
+/* =============================================================================
+   3 · BENEFÍCIOS — toque mínimo (identidade própria --bf-*, outlier aprovado)
+   Origem: Marina §2.3 + auditoria §3.2. .benef-hero JÁ tem grão da Fase 1
+   (10/07, commit 723f173 — repeating-linear-gradient 90deg .045 sobre o
+   verde) — confirmado no worktree após o merge de main. NÃO redeclarar
+   grão no hero (duplicaria textura). Cards/gutter/credenciais intocados —
+   verde é funcional ali, não decorativo.
+   ============================================================================= */
+
+.benef-comp {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(58% 42% at 12% 6%, var(--luz-quente) 0%, transparent 58%),
+    var(--creme-200); /* base mantida — só ganha luz */
+}
+.benef-final {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(90% 60% at 22% 6%, var(--luz-quente) 0%, transparent 64%),
+    radial-gradient(56% 60% at 86% 74%, var(--terracota-05) 0%, transparent 58%),
+    var(--creme);
+}
+/* .benef-comp__col--risco / --ganho: NÃO TOCAR — cores semânticas
+   documentadas (vermelho=custo/risco, verde=ganho). O tratamento acima
+   mexe só no fundo da <section>, atrás das duas colunas. */
+
+/* =============================================================================
+   4 · SERVIÇOS — 1 seção nova de 3 (acordeão). Intro (verde+foto) e CTA fecho
+   (gradiente verde já tratado) ficam intocados — âncoras/apoio já resolvidos.
+   Origem: Marina §2.2.
+   ============================================================================= */
+
+.servicos {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(52% 40% at 9% 4%, var(--luz-quente) 0%, transparent 55%),
+    linear-gradient(to bottom, transparent 82%, var(--pedra-transicao) 100%),
+    var(--porcelana);
+}
+
+/* =============================================================================
+   5 · SEGMENTOS — 2 seções novas de 4. Intro e a banda de escopo/stats
+   (foto+overlay) ficam intocadas — âncora verde + banda fotográfica.
+   Origem: Marina §2.4.
+   ============================================================================= */
+
+.seg-blocos {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(60% 45% at 10% 5%, var(--luz-quente) 0%, transparent 58%),
+    var(--porcelana);
+}
+@media (min-width: 900px) {
+  .seg-bloco__box { transition: box-shadow var(--motion-base); }
+  .seg-bloco__box:hover,
+  .seg-bloco__box:focus-within { box-shadow: var(--shadow-soft); }
+}
+.seg-cta {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(80% 70% at 50% 0%, var(--luz-quente) 0%, transparent 62%),
+    radial-gradient(50% 60% at 84% 82%, var(--terracota-05) 0%, transparent 58%),
+    var(--creme);
+}
+
+/* =============================================================================
+   6 · FAQ — página inteira, 1 seção. Fundo limpo, luz mínima, zero textura
+   (o plano quer a FAQ calma). Accordion, foto aside e cta box intocados.
+   Origem: Marina §2.5 + §4 (acessibilidade).
+   ============================================================================= */
+
+.faq-secao {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(60% 40% at 50% 0%, var(--luz-quente) 0%, transparent 60%),
+    var(--porcelana);
+}
+/* Não replicar a ativação de .faq__num da home aqui: em faq.html o
+   .faq__num já é var(--verde-marca) (contraste ok), não o areia da home. */
+
+/* =============================================================================
+   7 · CONTATO — 1 seção nova. Hero (foto+overlay) intocado. Luz só no
+   topo-esquerda para não reduzir a distinção campo branco × fundo — a
+   coluna do formulário (à direita, desktop) fica sobre porcelana lisa.
+   Origem: Marina §2.6 + §4 (acessibilidade de formulário).
+   ============================================================================= */
+
+.contato-secao {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(46% 40% at 6% 4%, var(--luz-quente) 0%, transparent 60%),
+    var(--porcelana);
+}
+/* Formulário (input/select/textarea, :focus, [aria-invalid], .form-msg,
+   cards de contato) NÃO tocado — wiring Web3Forms + formulario.js preservado. */
+
+/* =============================================================================
+   8 · 404 — página de erro deve tranquilizar, não alarmar. Clara-humana leve.
+   Origem: Marina §2.7. Sem CSS de página própria — vive só aqui.
+   ============================================================================= */
+
+.erro404 {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(80% 66% at 20% 6%, var(--luz-quente) 0%, transparent 64%),
+    radial-gradient(52% 58% at 84% 78%, var(--terracota-05) 0%, transparent 58%),
+    var(--creme);
+}
