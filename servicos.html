@@ -49,7 +49,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700&display=swap"></noscript>
 
   <link rel="stylesheet" href="css/variaveis_LUCAS.css">
   <link rel="stylesheet" href="css/reset.css">
@@ -167,7 +169,7 @@
           <p class="kicker">Como podemos te ajudar?</p>
           <h1 class="titulo-secao">Serviços <em>em SST e Meio Ambiente</em></h1>
         </div>
-        <p class="lead">Documentação, treinamentos e consultoria em Segurança do Trabalho — com laudos assinados por engenheira registrada no CREA — e a frente de Meio Ambiente conduzida pela equipe técnica da GSEG: licenciamento, resíduos, água e sustentabilidade.</p>
+        <p class="lead">Documentação, treinamentos e consultoria em Segurança do Trabalho, e a frente de Meio Ambiente — licenciamento, resíduos, água e sustentabilidade — conduzidas pela equipe técnica da GSEG.</p>
       </div>
     </section>
 
@@ -311,10 +313,16 @@
             </div>
           </article>
 
-          <p class="kicker" id="meio-ambiente-intro">Meio Ambiente e Sustentabilidade</p>
+          <div class="meio-ambiente-faixa">
+            <div class="meio-ambiente-faixa__inner">
+              <h2 class="titulo-secao titulo-secao--claro meio-ambiente-faixa__titulo" id="meio-ambiente-intro">Meio Ambiente <em>e Sustentabilidade</em></h2>
+              <p class="meio-ambiente-faixa__apoio">A GSEG também conduz sua operação em conformidade ambiental.</p>
+            </div>
+          </div>
 
-          <article id="licenciamento-ambiental" class="serv-item">
+          <article id="licenciamento-ambiental" class="serv-item" data-eco="licenciamento-ambiental">
             <button class="serv-item__cab" type="button" aria-expanded="false" aria-controls="painel-licenciamento-ambiental">
+              <span class="serv-item__foto" aria-hidden="true"><img src="assets/images/servicos/eco-licenciamento-ambiental.webp" alt="" loading="lazy" width="1200" height="700"></span>
               <span class="serv-item__icone"><svg class="icone" aria-hidden="true" focusable="false"><use href="#i-seal-check"/></svg></span>
               <span class="serv-item__corpo">
                 <span class="serv-item__titulo">Licenciamento Ambiental</span>
@@ -324,7 +332,7 @@
             </button>
             <div class="serv-item__painel" id="painel-licenciamento-ambiental" role="region" aria-label="Licenciamento Ambiental">
               <div class="serv-item__painel-inner">
-                <p>A licença não termina no dia em que sai o documento. Depois dela vêm condicionantes, prazos e relatórios que o órgão continua cobrando, e a GSEG conduz tanto o pedido inicial quanto essa rotina:</p>
+                <p>Operar com licença vencida pode significar desde notificação e multa até, em casos mais graves, embargo da atividade. A GSEG conduz o pedido inicial e a rotina que vem depois: condicionantes, prazos e relatórios que o órgão continua cobrando:</p>
                 <ul class="serv-lista">
                   <li>Elaboração de licenciamento ambiental — LP (prévia), LI (instalação) e LO (operação)</li>
                   <li>Gestão e controle de condicionantes ambientais</li>
@@ -337,8 +345,9 @@
             </div>
           </article>
 
-          <article id="residuos-efluentes-emissoes" class="serv-item">
+          <article id="residuos-efluentes-emissoes" class="serv-item" data-eco="residuos-efluentes-emissoes">
             <button class="serv-item__cab" type="button" aria-expanded="false" aria-controls="painel-residuos-efluentes-emissoes">
+              <span class="serv-item__foto" aria-hidden="true"><img src="assets/images/servicos/eco-residuos-efluentes-emissoes.webp" alt="" loading="lazy" width="1200" height="700"></span>
               <span class="serv-item__icone"><svg class="icone" aria-hidden="true" focusable="false"><use href="#i-cycle"/></svg></span>
               <span class="serv-item__corpo">
                 <span class="serv-item__titulo">Resíduos, Efluentes e Emissões</span>
@@ -348,7 +357,7 @@
             </button>
             <div class="serv-item__painel" id="painel-residuos-efluentes-emissoes" role="region" aria-label="Resíduos, Efluentes e Emissões">
               <div class="serv-item__painel-inner">
-                <p>Onde a operação gera resíduo, efluente ou emissão, a GSEG define o destino de cada um, registra o que sai da empresa e acompanha os números ao longo do ano:</p>
+                <p>Pra onde vai o resíduo que sai da sua operação — e quem garante isso no papel? Resíduo mal destinado, efluente fora do padrão ou emissão sem monitoramento é motivo comum de autuação. A GSEG estrutura o destino de cada resíduo, acompanha os números ao longo do ano e mantém tudo documentado antes que vire multa:</p>
                 <ul class="serv-lista">
                   <li>Desenvolvimento de PGRS — Plano de Gerenciamento de Resíduos Sólidos</li>
                   <li>Monitoramento de emissões atmosféricas, efluentes e resíduos</li>
@@ -360,8 +369,9 @@
             </div>
           </article>
 
-          <article id="estudos-campo" class="serv-item">
+          <article id="estudos-campo" class="serv-item" data-eco="estudos-campo">
             <button class="serv-item__cab" type="button" aria-expanded="false" aria-controls="painel-estudos-campo">
+              <span class="serv-item__foto" aria-hidden="true"><img src="assets/images/servicos/eco-estudos-campo.webp" alt="" loading="lazy" width="1600" height="507"></span>
               <span class="serv-item__icone"><svg class="icone" aria-hidden="true" focusable="false"><use href="#i-map-pin"/></svg></span>
               <span class="serv-item__corpo">
                 <span class="serv-item__titulo">Estudos Técnicos e Trabalho de Campo</span>
@@ -371,7 +381,7 @@
             </button>
             <div class="serv-item__painel" id="painel-estudos-campo" role="region" aria-label="Estudos Técnicos e Trabalho de Campo">
               <div class="serv-item__painel-inner">
-                <p>Parte do trabalho ambiental só se resolve no local. A equipe técnica da GSEG vai até a operação, levanta a situação real e devolve isso em relatório, com o que precisa ser corrigido e em que ordem:</p>
+                <p>Área degradada tem prazo de recuperação. Outorga de água tem renovação. Adequação de estrutura tem prazo de fiscalização. A equipe técnica da GSEG vai até a operação, levanta a situação real no terreno e devolve um relatório com o que precisa ser corrigido e em que ordem:</p>
                 <ul class="serv-lista">
                   <li>Elaboração de relatórios técnicos ambientais</li>
                   <li>Inspeções ambientais em campo</li>
@@ -383,8 +393,9 @@
             </div>
           </article>
 
-          <article id="sustentabilidade-certificacao" class="serv-item">
+          <article id="sustentabilidade-certificacao" class="serv-item" data-eco="sustentabilidade-certificacao">
             <button class="serv-item__cab" type="button" aria-expanded="false" aria-controls="painel-sustentabilidade-certificacao">
+              <span class="serv-item__foto" aria-hidden="true"><img src="assets/images/servicos/eco-sustentabilidade-certificacao.webp" alt="" loading="lazy" width="1200" height="700"></span>
               <span class="serv-item__icone"><svg class="icone" aria-hidden="true" focusable="false"><use href="#i-sprout"/></svg></span>
               <span class="serv-item__corpo">
                 <span class="serv-item__titulo">Sustentabilidade e Certificação</span>
@@ -394,7 +405,7 @@
             </button>
             <div class="serv-item__painel" id="painel-sustentabilidade-certificacao" role="region" aria-label="Sustentabilidade e Certificação">
               <div class="serv-item__painel-inner">
-                <p>Cliente grande, auditoria e certificadora cobram evidência documentada do que a empresa faz. A GSEG estrutura o programa, treina as equipes e organiza os indicadores que vão ser conferidos:</p>
+                <p>Muita empresa acha que basta ter boa prática interna para passar em auditoria ou certificação — na prática, o que conta é evidência documentada: programa estruturado, indicador acompanhado, equipe treinada. A GSEG organiza esse conjunto e prepara a empresa para o que vai ser conferido:</p>
                 <ul class="serv-lista">
                   <li>Treinamentos e campanhas de educação ambiental</li>
                   <li>Implantação de programas de sustentabilidade</li>

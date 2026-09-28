@@ -541,12 +541,12 @@
   bottom: 0;
   width: 54%;
   background-image:
-    linear-gradient(90deg, var(--branco) 0%, rgba(255, 255, 255, .94) 24%, rgba(255, 255, 255, .68) 54%, rgba(255, 255, 255, .18) 100%),
+    linear-gradient(90deg, var(--branco) 0%, rgba(255, 255, 255, .86) 24%, rgba(255, 255, 255, .46) 54%, rgba(255, 255, 255, .08) 100%),
     var(--service-image);
   background-position: right center;
   background-size: cover;
   background-repeat: no-repeat;
-  opacity: .58;
+  opacity: .24;
   pointer-events: none;
 }
 .serv-item[data-service] .serv-item__cab > * {
@@ -568,11 +568,11 @@
     right: calc(-28px - env(safe-area-inset-right, 0px));
     width: calc(min(58%, 280px) + 28px + env(safe-area-inset-right, 0px));
     background-image:
-      linear-gradient(90deg, var(--branco) 0%, rgba(255, 255, 255, .98) 32%, rgba(255, 255, 255, .82) 62%, rgba(255, 255, 255, .34) 100%),
+      linear-gradient(90deg, var(--branco) 0%, rgba(255, 255, 255, .88) 28%, rgba(255, 255, 255, .48) 58%, rgba(255, 255, 255, .08) 100%),
       var(--service-image);
     background-position: right center, var(--service-bg-position-mobile, right center);
     background-size: cover, var(--service-bg-size-mobile, cover);
-    opacity: .48;
+    opacity: .20;
   }
 }
 
@@ -586,16 +586,185 @@
   .serv-item[data-service] .serv-item__cab::after {
     width: min(50%, 560px);
     background-image:
-      linear-gradient(90deg, var(--branco) 0%, rgba(255, 255, 255, .95) 30%, rgba(255, 255, 255, .60) 58%, rgba(255, 255, 255, .22) 100%),
+      linear-gradient(90deg, var(--branco) 0%, rgba(255, 255, 255, .84) 26%, rgba(255, 255, 255, .40) 56%, rgba(255, 255, 255, .06) 100%),
       var(--service-image);
     background-position: right center, var(--service-bg-position-desktop, right 30%);
     background-size: cover, var(--service-bg-size-desktop, cover);
-    opacity: .66;
+    opacity: .24;
   }
 }
 
 @media (min-width: 900px) and (max-width: 1280px) {
   .serv-item[data-service] .serv-item__ver {
     margin-right: 32px;
+  }
+}
+
+/* =============================================================================
+   Meio Ambiente e Sustentabilidade — faixa de cabeçalho + cards fotográficos
+   Rodada de fechamento 27/09 (comando final do Riarley — prevalece sobre as
+   instruções anteriores de corte diagonal, painel e cabeçalho). As 6
+   categorias de SST (data-service, acima) não são tocadas aqui.
+   ============================================================================= */
+/* Faixa institucional em BLEED TOTAL (100vw + margin negativa calculada a
+   partir do próprio elemento — funciona em qualquer nível de aninhamento).
+   Cor #32472B (verde GSEG); navy da FATOR descartado (regra "zero azul" do
+   DESIGN.md do cliente). Item 3 (27/09): compactada — era ~350px no desktop,
+   meta 180–230px desktop / até 180px mobile. */
+.meio-ambiente-faixa {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: var(--verde-floresta);
+  padding-block: 32px;
+}
+.meio-ambiente-faixa__inner {
+  max-width: 1000px;
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+.meio-ambiente-faixa__titulo.titulo-secao {
+  margin: 0;
+  font-size: 1.75rem;
+  line-height: 1.1;
+}
+.meio-ambiente-faixa__apoio {
+  margin: 8px 0 0;
+  max-width: 60ch;
+  font-size: 1rem;
+  line-height: 1.45;
+  color: var(--creme);
+}
+@media (min-width: 900px) {
+  .meio-ambiente-faixa { padding-block: 40px; }
+  .meio-ambiente-faixa__inner { max-width: 1180px; padding-inline: var(--space-6); }
+  .meio-ambiente-faixa__titulo.titulo-secao { font-size: 2.75rem; }
+  /* frase curta (aprovada 27/09) caberia em 1 linha e a faixa ficaria abaixo
+     dos 180px da meta — medida de 36ch quebra em 2 linhas equilibradas */
+  .meio-ambiente-faixa__apoio { max-width: 36ch; margin-top: 10px; font-size: 1.125rem; line-height: 1.5; text-wrap: balance; }
+}
+
+/* Painel expandido com fundo creme (#F2F1EC): é a cor que o corte diagonal
+   revela no estado aberto — foto e painel leem como uma peça só. */
+.serv-item[data-eco] { background: var(--creme); }
+.serv-item[data-eco] .serv-item__cab {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+/* Item 5 (27/09): overlay único para os 4 cards (nenhum parâmetro por card).
+   Duas camadas: (1) diagonal, mais opaca no canto inferior-esquerdo — a ponta
+   clara subiu de .35 para .45 para o lado direito de fotos claras (ex.:
+   Sustentabilidade) não destoar do lado do texto; (2) véu de baixo para cima
+   a .55 sob a zona do texto. Calibrado por amostragem de pixels (pior pixel
+   atrás de título/descrição, 5 larguras): mínimo 5.07:1 — sem o véu, fotos
+   com áreas claras (prancheta, céu entre árvores) caíam para 2.77:1. */
+.serv-item[data-eco] .serv-item__cab::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(to top, rgba(var(--verde-marca-rgb), .55) 0%, rgba(var(--verde-marca-rgb), .55) 78%, rgba(var(--verde-marca-rgb), 0) 100%),
+    linear-gradient(to top right, rgba(var(--verde-marca-rgb), .78) 0%, rgba(var(--verde-marca-rgb), .45) 100%);
+  pointer-events: none;
+}
+.serv-item[data-eco] .serv-item__cab > * {
+  position: relative;
+  z-index: 2;
+}
+/* a foto vem DEPOIS da regra ">*" acima de propósito — mesma especificidade,
+   precisa vencer no cascade pra manter position:absolute (senão colapsa pro
+   tamanho intrínseco do <img>) */
+.serv-item[data-eco] .serv-item__foto {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+}
+.serv-item[data-eco] .serv-item__foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Item 1 (27/09): card FECHADO = borda inferior reta (sem cunha revelando o
+   fundo do card). Card ABERTO = corte diagonal, que revela só o creme do
+   painel. Polígono de 4 pontos nos dois estados para o clip-path interpolar
+   junto com a altura do painel (sem pulo de layout). */
+.serv-item[data-eco] .serv-item__foto,
+.serv-item[data-eco] .serv-item__cab::before {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  transition: clip-path var(--transition-faq);
+}
+.serv-item--aberto[data-eco] .serv-item__foto,
+.serv-item--aberto[data-eco] .serv-item__cab::before {
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+}
+/* 1.3.c: no mínimo 40px entre o ponto mais baixo da diagonal (base da foto,
+   lado esquerdo) e a primeira linha do painel */
+.serv-item[data-eco] .serv-item__painel-inner { padding-top: 40px; }
+
+/* Item 5.3 (27/09): título sempre #FFFFFF e descrição sempre #F2F1EC, em
+   todos os estados. Causa da variação: regra de :hover/:focus-visible que
+   trocava o título para areia (#C2B49B) — no celular o :hover "gruda" depois
+   do toque, então o título ficava bege em uns cards e branco em outros. */
+.serv-item[data-eco] .serv-item__titulo,
+.serv-item[data-eco] .serv-item__cab:hover .serv-item__titulo,
+.serv-item[data-eco] .serv-item__cab:focus-visible .serv-item__titulo { color: var(--branco); }
+.serv-item[data-eco] .serv-item__desc { color: var(--creme); }
+
+/* badge circular removido — mesmo padrão das 6 categorias de SST (ícone no
+   DOM, nunca visível) */
+.serv-item[data-eco] .serv-item__icone { display: none; }
+
+/* Item 2 (27/09): painel em coluna única — parágrafo (~70ch), lista (2
+   colunas no desktop, regra base de .serv-lista) e CTA. Sem coluna de apoio. */
+.serv-item[data-eco] .serv-item__painel-inner p { max-width: 70ch; }
+
+@media (max-width: 899px) {
+  .serv-item[data-eco] .serv-item__cab {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: end;
+    min-height: 220px;
+    padding-bottom: 22px;   /* texto ancorado embaixo, onde o overlay é mais opaco */
+    overflow: visible;      /* o clip passa a ser do .serv-item (borda real do card) */
+  }
+  /* o cab é 28px+safe-area mais estreito que o card (faixa segura do WhatsApp
+     flutuante); foto e overlay se estendem por baixo dessa faixa até a borda
+     real do card — sem faixa creme vertical à direita */
+  .serv-item[data-eco] .serv-item__foto,
+  .serv-item[data-eco] .serv-item__cab::before {
+    right: calc(-28px - env(safe-area-inset-right, 0px));
+  }
+  .serv-item[data-eco] .serv-item__corpo {
+    grid-column: 1;
+    grid-row: 1;
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 900px) {
+  .serv-item[data-eco] .serv-item__cab {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    min-height: 200px;
+    padding-bottom: 28px;
+  }
+  .serv-item[data-eco] .serv-item__corpo {
+    grid-column: 1;
+    margin-top: 0;
+  }
+  .serv-item[data-eco] .serv-item__cab::before {
+    background:
+      linear-gradient(to top, rgba(var(--verde-marca-rgb), .55) 0%, rgba(var(--verde-marca-rgb), .55) 60%, rgba(var(--verde-marca-rgb), 0) 95%),
+      linear-gradient(to top right, rgba(var(--verde-marca-rgb), .78) 0%, rgba(var(--verde-marca-rgb), .45) 100%);
+  }
+  /* sem o poço de ícone, o recuo de 128px (calibrado pro ícone das 6 de SST)
+     sobraria — padding simétrico do card */
+  .serv-item[data-eco] .serv-item__painel-inner {
+    padding-left: 30px;
   }
 }

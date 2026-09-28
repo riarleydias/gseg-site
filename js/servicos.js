@@ -45,7 +45,12 @@
   });
 
   // ----- abertura por âncora (#id) + scroll suave -----
-  function abrirPorHash() {
+  // noAnimacao=true no carregamento inicial da página: com fontes web ainda
+  // carregando, scrollHeight pode medir baixo e a transição prende o painel
+  // cortado (achado real via Eyes, 22/09) — abrir direto em height:auto evita
+  // o risco. Em hashchange durante a sessão (clique num link-âncora na própria
+  // página) o DOM já está estável, então mantém a animação normal.
+  function abrirPorHash(noAnimacao) {
     var hash = window.location.hash;
     if (!hash || hash.length < 2) return;
 
@@ -56,15 +61,15 @@
     var botao  = alvo.querySelector('.serv-item__cab');
     var painel = alvo.querySelector('.serv-item__painel');
     if (botao && painel && botao.getAttribute('aria-expanded') !== 'true') {
-      definir(alvo, botao, painel, true, false);
+      definir(alvo, botao, painel, true, !!noAnimacao);
     }
     requestAnimationFrame(function () {
       alvo.scrollIntoView({ behavior: reduzirMovimento ? 'auto' : 'smooth', block: 'start' });
     });
   }
 
-  abrirPorHash();
-  window.addEventListener('hashchange', abrirPorHash);
+  abrirPorHash(true);
+  window.addEventListener('hashchange', function () { abrirPorHash(false); });
 
   function focaveisDoPainel(painel) {
     return painel.querySelectorAll(

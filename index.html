@@ -57,7 +57,9 @@
   <!-- Fontes (Google Fonts, display=swap) — Cinzel (logo/selo) · Cormorant Garamond (display serif + itálico) · Inter (corpo/UI) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
 
   <!-- CSS -->
   <link rel="stylesheet" href="css/variaveis_LUCAS.css">
@@ -265,7 +267,7 @@
             <svg class="icone cs__icone" aria-hidden="true" focusable="false"><use href="#i-shield-check"/></svg>
             <span class="cs__titulo">Consultoria</span>
             <span class="cs__desc">Visita à empresa, vistoria completa e plano de ação.</span>
-            <span class="cs__ctx">A engenheira vai até a operação, levanta os riscos e orienta o que precisa ser regularizado.</span>
+            <span class="cs__ctx">A equipe técnica vai até a operação, levanta os riscos e orienta o que precisa ser regularizado.</span>
             <span class="cs__chips"><span class="chip">Vistoria</span><span class="chip">NRs</span><span class="chip">Gestão</span></span>
             <span class="cs__ver"><span>Ver mais</span><span class="seta" aria-hidden="true">→</span></span>
           </a>
@@ -500,7 +502,7 @@
           <li class="passo">
             <span class="passo__num" aria-hidden="true">1</span>
             <h3 class="passo__titulo">Visita Técnica</h3>
-            <p class="passo__desc">A engenheira responsável vai até a sua operação e realiza um levantamento completo: avalia riscos físicos, químicos e biológicos, verifica documentos obrigatórios, analisa práticas no local e identifica quais NRs estão sendo cumpridas e quais precisam de adequação imediata.</p>
+            <p class="passo__desc">A equipe técnica vai até a sua operação e realiza um levantamento completo: avalia riscos físicos, químicos e biológicos, verifica documentos obrigatórios, analisa práticas no local e identifica quais NRs estão sendo cumpridas e quais precisam de adequação imediata.</p>
             <ul class="passo__meta">
               <li>Duração: 1 a 2 dias no local</li>
               <li>Resultado: levantamento completo</li>
@@ -545,7 +547,7 @@
         </div>
         <div class="segmentos__grid">
           <a class="seg" href="segmentos.html#empresas">
-            <img class="seg__foto seg__foto--v02" src="assets/images/refinement/segments/gseg-seg-empresas-800-v02.png" alt="" width="800" height="450" loading="lazy">
+            <img class="seg__foto seg__foto--v02" src="assets/images/refinement/segments/gseg-seg-empresas-800-v02.webp" alt="" width="800" height="450" loading="lazy">
             <div class="seg__corpo">
               <h3 class="seg__titulo">Empresas</h3>
               <p class="seg__desc">Segurança do Trabalho completa para quem tem colaboradores CLT.</p>
@@ -554,7 +556,7 @@
             </div>
           </a>
           <a class="seg" href="segmentos.html#industrias">
-            <img class="seg__foto seg__foto--v02" src="assets/images/refinement/segments/gseg-seg-industrias-800-v02.jpg" alt="" width="800" height="450" loading="lazy">
+            <img class="seg__foto seg__foto--v02" src="assets/images/refinement/segments/gseg-seg-industrias-800-v02.webp" alt="" width="800" height="450" loading="lazy">
             <div class="seg__corpo">
               <h3 class="seg__titulo">Indústrias</h3>
               <p class="seg__desc">Segurança especializada para ambientes industriais de maior risco.</p>
@@ -563,7 +565,7 @@
             </div>
           </a>
           <a class="seg" href="segmentos.html#agroindustrias">
-            <img class="seg__foto seg__foto--v02" src="assets/images/refinement/segments/gseg-seg-agroindustrias-800-v02.png" alt="" width="800" height="450" loading="lazy">
+            <img class="seg__foto seg__foto--v02" src="assets/images/refinement/segments/gseg-seg-agroindustrias-800-v02.webp" alt="" width="800" height="450" loading="lazy">
             <div class="seg__corpo">
               <h3 class="seg__titulo">Agroindústrias</h3>
               <p class="seg__desc">Especialistas em Segurança do Trabalho para a cadeia agroindustrial.</p>
@@ -572,7 +574,7 @@
             </div>
           </a>
           <a class="seg" href="segmentos.html#fazendas">
-            <img class="seg__foto seg__foto--v02" src="assets/images/refinement/segments/gseg-seg-fazendas-800-v02.png" alt="" width="800" height="450" loading="lazy">
+            <img class="seg__foto seg__foto--v02" src="assets/images/refinement/segments/gseg-seg-fazendas-800-v02.webp" alt="" width="800" height="450" loading="lazy">
             <div class="seg__corpo">
               <h3 class="seg__titulo">Fazendas</h3>
               <p class="seg__desc">Segurança do Trabalho para propriedades rurais de todos os portes.</p>
@@ -672,7 +674,7 @@
 
     <!-- ========================= S10 · CTA FINAL — frase de propósito EXCLUSIVA ========================= -->
     <section class="cta-final" aria-labelledby="cta-final-titulo">
-      <img class="cta-final__bg" src="assets/images/refinement/backgrounds/gseg-cta-atmosfera-1600-v02.png" alt="" width="1600" height="900" loading="lazy">
+      <img class="cta-final__bg" src="assets/images/refinement/backgrounds/gseg-cta-atmosfera-1600-v02.webp" alt="" width="1600" height="900" loading="lazy">
       <div class="container cta-final__inner">
         <img class="cta-final__logo" src="assets/brand/logo-claro.svg" alt="GSEG — Engenharia de Segurança do Trabalho" width="143" height="52">
         <p class="cta-final__tagline" id="cta-final-titulo">Proteger pessoas.<br>Fortalecer negócios.</p>
@@ -718,8 +720,8 @@
             <li><a href="index.html">Início</a></li>
             <li><a href="sobre.html">Sobre</a></li>
             <li><a href="servicos.html">Serviços</a></li>
-            <li><a href="segmentos.html">Segmentos</a></li>
             <li><a href="beneficios.html">Benefícios</a></li>
+            <li><a href="segmentos.html">Segmentos</a></li>
             <li><a href="faq.html">FAQ</a></li>
             <li><a href="contato.html">Contato</a></li>
           </ul>
