@@ -646,7 +646,10 @@
 
 /* Painel expandido com fundo creme (#F2F1EC): é a cor que o corte diagonal
    revela no estado aberto — foto e painel leem como uma peça só. */
-.serv-item[data-eco] { background: var(--creme); }
+/* Paleta 28/09 (Riarley, opção A): overlay GRAFITE — neutro, não puxa a foto
+   para floresta/campo (reclamação recorrente da cliente sobre excesso de agro).
+   Variável própria dos 4 cards: --verde-marca-rgb é global e não muda. */
+.serv-item[data-eco] { --eco-overlay-rgb: 38, 41, 42; background: var(--creme); }
 .serv-item[data-eco] .serv-item__cab {
   position: relative;
   isolation: isolate;
@@ -665,8 +668,8 @@
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(to top, rgba(var(--verde-marca-rgb), .55) 0%, rgba(var(--verde-marca-rgb), .55) 78%, rgba(var(--verde-marca-rgb), 0) 100%),
-    linear-gradient(to top right, rgba(var(--verde-marca-rgb), .78) 0%, rgba(var(--verde-marca-rgb), .45) 100%);
+    linear-gradient(to top, rgba(var(--eco-overlay-rgb), .55) 0%, rgba(var(--eco-overlay-rgb), .55) 78%, rgba(var(--eco-overlay-rgb), 0) 100%),
+    linear-gradient(to top right, rgba(var(--eco-overlay-rgb), .78) 0%, rgba(var(--eco-overlay-rgb), .45) 100%);
   pointer-events: none;
 }
 .serv-item[data-eco] .serv-item__cab > * {
@@ -690,19 +693,34 @@
   display: block;
 }
 
-/* Item 1 (27/09): card FECHADO = borda inferior reta (sem cunha revelando o
-   fundo do card). Card ABERTO = corte diagonal, que revela só o creme do
-   painel. Polígono de 4 pontos nos dois estados para o clip-path interpolar
-   junto com a altura do painel (sem pulo de layout). */
+/* Corte diagonal nos dois estados (28/09: restaurado no card FECHADO, com o
+   polígono original de 23/09 — a remoção de 27/09 foi erro; a reclamação era
+   a COR da faixa, não o efeito). Lado esquerdo (texto) sempre 100%. */
 .serv-item[data-eco] .serv-item__foto,
 .serv-item[data-eco] .serv-item__cab::before {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
   transition: clip-path var(--transition-faq);
 }
 .serv-item--aberto[data-eco] .serv-item__foto,
 .serv-item--aberto[data-eco] .serv-item__cab::before {
   clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
 }
+/* Faixa revelada sob a diagonal: bronze no card fechado (#988056 — ajustado
+   de #9A8258 com OK do Riarley em 28/09 p/ garantir 3:1 contra o fundo mais
+   escuro da seção), creme
+   #F2F1EC (cor do painel) no aberto. Camada própria atrás da foto (z -1 no
+   contexto isolado do cab), cor animada com a mesma var do painel. */
+.serv-item[data-eco] .serv-item__cab::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: #988056;
+  transition: background-color var(--transition-faq);
+  pointer-events: none;
+}
+.serv-item--aberto[data-eco] .serv-item__cab::after { background-color: var(--creme); }
+
 /* 1.3.c: no mínimo 40px entre o ponto mais baixo da diagonal (base da foto,
    lado esquerdo) e a primeira linha do painel */
 .serv-item[data-eco] .serv-item__painel-inner { padding-top: 40px; }
@@ -736,7 +754,8 @@
      flutuante); foto e overlay se estendem por baixo dessa faixa até a borda
      real do card — sem faixa creme vertical à direita */
   .serv-item[data-eco] .serv-item__foto,
-  .serv-item[data-eco] .serv-item__cab::before {
+  .serv-item[data-eco] .serv-item__cab::before,
+  .serv-item[data-eco] .serv-item__cab::after {
     right: calc(-28px - env(safe-area-inset-right, 0px));
   }
   .serv-item[data-eco] .serv-item__corpo {
@@ -759,8 +778,8 @@
   }
   .serv-item[data-eco] .serv-item__cab::before {
     background:
-      linear-gradient(to top, rgba(var(--verde-marca-rgb), .55) 0%, rgba(var(--verde-marca-rgb), .55) 60%, rgba(var(--verde-marca-rgb), 0) 95%),
-      linear-gradient(to top right, rgba(var(--verde-marca-rgb), .78) 0%, rgba(var(--verde-marca-rgb), .45) 100%);
+      linear-gradient(to top, rgba(var(--eco-overlay-rgb), .55) 0%, rgba(var(--eco-overlay-rgb), .55) 60%, rgba(var(--eco-overlay-rgb), 0) 95%),
+      linear-gradient(to top right, rgba(var(--eco-overlay-rgb), .78) 0%, rgba(var(--eco-overlay-rgb), .45) 100%);
   }
   /* sem o poço de ícone, o recuo de 128px (calibrado pro ícone das 6 de SST)
      sobraria — padding simétrico do card */
