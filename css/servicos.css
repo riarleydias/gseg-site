@@ -528,80 +528,78 @@
   --service-bg-size-desktop: cover;
 }
 
+/* Faixa bronze enxuta (variante A v2) — GSEG Serviços — 2026-09-30 */
 /* =============================================================================
-   Os 10 cards (6 de SST + 4 de Meio Ambiente) — estrutura única
-   30/09 (1): estrutura dos cards de Meio Ambiente do commit 73df831 nos 10
-   cards (foto inteira, botão no canto inferior direito, diagonal de 12%).
-   30/09 (2): PLACA BEGE TRANSLÚCIDA COM DESFOQUE atrás de título e descrição.
-   Três zonas no card fechado:
-   - Zona 1 — foto + overlay grafite UNIFORME rgb(38, 41, 42) a .30.
-   - Zona 2 — placa: bronze #776037 a .90 + backdrop-filter blur(8px). É o
-     #988056 da marca escurecido em OKLCH no mesmo matiz (L .612 → .503):
-     menor tom em que o texto passa 4,5:1 mesmo com foto BRANCA atrás
-     (fundo pior possível = branco sob o overlay .30 = rgb(190, 191, 191):
-     descrição 4,63:1, título 5,23:1). O #988056 puro não chega a 4,5:1 com
-     texto claro em nenhuma opacidade (sólido: 3,78 / 3,34). A placa é o
-     ::before do bloco de texto: a altura acompanha o texto de cada card.
-   - Zona 3 — o triângulo sob a diagonal do card: transparente → #988056 →
-     #F2F1EC (fechado) ou → #988056 (aberto, continua no painel).
-   Diagonais paralelas, sem ângulo fixo: cada gradiente usa uma imagem de
-   300% × 3·rise; com "to bottom right" a linha de 50% liga os cantos inferior
-   esquerdo e superior direito dela, com inclinação rise / largura do card —
-   a mesma do corte. rise = 12% da altura do cab (200px → 24px; 220px →
-   26,4px). Paradas em px a partir dos 50% = distância perpendicular.
+   Os 10 cards (6 de SST + 4 de Meio Ambiente) — sistema único
+   Variante A aprovada pelo Riarley na rodada 11 (30/09). Substitui por inteiro
+   a placa translúcida (#776037 a .90 + blur) e o triângulo de base do
+   commit 5c795a8.
+   - Foto inteira + overlay grafite rgb(38, 41, 42) a .30 (como já era).
+   - Faixa bronze #A89066 SÓLIDA atrás do texto: é o ::before do bloco de
+     texto (.serv-item__corpo), esticado até as bordas do card (100cqw) e até
+     a base do cab — cresce e encolhe com o texto de cada card (título ou
+     descrição em 2 linhas), sem px por card e sem script.
+   - Topo da faixa: --serv-respiro acima do topo do título no lado esquerdo
+     (≥900px: 14px · ≤899px: 10px), subindo --serv-rise até o lado direito
+     (≤480px: 5px · 481–899px: 14px ·
+     ≥900px: 20px). Rampa de transparência de 9 pontos (±12px).
+     Geometria sem ângulo fixo: a máscara usa uma imagem de 12100% × 121·rise;
+     com "to bottom right" a linha de 50% liga os cantos inferior esquerdo e
+     superior direito dela (inclinação rise / largura do card) e passa pelo
+     ponto (0, linha); as paradas em px a partir dos 50% são distância
+     perpendicular. A imagem cobre a faixa inteira: sem 2ª camada, sem emenda.
+   - --serv-base de bronze abaixo do texto (≥900px: 16px · ≤899px: 12px;
+     padding-bottom do cab; a altura do cab
+     não muda). Aberto: esse bronze desce para o creme #F2F1EC (5 pontos,
+     --serv-fade animada 220ms ease) e o painel é creme sólido.
+   - Texto branco (título e descrição). Branco sobre #A89066 = 3,07:1,
+     abaixo de 4,5:1 — conhecido e aceito pelo Riarley (rodadas 8 e 11).
    ============================================================================= */
-@property --serv-base-fim {
-  syntax: "<color>";
+@property --serv-fade {
+  syntax: "<number>";
   inherits: false;
-  initial-value: #F2F1EC;
+  initial-value: 0;
 }
-.serv-item[data-service],
-.serv-item[data-eco] {
-  --serv-overlay-alpha: .30;
-  --serv-overlay: linear-gradient(rgba(38, 41, 42, var(--serv-overlay-alpha)), rgba(38, 41, 42, var(--serv-overlay-alpha)));
-  --serv-rise: 24px;       /* 12% de 200px (cab desktop) */
-  --serv-pad: 30px;        /* margem esquerda do texto = padding da placa */
-  --serv-pad-base: 28px;   /* padding-bottom do cab */
-  --serv-pena: 12px;       /* meia-largura da transição foto → placa */
-  --serv-placa-max: 150px; /* 75% do card (202px) menos a borda: zona 1 >= 25% */
+.servicos__lista .serv-item {
+  --serv-overlay: linear-gradient(rgba(38, 41, 42, .30), rgba(38, 41, 42, .30));
+  --serv-rise: 20px;      /* ≥ 900px */
+  --serv-respiro: 14px;   /* faixa acima do topo do título */
+  --serv-base: 16px;      /* bronze abaixo do texto até a base do cab */
+  --serv-pad: 30px;       /* margem esquerda do texto (padding-left do cab) */
   container-type: inline-size;   /* 100cqw = largura interna do card */
   background: var(--creme);
 }
-.serv-item[data-service]::before,
-.serv-item[data-eco]::before { content: none; }              /* sem barra verde lateral (Lote 1) */
-.serv-item[data-service] .serv-item__icone,
-.serv-item[data-eco] .serv-item__icone { display: none; }
+.servicos__lista .serv-item::before { content: none; }       /* sem barra verde lateral (Lote 1) */
+.servicos__lista .serv-item .serv-item__icone { display: none; }
 
-.serv-item[data-service] .serv-item__cab,
-.serv-item[data-eco] .serv-item__cab {
+.servicos__lista .serv-item .serv-item__cab {
   position: relative;
   isolation: isolate;
   overflow: hidden;
+  padding-bottom: var(--serv-base);   /* bronze abaixo do texto */
 }
-/* o invólucro do Lote 1 (.serv-item__bloco) fica neutro: corpo e botão voltam
-   a ser itens da grade do cab */
+/* o invólucro do Lote 1 (.serv-item__bloco) fica neutro: corpo e botão são
+   itens da grade do cab */
 .serv-item__bloco { display: contents; }
-.serv-item[data-service] .serv-item__corpo,
-.serv-item[data-eco] .serv-item__corpo { position: relative; z-index: 2; }
-.serv-item[data-service] .serv-item__ver,
-.serv-item[data-eco] .serv-item__ver { position: relative; z-index: 4; }   /* acima da zona 3 */
+.servicos__lista .serv-item .serv-item__corpo { position: relative; z-index: 2; }
+.servicos__lista .serv-item .serv-item__ver { position: relative; z-index: 4; }
 
-/* ---------- Zona 1: foto + overlay .30 ---------- */
+/* ---------- Foto + overlay .30 ---------- */
 /* Meio Ambiente: a foto é um <img> (.serv-item__foto); o overlay no ::before */
-.serv-item[data-eco] .serv-item__foto {
+.servicos__lista .serv-item[data-eco] .serv-item__foto {
   position: absolute;
   inset: 0;
   z-index: 0;
   display: block;
 }
-.serv-item[data-eco] .serv-item__foto img {
+.servicos__lista .serv-item[data-eco] .serv-item__foto img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   display: block;
 }
-.serv-item[data-eco] .serv-item__cab::before {
+.servicos__lista .serv-item[data-eco] .serv-item__cab::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -610,7 +608,7 @@
   pointer-events: none;
 }
 /* SST: a foto é a variável --service-image; overlay + foto numa camada */
-.serv-item[data-service] .serv-item__cab::after {
+.servicos__lista .serv-item[data-service] .serv-item__cab::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -621,219 +619,132 @@
   pointer-events: none;
 }
 
-/* ---------- Zona 2: placa bege translúcida com desfoque ---------- */
-/* Vai da borda esquerda à direita do card (100cqw) e desce até a base do cab.
-   Topo: a linha de 50% da máscara fica "pad + pena" acima do título no lado
-   esquerdo e sobe "rise" até a direita (paralela à diagonal); opacidade total
-   a "pad" do título. Máscara com 9 pontos (curva suave, sem degrau) + uma
-   camada cheia abaixo da imagem da diagonal.
-   A camada cheia começa 1px abaixo da opacidade total da diagonal, dentro da
-   imagem (sobreposição): encostadas, as duas cobriam metade do pixel da
-   emenda quando o topo da placa cai em fração de px, e aparecia uma linha
-   clara (opacidade ~.75) atravessando a placa.
-   Altura = texto + pad + 2·pena + rise + pad-base, ancorada na base, com teto
-   --serv-placa-max (item 3.5-c): no ponto mais alto (borda direita) a foto
-   pura nunca fica abaixo de 25% do card. Quando o teto age, só o espaço
-   acima do título diminui (nunca a fonte). */
-.serv-item[data-service] .serv-item__corpo::before,
-.serv-item[data-eco] .serv-item__corpo::before {
+/* ---------- Faixa bronze (::before do bloco de texto) ---------- */
+/* Caixa: da borda esquerda à direita do card, de (linha − 12px de rampa −
+   rise − 4px) até a base do cab. Na caixa, a linha fica a rise + 16px do topo
+   no lado esquerdo = --serv-respiro acima do título. */
+.servicos__lista .serv-item .serv-item__corpo::before {
   content: "";
   position: absolute;
   z-index: -1;
   left: calc(-1 * var(--serv-pad));
   width: 100cqw;
-  bottom: calc(-1 * var(--serv-pad-base));
-  height: min(calc(100% + var(--serv-pad) + 2 * var(--serv-pena) + var(--serv-rise) + var(--serv-pad-base)), var(--serv-placa-max));
-  background-color: rgba(119, 96, 55, .90);   /* #776037 a .90 */
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  -webkit-mask-image:
-    linear-gradient(to bottom right,
-      transparent calc(50% - var(--serv-pena)),
-      rgba(0, 0, 0, .03) calc(50% - var(--serv-pena) * .75),
-      rgba(0, 0, 0, .12) calc(50% - var(--serv-pena) * .5),
-      rgba(0, 0, 0, .30) calc(50% - var(--serv-pena) * .25),
-      rgba(0, 0, 0, .50) 50%,
-      rgba(0, 0, 0, .70) calc(50% + var(--serv-pena) * .25),
-      rgba(0, 0, 0, .88) calc(50% + var(--serv-pena) * .5),
-      rgba(0, 0, 0, .97) calc(50% + var(--serv-pena) * .75),
-      #000 calc(50% + var(--serv-pena))),
-    linear-gradient(#000, #000);
-  mask-image:
-    linear-gradient(to bottom right,
-      transparent calc(50% - var(--serv-pena)),
-      rgba(0, 0, 0, .03) calc(50% - var(--serv-pena) * .75),
-      rgba(0, 0, 0, .12) calc(50% - var(--serv-pena) * .5),
-      rgba(0, 0, 0, .30) calc(50% - var(--serv-pena) * .25),
-      rgba(0, 0, 0, .50) 50%,
-      rgba(0, 0, 0, .70) calc(50% + var(--serv-pena) * .25),
-      rgba(0, 0, 0, .88) calc(50% + var(--serv-pena) * .5),
-      rgba(0, 0, 0, .97) calc(50% + var(--serv-pena) * .75),
-      #000 calc(50% + var(--serv-pena))),
-    linear-gradient(#000, #000);
-  -webkit-mask-size: 300% calc(3 * var(--serv-rise)), 100% 100%;
-  mask-size: 300% calc(3 * var(--serv-rise)), 100% 100%;
-  -webkit-mask-position: left 50% top calc(var(--serv-pena) - var(--serv-rise)), left 0 top calc(2 * var(--serv-pena) + var(--serv-rise) + 1px);
-  mask-position: left 50% top calc(var(--serv-pena) - var(--serv-rise)), left 0 top calc(2 * var(--serv-pena) + var(--serv-rise) + 1px);
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
+  top: calc(-1 * (var(--serv-respiro) + 12px + var(--serv-rise) + 4px));
+  bottom: calc(-1 * var(--serv-base));
+  background:
+    linear-gradient(to bottom,
+      rgba(242, 241, 236, 0) calc(100% - var(--serv-base)),
+      rgba(242, 241, 236, calc(var(--serv-fade) * .16)) calc(100% - var(--serv-base) * .75),
+      rgba(242, 241, 236, calc(var(--serv-fade) * .50)) calc(100% - var(--serv-base) * .5),
+      rgba(242, 241, 236, calc(var(--serv-fade) * .84)) calc(100% - var(--serv-base) * .25),
+      rgba(242, 241, 236, var(--serv-fade)) calc(100% - 2px)),   /* 2px finais já creme: junção com o painel sem degrau */
+    #A89066;
+  -webkit-mask: linear-gradient(to bottom right,
+      rgba(0, 0, 0, 0) calc(50% - 12px), rgba(0, 0, 0, .03) calc(50% - 9px),
+      rgba(0, 0, 0, .12) calc(50% - 6px), rgba(0, 0, 0, .30) calc(50% - 3px),
+      rgba(0, 0, 0, .50) 50%, rgba(0, 0, 0, .70) calc(50% + 3px),
+      rgba(0, 0, 0, .88) calc(50% + 6px), rgba(0, 0, 0, .97) calc(50% + 9px),
+      rgba(0, 0, 0, 1) calc(50% + 12px))
+    left 50% top calc(16px - 60 * var(--serv-rise)) / 12100% calc(121 * var(--serv-rise)) no-repeat;
+  mask: linear-gradient(to bottom right,
+      rgba(0, 0, 0, 0) calc(50% - 12px), rgba(0, 0, 0, .03) calc(50% - 9px),
+      rgba(0, 0, 0, .12) calc(50% - 6px), rgba(0, 0, 0, .30) calc(50% - 3px),
+      rgba(0, 0, 0, .50) 50%, rgba(0, 0, 0, .70) calc(50% + 3px),
+      rgba(0, 0, 0, .88) calc(50% + 6px), rgba(0, 0, 0, .97) calc(50% + 9px),
+      rgba(0, 0, 0, 1) calc(50% + 12px))
+    left 50% top calc(16px - 60 * var(--serv-rise)) / 12100% calc(121 * var(--serv-rise)) no-repeat;
+  transition: --serv-fade var(--transition-faq);
   pointer-events: none;
 }
+.servicos__lista .serv-item--aberto .serv-item__corpo::before { --serv-fade: 1; }
 
-/* ---------- Zona 3: base (triângulo sob a diagonal) ---------- */
-/* Camada acima da placa (z 3) e abaixo do botão (z 4). Fechado: transparente
-   → #988056 (5 pontos, 8px) → #F2F1EC (14px). Aberto: termina em #988056 e
-   o painel continua dele (--serv-base-fim animada, 220ms ease). Sem suporte a
-   "in oklch": a mesma rampa em sRGB (fora do @supports). */
-.serv-item[data-eco] .serv-item__cab::after,
-.serv-item[data-service] .serv-item__cab::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  background-image: linear-gradient(to bottom right,
-      rgba(152, 128, 86, 0) 50%,
-      rgba(152, 128, 86, .25) calc(50% + 2px),
-      rgba(152, 128, 86, .60) calc(50% + 4px),
-      rgba(152, 128, 86, .88) calc(50% + 6px),
-      #988056 calc(50% + 8px),
-      var(--serv-base-fim) calc(50% + 22px));
-  background-size: 300% calc(3 * var(--serv-rise));
-  background-position: left bottom;
-  background-repeat: no-repeat;
-  transition: --serv-base-fim var(--transition-faq);
-  pointer-events: none;
-}
-@supports (background-image: linear-gradient(in oklch, red, blue)) {
-  .serv-item[data-eco] .serv-item__cab::after,
-  .serv-item[data-service] .serv-item__cab::before {
-    background-image: linear-gradient(to bottom right in oklch,
-        transparent 50%,
-        rgb(152 128 86 / .25) calc(50% + 2px),
-        rgb(152 128 86 / .60) calc(50% + 4px),
-        rgb(152 128 86 / .88) calc(50% + 6px),
-        #988056 calc(50% + 8px),
-        var(--serv-base-fim) calc(50% + 22px));
-  }
-}
-.serv-item--aberto[data-eco] .serv-item__cab::after,
-.serv-item--aberto[data-service] .serv-item__cab::before { --serv-base-fim: #988056; }
-
-/* Texto: título #FFFFFF e descrição #F2F1EC em todos os estados */
-.serv-item[data-service] .serv-item__titulo,
-.serv-item[data-eco] .serv-item__titulo,
-.serv-item[data-service] .serv-item__cab:hover .serv-item__titulo,
-.serv-item[data-eco] .serv-item__cab:hover .serv-item__titulo,
-.serv-item[data-service] .serv-item__cab:focus-visible .serv-item__titulo,
-.serv-item[data-eco] .serv-item__cab:focus-visible .serv-item__titulo { color: var(--branco); }
-.serv-item[data-service] .serv-item__desc,
-.serv-item[data-eco] .serv-item__desc { color: var(--creme); }
+/* Texto: título e descrição #FFFFFF em todos os estados */
+.servicos__lista .serv-item .serv-item__titulo,
+.servicos__lista .serv-item .serv-item__cab:hover .serv-item__titulo,
+.servicos__lista .serv-item .serv-item__cab:focus-visible .serv-item__titulo { color: #FFFFFF; }
+.servicos__lista .serv-item .serv-item__desc { color: #FFFFFF; }
 
 /* Botão: grafite com contorno creme (Lote 1, M2 — >= 3:1 contra a foto) */
-.serv-item[data-service] .serv-item__ver,
-.serv-item[data-eco] .serv-item__ver,
-.serv-item[data-service] .serv-item__cab:hover .serv-item__ver,
-.serv-item[data-eco] .serv-item__cab:hover .serv-item__ver {
+.servicos__lista .serv-item .serv-item__ver,
+.servicos__lista .serv-item .serv-item__cab:hover .serv-item__ver {
   color: var(--branco);
   background: #26292A;
   border-color: var(--creme);
 }
 
-/* Painel aberto: continua do bege #988056 da base do card e dissolve até o
-   creme #F2F1EC numa faixa de altura FIXA no topo (--serv-painel-mescla),
-   em OKLCH (fallback sRGB antes). O texto começa 16px abaixo do fim da faixa,
-   sempre sobre o creme estável. Paradas em px: a faixa não estica enquanto o
-   JS anima a altura do painel (220ms ease) — sem salto de cor. */
-.serv-item[data-service] .serv-item__painel,
-.serv-item[data-eco] .serv-item__painel {
-  --serv-painel-mescla: 64px;   /* igual às paradas de 64px abaixo (literais: var() anularia o fallback) */
-  background: linear-gradient(#988056 0, #F2F1EC 64px);
-  background: linear-gradient(in oklch, #988056 0, #F2F1EC 64px);
-}
-.serv-item[data-service] .serv-item__painel-inner,
-.serv-item[data-eco] .serv-item__painel-inner { padding-top: calc(var(--serv-painel-mescla) + 16px); }
-.serv-item[data-eco] .serv-item__painel-inner p { max-width: 70ch; }
+/* Painel aberto: creme sólido (a faixa já termina em creme) */
+.servicos__lista .serv-item .serv-item__painel { background: #F2F1EC; }
+.servicos__lista .serv-item .serv-item__painel-inner { padding-top: 40px; }
+.servicos__lista .serv-item[data-eco] .serv-item__painel-inner p { max-width: 70ch; }
 
 @media (max-width: 899px) {
-  .serv-item[data-service],
-  .serv-item[data-eco] {
-    --serv-rise: 26.4px;     /* 12% de 220px (cab celular) */
+  .servicos__lista .serv-item {
+    --serv-rise: 14px;    /* 481–899px */
+    --serv-respiro: 10px;
+    --serv-base: 12px;
     --serv-pad: 16px;
-    --serv-pad-base: 22px;
-    --serv-placa-max: 165px; /* 75% do card (222px) menos a borda */
   }
-  .serv-item[data-service] .serv-item__cab,
-  .serv-item[data-eco] .serv-item__cab {
+  .servicos__lista .serv-item .serv-item__cab {
     grid-template-columns: minmax(0, 1fr);
     align-items: end;
     min-height: 220px;
-    padding-bottom: 22px;   /* texto ancorado embaixo, à esquerda */
     overflow: visible;      /* o clip passa a ser do .serv-item (borda real do card) */
   }
   /* o cab é 28px+safe-area mais estreito que o card (faixa segura do WhatsApp
-     flutuante); foto, overlay e base vão até a borda real do card (a placa já
-     mede 100cqw) */
-  .serv-item[data-eco] .serv-item__foto,
-  .serv-item[data-eco] .serv-item__cab::before,
-  .serv-item[data-eco] .serv-item__cab::after,
-  .serv-item[data-service] .serv-item__cab::before,
-  .serv-item[data-service] .serv-item__cab::after {
+     flutuante); foto e overlay vão até a borda real do card (a faixa já mede
+     100cqw) */
+  .servicos__lista .serv-item[data-eco] .serv-item__foto,
+  .servicos__lista .serv-item[data-eco] .serv-item__cab::before,
+  .servicos__lista .serv-item[data-service] .serv-item__cab::after {
     right: calc(-28px - env(safe-area-inset-right, 0px));
   }
-  .serv-item[data-service] .serv-item__cab::after {
+  .servicos__lista .serv-item[data-service] .serv-item__cab::after {
     background-position: 0 0, var(--service-bg-position-mobile, right center);
   }
   /* texto: 34px de folga à direita para não passar sob o botão */
-  .serv-item[data-service] .serv-item__corpo,
-  .serv-item[data-eco] .serv-item__corpo {
+  .servicos__lista .serv-item .serv-item__corpo {
     grid-column: 1;
     grid-row: 1;
     margin-top: 0;
     padding-right: 34px;
   }
-  .serv-item[data-service] .serv-item__desc,
-  .serv-item[data-eco] .serv-item__desc { padding-right: 0; }
+  .servicos__lista .serv-item .serv-item__desc { padding-right: 0; }
   /* "+" à direita (Lote 1, D-24): 31px da borda do card (30px + 1px de
      borda); o cab termina 28px+safe-area antes da borda interna. Base
-     alinhada à base do texto. */
-  .serv-item[data-service] .serv-item__ver,
-  .serv-item[data-eco] .serv-item__ver {
+     alinhada à base do texto (--serv-base). */
+  .servicos__lista .serv-item .serv-item__ver {
     position: absolute;
     right: calc(30px - 28px - env(safe-area-inset-right, 0px));
-    bottom: 22px;
+    bottom: var(--serv-base);
     margin: 0;
   }
   /* área de toque: 44 × 44px centrada no círculo visível (30px; 24px ≤359px) */
-  .serv-item[data-service] .serv-item__ver::after,
-  .serv-item[data-eco] .serv-item__ver::after {
+  .servicos__lista .serv-item .serv-item__ver::after {
     content: "";
     position: absolute;
     inset: calc((100% - 44px) / 2);
   }
 }
+@media (max-width: 480px) {
+  .servicos__lista .serv-item { --serv-rise: 5px; }    /* ≤ 480px */
+}
 @media (max-width: 359px) {
-  .serv-item[data-service],
-  .serv-item[data-eco] { --serv-pad: 13px; }   /* cab com padding-inline de 13px */
+  .servicos__lista .serv-item { --serv-pad: 13px; }    /* cab com padding-inline de 13px */
 }
 
 @media (min-width: 900px) {
-  .serv-item[data-service] .serv-item__cab,
-  .serv-item[data-eco] .serv-item__cab {
+  .servicos__lista .serv-item .serv-item__cab {
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: end;
     min-height: 200px;
-    padding-bottom: 28px;
   }
-  .serv-item[data-service] .serv-item__corpo,
-  .serv-item[data-eco] .serv-item__corpo {
+  .servicos__lista .serv-item .serv-item__corpo {
     grid-column: 1;
     margin-top: 0;
   }
-  .serv-item[data-service] .serv-item__ver,
-  .serv-item[data-eco] .serv-item__ver { grid-column: 2; }
+  .servicos__lista .serv-item .serv-item__ver { grid-column: 2; }
   /* sem o poço de ícone, o recuo de 128px sobraria — padding simétrico */
-  .serv-item[data-service] .serv-item__painel-inner,
-  .serv-item[data-eco] .serv-item__painel-inner { padding-left: 30px; }
+  .servicos__lista .serv-item .serv-item__painel-inner { padding-left: 30px; }
 }
 
 
