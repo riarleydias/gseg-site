@@ -57,7 +57,7 @@
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/refinamento-tokens.css">
   <link rel="stylesheet" href="css/refinamento-paginas.css">
-  <link rel="stylesheet" href="css/servicos-preview-a.css?v=20261005-r17">
+  <link rel="stylesheet" href="css/servicos-preview-a.css?v=20261007-r18">
 </head>
 <body class="pa-pagina">
   <a href="#conteudo-principal" class="skip-link">Ir para o conteúdo principal</a>
@@ -183,18 +183,21 @@
       </div>
     </header>
 
-    <nav class="pa-atalhos" aria-label="Atalhos por necessidade">
+    <nav class="pa-atalhos" aria-labelledby="titulo-atalhos">
       <div class="container pa-limite">
         <div class="pa-atalhos__faixa">
-          <h2 class="pa-atalhos__titulo">O que sua empresa precisa agora?</h2>
+          <h2 class="pa-atalhos__titulo" id="titulo-atalhos">O que sua empresa precisa agora?</h2>
+          <p class="pa-atalhos__linha">Escolha pelo que está tirando o seu sono — levamos você direto ao serviço.</p>
           <ul class="pa-atalhos__lista">
-            <li><a class="pa-atalho" href="#servico-documentacao"><span>PGR e laudos</span><svg class="pa-ico pa-ico--seta" aria-hidden="true" focusable="false"><use href="#i-seta-fina"/></svg></a></li>
-            <li><a class="pa-atalho" href="#servico-esocial"><span>eSocial SST</span><svg class="pa-ico pa-ico--seta" aria-hidden="true" focusable="false"><use href="#i-seta-fina"/></svg></a></li>
-            <li><a class="pa-atalho" href="#servico-treinamentos"><span>Treinamento de NR</span><svg class="pa-ico pa-ico--seta" aria-hidden="true" focusable="false"><use href="#i-seta-fina"/></svg></a></li>
-            <li><a class="pa-atalho" href="#servico-licenciamento-ambiental"><span>Licença ambiental</span><svg class="pa-ico pa-ico--seta" aria-hidden="true" focusable="false"><use href="#i-seta-fina"/></svg></a></li>
-            <li><a class="pa-atalho" href="#servico-residuos-efluentes-emissoes"><span>Resíduos e efluentes</span><svg class="pa-ico pa-ico--seta" aria-hidden="true" focusable="false"><use href="#i-seta-fina"/></svg></a></li>
-            <li><a class="pa-atalho" href="#fecho"><span>Outro serviço</span><svg class="pa-ico pa-ico--seta" aria-hidden="true" focusable="false"><use href="#i-seta-fina"/></svg></a></li>
+<!-- PENDENTE DE CONFIRMAÇÃO com a cliente: rótulo do atalho 1. Alternativa: "PGR atualizado (NR-1)". Trocar só o texto abaixo. -->
+            <li><a class="pa-atalho pa-atalho--selo" href="#servico-documentacao"><span class="pa-atalho__txt"><span class="pa-atalho__sigla" aria-hidden="true">NR-1</span><span class="pa-atalho__rotulo">PGR e riscos psicossociais</span></span><span class="pa-atalho__selo">Fiscalização desde 26/05/2026</span><svg class="pa-ico pa-ico--seta" aria-hidden="true" focusable="false"><use href="#i-seta-fina"/></svg></a></li>
+            <li><a class="pa-atalho" href="#servico-treinamentos"><span class="pa-atalho__txt"><span class="pa-atalho__sigla" aria-hidden="true">NR</span><span class="pa-atalho__rotulo">Treinamentos e reciclagens de NR</span></span><svg class="pa-ico pa-ico--seta" aria-hidden="true" focusable="false"><use href="#i-seta-fina"/></svg></a></li>
+            <li><a class="pa-atalho" href="#servico-esocial"><span class="pa-atalho__txt"><span class="pa-atalho__sigla" aria-hidden="true">S-2240</span><span class="pa-atalho__rotulo">eSocial SST (S-2220 e S-2240)</span></span><svg class="pa-ico pa-ico--seta" aria-hidden="true" focusable="false"><use href="#i-seta-fina"/></svg></a></li>
+            <li><a class="pa-atalho" href="#servico-inspecoes"><span class="pa-atalho__txt"><span class="pa-atalho__sigla" aria-hidden="true">NR-15/16</span><span class="pa-atalho__rotulo">Laudos de insalubridade e periculosidade</span></span><svg class="pa-ico pa-ico--seta" aria-hidden="true" focusable="false"><use href="#i-seta-fina"/></svg></a></li>
+            <li><a class="pa-atalho" href="#servico-documentacao"><span class="pa-atalho__txt"><span class="pa-atalho__sigla" aria-hidden="true">LTCAT</span><span class="pa-atalho__rotulo">LTCAT e PPP</span></span><svg class="pa-ico pa-ico--seta" aria-hidden="true" focusable="false"><use href="#i-seta-fina"/></svg></a></li>
+            <li><a class="pa-atalho" href="#servico-licenciamento-ambiental"><span class="pa-atalho__txt"><span class="pa-atalho__sigla" aria-hidden="true">LO</span><span class="pa-atalho__rotulo">Licença ambiental</span></span><svg class="pa-ico pa-ico--seta" aria-hidden="true" focusable="false"><use href="#i-seta-fina"/></svg></a></li>
           </ul>
+          <p class="pa-atalhos__outro"><a class="pa-wa" href="https://wa.me/5534900000000?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20GSEG%20e%20gostaria%20de%20falar%20com%20a%20equipe%20t%C3%A9cnica." target="_blank" rel="noopener">Precisa de outro serviço? Fale com a equipe técnica <span aria-hidden="true">→</span></a></p>
         </div>
       </div>
     </nav>
@@ -285,41 +288,9 @@
             </div>
           </article>
 
-          <article class="pa-card" id="servico-consultoria" data-servico="Consultoria">
-            <div class="pa-card__topo">
-              <span class="pa-card__num" aria-hidden="true">03</span>
-              <h3 class="pa-card__titulo" id="titulo-consultoria">Consultoria</h3>
-            </div>
-            <p class="pa-card__dor">Diagnóstico técnico para decidir com segurança.</p>
-            <ul class="pa-card__chips" aria-label="Principais itens da consultoria">
-              <li>Vistoria</li><li>Plano de ação</li><li>ISO 45001</li>
-            </ul>
-            <div class="pa-card__acoes">
-              <a class="pa-btn pa-wa pa-btn--card" href="https://wa.me/5534900000000?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20GSEG%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20Consultoria%20na%20minha%20empresa." target="_blank" rel="noopener" aria-label="Pedir orçamento de Consultoria pelo WhatsApp"><svg class="pa-ico" aria-hidden="true" focusable="false"><use href="#i-wa-linha"/></svg><span>Pedir orçamento</span></a>
-              <button class="pa-card__toggle" type="button" hidden aria-controls="painel-consultoria" aria-label="Ver detalhes de Consultoria"><span class="pa-card__toggle-txt">Ver detalhes</span> <span class="pa-card__toggle-ico" aria-hidden="true">+</span></button>
-            </div>
-            <div class="pa-painel" id="painel-consultoria" role="region" aria-labelledby="titulo-consultoria">
-              <p class="pa-painel__destaque">Acompanhamento técnico contínuo para implantar e manter a cultura de segurança, da primeira visita à conformidade mantida.</p>
-              <div class="pa-painel__cols">
-                <div class="pa-painel__inclui">
-                  <h4 class="pa-rotulo">O que está incluído</h4>
-                  <ul class="pa-checks">
-                    <li><svg class="pa-ico pa-ico--check" aria-hidden="true" focusable="false"><use href="#i-check-fino"/></svg><span>Vistoria completa da realidade da empresa</span></li>
-                <li><svg class="pa-ico pa-ico--check" aria-hidden="true" focusable="false"><use href="#i-check-fino"/></svg><span>Plano de ação priorizado</span></li>
-                <li><svg class="pa-ico pa-ico--check" aria-hidden="true" focusable="false"><use href="#i-check-fino"/></svg><span>Preparação para certificações do agro (Rainforest, 4C, Orgânicos) e ISO 45001</span></li>
-                <li><svg class="pa-ico pa-ico--check" aria-hidden="true" focusable="false"><use href="#i-check-fino"/></svg><span>Gestão de prazos e renovações</span></li>
-                  </ul>
-                </div>
-                <div class="pa-painel__cta">
-                  <a class="pa-btn pa-wa pa-btn--painel" href="https://wa.me/5534900000000?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20GSEG%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20Consultoria%20na%20minha%20empresa." target="_blank" rel="noopener" aria-label="Pedir orçamento de Consultoria pelo WhatsApp"><svg class="pa-ico" aria-hidden="true" focusable="false"><use href="#i-wa-linha"/></svg><span>Pedir orçamento de Consultoria</span></a>
-                </div>
-              </div>
-            </div>
-          </article>
-
           <article class="pa-card" id="servico-esocial" data-servico="eSocial SST">
             <div class="pa-card__topo">
-              <span class="pa-card__num" aria-hidden="true">04</span>
+              <span class="pa-card__num" aria-hidden="true">03</span>
               <h3 class="pa-card__titulo" id="titulo-esocial">eSocial SST</h3>
             </div>
             <p class="pa-card__dor">Eventos S-2210, S-2220 e S-2240 enviados no prazo.</p>
@@ -350,7 +321,7 @@
 
           <article class="pa-card" id="servico-inspecoes" data-servico="Inspeções e Laudos">
             <div class="pa-card__topo">
-              <span class="pa-card__num" aria-hidden="true">05</span>
+              <span class="pa-card__num" aria-hidden="true">04</span>
               <h3 class="pa-card__titulo" id="titulo-inspecoes">Inspeções e Laudos</h3>
             </div>
             <p class="pa-card__dor">Riscos medidos e documentados por engenharia.</p>
@@ -380,7 +351,39 @@
             </div>
           </article>
 
-          <article class="pa-card" id="servico-atendimento" data-servico="Atendimento Personalizado">
+          <article class="pa-card" id="servico-consultoria" data-servico="Consultoria">
+            <div class="pa-card__topo">
+              <span class="pa-card__num" aria-hidden="true">05</span>
+              <h3 class="pa-card__titulo" id="titulo-consultoria">Consultoria</h3>
+            </div>
+            <p class="pa-card__dor">Diagnóstico técnico para decidir com segurança.</p>
+            <ul class="pa-card__chips" aria-label="Principais itens da consultoria">
+              <li>Vistoria</li><li>Plano de ação</li><li>ISO 45001</li>
+            </ul>
+            <div class="pa-card__acoes">
+              <a class="pa-btn pa-wa pa-btn--card" href="https://wa.me/5534900000000?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20GSEG%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20Consultoria%20na%20minha%20empresa." target="_blank" rel="noopener" aria-label="Pedir orçamento de Consultoria pelo WhatsApp"><svg class="pa-ico" aria-hidden="true" focusable="false"><use href="#i-wa-linha"/></svg><span>Pedir orçamento</span></a>
+              <button class="pa-card__toggle" type="button" hidden aria-controls="painel-consultoria" aria-label="Ver detalhes de Consultoria"><span class="pa-card__toggle-txt">Ver detalhes</span> <span class="pa-card__toggle-ico" aria-hidden="true">+</span></button>
+            </div>
+            <div class="pa-painel" id="painel-consultoria" role="region" aria-labelledby="titulo-consultoria">
+              <p class="pa-painel__destaque">Acompanhamento técnico contínuo para implantar e manter a cultura de segurança, da primeira visita à conformidade mantida.</p>
+              <div class="pa-painel__cols">
+                <div class="pa-painel__inclui">
+                  <h4 class="pa-rotulo">O que está incluído</h4>
+                  <ul class="pa-checks">
+                    <li><svg class="pa-ico pa-ico--check" aria-hidden="true" focusable="false"><use href="#i-check-fino"/></svg><span>Vistoria completa da realidade da empresa</span></li>
+                <li><svg class="pa-ico pa-ico--check" aria-hidden="true" focusable="false"><use href="#i-check-fino"/></svg><span>Plano de ação priorizado</span></li>
+                <li><svg class="pa-ico pa-ico--check" aria-hidden="true" focusable="false"><use href="#i-check-fino"/></svg><span>Preparação para certificações do agro (Rainforest, 4C, Orgânicos) e ISO 45001</span></li>
+                <li><svg class="pa-ico pa-ico--check" aria-hidden="true" focusable="false"><use href="#i-check-fino"/></svg><span>Gestão de prazos e renovações</span></li>
+                  </ul>
+                </div>
+                <div class="pa-painel__cta">
+                  <a class="pa-btn pa-wa pa-btn--painel" href="https://wa.me/5534900000000?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20GSEG%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20Consultoria%20na%20minha%20empresa." target="_blank" rel="noopener" aria-label="Pedir orçamento de Consultoria pelo WhatsApp"><svg class="pa-ico" aria-hidden="true" focusable="false"><use href="#i-wa-linha"/></svg><span>Pedir orçamento de Consultoria</span></a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="pa-card pa-card--fecho" id="servico-atendimento" data-servico="Atendimento Personalizado">
             <div class="pa-card__topo">
               <span class="pa-card__num" aria-hidden="true">06</span>
               <h3 class="pa-card__titulo" id="titulo-atendimento">Atendimento Personalizado</h3>
@@ -389,8 +392,9 @@
             <ul class="pa-card__chips" aria-label="Pontos do atendimento">
               <li>Indústria</li><li>Comércio</li><li>Porte e risco</li>
             </ul>
+            <p class="pa-card__chamada">Sua empresa tem uma necessidade específica?</p>
             <div class="pa-card__acoes">
-              <a class="pa-btn pa-wa pa-btn--card" href="https://wa.me/5534900000000?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20GSEG%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20Atendimento%20Personalizado%20na%20minha%20empresa." target="_blank" rel="noopener" aria-label="Pedir orçamento de Atendimento Personalizado pelo WhatsApp"><svg class="pa-ico" aria-hidden="true" focusable="false"><use href="#i-wa-linha"/></svg><span>Pedir orçamento</span></a>
+              <a class="pa-btn pa-wa pa-btn--card" href="https://wa.me/5534900000000?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20GSEG%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20Atendimento%20Personalizado%20na%20minha%20empresa." target="_blank" rel="noopener" aria-label="Pedir orçamento sob medida de Atendimento Personalizado pelo WhatsApp"><svg class="pa-ico" aria-hidden="true" focusable="false"><use href="#i-wa-linha"/></svg><span>Pedir orçamento sob medida</span></a>
               <button class="pa-card__toggle" type="button" hidden aria-controls="painel-atendimento" aria-label="Ver detalhes de Atendimento Personalizado"><span class="pa-card__toggle-txt">Ver detalhes</span> <span class="pa-card__toggle-ico" aria-hidden="true">+</span></button>
             </div>
             <div class="pa-painel" id="painel-atendimento" role="region" aria-labelledby="titulo-atendimento">
@@ -418,7 +422,7 @@
         <div class="pa-ma__capa">
           <picture>
             <source type="image/webp" srcset="img/servicos/preview-a/serra-canastra.webp">
-            <img class="pa-ma__foto" src="img/servicos/preview-a/serra-canastra.jpg" alt="" width="2400" height="800" loading="lazy" decoding="async">
+            <img class="pa-ma__foto" src="img/servicos/preview-a/serra-canastra.jpg" alt="Paisagem da Serra da Canastra, Minas Gerais" width="2400" height="800" loading="lazy" decoding="async">
           </picture>
           <div class="pa-ma__faixa">
             <div class="container pa-limite pa-ma__capa-txt">
@@ -426,7 +430,6 @@
               <p class="pa-grupo__linha">Licenças, controles e estudos para operar dentro da legislação ambiental.</p>
             </div>
           </div>
-          <p class="pa-ma__credito"><a href="https://commons.wikimedia.org/wiki/File:Serra_da_Canastra_MG.jpg" target="_blank" rel="noopener">Foto: Fabianni Luiz Ribeiro · CC BY-SA 3.0</a></p>
         </div>
         <div class="container pa-limite pa-ma__corpo">
           <div class="pa-grade">
@@ -538,7 +541,7 @@
             </div>
           </article>
 
-          <article class="pa-card" id="servico-sustentabilidade-certificacao" data-servico="Sustentabilidade e Certificação">
+          <article class="pa-card pa-card--fecho" id="servico-sustentabilidade-certificacao" data-servico="Sustentabilidade e Certificação">
             <div class="pa-card__topo">
               <span class="pa-card__num" aria-hidden="true">10</span>
               <h3 class="pa-card__titulo" id="titulo-sustentabilidade-certificacao">Sustentabilidade e Certificação</h3>
@@ -547,6 +550,7 @@
             <ul class="pa-card__chips" aria-label="Principais itens de sustentabilidade">
               <li>ISO 14001</li><li>GEE</li><li>Educação ambiental</li>
             </ul>
+            <p class="pa-card__chamada">Quer evoluir a gestão ambiental da sua empresa?</p>
             <div class="pa-card__acoes">
               <a class="pa-btn pa-wa pa-btn--card" href="https://wa.me/5534900000000?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20GSEG%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20Sustentabilidade%20e%20Certifica%C3%A7%C3%A3o%20na%20minha%20empresa." target="_blank" rel="noopener" aria-label="Pedir orçamento de Sustentabilidade e Certificação pelo WhatsApp"><svg class="pa-ico" aria-hidden="true" focusable="false"><use href="#i-wa-linha"/></svg><span>Pedir orçamento</span></a>
               <button class="pa-card__toggle" type="button" hidden aria-controls="painel-sustentabilidade-certificacao" aria-label="Ver detalhes de Sustentabilidade e Certificação"><span class="pa-card__toggle-txt">Ver detalhes</span> <span class="pa-card__toggle-ico" aria-hidden="true">+</span></button>
@@ -588,6 +592,12 @@
         </div>
       </div>
     </section>
+
+    <div class="pa-credito">
+      <div class="container pa-limite">
+        <p>Créditos de imagem: Serra da Canastra — <a href="https://commons.wikimedia.org/wiki/File:Serra_da_Canastra_MG.jpg" target="_blank" rel="noopener">Fabianni Luiz Ribeiro</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a> (recortada).</p>
+      </div>
+    </div>
 
     <div class="pa-barra" role="region" aria-label="Contato rápido">
       <a class="pa-btn pa-wa pa-btn--creme" href="https://wa.me/5534900000000?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20GSEG%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener"><svg class="pa-ico" aria-hidden="true" focusable="false"><use href="#i-wa-linha"/></svg><span>Pedir orçamento</span></a>
@@ -648,7 +658,7 @@
   </a>
 
   <script src="js/menu.js" defer></script>
-  <script src="js/servicos-preview-a.js?v=20261005-r17" defer></script>
+  <script src="js/servicos-preview-a.js?v=20261007-r18" defer></script>
   <script src="js/whatsapp.js" defer></script>
   <script src="js/efeitos.js" defer></script>
 </body>
