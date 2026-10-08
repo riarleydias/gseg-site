@@ -1,5 +1,5 @@
 /* =============================================================================
-   GSEG · servicos-preview-a.css — PRÉVIA das Rodadas 17–19 (variante A estruturada)
+   GSEG · servicos-preview-a.css — PRÉVIA das Rodadas 17–19.1 (variante A estruturada)
    Hero com ação · atalhos por dor · destaque + grade 2 colunas · painel que converte ·
    Meio Ambiente em faixa verde própria · barra fixa de conversão no celular.
    Página SEPARADA e noindex: não substitui servicos.html nem css/servicos.css
@@ -435,10 +435,9 @@ html { scroll-padding-top: calc(var(--pa-header-h) + 64px); }
   color: var(--pa-creme);
 }
 .pa-ma__capa { position: relative; isolation: isolate; display: flex; align-items: flex-end; min-height: 200px; overflow: hidden; background: var(--pa-verde-noite); }
-.pa-ma__capa::after { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(36, 51, 32, .65); }
-.pa-ma__foto { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%; }
-.pa-ma__faixa { width: 100%; background: rgba(36, 51, 32, .5); }   /* tarja do título: garante ≥4,5:1 sobre qualquer trecho da foto */
-.pa-ma__capa-txt { padding-block: 24px 40px; }
+@media (min-width: 768px) { .pa-ma__capa { min-height: 240px; } }
+.pa-ma__capa-txt { position: relative; padding-block: 28px 32px; }
+.pa-ma__capa-txt::after { content: ""; position: absolute; left: clamp(24px, 4vw, 64px); right: clamp(24px, 4vw, 64px); bottom: 0; height: 1px; background: rgba(168, 144, 102, .35); }   /* filete bronze, alinhado ao container */
 .pa-ma .pa-grupo__titulo { color: var(--pa-creme); }
 .pa-ma .pa-grupo__linha { color: var(--pa-creme); }
 .pa-ma__corpo { padding-block: clamp(28px, 2.5vw, 32px) clamp(40px, 3.3vw, 48px); }
@@ -450,7 +449,6 @@ html { scroll-padding-top: calc(var(--pa-header-h) + 64px); }
 /* painel aberto dentro da faixa: contraste invertido (creme) */
 .pa-ma .pa-painel { background: var(--pa-creme); }
 .pa-ma .pa-painel__cta { background: var(--pa-creme-2); }
-@media (min-width: 768px) { .pa-ma__capa { min-height: 240px; } .pa-ma__capa-txt { padding-block: 28px; } }
 
 /* ---------- Fecho ---------- */
 .pa-fecho { background: var(--pa-creme-2); border-top: 2px solid var(--pa-bronze); padding-block: clamp(40px, 5vw, 64px); }
@@ -462,11 +460,6 @@ html { scroll-padding-top: calc(var(--pa-header-h) + 64px); }
   .pa-fecho__inner { flex-direction: row; align-items: center; justify-content: space-between; gap: 40px; }
   .pa-fecho__acoes { flex-direction: row; flex: none; }
 }
-
-/* ---------- Crédito da foto (licença CC BY-SA 3.0 exige atribuição) ---------- */
-.pa-credito { background: var(--pa-creme-2); padding-block: 0 24px; }
-.pa-credito p { margin: 0; font-size: .75rem; line-height: 1.5; color: rgba(59, 59, 53, .85); }   /* 70% daria 4,1:1; 85% = ~6:1 */
-.pa-credito a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 
 /* ---------- Barra fixa de conversão (celular) ---------- */
 .pa-barra { display: none; }
@@ -502,7 +495,7 @@ html { scroll-padding-top: calc(var(--pa-header-h) + 64px); }
 
 /* ---------- Quebras: sem palavra órfã ---------- */
 .pa-card__titulo, .pa-card__dor, .pa-card__chamada, .pa-grupo__titulo, .pa-hero__titulo, .pa-atalhos__cab, .pa-como__titulo, .pa-fecho__titulo { text-wrap: balance; }
-.pa-grupo__linha, .pa-hero__sub, .pa-painel__destaque, .pa-painel__texto, .pa-fecho__linha, .pa-como__lista p, .pa-checks span, .pa-credito p { text-wrap: pretty; }
+.pa-grupo__linha, .pa-hero__sub, .pa-painel__destaque, .pa-painel__texto, .pa-fecho__linha, .pa-como__lista p, .pa-checks span { text-wrap: pretty; }
 
 /* ---------- Como funciona (provisório): 3 passos em linha, sem fundo verde ---------- */
 .pa-como { background: var(--pa-creme); padding-block: clamp(24px, 2.4vw, 32px); border-top: 1px solid var(--pa-filete); }
@@ -525,3 +518,63 @@ html { scroll-padding-top: calc(var(--pa-header-h) + 64px); }
   .pa-atalho:nth-child(1) { flex-wrap: wrap; }
   .pa-atalho__selo { order: 4; flex-basis: auto; margin-left: calc(5rem + 10px); }
 }
+
+/* =============================================================================
+   Estampa de símbolos "G" (rodada 19.1) — tom sobre tom, malha tijolo, só sobre verde.
+   Decorativa: ::before sem texto alternativo; ancorada ao container do site; bordas esmaecidas.
+   Tile = 2 símbolos (um no canto e outro a meio passo na horizontal e na vertical) => tijolo contínuo.
+   ============================================================================= */
+.pa-pagina {
+  --pa-g-tamanho: 28px;                       /* altura do símbolo (informativo: a escala real vem do tile × passo) */
+  --pa-g-passo:   112px;                      /* distância entre centros na mesma linha; entre linhas = passo ÷ 2 */
+  --pa-g-tile:    url("../img/servicos/preview-a/padrao-g.svg");   /* símbolo = 1/4 do passo */
+}
+.pa-pagina.pa-padrao-1 { --pa-g-tamanho: 22px; --pa-g-passo: 88px; }
+.pa-pagina.pa-padrao-3 { --pa-g-tamanho: 36px; --pa-g-passo: 160px; --pa-g-tile: url("../img/servicos/preview-a/padrao-g-3.svg"); }   /* símbolo = 0,225 do passo */
+/* tablet ×0,9 e celular ×0,8 (símbolo nunca < 18px; passo mantém a proporção do tile) */
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .pa-pagina { --pa-g-tamanho: 25px; --pa-g-passo: 100px; }
+  .pa-pagina.pa-padrao-1 { --pa-g-tamanho: 20px; --pa-g-passo: 80px; }
+  .pa-pagina.pa-padrao-3 { --pa-g-tamanho: 32px; --pa-g-passo: 142px; }
+}
+@media (max-width: 767.98px) {
+  .pa-pagina { --pa-g-tamanho: 22px; --pa-g-passo: 88px; }
+  .pa-pagina.pa-padrao-1 { --pa-g-tamanho: 18px; --pa-g-passo: 72px; }
+  .pa-pagina.pa-padrao-3 { --pa-g-tamanho: 29px; --pa-g-passo: 129px; }
+}
+
+.pa-ma__capa, .pa-pagina .rodape { --pa-g-ancora-w: 1180px; }
+.pa-pagina .rodape { position: relative; isolation: isolate; --pa-g-ancora-w: var(--container-max, 1400px); --pa-g-opacidade: .05; }
+.pa-ma__capa { --pa-g-opacidade: .06; }
+.pa-ma__capa::before,
+.pa-pagina .rodape::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: calc(var(--pa-g-passo) / 2) 0 0 0;                      /* 1ª linha começa a meio passo do topo */
+  /* a origem do tile é a borda esquerda do conteúdo do container: uma coluna de símbolos coincide com ela */
+  padding-left: calc(max(0px, (100% - var(--pa-g-ancora-w)) / 2) + clamp(24px, 4vw, 64px));
+  background-image: var(--pa-g-tile);
+  background-size: var(--pa-g-passo) var(--pa-g-passo);
+  background-repeat: repeat;
+  background-origin: content-box;
+  background-clip: border-box;
+  opacity: var(--pa-g-opacidade);
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);
+          mask-image: linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);
+}
+.pa-pagina .rodape::before {
+  inset-block-start: 0;                                          /* o rodapé tem o próprio traço no topo: a estampa o acompanha */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 96px), transparent calc(100% - 32px));
+          mask-image: linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 96px), transparent calc(100% - 32px));
+}
+.pa-pagina .rodape > .container { position: relative; z-index: 1; }
+@media (prefers-contrast: more), (forced-colors: active), print { .pa-ma__capa::before, .pa-pagina .rodape::before { display: none; } }
+
+/* etiqueta provisória para comparar as 3 variações (sai quando uma for escolhida) */
+.pa-estampa-sel { position: fixed; left: 16px; bottom: 16px; z-index: 980; padding: 6px 10px; border: 1px solid var(--pa-bronze); background: var(--pa-creme); color: var(--pa-verde); font-size: .75rem; line-height: 1.4; }
+.pa-estampa-sel a { display: inline-block; min-width: 1.25em; text-align: center; color: var(--pa-verde); font-weight: 600; text-decoration: none; }
+.pa-estampa-sel a[aria-current="true"] { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 767.98px) { .pa-estampa-sel { bottom: calc(64px + env(safe-area-inset-bottom) + 8px); } }
+.pa-ma__faixa { width: 100%; }

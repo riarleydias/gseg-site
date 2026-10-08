@@ -21,6 +21,16 @@
   if (!pagina) return;
   pagina.classList.add('pa-js');
 
+  // ----- estampa de símbolos: ?padrao=1|2|3 (sem parâmetro = 2); provisório, sai quando a variação for escolhida -----
+  (function () {
+    let n = '2';
+    try { const q = new URLSearchParams(window.location.search).get('padrao'); if (q === '1' || q === '2' || q === '3') n = q; } catch (e) {}
+    pagina.classList.add('pa-padrao-' + n);
+    Array.prototype.forEach.call(document.querySelectorAll('.pa-estampa-sel a'), function (a) {
+      a.setAttribute('aria-current', String(a.textContent.trim() === n));
+    });
+  })();
+
   // ----- WhatsApp: só reescreve o número se for diferente do que está no HTML -----
   Array.prototype.forEach.call(document.querySelectorAll('a.pa-wa'), function (link) {
     const url = new URL(link.href);
