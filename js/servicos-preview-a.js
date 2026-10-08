@@ -21,14 +21,29 @@
   if (!pagina) return;
   pagina.classList.add('pa-js');
 
-  // ----- estampa de símbolos: ?padrao=1|2|3 (sem parâmetro = 2); provisório, sai quando a variação for escolhida -----
+  // ----- estampa da marca: ?estampa=a|b|c (sem parâmetro ou valor inválido = b); etiqueta provisória só na prévia -----
   (function () {
-    let n = '2';
-    try { const q = new URLSearchParams(window.location.search).get('padrao'); if (q === '1' || q === '2' || q === '3') n = q; } catch (e) {}
-    pagina.classList.add('pa-padrao-' + n);
-    Array.prototype.forEach.call(document.querySelectorAll('.pa-estampa-sel a'), function (a) {
-      a.setAttribute('aria-current', String(a.textContent.trim() === n));
+    let n = 'b';
+    try { const q = (new URLSearchParams(window.location.search).get('estampa') || '').toLowerCase(); if (q === 'a' || q === 'b' || q === 'c') n = q; } catch (e) {}
+    pagina.classList.add('pa-estampa-' + n);
+    const sel = document.querySelector('.pa-estampa-sel');
+    if (!sel) return;
+    Array.prototype.forEach.call(sel.querySelectorAll('a'), function (a) {
+      a.setAttribute('aria-current', String(a.textContent.trim().toLowerCase() === n));
     });
+    // a etiqueta sobe junto com o rodapé: nunca cobre a linha do copyright
+    const base = document.querySelector('.rodape__base');
+    if (!base) return;
+    let pend = false;
+    function subir() {
+      pend = false;
+      const sobe = Math.max(0, window.innerHeight - base.getBoundingClientRect().top);
+      sel.style.setProperty('--pa-sel-sobe', sobe + 'px');
+    }
+    function agendar() { if (!pend) { pend = true; window.requestAnimationFrame(subir); } }
+    window.addEventListener('scroll', agendar, { passive: true });
+    window.addEventListener('resize', agendar);
+    subir();
   })();
 
   // ----- WhatsApp: só reescreve o número se for diferente do que está no HTML -----

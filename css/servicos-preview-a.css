@@ -138,9 +138,7 @@ html { scroll-padding-top: calc(var(--pa-header-h) + 64px); }
   display: flex;
   flex-direction: column;
   gap: 4px;
-  margin: clamp(32px, 4vw, 48px) 0 0;
-  padding-top: 16px;
-  border-top: 1px solid rgba(242, 241, 236, .1);
+  margin: 48px 0 0;           /* sem filete (r19.2): o respiro entre botões e assinatura fica só na margem */
   font-size: .9375rem;
   line-height: 1.5;
   color: rgba(242, 241, 236, .88);
@@ -156,6 +154,7 @@ html { scroll-padding-top: calc(var(--pa-header-h) + 64px); }
   text-decoration-color: var(--pa-areia);
 }
 .pa-hero__link:hover { text-decoration-thickness: 2px; }
+@media (min-width: 768px) { .pa-hero__assina { margin-top: 56px; } }
 @media (min-width: 1024px) { .pa-hero { padding-bottom: clamp(88px, 7vw, 104px); } }   /* o acesso rápido avança 32px sobre a base */
 .pa-hero { --pa-c-foco: var(--pa-creme); }
 @media (min-width: 768px) {
@@ -434,8 +433,12 @@ html { scroll-padding-top: calc(var(--pa-header-h) + 64px); }
   background: var(--pa-verde-noite);
   color: var(--pa-creme);
 }
-.pa-ma__capa { position: relative; isolation: isolate; display: flex; align-items: flex-end; min-height: 200px; overflow: hidden; background: var(--pa-verde-noite); }
+.pa-ma__capa { position: relative; isolation: isolate; display: flex; align-items: flex-end; min-height: 168px; overflow: hidden; background: var(--pa-verde-noite); }
 @media (min-width: 768px) { .pa-ma__capa { min-height: 240px; } }
+.pa-ma__foto, .pa-ma__foto img { position: absolute; inset: 0; z-index: -2; display: block; width: 100%; height: 100%; }
+.pa-ma__foto img { object-fit: cover; object-position: 50% 38%; }   /* céu em cima, colinas embaixo */
+.pa-ma__capa::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, rgba(36, 51, 32, .78) 0, rgba(36, 51, 32, .62) 70%, rgba(36, 51, 32, .55) 100%); }   /* camada verde-noite (55–78%, mais densa onde fica o texto): título creme ≥ 4,5:1 */
+@media (max-width: 767.98px) { .pa-ma__capa::after { background: rgba(36, 51, 32, .8); } }   /* celular: o texto ocupa mais linhas, a camada é uniforme */
 .pa-ma__capa-txt { position: relative; padding-block: 28px 32px; }
 .pa-ma__capa-txt::after { content: ""; position: absolute; left: clamp(24px, 4vw, 64px); right: clamp(24px, 4vw, 64px); bottom: 0; height: 1px; background: rgba(168, 144, 102, .35); }   /* filete bronze, alinhado ao container */
 .pa-ma .pa-grupo__titulo { color: var(--pa-creme); }
@@ -520,61 +523,89 @@ html { scroll-padding-top: calc(var(--pa-header-h) + 64px); }
 }
 
 /* =============================================================================
-   Estampa de símbolos "G" (rodada 19.1) — tom sobre tom, malha tijolo, só sobre verde.
-   Decorativa: ::before sem texto alternativo; ancorada ao container do site; bordas esmaecidas.
-   Tile = 2 símbolos (um no canto e outro a meio passo na horizontal e na vertical) => tijolo contínuo.
+   Estampas da marca (rodada 19.2) — só traço fino, só sobre verde (hero e rodapé).
+   Escolha ao vivo por ?estampa=a|b|c (JS põe .pa-estampa-a/-b/-c em .pa-pagina); sem JS ou valor inválido = B.
+   Decorativas: ::before sem texto alternativo, atrás do conteúdo; ancoradas ao container; topo/base esmaecidos.
+   A = vários G em contorno (malha tijolo) · B = um G grande recortado no canto · C = G + "GSEG" (papel de segurança).
    ============================================================================= */
 .pa-pagina {
-  --pa-g-tamanho: 28px;                       /* altura do símbolo (informativo: a escala real vem do tile × passo) */
-  --pa-g-passo:   112px;                      /* distância entre centros na mesma linha; entre linhas = passo ÷ 2 */
-  --pa-g-tile:    url("../img/servicos/preview-a/padrao-g.svg");   /* símbolo = 1/4 do passo */
+  --pa-estampa-escala: 1;                     /* A: tablet ×0,9 e celular ×0,8 (G nunca < 16px) */
+  --pa-estampa-opacidade: .08;                /* B (e padrão) */
 }
-.pa-pagina.pa-padrao-1 { --pa-g-tamanho: 22px; --pa-g-passo: 88px; }
-.pa-pagina.pa-padrao-3 { --pa-g-tamanho: 36px; --pa-g-passo: 160px; --pa-g-tile: url("../img/servicos/preview-a/padrao-g-3.svg"); }   /* símbolo = 0,225 do passo */
-/* tablet ×0,9 e celular ×0,8 (símbolo nunca < 18px; passo mantém a proporção do tile) */
-@media (min-width: 768px) and (max-width: 1023.98px) {
-  .pa-pagina { --pa-g-tamanho: 25px; --pa-g-passo: 100px; }
-  .pa-pagina.pa-padrao-1 { --pa-g-tamanho: 20px; --pa-g-passo: 80px; }
-  .pa-pagina.pa-padrao-3 { --pa-g-tamanho: 32px; --pa-g-passo: 142px; }
-}
-@media (max-width: 767.98px) {
-  .pa-pagina { --pa-g-tamanho: 22px; --pa-g-passo: 88px; }
-  .pa-pagina.pa-padrao-1 { --pa-g-tamanho: 18px; --pa-g-passo: 72px; }
-  .pa-pagina.pa-padrao-3 { --pa-g-tamanho: 29px; --pa-g-passo: 129px; }
-}
+.pa-pagina.pa-estampa-a { --pa-estampa-opacidade: .08; }
+.pa-pagina.pa-estampa-c { --pa-estampa-opacidade: .05; }
+@media (min-width: 768px) and (max-width: 1023.98px) { .pa-pagina { --pa-estampa-escala: .9; } }
+@media (max-width: 767.98px) { .pa-pagina { --pa-estampa-escala: .8; } }
 
-.pa-ma__capa, .pa-pagina .rodape { --pa-g-ancora-w: 1180px; }
-.pa-pagina .rodape { position: relative; isolation: isolate; --pa-g-ancora-w: var(--container-max, 1400px); --pa-g-opacidade: .05; }
-.pa-ma__capa { --pa-g-opacidade: .06; }
-.pa-ma__capa::before,
-.pa-pagina .rodape::before {
+/* camada comum: rodapé (toda a opção) e hero (só A e C) */
+.pa-pagina .rodape,
+.pa-pagina .pa-hero { --pa-ancora-w: 1180px; }
+.pa-pagina .rodape { position: relative; isolation: isolate; --pa-ancora-w: var(--container-max, 1400px); }
+.pa-pagina .rodape::before,
+.pa-pagina.pa-estampa-a .pa-hero::before,
+.pa-pagina.pa-estampa-c .pa-hero::before {
   content: "";
   position: absolute;
   z-index: -1;
-  inset: calc(var(--pa-g-passo) / 2) 0 0 0;                      /* 1ª linha começa a meio passo do topo */
-  /* a origem do tile é a borda esquerda do conteúdo do container: uma coluna de símbolos coincide com ela */
-  padding-left: calc(max(0px, (100% - var(--pa-g-ancora-w)) / 2) + clamp(24px, 4vw, 64px));
-  background-image: var(--pa-g-tile);
-  background-size: var(--pa-g-passo) var(--pa-g-passo);
-  background-repeat: repeat;
+  inset: 0;
+  /* origem dos tiles = borda esquerda do conteúdo do container: uma coluna de símbolos coincide com ela */
+  padding-left: calc(max(0px, (100% - var(--pa-ancora-w)) / 2) + clamp(24px, 4vw, 64px));
   background-origin: content-box;
   background-clip: border-box;
-  opacity: var(--pa-g-opacidade);
+  background-repeat: no-repeat;
+  opacity: var(--pa-estampa-opacidade);
   pointer-events: none;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);
           mask-image: linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);
 }
+/* B (padrão): um único G em contorno, ~100–110% da altura do rodapé; o SVG já traz só o canto superior esquerdo (62% × 62%) do G,
+   então encostá-lo no canto inferior direito deixa ~38% do símbolo fora, pela direita e pela base */
 .pa-pagina .rodape::before {
-  inset-block-start: 0;                                          /* o rodapé tem o próprio traço no topo: a estampa o acompanha */
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 96px), transparent calc(100% - 32px));
-          mask-image: linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 96px), transparent calc(100% - 32px));
+  padding-left: 0;
+  background-image: url("../img/servicos/preview-a/estampa-b.svg");
+  background-size: auto 66%;               /* G ≈ 106% da altura do rodapé: com 130% o arco passava por cima das linhas de "Área de atendimento" */
+  background-position: 100% 100%;
 }
+@media (max-width: 1099.98px) { .pa-pagina .rodape::before { background-size: auto 62%; } }   /* G ≈ 100% (a coluna encosta mais no canto) */
+@media (max-width: 767.98px) { .pa-pagina .rodape::before { background-size: auto 68.2%; } }   /* ~110% da altura no celular */
 .pa-pagina .rodape > .container { position: relative; z-index: 1; }
-@media (prefers-contrast: more), (forced-colors: active), print { .pa-ma__capa::before, .pa-pagina .rodape::before { display: none; } }
+.pa-pagina .rodape h3 { color: var(--pa-areia-claro); }   /* títulos das colunas (já no limite de 4,5:1) clareados só na prévia, para a estampa não os derrubar */
 
-/* etiqueta provisória para comparar as 3 variações (sai quando uma for escolhida) */
-.pa-estampa-sel { position: fixed; left: 16px; bottom: 16px; z-index: 980; padding: 6px 10px; border: 1px solid var(--pa-bronze); background: var(--pa-creme); color: var(--pa-verde); font-size: .75rem; line-height: 1.4; }
+/* A: tile 120 × 120 (G de 20px, passo 120 × 60, tijolo) */
+.pa-pagina.pa-estampa-a .rodape::before,
+.pa-pagina.pa-estampa-a .pa-hero::before {
+  padding-left: calc(max(0px, (100% - var(--pa-ancora-w)) / 2) + clamp(24px, 4vw, 64px));
+  background-image: url("../img/servicos/preview-a/estampa-a.svg");
+  background-size: calc(120px * var(--pa-estampa-escala)) calc(120px * var(--pa-estampa-escala));
+  background-position: 0 0;
+  background-repeat: repeat;
+}
+/* C: dois tiles sobrepostos 196 × 112 (G em contorno + palavra GSEG), sem rotação */
+.pa-pagina.pa-estampa-c .rodape::before,
+.pa-pagina.pa-estampa-c .pa-hero::before {
+  padding-left: calc(max(0px, (100% - var(--pa-ancora-w)) / 2) + clamp(24px, 4vw, 64px));
+  background-image: url("../img/servicos/preview-a/estampa-c-g.svg"), url("../img/servicos/preview-a/estampa-c-gseg.svg");
+  background-size: 196px 112px, 196px 112px;
+  background-position: 0 0, 0 0;
+  background-repeat: repeat, repeat;
+}
+/* hero: metade da opacidade do rodapé + esmaecimento horizontal (nada atrás do título e dos botões; presente à direita, junto ao arco) */
+.pa-pagina.pa-estampa-a .pa-hero::before,
+.pa-pagina.pa-estampa-c .pa-hero::before {
+  opacity: calc(var(--pa-estampa-opacidade) / 2);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, transparent 40%, #000 75%), linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, transparent 40%, #000 75%), linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);
+  -webkit-mask-composite: source-in;
+          mask-composite: intersect;
+}
+@media (max-width: 767.98px) { .pa-pagina .pa-hero::before { display: none; } }   /* celular: o texto do hero ocupa a largura toda; a estampa derrubaria o contraste (4,44:1 a 320px) */
+@media (prefers-contrast: more), (forced-colors: active), print { .pa-pagina .rodape::before, .pa-pagina .pa-hero::before { display: none; } }
+
+/* etiqueta provisória "Estampa: A · B · C" (só na prévia; sem JS não aparece, e o resultado é a opção B) */
+.pa-estampa-sel { display: none; position: fixed; left: 16px; bottom: calc(16px + var(--pa-sel-sobe, 0px)); z-index: 980; padding: 6px 10px; border: 1px solid var(--pa-bronze); background: var(--pa-creme); color: var(--pa-verde); font-size: .75rem; line-height: 1.4; }
+.pa-js .pa-estampa-sel { display: block; }
 .pa-estampa-sel a { display: inline-block; min-width: 1.25em; text-align: center; color: var(--pa-verde); font-weight: 600; text-decoration: none; }
 .pa-estampa-sel a[aria-current="true"] { text-decoration: underline; text-underline-offset: 3px; }
-@media (max-width: 767.98px) { .pa-estampa-sel { bottom: calc(64px + env(safe-area-inset-bottom) + 8px); } }
+@media (max-width: 767.98px) { .pa-estampa-sel { left: 8px; bottom: calc(64px + env(safe-area-inset-bottom) + 8px + var(--pa-sel-sobe, 0px)); padding: 3px 7px; font-size: .6875rem; } }
+
 .pa-ma__faixa { width: 100%; }
