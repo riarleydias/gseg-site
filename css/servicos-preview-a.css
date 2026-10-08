@@ -1,5 +1,5 @@
 /* =============================================================================
-   GSEG · servicos-preview-a.css — PRÉVIA das Rodadas 17–18 (variante A estruturada)
+   GSEG · servicos-preview-a.css — PRÉVIA das Rodadas 17–19 (variante A estruturada)
    Hero com ação · atalhos por dor · destaque + grade 2 colunas · painel que converte ·
    Meio Ambiente em faixa verde própria · barra fixa de conversão no celular.
    Página SEPARADA e noindex: não substitui servicos.html nem css/servicos.css
@@ -46,7 +46,7 @@ html { scroll-padding-top: calc(var(--pa-header-h) + 64px); }
   --pa-c-titulo:      var(--pa-verde);
   --pa-c-texto:       var(--pa-texto);
   --pa-c-borda:       var(--pa-filete);
-  --pa-c-num:         var(--pa-bronze);
+  --pa-c-num:         var(--pa-bronze-esc);   /* numeral sobre creme: o #A89066 dava 2,7:1 */
   --pa-c-chip-borda:  var(--pa-bronze-esc);
   --pa-c-chip-texto:  var(--pa-bronze-esc);
   --pa-c-chip-fundo:  var(--pa-chip-fundo);
@@ -147,11 +147,7 @@ html { scroll-padding-top: calc(var(--pa-header-h) + 64px); }
 }
 .pa-hero__assina strong { color: var(--pa-creme); font-weight: 600; }
 .pa-hero__link {
-  align-self: flex-start;
-  display: inline-flex;
-  align-items: center;
-  gap: .35em;
-  min-height: 44px;
+  display: inline;
   color: var(--pa-creme);
   font-weight: 600;
   text-decoration: underline;
@@ -160,79 +156,73 @@ html { scroll-padding-top: calc(var(--pa-header-h) + 64px); }
   text-decoration-color: var(--pa-areia);
 }
 .pa-hero__link:hover { text-decoration-thickness: 2px; }
-@media (min-width: 1024px) { .pa-hero { padding-bottom: clamp(104px, 9vw, 128px); } }   /* +24px: o painel de atalhos avança 48px sobre a base */
+@media (min-width: 1024px) { .pa-hero { padding-bottom: clamp(88px, 7vw, 104px); } }   /* o acesso rápido avança 32px sobre a base */
 .pa-hero { --pa-c-foco: var(--pa-creme); }
 @media (min-width: 768px) {
   .pa-hero__acoes { flex-direction: row; flex-wrap: wrap; }
-  .pa-hero__assina { flex-direction: row; align-items: center; justify-content: space-between; gap: 24px; }
-  .pa-hero__link { align-self: auto; flex: none; }
 }
 
-/* ---------- Atalhos: painel de alto impacto (rodada 18) — sobrepõe a base do hero ---------- */
-.pa-atalhos { position: relative; z-index: 2; margin-top: -24px; --pa-c-foco: var(--pa-creme); }
+/* ---------- Acesso rápido: índice técnico compacto (rodada 19) — sobrepõe 32px da base do hero ---------- */
+.pa-atalhos { position: relative; z-index: 2; margin-top: -24px; --pa-c-foco: var(--pa-verde); }
 .pa-atalhos__faixa {
-  padding: 20px;
-  border-top: 3px solid var(--pa-bronze);
-  background: var(--pa-verde-noite);   /* mais escuro que o hero (#32472B): o painel se destaca da base do hero */
-  color: var(--pa-creme);
+  padding: 14px 16px 12px;
+  border: 1px solid var(--pa-filete);
+  border-top: 2px solid var(--pa-bronze);
+  background: #F7F5EF;
 }
-.pa-atalhos__titulo { margin: 0; font-family: var(--font-accent); font-size: clamp(1.625rem, 1.6vw + 1.2rem, 2.5rem); font-weight: 700; line-height: 1.1; color: var(--pa-creme); }
-.pa-atalhos__linha { margin: 10px 0 0; max-width: 62ch; font-size: 1rem; line-height: 1.5; color: rgba(242, 241, 236, .8); }
-.pa-atalhos__lista { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 20px 0 0; padding: 0; list-style: none; }
+.pa-atalhos__cab { margin: 0; font-family: var(--font-body); font-size: .8125rem; font-weight: 700; font-variant-caps: all-small-caps; letter-spacing: .08em; line-height: 1.3; color: var(--pa-bronze-esc); }
+.pa-atalhos__lista { display: grid; grid-template-columns: minmax(0, 1fr); margin: 6px 0 0; padding: 0; list-style: none; }
 .pa-atalho {
-  position: relative;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px 8px;
-  height: 100%;
-  min-height: 84px;
-  padding: 12px;
-  border: 1px solid rgba(242, 241, 236, .15);
-  background: rgba(242, 241, 236, .05);
-  color: var(--pa-creme);
+  align-items: baseline;
+  gap: 2px 10px;
+  min-height: 44px;
+  padding: 8px 0;
+  color: var(--pa-verde);
   text-decoration: none;
-  transition: background-color var(--pa-trans);
 }
-.pa-atalho__txt { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1 1 0; }
-.pa-atalho__sigla { font-family: var(--font-accent); font-style: italic; font-weight: 600; font-size: clamp(1.375rem, 5vw, 1.75rem); line-height: 1; color: var(--pa-areia); }
-.pa-atalho__rotulo { font-size: .875rem; font-weight: 600; line-height: 1.3; color: var(--pa-creme); overflow-wrap: break-word; }
+.pa-atalho__sigla { flex: 0 0 5.75rem; font-family: var(--font-accent); font-style: italic; font-weight: 600; font-size: 1.25rem; line-height: 1.1; color: var(--pa-bronze-esc); }
+.pa-atalho__nome { font-size: 1rem; font-weight: 600; line-height: 1.3; text-decoration: underline transparent; text-decoration-thickness: 2px; text-underline-offset: 4px; transition: text-decoration-color var(--pa-trans); }
+.pa-atalho__pontos { flex: 1 1 12px; min-width: 12px; align-self: flex-end; margin-bottom: .4em; border-bottom: 1px dotted rgba(168, 144, 102, .5); transition: border-color var(--pa-trans); }
+.pa-atalho__num { flex: 0 0 auto; min-width: 1.6em; text-align: right; font-family: var(--font-accent); font-style: italic; font-weight: 600; font-size: 1.25rem; line-height: 1.1; color: var(--pa-bronze-esc); transition: color var(--pa-trans); }
 .pa-atalho__selo {
-  order: 3;
-  flex: 0 0 100%;
-  align-self: flex-start;
-  width: fit-content;
-  padding: 3px 7px;
+  order: 4;
+  flex: 0 0 auto;
+  margin-left: 5.75rem;
+  padding: 2px 6px;
   border-radius: var(--pa-raio);
-  background: var(--pa-areia);        /* bronze claro: o #A89066 daria só ~4,2:1 com o texto verde-escuro */
+  background: #C2B49B;
   color: var(--pa-verde-noite);
   font-size: .6875rem;
   font-weight: 700;
   line-height: 1.3;
   letter-spacing: .06em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
-.pa-atalho::before { content: ""; position: absolute; left: -1px; top: -1px; bottom: -1px; width: 3px; background: var(--pa-bronze); opacity: 0; transition: opacity var(--pa-trans); }
-.pa-atalho:hover, .pa-atalho:focus-visible { background: rgba(242, 241, 236, .10); }
-.pa-atalho:hover::before, .pa-atalho:focus-visible::before { opacity: 1; }
-.pa-ico--seta { width: 18px; height: 18px; color: var(--pa-areia); transition: transform var(--pa-trans); }
-.pa-atalho:hover .pa-ico--seta, .pa-atalho:focus-visible .pa-ico--seta { transform: translateX(4px); }
-.pa-atalhos__outro { margin: 20px 0 0; }
-.pa-atalhos__outro a { display: inline-block; padding-block: 11px; color: var(--pa-creme); font-weight: 600; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--pa-areia); text-decoration-thickness: 1px; }
-.pa-atalhos__outro a:hover { text-decoration-thickness: 2px; }
-@media (max-width: 479.98px) { .pa-atalho .pa-ico--seta { display: none; } }
-@media (max-width: 359.98px) { .pa-atalhos__faixa { padding: 16px; } .pa-atalho { padding: 10px 8px; } .pa-atalho__rotulo { font-size: .8125rem; overflow-wrap: normal; hyphens: none; } .pa-atalho__selo { font-size: .625rem; letter-spacing: .04em; } }
+@media (hover: hover) {
+  .pa-atalho:hover .pa-atalho__nome { text-decoration-color: var(--pa-bronze); }
+  .pa-atalho:hover .pa-atalho__pontos { border-bottom-style: solid; border-bottom-color: var(--pa-bronze); }
+  .pa-atalho:hover .pa-atalho__num { color: var(--pa-verde); }
+}
+.pa-atalho:focus-visible .pa-atalho__nome { text-decoration-color: var(--pa-bronze); }
+.pa-atalho:focus-visible .pa-atalho__pontos { border-bottom-style: solid; border-bottom-color: var(--pa-bronze); }
+.pa-atalho:focus-visible .pa-atalho__num { color: var(--pa-verde); }
+@media (min-width: 640px) { .pa-atalhos__faixa { padding: 16px 24px 12px; } }
 @media (min-width: 1024px) {
-  .pa-atalhos { margin-top: -48px; }
-  .pa-atalhos__faixa { padding: clamp(40px, 4vw, 56px); }
-  .pa-atalhos__lista { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
-  .pa-atalho { flex-wrap: nowrap; min-height: 132px; padding: 24px 20px 24px 24px; }
-  .pa-atalho__txt { gap: 8px; }
-  .pa-atalho__sigla { font-size: clamp(1.75rem, 2vw + 1rem, 2.5rem); }
-  .pa-atalho__rotulo { font-size: 1rem; }
-  .pa-atalho__selo { position: absolute; top: 12px; right: 12px; order: 0; flex: none; }
-  .pa-atalho--selo .pa-atalho__txt { padding-top: 18px; }
+  .pa-atalhos { margin-top: -32px; }
+  .pa-atalhos__lista { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(3, auto); grid-auto-flow: column; column-gap: 0; }
+  .pa-atalho { flex-wrap: nowrap; padding-block: 6px; min-height: 40px; }
+  .pa-atalho:nth-child(-n+3) { padding-right: 32px; }
+  .pa-atalho:nth-child(n+4) { padding-left: 32px; border-left: 1px solid rgba(168, 144, 102, .35); }
+  .pa-atalho__selo { order: 0; margin-left: 0; }
+  .pa-atalho__sigla { flex-basis: 5rem; }
+}
+/* até 1199px o selo do NR-1 não cabe na mesma linha: desce para a linha de baixo, alinhado ao nome */
+@media (min-width: 1024px) and (max-width: 1199.98px) {
+  .pa-atalho:nth-child(1) { flex-wrap: wrap; }
+  .pa-atalho__selo { order: 4; flex-basis: auto; margin-left: calc(5rem + 10px); }
 }
 
 /* ---------- Corpo: sub-navegação fixa + grupos ---------- */
@@ -268,6 +258,15 @@ html { scroll-padding-top: calc(var(--pa-header-h) + 64px); }
 @media (min-width: 1024px) { .pa-grade { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* ---------- Card ---------- */
+/* pares lado a lado: título, dor, chips e botões nas mesmas alturas (subgrid; sem suporte, cai no layout simples) */
+@media (min-width: 1024px) {
+  @supports (grid-template-rows: subgrid) {
+    .pa-grade { row-gap: 0; margin-bottom: calc(var(--pa-gap) * -1); }
+    .pa-grade > .pa-card { margin-bottom: var(--pa-gap); }
+    .pa-grade > .pa-card:not(.pa-card--destaque):not(.pa-card--fecho) { display: grid; grid-row: span 5; grid-template-rows: subgrid; row-gap: 0; align-content: start; }
+    .pa-grade > .pa-card:not(.pa-card--destaque):not(.pa-card--fecho) > * { min-height: 0; }
+  }
+}
 .pa-card {
   position: relative;
   display: flex;
@@ -280,8 +279,7 @@ html { scroll-padding-top: calc(var(--pa-header-h) + 64px); }
   transition: background-color var(--pa-trans);
 }
 .pa-card::before { content: ""; position: absolute; left: -1px; top: -1px; bottom: -1px; width: 3px; background: var(--pa-bronze); opacity: 0; transition: opacity var(--pa-trans); }
-.pa-card:hover { background: var(--pa-c-hover); }
-.pa-card:hover::before,
+@media (hover: hover) { .pa-card:hover { background: var(--pa-c-hover); } .pa-card:hover::before { opacity: 1; } }
 .pa-card--destaque::before,
 .pa-card--realce::before { opacity: 1; }
 .pa-card--realce { background: var(--pa-c-hover); }
@@ -357,18 +355,21 @@ html { scroll-padding-top: calc(var(--pa-header-h) + 64px); }
     display: grid;
     grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
     grid-template-rows: auto auto 1fr auto auto;
-    grid-template-areas: "topo resumo" "dor resumo" "chips resumo" ". acoes" "painel painel";
+    grid-template-areas: "topo resumo" "dor resumo" ". resumo" ". acoes" "painel painel";
     column-gap: clamp(32px, 4vw, 56px);
     align-items: start;
   }
-  .pa-pagina:not(.pa-js) .pa-card--destaque { grid-template-areas: "topo ." "dor ." "chips ." ". acoes" "painel painel"; }
+  .pa-pagina:not(.pa-js) .pa-card--destaque { grid-template-areas: "topo ." "dor ." ". ." ". acoes" "painel painel"; }
   .pa-card--destaque .pa-card__topo { grid-area: topo; }
   .pa-card--destaque .pa-card__dor { grid-area: dor; }
-  .pa-card--destaque .pa-card__chips { grid-area: chips; }
   .pa-card--destaque .pa-card__resumo { grid-area: resumo; margin-top: 0; }
   .pa-card--destaque .pa-card__acoes { grid-area: acoes; padding-top: 20px; }
   .pa-card--destaque .pa-painel { grid-area: painel; }
+  /* aberto: o painel já lista tudo do resumo, então o resumo sai (sem repetir) e o botão sobe para o lado do título */
+  .pa-card--destaque.is-aberto { grid-template-rows: auto auto auto; grid-template-areas: "topo acoes" "dor acoes" "painel painel"; }
+  .pa-card--destaque.is-aberto .pa-card__acoes { align-self: center; padding-top: 0; }
 }
+.pa-card--destaque.is-aberto .pa-card__resumo { display: none; }
 
 /* ---------- Card de fechamento (último de cada grupo): largura total, horizontal, filete no topo ---------- */
 .pa-grade > .pa-card:last-child:nth-child(even) { grid-column: 1 / -1; }   /* regra geral: grupo com nº ímpar de cards padrão fecha a grade */
@@ -497,4 +498,30 @@ html { scroll-padding-top: calc(var(--pa-header-h) + 64px); }
   .pa-pagina main * { transition: none; }
   .pa-pagina main *::before { transition: none; }
   .pa-atalho:hover .pa-ico--seta, .pa-atalho:focus-visible .pa-ico--seta { transform: none; }
+}
+
+/* ---------- Quebras: sem palavra órfã ---------- */
+.pa-card__titulo, .pa-card__dor, .pa-card__chamada, .pa-grupo__titulo, .pa-hero__titulo, .pa-atalhos__cab, .pa-como__titulo, .pa-fecho__titulo { text-wrap: balance; }
+.pa-grupo__linha, .pa-hero__sub, .pa-painel__destaque, .pa-painel__texto, .pa-fecho__linha, .pa-como__lista p, .pa-checks span, .pa-credito p { text-wrap: pretty; }
+
+/* ---------- Como funciona (provisório): 3 passos em linha, sem fundo verde ---------- */
+.pa-como { background: var(--pa-creme); padding-block: clamp(24px, 2.4vw, 32px); border-top: 1px solid var(--pa-filete); }
+.pa-como__cab { margin: 0 0 16px; font-family: var(--font-body); font-size: .8125rem; font-weight: 700; font-variant-caps: all-small-caps; letter-spacing: .08em; color: var(--pa-bronze-esc); }
+.pa-como__lista { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; margin: 0; padding: 0; list-style: none; }
+.pa-como__lista li { display: flex; align-items: flex-start; gap: 14px; }
+.pa-como__num { flex: none; padding-right: 14px; border-right: 1px solid var(--pa-bronze); font-family: var(--font-accent); font-style: italic; font-weight: 600; font-size: 2.25rem; line-height: 1; color: var(--pa-bronze-esc); }
+.pa-como__titulo { margin: 0; font-family: var(--font-body); font-size: 1.0625rem; font-weight: 700; line-height: 1.25; color: var(--pa-verde); }
+.pa-como__lista p { margin: 4px 0 0; font-size: .96875rem; line-height: 1.45; color: var(--pa-texto); }
+@media (min-width: 768px) { .pa-como__lista { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; } }
+
+/* ---------- Ajustes da revisão (rodada 19) ---------- */
+.pa-card__topo { align-items: flex-start; }                         /* título sempre no mesmo topo nos pares, mesmo quebrando em 2 linhas */
+.pa-card__titulo { padding-top: 6px; }                              /* alinha a 1ª linha ao centro do número */
+.pa-card--fecho .pa-card__acoes { flex-wrap: wrap; }
+.pa-card--fecho .pa-btn--card { white-space: nowrap; }
+@media (max-width: 479.98px) { .pa-atalho__selo { margin-left: 0; white-space: normal; } }
+/* o selo do NR-1 não cabe na mesma linha do nome em nenhuma largura de container (≤1180px): fica logo abaixo do nome */
+@media (min-width: 1200px) {
+  .pa-atalho:nth-child(1) { flex-wrap: wrap; }
+  .pa-atalho__selo { order: 4; flex-basis: auto; margin-left: calc(5rem + 10px); }
 }

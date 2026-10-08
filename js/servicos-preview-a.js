@@ -1,5 +1,5 @@
 /* =============================================================================
-   GSEG · servicos-preview-a.js — PRÉVIA da Rodada 17 (variante A estruturada)
+   GSEG · servicos-preview-a.js — PRÉVIA das Rodadas 17–19 (variante A estruturada)
    Melhoria progressiva: o HTML já funciona sem este arquivo (links wa.me completos,
    painéis visíveis, botão "Ver detalhes" oculto, sub-navegação como âncoras normais).
    O script:
@@ -74,8 +74,12 @@
     temporizador = window.setTimeout(function () { card.classList.remove('pa-card--realce'); }, 1500);
   }
 
+  // atalho do acesso rápido: rola e realça, mas NÃO abre o painel (abrir empurrava o card vizinho antes de a pessoa ler)
+  let soRealcar = false;
   Array.prototype.forEach.call(document.querySelectorAll('.pa-atalho'), function (atalho) {
     atalho.addEventListener('click', function () {
+      soRealcar = true;
+      window.setTimeout(function () { soRealcar = false; }, 400);
       const alvo = document.getElementById(atalho.getAttribute('href').slice(1));
       if (alvo && alvo.classList.contains('pa-card')) realcar(alvo);
     });
@@ -87,7 +91,8 @@
     if (!id) return;
     const alvo = document.getElementById(id);
     if (!alvo || !alvo.classList.contains('pa-card')) return;
-    definir(alvo, true);
+    if (!soRealcar) definir(alvo, true);
+    soRealcar = false;
     realcar(alvo);
     alvo.scrollIntoView({ block: 'start' });
   }
