@@ -59,12 +59,23 @@
     rodape.classList.add('est-zonas');
     window.dispatchEvent(new Event('gseg:estampa'));
   }
-  function agendar() { if (!pendente) { pendente = true; window.requestAnimationFrame(atualizar); } }
+  // Só calcula quando o rodapé está perto da tela (fica no fim da página): não pesa no carregamento (TBT/Lighthouse).
+  // Fora disso vale o padrão seguro do CSS (G a 14%, sem zonas).
+  var perto = !('IntersectionObserver' in window);
+  function agendar() { if (!perto || pendente) return; pendente = true; window.requestAnimationFrame(atualizar); }
+  if (!perto) {
+    new IntersectionObserver(function (es) { if (es[0].isIntersecting) { perto = true; agendar(); } }, { rootMargin: '900px 0px' }).observe(rodape);
+  }
 
   window.gsegEstampa = { atualizar: agendar, mascara: mascara, caixas: caixas, numero: numero };
   agendar();
   window.addEventListener('load', agendar);
   window.addEventListener('resize', agendar);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(agendar);
+  if (document.fonts) {
+    if (document.fonts.ready) document.fonts.ready.then(agendar);
+    // webfonts que terminam depois do cálculo mudam a largura dos textos sem mudar o tamanho do rodapé: recalcula
+    if (document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', agendar);
+  }
+  window.setTimeout(agendar, 900);   // rede de segurança para fontes muito lentas
   if (window.ResizeObserver) new ResizeObserver(agendar).observe(rodape);
 })();

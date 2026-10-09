@@ -752,7 +752,7 @@ body.sem-scroll { overflow: hidden; }
    Com js/estampa-rodape.js (classe .est-zonas): G e GSEG sobem para o nível "forte" fora de zonas de proteção — o JS mede as caixas
    de texto do rodapé e gera, a cada resize, uma máscara SVG com zonas esmaecidas (--est-zona-g / --est-zona-w) onde a estampa fica leve. */
 :root {
-  --est-g-tile: url("../img/estampa/estampa-g2-n2.svg");   /* traço 2,25px (nível 2); a prévia troca por n1/n3 com ?i= */
+  --est-g-tile: url("../img/estampa/estampa-g2-n2.svg?v=20261009-r19-5b");   /* traço 2,25px (nível 2); a prévia troca por n1/n3 com ?i= */
   --est-w-tile: url("../img/estampa/estampa-gseg.svg");
   --est-g-op: .14;               /* padrão sem JS */
   --est-w-op: .075;
