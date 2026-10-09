@@ -21,17 +21,17 @@
   if (!pagina) return;
   pagina.classList.add('pa-js');
 
-  // ----- estampa da marca: ?estampa=a|b|c (sem parâmetro ou valor inválido = b); etiqueta provisória só na prévia -----
+  // ----- estampa da marca: ?estampa=c|cplus (sem parâmetro ou valor inválido = cplus); etiqueta provisória só na prévia -----
   (function () {
-    let n = 'b';
-    try { const q = (new URLSearchParams(window.location.search).get('estampa') || '').toLowerCase(); if (q === 'a' || q === 'b' || q === 'c') n = q; } catch (e) {}
+    let n = 'cplus';
+    try { const q = (new URLSearchParams(window.location.search).get('estampa') || '').toLowerCase(); if (q === 'c' || q === 'cplus') n = q; } catch (e) {}
     pagina.classList.add('pa-estampa-' + n);
     const sel = document.querySelector('.pa-estampa-sel');
     if (!sel) return;
     Array.prototype.forEach.call(sel.querySelectorAll('a'), function (a) {
-      a.setAttribute('aria-current', String(a.textContent.trim().toLowerCase() === n));
+      a.setAttribute('aria-current', String(a.getAttribute('href') === '?estampa=' + n));
     });
-    // a etiqueta sobe junto com o rodapé: nunca cobre a linha do copyright
+    // a etiqueta sobe junto com o rodapé (desktop) ou some sobre ele (celular): nunca cobre texto do rodapé
     const base = document.querySelector('.rodape__base');
     if (!base) return;
     let pend = false;
@@ -39,6 +39,7 @@
       pend = false;
       const sobe = Math.max(0, window.innerHeight - base.getBoundingClientRect().top);
       sel.style.setProperty('--pa-sel-sobe', sobe + 'px');
+      sel.classList.toggle('pa-estampa-sel--oculta', sobe > 0 && window.innerWidth < 768);   // celular: não há folga ao lado do conteúdo, a etiqueta some enquanto o rodapé está na tela
     }
     function agendar() { if (!pend) { pend = true; window.requestAnimationFrame(subir); } }
     window.addEventListener('scroll', agendar, { passive: true });
