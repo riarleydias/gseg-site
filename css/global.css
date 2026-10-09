@@ -747,14 +747,23 @@ body.sem-scroll { overflow: hidden; }
   .rodape__base { padding-block: 18px; }
 }
 
-/* ───── Estampa da marca no rodapé (rodada 19.4): C+ — G em traço (G2 metálico por padrão) + palavra GSEG em bronze claro ─────
-   Decorativa: pseudo-elementos atrás do conteúdo, só sobre o verde. Variáveis sobrescrevíveis (a prévia troca o G por ?g=1|2). */
+/* ───── Estampa da marca no rodapé (rodadas 19.4–19.5): C+ — G em traço bronze metálico (protagonista) + palavra GSEG em bronze claro ─────
+   Decorativa: pseudo-elementos atrás do conteúdo, só sobre o verde. Sem JS: G a 14% (contraste seguro em qualquer ponto).
+   Com js/estampa-rodape.js (classe .est-zonas): G e GSEG sobem para o nível "forte" fora de zonas de proteção — o JS mede as caixas
+   de texto do rodapé e gera, a cada resize, uma máscara SVG com zonas esmaecidas (--est-zona-g / --est-zona-w) onde a estampa fica leve. */
 :root {
-  --est-g-tile: url("../img/estampa/estampa-g2.svg");
+  --est-g-tile: url("../img/estampa/estampa-g2-n2.svg");   /* traço 2,25px (nível 2); a prévia troca por n1/n3 com ?i= */
   --est-w-tile: url("../img/estampa/estampa-gseg.svg");
-  --est-g-op: .14;
+  --est-g-op: .14;               /* padrão sem JS */
   --est-w-op: .075;
+  --est-g-op-forte: .32;         /* nível 2 — fora das zonas de proteção */
+  --est-w-op-forte: .10;
+  --est-g-op-zona: .10;          /* dentro das zonas (atrás do texto) */
+  --est-w-op-zona: .05;
+  --est-zona-g: linear-gradient(#000, #000);
+  --est-zona-w: linear-gradient(#000, #000);
 }
+.rodape.est-zonas { --est-g-op: var(--est-g-op-forte); --est-w-op: var(--est-w-op-forte); }
 .rodape::before,
 .rodape::after {
   content: "";
@@ -768,16 +777,21 @@ body.sem-scroll { overflow: hidden; }
   background-size: 196px 112px;
   background-position: 0 0;
   pointer-events: none;
-  /* esmaecimento topo/base + vinheta (centro ~40% mais leve, sem anel) */
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%),
-    radial-gradient(ellipse 75% 95% at 50% 50%, rgba(0,0,0,.6) 0, rgba(0,0,0,.61) 15%, rgba(0,0,0,.66) 30%, rgba(0,0,0,.75) 45%, rgba(0,0,0,.86) 60%, rgba(0,0,0,.95) 78%, #000 100%);
-          mask-image: linear-gradient(to bottom, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%),
-    radial-gradient(ellipse 75% 95% at 50% 50%, rgba(0,0,0,.6) 0, rgba(0,0,0,.61) 15%, rgba(0,0,0,.66) 30%, rgba(0,0,0,.75) 45%, rgba(0,0,0,.86) 60%, rgba(0,0,0,.95) 78%, #000 100%);
-  -webkit-mask-composite: source-in;
-          mask-composite: intersect;
+  -webkit-mask-size: 100% 100%;           mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;         mask-repeat: no-repeat;
+  -webkit-mask-composite: source-in, source-in;   mask-composite: intersect, intersect;
 }
+/* máscara = esmaecimento topo/base ∩ vinheta (centro ~40% mais leve, sem anel) ∩ zonas de proteção do texto */
 .rodape::before { background-image: var(--est-g-tile); opacity: var(--est-g-op); }
 .rodape::after  { background-image: var(--est-w-tile); opacity: var(--est-w-op); }
+.rodape::before {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%), radial-gradient(ellipse 75% 95% at 50% 50%, rgba(0,0,0,.6) 0, rgba(0,0,0,.61) 15%, rgba(0,0,0,.66) 30%, rgba(0,0,0,.75) 45%, rgba(0,0,0,.86) 60%, rgba(0,0,0,.95) 78%, #000 100%), var(--est-zona-g);
+          mask-image: linear-gradient(to bottom, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%), radial-gradient(ellipse 75% 95% at 50% 50%, rgba(0,0,0,.6) 0, rgba(0,0,0,.61) 15%, rgba(0,0,0,.66) 30%, rgba(0,0,0,.75) 45%, rgba(0,0,0,.86) 60%, rgba(0,0,0,.95) 78%, #000 100%), var(--est-zona-g);
+}
+.rodape::after {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%), radial-gradient(ellipse 75% 95% at 50% 50%, rgba(0,0,0,.6) 0, rgba(0,0,0,.61) 15%, rgba(0,0,0,.66) 30%, rgba(0,0,0,.75) 45%, rgba(0,0,0,.86) 60%, rgba(0,0,0,.95) 78%, #000 100%), var(--est-zona-w);
+          mask-image: linear-gradient(to bottom, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%), radial-gradient(ellipse 75% 95% at 50% 50%, rgba(0,0,0,.6) 0, rgba(0,0,0,.61) 15%, rgba(0,0,0,.66) 30%, rgba(0,0,0,.75) 45%, rgba(0,0,0,.86) 60%, rgba(0,0,0,.95) 78%, #000 100%), var(--est-zona-w);
+}
 @media (prefers-contrast: more), (forced-colors: active), print { .rodape::before, .rodape::after { display: none; } }
 
 /* ════════════════ AJUSTES MOBILE (≤899px · não afeta desktop ≥900) ════════════════

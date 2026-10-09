@@ -524,11 +524,13 @@ html { scroll-padding-top: calc(var(--pa-header-h) + 64px); }
 
 /* =============================================================================
    Estampa C+ no hero da prévia (rodada 19.4) — o rodapé agora vem do css/global.css (todas as páginas).
-   ?g=1 (G creme mais forte) | ?g=2 (G bronze metálico, padrão): o JS põe .pa-g-1/.pa-g-2 em .pa-pagina e as
-   variáveis abaixo sobrescrevem as do global no rodapé e no hero ao mesmo tempo.
+   ?i=1 (forte) | ?i=2 (mais forte, padrão) | ?i=3 (máximo): o JS põe .pa-i-N em .pa-pagina e as
+   variáveis abaixo sobrescrevem as do global no rodapé e no hero ao mesmo tempo (G bronze metálico nos 3 níveis).
    ============================================================================= */
-.pa-pagina.pa-g-1 { --est-g-tile: url("../img/estampa/estampa-g1.svg"); --est-g-op: .10; }
-.pa-pagina.pa-g-2 { --est-g-tile: url("../img/estampa/estampa-g2.svg"); --est-g-op: .14; }
+.pa-pagina.pa-i-1 { --est-g-tile: url("../img/estampa/estampa-g2-n1.svg"); --est-g-op-forte: .22; --est-w-op-forte: .09; }
+.pa-pagina.pa-i-2 { --est-g-tile: url("../img/estampa/estampa-g2-n2.svg"); --est-g-op-forte: .32; --est-w-op-forte: .10; }
+.pa-pagina.pa-i-3 { --est-g-tile: url("../img/estampa/estampa-g2-n3.svg"); --est-g-op-forte: .42; --est-w-op-forte: .11; }
+.pa-pagina .pa-hero { --pa-zona-hero-g: linear-gradient(#000, #000); --pa-zona-hero-w: linear-gradient(#000, #000); }
 .pa-pagina .pa-hero::before, .pa-pagina .pa-hero::after {
   content: "";
   position: absolute;
@@ -544,14 +546,15 @@ html { scroll-padding-top: calc(var(--pa-header-h) + 64px); }
   /* metade da opacidade do rodapé + esmaecimento horizontal (nada atrás do título e dos botões) e vertical; arco do G por cima */
   -webkit-mask-image: linear-gradient(to right, transparent 0, transparent 40%, #000 75%), linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);
           mask-image: linear-gradient(to right, transparent 0, transparent 40%, #000 75%), linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);
-  -webkit-mask-composite: source-in;
-          mask-composite: intersect;
+  -webkit-mask-size: 100% 100%;           mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;         mask-repeat: no-repeat;
+  -webkit-mask-composite: source-in, source-in;   mask-composite: intersect, intersect;
 }
-.pa-pagina .pa-hero::before { background-image: var(--est-g-tile); opacity: calc(var(--est-g-op) / 2); }
-.pa-pagina .pa-hero::after  { background-image: var(--est-w-tile); opacity: calc(var(--est-w-op) / 2); }
+.pa-pagina .pa-hero::before { background-image: var(--est-g-tile); opacity: calc(var(--est-g-op-forte) / 2); -webkit-mask-image: linear-gradient(to right, transparent 0, transparent 40%, #000 75%), linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%), var(--pa-zona-hero-g); mask-image: linear-gradient(to right, transparent 0, transparent 40%, #000 75%), linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%), var(--pa-zona-hero-g); }
+.pa-pagina .pa-hero::after  { background-image: var(--est-w-tile); opacity: calc(var(--est-w-op-forte) / 2); -webkit-mask-image: linear-gradient(to right, transparent 0, transparent 40%, #000 75%), linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%), var(--pa-zona-hero-w); mask-image: linear-gradient(to right, transparent 0, transparent 40%, #000 75%), linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%), var(--pa-zona-hero-w); }
 @media (max-width: 767.98px), (prefers-contrast: more), (forced-colors: active), print { .pa-pagina .pa-hero::before, .pa-pagina .pa-hero::after { display: none; } }   /* celular: o texto do hero ocupa a largura toda */
 
-/* etiqueta provisória "G: 1 · 2" (só na prévia; sem JS não aparece e vale o G2) */
+/* etiqueta provisória "Intensidade: 1 · 2 · 3" (só na prévia; sem JS não aparece e vale o nível 2) */
 .pa-estampa-sel { display: none; position: fixed; left: 16px; bottom: calc(16px + var(--pa-sel-sobe, 0px)); z-index: 980; padding: 6px 10px; border: 1px solid var(--pa-bronze); background: var(--pa-creme); color: var(--pa-verde); font-size: .75rem; line-height: 1.4; }
 .pa-js .pa-estampa-sel { display: block; }
 .pa-estampa-sel--oculta { visibility: hidden; }

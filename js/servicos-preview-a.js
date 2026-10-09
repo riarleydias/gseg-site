@@ -21,15 +21,32 @@
   if (!pagina) return;
   pagina.classList.add('pa-js');
 
-  // ----- G da estampa: ?g=1|2 (sem parâmetro ou valor inválido = 2); etiqueta provisória só na prévia -----
+  // ----- intensidade do G da estampa: ?i=1|2|3 (sem parâmetro ou valor inválido = 2); etiqueta provisória só na prévia -----
   (function () {
     let n = '2';
-    try { const q = new URLSearchParams(window.location.search).get('g'); if (q === '1' || q === '2') n = q; } catch (e) {}
-    pagina.classList.add('pa-g-' + n);
+    try { const q = new URLSearchParams(window.location.search).get('i'); if (q === '1' || q === '2' || q === '3') n = q; } catch (e) {}
+    pagina.classList.add('pa-i-' + n);
+    // zona de proteção atrás da assinatura da responsável técnica (hero): mesma lógica do rodapé, medida no layout real
+    const hero = document.querySelector('.pa-hero');
+    let heroPend = false;
+    function zonaHero() {
+      heroPend = false;
+      const E = window.gsegEstampa; if (!hero || !E) return;
+      const cs = getComputedStyle(pagina), N = E.numero;
+      const gF = N(cs.getPropertyValue('--est-g-op-forte'), .3), gZ = N(cs.getPropertyValue('--est-g-op-zona'), .1), wF = N(cs.getPropertyValue('--est-w-op-forte'), .1), wZ = N(cs.getPropertyValue('--est-w-op-zona'), .05);
+      const r = E.caixas(hero, ['.pa-hero__assina']), w = hero.clientWidth, h = hero.clientHeight;
+      hero.style.setProperty('--pa-zona-hero-g', E.mascara(w, h, r, gZ / gF, 10, 14));
+      hero.style.setProperty('--pa-zona-hero-w', E.mascara(w, h, r, wZ / wF, 10, 14));
+    }
+    function agendarHero() { if (!heroPend) { heroPend = true; window.requestAnimationFrame(zonaHero); } }
+    window.addEventListener('gseg:estampa', agendarHero); window.addEventListener('load', agendarHero); window.addEventListener('resize', agendarHero);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(agendarHero);
+    if (window.ResizeObserver && hero) new ResizeObserver(agendarHero).observe(hero);
+    agendarHero();
     const sel = document.querySelector('.pa-estampa-sel');
     if (!sel) return;
     Array.prototype.forEach.call(sel.querySelectorAll('a'), function (a) {
-      a.setAttribute('aria-current', String(a.getAttribute('href') === '?g=' + n));
+      a.setAttribute('aria-current', String(a.getAttribute('href') === '?i=' + n));
     });
     // a etiqueta sobe junto com o rodapé (desktop) ou some sobre ele (celular): nunca cobre texto do rodapé
     const base = document.querySelector('.rodape__base');
