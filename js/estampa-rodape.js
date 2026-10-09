@@ -40,6 +40,7 @@
   var pendente = false;
   function atualizar() {
     pendente = false;
+    window.gsegEstampa.ultimo = null;
     var q = rodape.getBoundingClientRect(); if (!q.width) return;
     var cs = getComputedStyle(rodape);
     var gF = numero(cs.getPropertyValue('--est-g-op-forte'), .3), gZ = numero(cs.getPropertyValue('--est-g-op-zona'), .1);
@@ -54,6 +55,7 @@
       '.rodape__base p:last-child'
     ]);
     var w = rodape.clientWidth, h = rodape.clientHeight;
+    window.gsegEstampa.ultimo = r;
     rodape.style.setProperty('--est-zona-g', mascara(w, h, r, gZ / gF, 10, 14));
     rodape.style.setProperty('--est-zona-w', mascara(w, h, r, wZ / wF, 10, 14));
     rodape.classList.add('est-zonas');
@@ -61,21 +63,36 @@
   }
   // Só calcula quando o rodapé está perto da tela (fica no fim da página): não pesa no carregamento (TBT/Lighthouse).
   // Fora disso vale o padrão seguro do CSS (G a 14%, sem zonas).
-  var perto = !('IntersectionObserver' in window);
+  // Quando o rodapé está chegando (carga já no fim da página, tecla End, âncora, reload rolado) o cálculo é feito NA HORA, antes
+  // do próximo quadro, para a zona já estar certa no primeiro quadro em que o rodapé aparece.
+  var MARGEM = 900;
+  var perto = !('IntersectionObserver' in window) || rodape.getBoundingClientRect().top < window.innerHeight + MARGEM;
   function agendar() { if (!perto || pendente) return; pendente = true; window.requestAnimationFrame(atualizar); }
-  if (!perto) {
-    new IntersectionObserver(function (es) { if (es[0].isIntersecting) { perto = true; agendar(); } }, { rootMargin: '900px 0px' }).observe(rodape);
+  function agora() { if (perto) atualizar(); }
+  // Salto até o fim (End, âncora, reload rolado): o IntersectionObserver só avisa um quadro depois; o evento de rolagem sai ANTES da pintura.
+  function aoRolar() {
+    if (rodape.getBoundingClientRect().top < window.innerHeight + MARGEM) { window.removeEventListener('scroll', aoRolar); perto = true; atualizar(); }
+  }
+  if (!perto) window.addEventListener('scroll', aoRolar, { passive: true });
+  if (!perto || 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { if (es[0].isIntersecting) { perto = true; atualizar(); } }, { rootMargin: MARGEM + 'px 0px' }).observe(rodape);
   }
 
-  window.gsegEstampa = { atualizar: agendar, mascara: mascara, caixas: caixas, numero: numero };
-  agendar();
+  window.gsegEstampa = { atualizar: agendar, mascara: mascara, caixas: caixas, numero: numero, ultimo: null };
+  agora();
   window.addEventListener('load', agendar);
   window.addEventListener('resize', agendar);
   if (document.fonts) {
-    if (document.fonts.ready) document.fonts.ready.then(agendar);
-    // webfonts que terminam depois do cálculo mudam a largura dos textos sem mudar o tamanho do rodapé: recalcula
-    if (document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', agendar);
+    // fonte que termina muda a largura dos textos sem mudar o tamanho do rodapé: recalcula na hora, no mesmo quadro da troca
+    if (document.fonts.ready) document.fonts.ready.then(agora);
+    if (document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', agora);
   }
   window.setTimeout(agendar, 900);   // rede de segurança para fontes muito lentas
-  if (window.ResizeObserver) new ResizeObserver(agendar).observe(rodape);
+  if (window.ResizeObserver) {
+    new ResizeObserver(agendar).observe(rodape);
+    // o ResizeObserver dos próprios textos roda depois do layout e ANTES da pintura: quando a troca de webfont muda a largura de um
+    // texto, a máscara é refeita no mesmo quadro (sem um quadro com a zona do texto antigo).
+    var textos = new ResizeObserver(agora);
+    rodape.querySelectorAll('.logo, h3, a, p').forEach(function (e) { textos.observe(e); });
+  }
 })();

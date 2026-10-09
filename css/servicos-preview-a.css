@@ -527,9 +527,9 @@ html { scroll-padding-top: calc(var(--pa-header-h) + 64px); }
    ?i=1 (forte) | ?i=2 (mais forte, padrão) | ?i=3 (máximo): o JS põe .pa-i-N em .pa-pagina e as
    variáveis abaixo sobrescrevem as do global no rodapé e no hero ao mesmo tempo (G bronze metálico nos 3 níveis).
    ============================================================================= */
-.pa-pagina.pa-i-1 { --est-g-tile: url("../img/estampa/estampa-g2-n1.svg?v=20261009-r19-5b"); --est-g-op-forte: .22; --est-w-op-forte: .09; }
-.pa-pagina.pa-i-2 { --est-g-tile: url("../img/estampa/estampa-g2-n2.svg?v=20261009-r19-5b"); --est-g-op-forte: .32; --est-w-op-forte: .10; }
-.pa-pagina.pa-i-3 { --est-g-tile: url("../img/estampa/estampa-g2-n3.svg?v=20261009-r19-5b"); --est-g-op-forte: .42; --est-w-op-forte: .11; }
+.pa-pagina.pa-i-1 { --est-g-tile: url("../img/estampa/estampa-g2-n1.svg?v=20261009-r19-5c"); --est-g-op-forte: .22; --est-w-op-forte: .09; }
+.pa-pagina.pa-i-2 { --est-g-tile: url("../img/estampa/estampa-g2-n2.svg?v=20261009-r19-5c"); --est-g-op-forte: .32; --est-w-op-forte: .10; }
+.pa-pagina.pa-i-3 { --est-g-tile: url("../img/estampa/estampa-g2-n3.svg?v=20261009-r19-5c"); --est-g-op-forte: .42; --est-w-op-forte: .11; }
 .pa-pagina .pa-hero { --pa-zona-hero-g: linear-gradient(#000, #000); --pa-zona-hero-w: linear-gradient(#000, #000); }
 .pa-pagina .pa-hero::before, .pa-pagina .pa-hero::after {
   content: "";
