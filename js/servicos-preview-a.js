@@ -21,15 +21,15 @@
   if (!pagina) return;
   pagina.classList.add('pa-js');
 
-  // ----- estampa da marca: ?estampa=c|cplus (sem parâmetro ou valor inválido = cplus); etiqueta provisória só na prévia -----
+  // ----- G da estampa: ?g=1|2 (sem parâmetro ou valor inválido = 2); etiqueta provisória só na prévia -----
   (function () {
-    let n = 'cplus';
-    try { const q = (new URLSearchParams(window.location.search).get('estampa') || '').toLowerCase(); if (q === 'c' || q === 'cplus') n = q; } catch (e) {}
-    pagina.classList.add('pa-estampa-' + n);
+    let n = '2';
+    try { const q = new URLSearchParams(window.location.search).get('g'); if (q === '1' || q === '2') n = q; } catch (e) {}
+    pagina.classList.add('pa-g-' + n);
     const sel = document.querySelector('.pa-estampa-sel');
     if (!sel) return;
     Array.prototype.forEach.call(sel.querySelectorAll('a'), function (a) {
-      a.setAttribute('aria-current', String(a.getAttribute('href') === '?estampa=' + n));
+      a.setAttribute('aria-current', String(a.getAttribute('href') === '?g=' + n));
     });
     // a etiqueta sobe junto com o rodapé (desktop) ou some sobre ele (celular): nunca cobre texto do rodapé
     const base = document.querySelector('.rodape__base');

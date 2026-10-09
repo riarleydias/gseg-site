@@ -651,13 +651,14 @@ body.sem-scroll { overflow: hidden; }
    11 · RODAPÉ
    ======================================================================== */
 .rodape {
-  /* Fase 1 · B2 — traço editorial de fechamento + gradiente vertical sutil + textura mínima */
+  /* Rodada 19.4 — fio bronze de 2px no topo + gradiente vertical; as faixas verticais (repeating-linear-gradient) saíram */
+  position: relative;
+  isolation: isolate;
   border-top: 2px solid var(--areia);
-  background:
-    repeating-linear-gradient(90deg, rgba(242, 241, 236, .035) 0 1px, transparent 1px 96px),
-    linear-gradient(180deg, var(--verde-floresta) 0%, var(--verde-escuro) 100%);
+  background: linear-gradient(180deg, var(--verde-floresta) 0%, var(--verde-escuro) 100%);
   color: var(--texto-claro-2);
 }
+.rodape > .container { position: relative; z-index: 1; }
 .rodape__grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -689,7 +690,7 @@ body.sem-scroll { overflow: hidden; }
   font-weight: var(--fw-semibold);
   letter-spacing: var(--ls-caps);
   text-transform: uppercase;
-  color: var(--areia);
+  color: #EFECE3;   /* r19.4: ~creme 95% (era areia #C2B49B, no limite de 4,5:1); a hierarquia segue pela caixa-alta, o espaçamento e o traço de 22px */
   margin-bottom: var(--space-4);
 }
 .rodape__col a,
@@ -700,16 +701,15 @@ body.sem-scroll { overflow: hidden; }
 .rodape__contato i { color: var(--verde-claro); font-size: 18px; }
 /* Fase 1 · B3 — hover em areia com transição (mesma família do header); ícones acompanham */
 .rodape__col a { transition: color var(--transition); }
-.rodape__col a:hover { color: var(--areia); }
+.rodape__col a:hover { color: #E8DFC9; }   /* r19.4: o hover areia caía a 3,66:1 sobre o G da estampa */
 
 .rodape__base {
-  border-top: 1px solid rgba(242, 241, 236, .14);
   padding-block: var(--space-5);
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
   font-size: var(--fs-small);
-  color: var(--texto-claro-2);
+  color: rgba(242, 241, 236, .75);
 }
 .rodape__base a { color: var(--areia); transition: color var(--transition); }
 .rodape__base a:hover { color: var(--texto-claro); }
@@ -733,9 +733,52 @@ body.sem-scroll { overflow: hidden; }
     height: 1px;
     background: var(--areia);
     opacity: .75;
-    margin-top: 10px;
+    margin-top: 8px;
   }
+  /* Rodada 19.4 — rodapé compacto (≈ −33% de altura) */
+  .rodape__grid { grid-template-columns: 1.35fr 1fr 1.55fr 1.2fr; align-items: start; gap: 40px; padding-block: 56px 32px; }
+  .rodape h3 { margin-bottom: 16px; }
+  .logo--rodape .logo__simbolo { width: 48px; height: 48px; }
+  .logo--rodape .logo__nome { font-size: 23px; }
+  .rodape__crea { margin-top: 14px; }
+  .rodape__contato { gap: 12px; }
+  .rodape__contato a { min-height: 24px; }
+  .rodape__col ul { padding-left: 0; grid-template-columns: repeat(2, auto); grid-template-rows: repeat(4, auto); grid-auto-flow: column; justify-content: start; gap: 10px 36px; }
+  .rodape__base { padding-block: 18px; }
 }
+
+/* ───── Estampa da marca no rodapé (rodada 19.4): C+ — G em traço (G2 metálico por padrão) + palavra GSEG em bronze claro ─────
+   Decorativa: pseudo-elementos atrás do conteúdo, só sobre o verde. Variáveis sobrescrevíveis (a prévia troca o G por ?g=1|2). */
+:root {
+  --est-g-tile: url("../img/estampa/estampa-g2.svg");
+  --est-w-tile: url("../img/estampa/estampa-gseg.svg");
+  --est-g-op: .14;
+  --est-w-op: .075;
+}
+.rodape::before,
+.rodape::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  padding-left: calc(max(0px, (100% - var(--container-max, 1400px)) / 2) + clamp(24px, 4vw, 64px));   /* origem dos tiles = borda do conteúdo do container */
+  background-origin: content-box;
+  background-clip: border-box;
+  background-repeat: repeat;
+  background-size: 196px 112px;
+  background-position: 0 0;
+  pointer-events: none;
+  /* esmaecimento topo/base + vinheta (centro ~40% mais leve, sem anel) */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%),
+    radial-gradient(ellipse 75% 95% at 50% 50%, rgba(0,0,0,.6) 0, rgba(0,0,0,.61) 15%, rgba(0,0,0,.66) 30%, rgba(0,0,0,.75) 45%, rgba(0,0,0,.86) 60%, rgba(0,0,0,.95) 78%, #000 100%);
+          mask-image: linear-gradient(to bottom, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%),
+    radial-gradient(ellipse 75% 95% at 50% 50%, rgba(0,0,0,.6) 0, rgba(0,0,0,.61) 15%, rgba(0,0,0,.66) 30%, rgba(0,0,0,.75) 45%, rgba(0,0,0,.86) 60%, rgba(0,0,0,.95) 78%, #000 100%);
+  -webkit-mask-composite: source-in;
+          mask-composite: intersect;
+}
+.rodape::before { background-image: var(--est-g-tile); opacity: var(--est-g-op); }
+.rodape::after  { background-image: var(--est-w-tile); opacity: var(--est-w-op); }
+@media (prefers-contrast: more), (forced-colors: active), print { .rodape::before, .rodape::after { display: none; } }
 
 /* ════════════════ AJUSTES MOBILE (≤899px · não afeta desktop ≥900) ════════════════
    Espelha o breakpoint real do projeto (900px). Onde o desktop já sobrescreve, esta
@@ -816,19 +859,20 @@ body.sem-scroll { overflow: hidden; }
     padding-block: 20px 14px;
   }
   .rodape h3 {
-    margin-bottom: 4px;
-    font-size: 11px;
+    margin-bottom: 6px;
+    font-size: 14px;
     line-height: 1.2;
   }
   .rodape__col a,
   .rodape__col p {
-    font-size: 12.5px;
-    line-height: 1.4;
+    font-size: 14px;
+    line-height: 1.5;
   }
+  .rodape__col a { display: inline-flex; align-items: center; min-height: 40px; }
   .rodape__col p + p { margin-top: 1px; }
-  .rodape__contato { gap: 4px; }
-  .rodape__contato a { min-height: 26px; }
-  .rodape__col ul { grid-template-columns: 1fr 1fr; gap: 5px 12px; }
+  .rodape__contato { gap: 0; }
+  .rodape__contato a { min-height: 40px; }
+  .rodape__col ul { padding-left: 0; grid-template-columns: 1fr 1fr; gap: 0 12px; }
   .rodape__col ul li:last-child { grid-column: 1 / -1; text-align: center; }
   .rodape__base {
     gap: 3px;
