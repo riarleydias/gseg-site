@@ -113,6 +113,14 @@ html { scroll-padding-top: calc(var(--pa-header-h) + 64px); }
   stroke-width: 4;
   stroke-linejoin: round;
   pointer-events: none;
+  opacity: .08;                       /* sem JS não há zona de proteção do texto: arco quase apagado */
+}
+.pa-js .pa-hero__arco {
+  opacity: 1;
+  --pa-zona-arco: linear-gradient(transparent, transparent);   /* escondido até o JS medir o texto */
+  -webkit-mask-image: var(--pa-zona-arco); mask-image: var(--pa-zona-arco);
+  -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
 }
 .pa-hero__eyebrow {
   margin: 0 0 14px;

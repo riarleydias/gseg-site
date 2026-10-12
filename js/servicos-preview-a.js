@@ -34,6 +34,22 @@
       const r = E.caixas(hero, ['.pa-hero__assina']), w = hero.clientWidth, h = hero.clientHeight;
       hero.style.setProperty('--pa-zona-hero-g', E.mascara(w, h, r, gZ / gF, 10, 14));
       hero.style.setProperty('--pa-zona-hero-w', E.mascara(w, h, r, wZ / wF, 10, 14));
+      zonaArco();
+    }
+    // arco do G (T2): some atrás de todo o texto do hero (eyebrow, título, subtítulo, ações, assinatura), com ~60px de transição; o brilho fica só no arco que sobra fora do texto
+    const arco = hero && hero.querySelector(".pa-hero__arco");
+    function zonaArco() {
+      const E = window.gsegEstampa; if (!arco || !E) return;
+      const o = arco.getBoundingClientRect(), w = Math.round(o.width), h = Math.round(o.height); if (w < 2 || h < 2) return;
+      const r = [];
+      [".pa-hero__eyebrow", ".pa-hero__titulo", ".pa-hero__sub", ".pa-hero__acoes", ".pa-hero__assina"].forEach(function (sel) {
+        const e = hero.querySelector(sel); if (!e || getComputedStyle(e).visibility === "hidden") return;
+        const g = document.createRange(); g.selectNodeContents(e);
+        const q = sel === ".pa-hero__acoes" ? e.getBoundingClientRect() : g.getBoundingClientRect();
+        if (q.width < 2 || q.height < 2) return;
+        r.push({ x: q.left - o.left, y: q.top - o.top, w: q.width, h: q.height });
+      });
+      arco.style.setProperty("--pa-zona-arco", E.mascara(w, h, r, 0, 20, 20));
     }
     function agendarHero() { if (!heroPend) { heroPend = true; window.requestAnimationFrame(zonaHero); } }
     window.addEventListener('gseg:estampa', agendarHero); window.addEventListener('load', agendarHero); window.addEventListener('resize', agendarHero);
