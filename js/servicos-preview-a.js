@@ -15,13 +15,13 @@
 (function () {
   'use strict';
 
-  const GSEG_WHATSAPP = "5534992076152"; // PLACEHOLDER — trocar pelo número real (os links do HTML são reescritos aqui)
+  const GSEG_WHATSAPP = "5534992076152"; // número real da GSEG (os links do HTML são reescritos aqui se a constante mudar)
 
   const pagina = document.querySelector('.pa-pagina');
   if (!pagina) return;
   pagina.classList.add('pa-js');
 
-  // ----- zona de proteção do hero (nível 5 da estampa fixo no HTML: pa-i-5) -----
+  // ----- zona de proteção do hero (intensidade da estampa fixa no HTML: pa-i-1) -----
   (function () {
     // zona de proteção atrás da assinatura da responsável técnica (hero): mesma lógica do rodapé, medida no layout real
     const hero = document.querySelector('.pa-hero');
