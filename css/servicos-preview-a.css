@@ -109,8 +109,8 @@ html { scroll-padding-top: calc(var(--pa-header-h) + 64px); }
   width: min(86vw, 980px);
   height: auto;
   fill: none;
-  stroke: rgba(242, 241, 236, .055);
-  stroke-width: 1.6;
+  stroke: url(#gseg-g-shimmer);
+  stroke-width: 4;
   stroke-linejoin: round;
   pointer-events: none;
 }
@@ -208,13 +208,16 @@ html { scroll-padding-top: calc(var(--pa-header-h) + 64px); }
 .pa-atalho:focus-visible .pa-atalho__nome { text-decoration-color: var(--pa-bronze); }
 .pa-atalho:focus-visible .pa-atalho__pontos { border-bottom-style: solid; border-bottom-color: var(--pa-bronze); }
 .pa-atalho:focus-visible .pa-atalho__num { color: var(--pa-verde); }
+/* 2 colunas: SST | Meio Ambiente (T2) — a grade fica em __cols, dentro da faixa */
+.pa-atalhos__cols { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; margin-top: 10px; }
+.pa-atalhos__colhead { margin: 0; font-size: 9px; letter-spacing: .20em; text-transform: uppercase; font-weight: 700; color: var(--pa-bronze-esc); }
+@media (min-width: 580px) { .pa-atalhos__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 640px) { .pa-atalhos__faixa { padding: 16px 24px 12px; } }
 @media (min-width: 1024px) {
   .pa-atalhos { margin-top: -32px; }
-  .pa-atalhos__lista { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(3, auto); grid-auto-flow: column; column-gap: 0; }
   .pa-atalho { flex-wrap: nowrap; padding-block: 6px; min-height: 40px; }
-  .pa-atalho:nth-child(-n+3) { padding-right: 32px; }
-  .pa-atalho:nth-child(n+4) { padding-left: 32px; border-left: 1px solid rgba(168, 144, 102, .35); }
+  .pa-atalhos__col:nth-child(2) { padding-left: 32px; border-left: 1px solid rgba(168, 144, 102, .35); }
+  .pa-atalhos__col:nth-child(1) { padding-right: 32px; }
   .pa-atalho__selo { order: 0; margin-left: 0; }
   .pa-atalho__sigla { flex-basis: 5rem; }
 }

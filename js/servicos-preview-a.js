@@ -15,7 +15,7 @@
 (function () {
   'use strict';
 
-  const GSEG_WHATSAPP = "5534900000000"; // PLACEHOLDER — trocar pelo número real (os links do HTML são reescritos aqui)
+  const GSEG_WHATSAPP = "5534992076152"; // PLACEHOLDER — trocar pelo número real (os links do HTML são reescritos aqui)
 
   const pagina = document.querySelector('.pa-pagina');
   if (!pagina) return;
