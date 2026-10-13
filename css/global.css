@@ -752,13 +752,13 @@ body.sem-scroll { overflow: hidden; }
    Com js/estampa-rodape.js (classe .est-zonas): G e GSEG sobem para o nível "forte" fora de zonas de proteção — o JS mede as caixas
    de texto do rodapé e gera, a cada resize, uma máscara SVG com zonas esmaecidas (--est-zona-g / --est-zona-w) onde a estampa fica leve. */
 :root {
-  --est-g-tile: url("../img/estampa/estampa-g2-n2.svg?v=20261009-r19-5c");   /* traço 2,25px (nível 2); a prévia troca por n1/n3 com ?i= */
+  --est-g-tile: url("../img/estampa/estampa-g-v2.svg?v=20261012-t4");   /* T4: G oficial (simbolo.svg) preenchido, 72px, em tijolo; célula 224x224 */
   --est-w-tile: url("../img/estampa/estampa-gseg.svg");
-  --est-g-op: .14;               /* padrão sem JS */
+  --est-g-op: .12;               /* padrão sem JS */
   --est-w-op: .075;
-  --est-g-op-forte: .32;         /* nível 2 — fora das zonas de proteção */
+  --est-g-op-forte: .12;         /* T4 — fora das zonas de proteção */
   --est-w-op-forte: .10;
-  --est-g-op-zona: .10;          /* dentro das zonas (atrás do texto) */
+  --est-g-op-zona: .05;          /* dentro das zonas (atrás do texto) */
   --est-w-op-zona: .05;
   --est-zona-g: linear-gradient(#000, #000);
   --est-zona-w: linear-gradient(#000, #000);
@@ -782,7 +782,7 @@ body.sem-scroll { overflow: hidden; }
   -webkit-mask-composite: source-in, source-in;   mask-composite: intersect, intersect;
 }
 /* máscara = esmaecimento topo/base ∩ vinheta (centro ~40% mais leve, sem anel) ∩ zonas de proteção do texto */
-.rodape::before { background-image: var(--est-g-tile); opacity: var(--est-g-op); }
+.rodape::before { background-image: var(--est-g-tile); background-size: 224px 224px; opacity: var(--est-g-op); }
 .rodape::after  { background-image: var(--est-w-tile); opacity: var(--est-w-op); }
 .rodape::before {
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%), radial-gradient(ellipse 75% 95% at 50% 50%, rgba(0,0,0,.6) 0, rgba(0,0,0,.61) 15%, rgba(0,0,0,.66) 30%, rgba(0,0,0,.75) 45%, rgba(0,0,0,.86) 60%, rgba(0,0,0,.95) 78%, #000 100%), var(--est-zona-g);
