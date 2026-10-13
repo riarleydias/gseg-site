@@ -549,6 +549,8 @@ html { scroll-padding-top: calc(var(--pa-header-h) + 64px); }
   --est-g-op-forte: .62;
   --est-w-op-forte: .15;
 }
+/* T3: rodapé com G legível — tile n6 (G do logo a ~56px, 8 por tile em tijolo + 1 G fantasma de ~120px a 32%). Só a prévia; o hero segue com o tile do nível. */
+.pa-pagina .rodape::before { background-image: url("../img/estampa/estampa-g2-n6.svg?v=20261012-t3"); background-size: 448px 256px; }
 .pa-pagina .pa-hero { --pa-zona-hero-g: linear-gradient(#000, #000); --pa-zona-hero-w: linear-gradient(#000, #000); }
 .pa-pagina .pa-hero::before, .pa-pagina .pa-hero::after {
   content: "";
