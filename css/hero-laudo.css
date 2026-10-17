@@ -68,7 +68,8 @@
 }
 .hero__barra-tel {
   color: var(--laudo-ambar); font-weight: 700; letter-spacing: .06em;
-  text-decoration: none; padding-block: 8px;
+  text-decoration: none;
+  padding-block: 13px; margin-block: -5px;   /* alvo de toque de 44px sem engordar a barra */
 }
 .hero__barra-tel:hover { text-decoration: underline; text-underline-offset: 3px; }
 .hero__barra-tel:focus-visible { outline: 2px solid var(--laudo-ambar); outline-offset: 2px; }
@@ -201,8 +202,8 @@
 .laudo__rodape b { display: block; font-size: 1.6cqw; font-weight: 700; line-height: 1.45; color: var(--toner); }
 .laudo__rodape span { display: block; font-size: 1.44cqw; color: var(--toner-70); margin-top: .33cqw; }
 .laudo__ass { text-align: right; }
-.laudo__ass-nome { display: block; font-family: var(--font-display-serif); font-style: italic; font-weight: 600; font-size: 3.6cqw; color: #2A3426 !important; transform: rotate(-2.5deg); opacity: .86; }
-.laudo__ass-fio { display: block; width: 22.5cqw; height: .75px; background: var(--toner-40); margin: .33cqw 0 .56cqw auto; }
+.laudo__rodape .laudo__ass-nome { display: block; margin-top: 0; font-family: var(--font-display-serif); font-style: italic; font-weight: 600; font-size: 3.6cqw; color: #2A3426; transform: rotate(-2.5deg); opacity: .86; }
+.laudo__rodape .laudo__ass-fio { display: block; width: 22.5cqw; height: .75px; background: var(--toner-40); margin: .33cqw 0 .56cqw auto; }
 
 /* versão mobile da matriz — escondida no desktop */
 .hero__matriz-m { display: none; }
@@ -212,7 +213,7 @@
 .hero--laudo .hero__titulo .destaque { color: var(--areia); }
 .hero--laudo .hero__risco { background: var(--laudo-ambar); }
 .hero--laudo .hero__ponto { background: var(--laudo-ambar); }
-.hero--laudo .hero__texto { color: var(--texto-claro-2); margin-bottom: 14px; }
+.hero--laudo .hero__texto { color: var(--texto-claro-2); margin-bottom: 14px; max-width: 600px; }   /* inicio.css usa 64ch; em px para não depender da fonte carregada */
 
 .hero__normas {
   list-style: none; margin: 0 0 14px; padding: 0;
@@ -287,8 +288,8 @@
 }
 .hero__reg-item b { font-weight: 700; color: var(--texto-claro); white-space: nowrap; }
 .hero__reg-item span { color: rgba(242, 241, 236, .74); }
-.hero__reg-fonte {
-  margin-left: auto !important; display: flex; align-items: center;
+.hero__reg .hero__reg-fonte {
+  margin-left: auto; display: flex; align-items: center;
   padding: 8px clamp(24px, 4vw, 64px) 8px 20px;
   font-size: 10.5px; letter-spacing: .04em; color: var(--laudo-rotulo);
 }
@@ -305,7 +306,7 @@
   .hero__reg-item { flex: 0 1 auto; }
   .hero__reg-fonte { flex: none; }
   .hero--laudo .hero__risco { margin: 0 0 14px; }
-  .hero--laudo .hero__texto { font-size: 17px; line-height: 1.5; max-width: 52ch; }
+  .hero--laudo .hero__texto { font-size: 17px; line-height: 1.5; max-width: 560px; }   /* px, não ch: com a animação o ch congela na fonte de reserva (gate Otto f6533f8) */
   .hero--laudo .hero__ctas { flex-wrap: wrap; gap: 12px; }
   .hero--laudo .hero__ctas .btn { padding-inline: 20px; }
   .hero--laudo .hero__reg-item span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -357,7 +358,7 @@
   .hero__reg { flex-direction: column; padding: 12px clamp(24px, 4vw, 64px) 14px; gap: 8px; }
   .hero__reg-selo { align-self: flex-start; padding: 5px 10px; border: 1px solid rgba(232, 163, 61, .3); }
   .hero__reg-item { padding: 0; border: 0; align-items: baseline; flex-wrap: wrap; gap: 2px 8px; }
-  .hero__reg-fonte { margin-left: 0 !important; padding: 0; }
+  .hero__reg .hero__reg-fonte { margin-left: 0; padding: 0; }
 }
 @media (min-width: 600px) and (max-width: 899.98px) {
   .hero__barra-fim { display: initial; }   /* "Atendimento a escritórios contábeis" fica só no desktop: não cabe numa linha */
